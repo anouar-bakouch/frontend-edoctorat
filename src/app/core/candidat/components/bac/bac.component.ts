@@ -34,7 +34,6 @@ export class BacComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
    this.httpCountries.getCountries().
    subscribe(
      res=>{
