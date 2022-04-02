@@ -3,13 +3,13 @@
  <form [formGroup]="candidatBacForm">
     <div class="row">
         
-        <div class="col-12">
+        <div class="col-sm-3 col-lg-6 mb-3">
             <div class="form-group required ">
              
                 <label class="col-form-label-sm control-label"
                     for="id_bac">Type</label>
                 <select formControlName="titre"
-                    class="form-control  m-auto" required=""
+                    class="form-control  form-control-sm" required=""
                     id="id_bac">
             
                     <option value="Sciences Maths B">Sciences Maths B
@@ -61,10 +61,10 @@
 
         </div>
 
-        <div class="col-12">
+        <div class="col-sm-9 col-lg-6">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_date_diplome_bac">Date D'obtention Du Diplôme</label>
+                    for="id_date_diplome_bac">Date D'obtention Du Bac</label>
 
                 <input type="date"  value=""
                     class="form-control form-control-sm dateBac"
@@ -77,49 +77,51 @@
 
     </div>
 
-    <div class="row">
-    <div class="col-12">
+    <div class="row mb-3">
+    <div class="col-4">
         <div class="form-group required">
             <label class="col-form-label-sm control-label"
                 for="id_Province_bac">Pays</label>
-            <select (change)="getCities()"  formControlName="pays" class="form-control" required="" id="id_Province_bac">
+            <select (change)="getCities()"  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
 
                 <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
          
             </select>
         </div>
     </div>
+
+    <div class="col-4">
+        <div class="form-group required">
+            <label class="col-form-label-sm control-label"
+                for="id_ville_bac">Ville</label>
+
+                <select class="form-control form-control-sm" formControlName="ville">
+           
+                    <option value="{{city}}" *ngFor="let city of _cities">{{city}}</option>
+                  
+                   </select>
+
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="form-group required">
-                <label class="col-form-label-sm control-label"
-                    for="id_ville_bac">Ville</label>
-                <input type="text" name="ville" value=""
-                    class="form-control form-control-sm" maxlength="50"
-                    required="" id="id_ville_bac" 
-                    
-                    formControlName="ville"
-                    />
-            </div>
+    <div class="col-4">
+        <div class="form-group required">
+            <label class="col-form-label-sm control-label">Province</label>
+            <input type="text" name="province" value=""
+            class="form-control form-control-sm" maxlength="50"
+            required="" id="id_ville_bac" 
+            
+            formControlName="province"
+            />
         </div>
-
-    
     </div>
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="form-group required">
-                <label class="col-form-label-sm control-label">Province</label>
 
-                <select class="form-control" formControlName="province">
-               
-                 <option value="{{city}}" *ngFor="let city of _cities">{{city}}</option>
-               
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-3 col50">
+    </div>
+
+  
+    <div class="row mb-3">
+       
+        <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
                     for="id_mentionbac">Mention:</label>
@@ -131,9 +133,8 @@
                 </select>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3">
+
+        <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
                     for="id_nom_bac">Lycée </label>
@@ -147,7 +148,8 @@ etablissementBac
 " maxlength="50" required="" id="id_nom_bac" />
             </div>
         </div>
-        <div class="col-lg-3 col50">
+
+        <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
                     for="id_moyenne_bac">Moyenne Générale du
@@ -160,20 +162,23 @@ etablissementBac
                     required="" id="id_moyenne_bac" />
             </div>
         </div>
+
     </div>
-    <div class="row">
+   
+    <div class="row mt-5">
         <div class="mb-3">
-            <label for="bac_dip" class="form-label">Diplôme BACCALAUREAT pdf <4MO:</label>
+            <label for="bac_dip" class="form-label">Diplôme BACCALAUREAT pdf <span class="text-danger h6"> < 4MO </span></label>
             <input class="form-control diplomeBac" type="file"
                 
                 formControlName="bac_diplome"
 
                 required
                 accept="application/pdf" />
+
         </div>
 
         <div class="mb-3">
-            <label for="relBac" class="form-label">Relevés de notes pdf <4MO:</label>
+            <label for="relBac" class="form-label">Relevés de notes pdf  <span class="text-danger h6"> < 4MO </span></label>
             <input class="form-control releveBac" type="file"
                 id="relBac"  accept="application/pdf"
                 required 
@@ -183,8 +188,14 @@ etablissementBac
                 />
         </div>
     </div>
+
+    <div class="col-3">
+        
+        <button class="btn btn-primary m-auto" type="button">confirmer</button>
+    </div>
+
+
+
 </form>
 </div>
 
-
-{{candidatBacForm.value | json}}

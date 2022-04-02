@@ -18,6 +18,8 @@ import { DoctoratMedecineComponent } from './components/doctorat-medecine/doctor
 import { MasterComponent } from './components/master/master.component';
 import { LicenceComponent } from './components/licence/licence.component';
 import { InfoPersonnelsComponent } from './components/info-personnels/info-personnels.component';
+import { SujersComponent } from './components/sujers/sujers.component';
+import { ChoisirSujetsComponent } from './components/choisir-sujets/choisir-sujets.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { InfoPersonnelsComponent } from './components/info-personnels/info-perso
     DoctoratMedecineComponent,
     MasterComponent,
     LicenceComponent,
-    InfoPersonnelsComponent
+    InfoPersonnelsComponent,
+    SujersComponent,
+    ChoisirSujetsComponent
   ],
   imports: [
     CommonModule,

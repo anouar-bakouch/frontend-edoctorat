@@ -1,0 +1,30 @@
+<div class="card">
+
+    <div class="card-header sujet-header">Vos choix de sujets</div>
+    <div class="card-body" tal:repeat="candidat_sujet candidat_sujets">
+        <h5 class="card-title sujet-title" id="${candidat_sujet.sujet_id}">
+            Sujet:
+        </h5>
+        <p class="card-text">
+            Description:
+        </p>
+        <p class="card-text">
+            Professeur:
+        </p>
+        <p class="card-text">CED: </p>
+
+        <div tal:switch="candidat_sujet.ced_id != 1">
+            <div tal:case="True">
+                <label for="formFile" class="form-label">
+                    Importer votre projet de thèse(pdf): <span style="color: blue">✅</span>
+                </label>
+                <input class="form-control candidat-these" type="file" id="formFile"
+                    data-id-sujet="${candidat_sujet.sujet_id}" accept="application/pdf" required
+                    style="margin-bottom: 0.5rem" />
+            </div>
+        </div>
+
+        <a class="btn btn-primary btnDelete" data-id-sujet="">Supprimer</a>
+        <div class="dropdown-divider"></div>
+    </div>
+</div>

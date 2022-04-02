@@ -1,6 +1,7 @@
 <div class="row">
 <form [formGroup]="candidatInfoForm">
-      <div class="row">
+
+      <div class="row mb-3">
         <div class="col-lg-10">
           <div >
             <p>Path Photo : </p>
@@ -19,11 +20,11 @@
         </div>
       </div>
     
-      <div class="row">
+      <div class="row mb-3">
         <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_nom"
             
               >Nom:</label
@@ -43,7 +44,7 @@
         <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_prenom"
               >Prénom:</label
             >
@@ -62,7 +63,7 @@
         <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_cin"
               >CIN:</label
             >
@@ -83,7 +84,7 @@
         <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_cne"
               >CNE:</label
             >
@@ -103,11 +104,11 @@
       </div>
 
 
-      <div class="row">
+      <div class="row mb-3">
         <div class="col-lg-3">
           <div class="form-group">
-            <label class="col-form-label-sm" for="id_nom_ar"
-              >Nom en arabe:</label
+            <label class="col-form-label-sm h6" for="id_nom_ar"
+              >Nom en arabe</label
             >
             <input
               type="text"
@@ -122,7 +123,7 @@
         </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <label class="col-form-label-sm" for="id_prenom_ar"
+            <label class="col-form-label-sm h6" for="id_prenom_ar"
               >Prénom en arabe:</label
             >
             <input
@@ -140,7 +141,7 @@
         <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_date_naissance"
               >Date de naissance:</label
             >
@@ -159,12 +160,12 @@
         <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_sexe"
               >Sexe:</label
             >
     
-            <div class="form-check">
+            <div class="form-group">
 
               <select formControlName="sexe" class="form-select form-select-sm " name="sexe" required="" id="id_sexe">
     
@@ -178,11 +179,11 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-4">
+      <div class="row mb-3">
+        <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_lieu_naissance"
               >Lieu de naissance:</label
             >
@@ -197,10 +198,10 @@
             />
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="form-group">
             <label
-              class="col-form-label-sm"
+              class="col-form-label-sm h6"
               for="id_lieu_naissance_ar"
               >Lieu de naissance en arabe:</label
             >
@@ -214,10 +215,10 @@
             />
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_adresse_personnelle"
               >Adresse de résidence:</label
             >
@@ -232,49 +233,11 @@
             />
           </div>
         </div>
-      </div>
-    
-      <div class="row">
-        <div class="col-lg-3">
-         
-        </div>
+
         <div class="col-lg-3">
           <div class="form-group required">
             <label
-              class="col-form-label-sm control-label"
-              for="id_telephone"
-              >Téléphone:</label
-            >
-            <input
-              type="tel"
-              name="telephone"
-              formControlName = "telCandidat"
-              class="form-control form-control-sm"
-              maxlength="20"
-              required=""
-              id="id_telephone"
-            />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-              <div class="form-group required">
-                  <label class="col-form-label-sm control-label"
-                      for="id_Province_bac">Pays</label>
-                  <select data-live-search="true" id="pays_s" formControlName="pays"  class="form-control" required="" id="id_Province_bac">
-      
-                      <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
-               
-                  </select>
-              </div>
-
-          </div>
-          </div>
-
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm control-label"
+              class="col-form-label-sm h6 control-label"
               for="id_ville"
               >Ville:</label
             >
@@ -290,8 +253,49 @@
             />
             
           </div>
+        </div>
+
+      </div>
+    
+      <div class="row mb-3">
+
+
+        <div class="col-lg-3">
+          <div class="form-group required">
+            <label
+              class="col-form-label-sm h6 control-label"
+              for="id_telephone"
+              >Téléphone:</label
+            >
+            <input
+              type="tel"
+              name="telephone"
+              formControlName = "telCandidat"
+              class="form-control form-control-sm"
+              maxlength="20"
+              required=""
+              id="id_telephone"
+            />
+          </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="form-group required">
+                <label class="col-form-label-sm h6 control-label"
+                    for="id_Province_bac">Pays</label>
+                <select data-live-search="true" id="pays_s" formControlName="pays"  class="form-control" required="" id="id_Province_bac">
+    
+                    <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
+             
+                </select>
+            </div>
+
+        </div>
+
+         
+           </div>
         
-    </div>
+    
 
     </form>
 </div>
