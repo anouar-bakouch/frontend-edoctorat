@@ -9,6 +9,7 @@ import { DutComponent } from "./components/dut/dut.component";
 import { InfoPersonnelsComponent } from "./components/info-personnels/info-personnels.component";
 import { LicenceComponent } from "./components/licence/licence.component";
 import { MasterComponent } from "./components/master/master.component";
+import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { PostulerComponent } from "./components/postuler/postuler.component";
 
 
@@ -23,11 +24,12 @@ const routes:Routes= [
    {   path : 'master' , component : MasterComponent },
    {   path : 'licence' , component : LicenceComponent },
    {   path : 'doctorat_medecine' , component : DoctoratMedecineComponent },
-   {   path : 'info_personnels' , component : InfoPersonnelsComponent},
+   
    // postuler
-
+   {   path : 'info_personnels' , component : InfoPersonnelsComponent},
    {   path : 'postuler', component : PostulerComponent},
-   {   path : 'parcours',redirectTo : '/bac' , pathMatch : 'full'}
+   {   path : 'parcours',redirectTo : '/bac' , pathMatch : 'full'},
+   {   path : 'notifications' , component : NotificationsComponent },
 ];
 
 @NgModule(

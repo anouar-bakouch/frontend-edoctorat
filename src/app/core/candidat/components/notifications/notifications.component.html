@@ -1,0 +1,57 @@
+
+
+
+
+    <h3 class="text-success mt-3 border border-bottom border-primary text-center p-3">Notifications</h3>
+
+   <p class="h5"> Nous vous invitons à participer à  l'entretien de notre commission qui se tiendra le :</p>
+
+    <ul class="list-group mt-3">
+        <li class="list-group-item">commission.dateCommission</li>
+        <li class="list-group-item">commission.sujet</li>
+        <li class="list-group-item">commission.heure</li>
+        <li class="list-group-item">commission.lieu</li>
+    </ul>
+
+    <table class="table table-responsive mt-5">
+        <thead>
+        <th scope="col" class="w-50"></th>
+        <th scope="col" class="w-50"></th>
+        </thead>
+
+        <tbody>
+        <tr>
+
+            <td>resultat.sujet</td>
+
+            <td>
+            <div class="col">
+
+                <div class="d-flex flex-colum flex-wrap justify-content-between align-items-center mb-3">
+                   
+                   <div> Liste principale </div>
+                   
+                        <button data-id-sujet="resultat.sujet_id"
+                                data-cne="candidat.cne"
+                                type="button" class="btn btn-primary imprimer">Télécharger demande d'inscription
+                        </button>
+                  
+                </div>
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+                    
+                    <div>  Liste d'attente (dêpot de dossier de 14h à 16h au CED Dhar Mahraz) </div>
+
+                        <button data-id-sujet="resultat.sujet_id"
+                                data-cne="candidat.cne"
+                                type="button" class="btn btn-primary">Télécharger demande d'inscription
+                        </button>
+                
+                </div>
+
+            </div>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+

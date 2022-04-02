@@ -20,6 +20,7 @@ import { LicenceComponent } from './components/licence/licence.component';
 import { InfoPersonnelsComponent } from './components/info-personnels/info-personnels.component';
 import { SujersComponent } from './components/sujers/sujers.component';
 import { ChoisirSujetsComponent } from './components/choisir-sujets/choisir-sujets.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ChoisirSujetsComponent } from './components/choisir-sujets/choisir-suje
     LicenceComponent,
     InfoPersonnelsComponent,
     SujersComponent,
-    ChoisirSujetsComponent
+    ChoisirSujetsComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,
