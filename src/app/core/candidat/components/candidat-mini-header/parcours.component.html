@@ -1,0 +1,33 @@
+<div class="container-fluid">
+
+  <div class="progress mb-3 border border-primary">
+    <div class="progress-bar  progress-bar-striped" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light border border-primary">
+
+
+    <ul class="navbar-nav m-auto">
+     
+
+      <li class="nav-item dropdown">
+        <a class="text-center nav-link dropdown-toggle brand-primary text-primary font-weight-bold" href="#" id="reglements" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Parcours
+        </a>
+        <ul class="dropdown-menu " aria-labelledby="reglements">
+          <li><a class="dropdown-item text-darkblue" routerLink="bac">BACCALAUREAT<i class="bi bi-check-square mx-3"></i></a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="dut">DUT</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="licence">LICENCE</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="master">MASTER</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="cingenieur">CYCLE D'INGENIEURS</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="doctorat_medecine">DOCTORAT EN MEDECINE</a></li>
+        </ul>
+      </li>
+     
+    </ul>
+
+</nav>
+
+<router-outlet class="col-12"></router-outlet>
+
+</div>

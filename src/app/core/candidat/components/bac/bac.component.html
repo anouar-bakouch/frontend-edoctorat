@@ -1,0 +1,190 @@
+<div class="form-card">
+    <h3 class="text-primary mt-3 border border-primary text-center p-3">BACCALAUREAT</h3>
+ <form [formGroup]="candidatBacForm">
+    <div class="row">
+        
+        <div class="col-12">
+            <div class="form-group required ">
+             
+                <label class="col-form-label-sm control-label"
+                    for="id_bac">Type</label>
+                <select formControlName="titre"
+                    class="form-control  m-auto" required=""
+                    id="id_bac">
+            
+                    <option value="Sciences Maths B">Sciences Maths B
+                    </option>
+
+                    <option value="Sciences Maths A">Sciences Maths A
+                    </option>
+                    <option value="Sciences de la Vie et de la Terre">
+                        Sciences de la Vie et de la Terre
+                    </option>
+
+                    <option value="Sciences Physiques et Chimiques">
+                        Sciences
+                        Physiques et Chimiques
+                    </option>
+                    <option value="Sciences Economiques">Sciences
+                        Economiques
+                    </option>
+
+                    <option
+                        value="Techniques de Gestion et de Comptabilité">
+                        Techniques de Gestion et de Comptabilité
+                    </option>
+                    <option value="Sciences agronomiques">Sciences
+                        agronomiques
+                    </option>
+
+                    <option
+                        value="Sciences et Technologies Electriques">
+                        Sciences et Technologies Electriques
+                    </option>
+                    <option value="Sciences et Technologies Mécaniques">
+                        Sciences et Technologies Mécaniques
+                    </option>
+                    <option value="Arts Appliqués">Arts Appliqués
+                    </option>
+                    <option value="Sciences Humaines">Sciences Humaines
+                    </option>
+                    <option value="Sciences de la Chariaâ">Sciences de
+                        la
+                        Chariaâ
+                    </option>
+                    <option value="Sciences de Langue Arabe">Sciences de
+                        Langue Arabe
+                    </option>
+
+                </select>
+            </div>
+
+        </div>
+
+        <div class="col-12">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_date_diplome_bac">Date D'obtention Du Diplôme</label>
+
+                <input type="date"  value=""
+                    class="form-control form-control-sm dateBac"
+                    required="" id="id_date_diplome_bac"
+                    
+                    formControlName="date_obtention"
+                    />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+    <div class="col-12">
+        <div class="form-group required">
+            <label class="col-form-label-sm control-label"
+                for="id_Province_bac">Pays</label>
+            <select (change)="getCities()"  formControlName="pays" class="form-control" required="" id="id_Province_bac">
+
+                <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
+         
+            </select>
+        </div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_ville_bac">Ville</label>
+                <input type="text" name="ville" value=""
+                    class="form-control form-control-sm" maxlength="50"
+                    required="" id="id_ville_bac" 
+                    
+                    formControlName="ville"
+                    />
+            </div>
+        </div>
+
+    
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label">Province</label>
+
+                <select class="form-control" formControlName="province">
+               
+                 <option value="{{city}}" *ngFor="let city of _cities">{{city}}</option>
+               
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3 col50">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_mentionbac">Mention:</label>
+                <select formControlName="mention" class="form-control form-control-sm" required="" id="id_mentionbac">
+                    <option value="Passable">Passable</option>
+                    <option value="Assez bien">Assez Bien</option>
+                    <option value="Bien">Bien</option>
+                    <option value="Très bien">Très Bien</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_nom_bac">Lycée </label>
+                <input 
+                type="text" 
+                formControlName="lycee"
+                value=""
+                    class="
+form-control form-control-sm
+etablissementBac
+" maxlength="50" required="" id="id_nom_bac" />
+            </div>
+        </div>
+        <div class="col-lg-3 col50">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_moyenne_bac">Moyenne Générale du
+                    Baccalauréat:</label>
+                <input type="number"
+                   step=".01" max="20.0"
+                    formControlName="bac_diplome"
+                    value=""
+                    class="form-control form-control-sm" maxlength="50"
+                    required="" id="id_moyenne_bac" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3">
+            <label for="bac_dip" class="form-label">Diplôme BACCALAUREAT pdf <4MO:</label>
+            <input class="form-control diplomeBac" type="file"
+                
+                formControlName="bac_diplome"
+
+                required
+                accept="application/pdf" />
+        </div>
+
+        <div class="mb-3">
+            <label for="relBac" class="form-label">Relevés de notes pdf <4MO:</label>
+            <input class="form-control releveBac" type="file"
+                id="relBac"  accept="application/pdf"
+                required 
+                
+                formControlName="releves"
+
+                />
+        </div>
+    </div>
+</form>
+</div>
+
+
+{{candidatBacForm.value | json}}
