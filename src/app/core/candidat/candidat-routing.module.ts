@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { LoginComponent } from "src/app/shared/login/login.component";
+import { PageNotFoundComponent } from "src/app/shared/page-not-found/page-not-found.component";
 import { BacComponent } from "./components/bac/bac.component";
 import { CIngenieurComponent } from "./components/c-ingenieur/c-ingenieur.component";
 import { CandidatParcoursComponent } from "./components/candidat-parcours/parcours.component";
@@ -24,6 +26,8 @@ const routes:Routes= [
    {   path : 'master' , component : MasterComponent },
    {   path : 'licence' , component : LicenceComponent },
    {   path : 'doctorat_medecine' , component : DoctoratMedecineComponent },
+   {   path : 'login' , component : LoginComponent},
+   {   path : '**' , component : PageNotFoundComponent },
    
    // postuler
    {   path : 'info_personnels' , component : InfoPersonnelsComponent},
