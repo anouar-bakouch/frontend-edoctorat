@@ -19,21 +19,22 @@ const routes:Routes= [
 
     //diplomes :
 
-   {   path : '' , redirectTo : '/bac', pathMatch : 'full' },
-   {   path : 'bac' ,component : BacComponent },
-   {   path : 'dut' , component : DutComponent },
-   {   path : 'cingenieur' , component : CIngenieurComponent },
-   {   path : 'master' , component : MasterComponent },
-   {   path : 'licence' , component : LicenceComponent },
-   {   path : 'doctorat_medecine' , component : DoctoratMedecineComponent },
-   {   path : 'login' , component : LoginComponent},
-   {   path : '**' , component : PageNotFoundComponent },
+    {   path : '' , component: CandidatComponent , children : [
+    {   path : 'bac' ,component : BacComponent },
+    {   path : 'dut' , component : DutComponent },
+    {   path : 'cingenieur' , component : CIngenieurComponent },
+    {   path : 'master' , component : MasterComponent },
+    {   path : 'licence' , component : LicenceComponent },
+    {   path : 'doctorat_medecine' , component : DoctoratMedecineComponent },
+    {   path : '**' , component : PageNotFoundComponent },
+    // postuler
+    {   path : 'info_personnels' , component : InfoPersonnelsComponent},
+    {   path : 'postuler', component : PostulerComponent},
+    {   path : 'parcours',redirectTo : '/bac' , pathMatch : 'full'},
+    {   path : 'notifications' , component : NotificationsComponent },
+   ]},
    
-   // postuler
-   {   path : 'info_personnels' , component : InfoPersonnelsComponent},
-   {   path : 'postuler', component : PostulerComponent},
-   {   path : 'parcours',redirectTo : '/bac' , pathMatch : 'full'},
-   {   path : 'notifications' , component : NotificationsComponent },
+
 ];
 
 @NgModule(
@@ -42,6 +43,5 @@ const routes:Routes= [
         exports : [RouterModule]
     }
 )
-
 
 export class CandidatRoutingModule{}

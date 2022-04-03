@@ -11,9 +11,7 @@ import { LaboratoiresComponent } from './laboratoires/laboratoires.component';
 import { MainComponent } from './main/main.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HttpService } from './services/http.service';
-
-
-
+import { PublicRoutingModule } from './public-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +27,8 @@ import { HttpService } from './services/http.service';
     WelcomeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PublicRoutingModule
   ],
   exports : [
     HomeComponent
