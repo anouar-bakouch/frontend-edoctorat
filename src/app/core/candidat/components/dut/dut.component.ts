@@ -19,10 +19,13 @@ export class DutComponent implements OnInit {
   public candidatDutForm = this.fservice.group({
 
   specialite : [''],
-  titreDut : [''],
+  titrefiliere : [''],
+  dateDut: [''],
   pays : [''],
   ville : [''],
   province : [''],
+  mention: [''],
+  Etablissement:[''],dut_note:[''],dut_diplome:[''],releves:[''],
   
 
 

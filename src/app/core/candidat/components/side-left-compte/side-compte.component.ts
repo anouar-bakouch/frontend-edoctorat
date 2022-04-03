@@ -7,13 +7,14 @@ import { relative } from 'path';
   templateUrl: './side-compte.component.html',
   styleUrls: ['./side-compte.component.css']
 })
+
 export class SideCompteComponent implements OnInit {
 
   constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
-
+/*
   public postuler(){
     this.router.navigate(['../postuler'],{ relativeTo : this.router})
   }
@@ -21,6 +22,6 @@ export class SideCompteComponent implements OnInit {
   public infoPerso(){
     this.router.navigate(['../info_personnels'],{relativeTo : this.router})
   }
-
+*/
 
 }
