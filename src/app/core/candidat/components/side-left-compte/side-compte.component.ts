@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { relative } from 'path';
 
 @Component({
   selector: '[app-side-compte]',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideCompteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
+
+  public postuler(){
+    this.router.navigate(['../postuler'],{ relativeTo : this.router})
+  }
+
+  public infoPerso(){
+    this.router.navigate(['../info_personnels'],{relativeTo : this.router})
+  }
+
 
 }
