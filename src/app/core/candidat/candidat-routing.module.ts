@@ -16,10 +16,9 @@ import { PostulerComponent } from "./components/postuler/postuler.component";
 
 const routes:Routes= [
 
-    //diplomes :
+    {   path: '' , redirectTo : '/candidat/info_personnels' , pathMatch : 'full' },
 
-    // postuler
-    { path : 'candidat' , component: CandidatMainComponent , children :  [
+    {   path : 'candidat' , component: CandidatMainComponent , children :  [
 
     {   path : 'info_personnels' , component : InfoPersonnelsComponent},
     {   path : 'postuler', component : PostulerComponent},
@@ -36,9 +35,7 @@ const routes:Routes= [
         {   path : 'doctorat_medecine' , component : DoctoratMedecineComponent },
     ]},
 
-    ]},
-
-   {   path : '**' , component : PageNotFoundComponent },
+    ]}
 
 ];
 
