@@ -1,5 +1,5 @@
 <div class="form-card">
-    <h3 class="text-primary mt-3 border border-primary text-center p-3">Cycle Ingenieure</h3>
+    <h3 class="text-primary mt-3 border border-primary text-center p-3">Cycle Ingenieur</h3>
  <form [formGroup]="candidatIngenieureForm">
     <div class="row">
         
@@ -88,7 +88,7 @@
         <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_mention_ingenieure">Mention:</label>
+                    for="id_mention_ingenieur">Mention:</label>
                 <select formControlName="mention" class="form-control form-control-sm" required="" id="id_mentionbac">
                     <option value="Passable">Passable</option>
                     <option value="Assez bien">Assez Bien</option>
@@ -116,14 +116,14 @@ etablissementBac
         <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_moyenne_ingenieure">Moyenne Générale de tous les semestres:
+                    for="id_moyenne_ingenieur">Moyenne Générale de tous les semestres:
         </label>
                 <input type="number"
                    step=".01" max="20.0"
-                    formControlName="ingenieure_note"
+                    formControlName="ingenieur_note"
                     value=""
                     class="form-control form-control-sm" maxlength="50"
-                    required="" id="id_moyenne_ingenieure" />
+                    required="" id="id_moyenne_ingenieur" />
             </div>
         </div>
 
@@ -132,9 +132,9 @@ etablissementBac
     <div class="row mt-5">
         <div class="mb-3">
             <label for="bac_dip" class="form-label">Diplôme Cycle Ingénieur pdf <span class="text-danger h6"> < 4MO </span></label>
-            <input class="form-control diplomeIngenieure" type="file"
+            <input class="form-control diplomeIngenieur" type="file"
                 
-                formControlName="ingenieure_diplome"
+                formControlName="ingenieur_diplome"
 
                 required
                 accept="application/pdf" />
@@ -152,9 +152,9 @@ etablissementBac
                 />
         </div>
         <div class="mb-3">
-            <label for="relIngenieure" class="form-label">Résumé Mémoire de PFE:pdf <span class="text-danger h6">  < 4MO </span></label>
+            <label for="relIngenieur" class="form-label">Résumé Mémoire de PFE:pdf <span class="text-danger h6">  < 4MO </span></label>
             <input class="form-control releveIngeniure" type="file"
-                id="relIngenieure"  accept="application/pdf"
+                id="relIngenieur"  accept="application/pdf"
                 required 
                 
                 formControlName="memoirepfe"

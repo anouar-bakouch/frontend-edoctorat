@@ -21,6 +21,8 @@ import { InfoPersonnelsComponent } from './components/info-personnels/info-perso
 import { SujersComponent } from './components/sujers/sujers.component';
 import { ChoisirSujetsComponent } from './components/choisir-sujets/choisir-sujets.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { CandidatMainComponent } from './components/candidat-main/candidat-main.component';
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     InfoPersonnelsComponent,
     SujersComponent,
     ChoisirSujetsComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    CandidatMainComponent
   ],
   imports: [
     CommonModule,

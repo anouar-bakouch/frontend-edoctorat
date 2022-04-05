@@ -6,7 +6,6 @@ const routes:Routes= [
 
     //login 
 
-    {path : '' , component : LoginComponent}
 
 ];
 

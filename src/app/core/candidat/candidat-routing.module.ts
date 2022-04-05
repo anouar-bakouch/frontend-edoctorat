@@ -1,11 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { LoginComponent } from "src/app/shared/login/login.component";
 import { PageNotFoundComponent } from "src/app/shared/page-not-found/page-not-found.component";
 import { BacComponent } from "./components/bac/bac.component";
 import { CIngenieurComponent } from "./components/c-ingenieur/c-ingenieur.component";
-import { CandidatParcoursComponent } from "./components/candidat-parcours/parcours.component";
-import { CandidatComponent } from "./components/candidat.component";
+import { CandidatMainComponent } from "./components/candidat-main/candidat-main.component";
+import { ParcoursComponent } from "./components/candidat-mini-header/parcours.component";
 import { DoctoratMedecineComponent } from "./components/doctorat-medecine/doctorat-medecine.component";
 import { DutComponent } from "./components/dut/dut.component";
 import { InfoPersonnelsComponent } from "./components/info-personnels/info-personnels.component";
@@ -19,27 +18,33 @@ const routes:Routes= [
 
     //diplomes :
 
-    {   path : '' , component: CandidatComponent , children : [
-    {   path : 'bac' ,component : BacComponent },
-    {   path : 'dut' , component : DutComponent },
-    {   path : 'cingenieur' , component : CIngenieurComponent },
-    {   path : 'master' , component : MasterComponent },
-    {   path : 'licence' , component : LicenceComponent },
-    {   path : 'doctorat_medecine' , component : DoctoratMedecineComponent },
-    {   path : '**' , component : PageNotFoundComponent },
     // postuler
+    { path : 'candidat' , component: CandidatMainComponent , children :  [
+
     {   path : 'info_personnels' , component : InfoPersonnelsComponent},
     {   path : 'postuler', component : PostulerComponent},
-    {   path : 'parcours',redirectTo : '/bac' , pathMatch : 'full'},
     {   path : 'notifications' , component : NotificationsComponent },
-   ]},
-   
+
+    {   path : 'parcours' , redirectTo : 'parcours/bac' , pathMatch : 'full'},   
+
+    {   path : 'parcours',component : ParcoursComponent , children : [
+        {   path : 'bac' ,component : BacComponent },
+        {   path : 'dut' ,component : DutComponent },
+        {   path : 'cingenieur' , component : CIngenieurComponent },
+        {   path : 'master' , component : MasterComponent },
+        {   path : 'licence' , component : LicenceComponent },
+        {   path : 'doctorat_medecine' , component : DoctoratMedecineComponent },
+    ]},
+
+    ]},
+
+   {   path : '**' , component : PageNotFoundComponent },
 
 ];
 
 @NgModule(
     {
-        imports : [RouterModule.forRoot(routes)],
+        imports : [RouterModule.forChild(routes)],
         exports : [RouterModule]
     }
 )
