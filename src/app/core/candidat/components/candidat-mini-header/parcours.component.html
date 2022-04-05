@@ -9,22 +9,24 @@
 
     <ul class="navbar-nav m-auto">
      
-
       <li class="nav-item dropdown">
-        <button class="btn btn-secondary dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle brand-primary text-primary font-weight-bold" id="reglements" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Parcours
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item text-darkblue" routerLink="parcours/bac">BACCALAUREAT<i class="bi bi-check-square mx-3"></i></a></li>
-          <li><a class="dropdown-item text-darkblue" routerLink="parcours/dut">DUT</a></li>
-          <li><a class="dropdown-item text-darkblue" routerLink="parcours/licence">LICENCE</a></li>
-          <li><a class="dropdown-item text-darkblue" routerLink="parcours/master">MASTER</a></li>
-          <li><a class="dropdown-item text-darkblue" routerLink="parcours/cingenieur">CYCLE D'INGENIEURS</a></li>
-          <li><a class="dropdown-item text-darkblue" routerLink="parcours/doctorat_medecine">DOCTORAT EN MEDECINE</a></li>
+        </a>
+        <ul class="dropdown-menu " aria-labelledby="reglements">
+
+          <li><a class="dropdown-item text-darkblue" routerLink="bac">BACCALAUREAT</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="dut">DUT</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="licence">LICENCE</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="master">MASTER</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="cingenieur">CYCLE D'INGENIEURS</a></li>
+          <li><a class="dropdown-item text-darkblue" routerLink="doctorat_medecine">DOCTORAT EN MEDECINE</a></li>
         </ul>
       </li>
      
+     
     </ul>
+    
 
 </nav>
 <router-outlet></router-outlet>
