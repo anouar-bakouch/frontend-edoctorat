@@ -1,11 +1,11 @@
 import { RouterModule, Routes } from "@angular/router";
-import { ProfCandidatComponent } from "./prof-candidat/prof-candidat.component";
-import { ProfCommissionComponent } from "./prof-commission/prof-commission.component";
-import { ProfInscritsComponent } from "./prof-inscrits/prof-inscrits.component";
-import { ProfResultatComponent } from "./prof-resultat/prof-resultat.component";
-import { ProfSujetComponent } from "./prof-sujet/prof-sujet.component";
 import { NgModule } from "@angular/core";
 import { MainComponent } from "src/app/public/main/main.component";
+import { ProfCandidatComponent } from "./components/prof-candidat/prof-candidat.component";
+import { ProfCommissionComponent } from "./components/prof-commission/prof-commission.component";
+import { ProfInscritsComponent } from "./components/prof-inscrits/prof-inscrits.component";
+import { ProfResultatComponent } from "./components/prof-resultat/prof-resultat.component";
+import { ProfSujetComponent } from "./components/prof-sujet/prof-sujet.component";
 
 const routes:Routes= [
     
@@ -17,15 +17,13 @@ const routes:Routes= [
             {path:'resultatprof',component:ProfResultatComponent},
             {path:'inscritsprof',component:ProfInscritsComponent}
 
-         ]}       
-        
-       
-           
+         ]}           
 ];
 
 @NgModule(
     {
-        imports : [RouterModule.forChild(routes)]
+        imports : [RouterModule.forChild(routes)],
+        exports : [RouterModule]
     }
 )
 
