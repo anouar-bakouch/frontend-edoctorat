@@ -16,7 +16,7 @@ import { PostulerComponent } from "./components/postuler/postuler.component";
 
 const routes:Routes= [
 
-    {   path: '' , redirectTo : '/candidat/info_personnels' , pathMatch : 'full' },
+
 
     {   path : 'candidat' , component: CandidatMainComponent , children :  [
 
@@ -41,8 +41,7 @@ const routes:Routes= [
 
 @NgModule(
     {
-        imports : [RouterModule.forChild(routes)],
-        exports : [RouterModule]
+        imports : [RouterModule.forChild(routes)]
     }
 )
 

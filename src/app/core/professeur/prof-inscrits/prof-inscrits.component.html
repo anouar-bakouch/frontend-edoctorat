@@ -1,0 +1,52 @@
+<div class="container-fluid mt-3">
+
+    <div class="table-responsive">
+    
+        <table class="table table-align-middle">
+            <thead>
+              <tr>
+                <th scope="col" class="w-7">cne</th>
+                <th scope="col" class="w-15">nom</th>
+                <th scope="col" class="w-13">prenom</th>
+                <th scope="col" class="w-43">axe | titre</th>
+                <th scope="col" class="w-13"> action </th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr tal:repeat="inscription inscriptions">
+                <td>cne</td>
+                <td>nom</td>
+                <td>prenom}</td>
+                <td>titre</td>
+                <td>
+                    <button class="btn btn-primary modifier-btn" data-toggle="modal" data-target="#exampleModalCenter"
+                    data-id-sujet="${inscription.sujet_id}" data-sujet-titre="${inscription.sujet_titre}">Modifier le titre</button>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+    
+        </div>
+    </div>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Modification du titre</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label for="sujetTitre">Titre</label>
+                <input type="text" class="form-control" id="sujetTitre" aria-describedby="emailHelp" placeholder="Titre">
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-dismiss="modal">annuler</button>
+              <button class="btn btn-primary btn-confirmer">confirmer</button>
+            </div>
+          </div>
+        </div>
+      </div>

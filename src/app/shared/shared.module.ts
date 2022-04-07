@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
+
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { OptionsComponent } from './options/options.component';
+import { HeaderProfComponent } from './header/header-prof.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    PageNotFoundComponent
+
+    PageNotFoundComponent,
+    OptionsComponent,
+    HeaderProfComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HeaderProfComponent,
+    OptionsComponent
   ]
 })
 export class SharedModule { }
