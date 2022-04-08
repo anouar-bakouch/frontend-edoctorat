@@ -17,6 +17,10 @@ import { PostulerComponent } from "./components/postuler/postuler.component";
 
 const routes:Routes= [
 
+
+    {
+        path : 'candidat' , redirectTo : 'candidat/info_personnels',pathMatch : 'full'
+    },
     {   path : 'candidat' , component: ContainerComponent , children :  [
 
     {   path : 'info_personnels' , component : InfoPersonnelsComponent},
