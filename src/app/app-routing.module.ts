@@ -9,6 +9,7 @@ const routes:Routes= [
   
     { path : 'professeur' , component : MainProfComponent},
     { path : 'candidat' , component : CandidatComponent},
+    { path : 'ced' , component : CandidatComponent},
     { path : '**' , component : PageNotFoundComponent}
 
 ];
