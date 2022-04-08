@@ -8,6 +8,7 @@ import { DirecteurCedSujetComponent } from './components/directeur-ced-sujet/dir
 import { MainCedComponent } from './components/main-ced/main-ced.component';
 import { PrincipaleCedComponent } from './components/principale-ced/principale-ced.component';
 import { CedRoutingModule } from './directeur.routing.module';
+import { DirecteurCedOptionsComponent } from './components/directeur-ced-options/directeur-ced-options.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CedRoutingModule } from './directeur.routing.module';
     DirecteurCedResultatComponent,
     DirecteurCedSujetComponent,
     MainCedComponent,
-    PrincipaleCedComponent
+    PrincipaleCedComponent,
+    DirecteurCedOptionsComponent
   ],
   imports: [
     CommonModule,
