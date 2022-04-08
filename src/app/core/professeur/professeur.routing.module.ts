@@ -6,19 +6,27 @@ import { ProfCommissionComponent } from "./components/prof-commission/prof-commi
 import { ProfInscritsComponent } from "./components/prof-inscrits/prof-inscrits.component";
 import { ProfResultatComponent } from "./components/prof-resultat/prof-resultat.component";
 import { ProfSujetComponent } from "./components/prof-sujet/prof-sujet.component";
+import { PageNotFoundComponent } from "src/app/shared/page-not-found/page-not-found.component";
+import { MainProfComponent } from "./components/main-prof/main-prof.component";
+import { ContainerComponent } from "./components/container/container.component";
 
 const routes:Routes= [
-    
-         { path : 'professeur', component : MainComponent , children : [
 
-            {path:'sujetprof',component: ProfSujetComponent},
-            {path:'candidatprof',component:ProfCandidatComponent},
-            {path:'commissionprof',component:ProfCommissionComponent},
-            {path:'resultatprof',component:ProfResultatComponent},
-            {path:'inscritsprof',component:ProfInscritsComponent}
+    { path: 'professeur' , redirectTo : 'professeur/sujetprof' , pathMatch : 'full'},
 
-         ]}           
+    { path : 'professeur' , component : ContainerComponent , children : [
+
+        { path:'sujetprof',component: ProfSujetComponent},
+        { path:'candidatprof',component:ProfCandidatComponent},
+        { path:'commissionprof',component:ProfCommissionComponent},
+        { path:'resultatprof',component:ProfResultatComponent},
+        { path:'inscritsprof',component:ProfInscritsComponent}, 
+        { path : '**' , component : PageNotFoundComponent}
+
+    ]}
+
 ];
+
 
 @NgModule(
     {

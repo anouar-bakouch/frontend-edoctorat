@@ -22,6 +22,7 @@ import { SujersComponent } from './components/sujers/sujers.component';
 import { ChoisirSujetsComponent } from './components/choisir-sujets/choisir-sujets.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { CandidatMainComponent } from './components/candidat-main/candidat-main.component';
+import { ContainerComponent } from './components/container/container.component';
 
 
 
@@ -44,7 +45,8 @@ import { CandidatMainComponent } from './components/candidat-main/candidat-main.
     SujersComponent,
     ChoisirSujetsComponent,
     NotificationsComponent,
-    CandidatMainComponent
+    CandidatMainComponent,
+    ContainerComponent
   ],
   imports: [
     CommonModule,
