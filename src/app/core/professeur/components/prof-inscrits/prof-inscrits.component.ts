@@ -6,8 +6,9 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './prof-inscrits.component.html',
   styleUrls: ['./prof-inscrits.component.css']
 })
-export class ProfInscritsComponent implements OnInit {
 
+
+export class ProfInscritsComponent implements OnInit {
 
   ngOnInit(): void {
   }

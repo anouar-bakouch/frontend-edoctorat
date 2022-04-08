@@ -1,48 +1,111 @@
 <div class="container-fluid mt-3">
 
+    <div class="row mb-3">
+
+        <div class="col-6 m-start">
+            <button class="btn btn-primary btn-sm" type="button" (click)="open(mymodal)">ajouter un sujet</button>
+        </div>
+
+    </div>
+
+
     <div class="table-responsive">
 
         <table class="table table-align-middle">
             <thead>
-                <tr>
+                <tr class="table-primary">
                     <th scope="col" class="w-7">Titre Sujet</th>
-                    <th scope="col" class="w-15">Description</th>
-                    <th scope="col" class="w-13">co-directeur</th>
-                    <th scope="col" class="w-43">Formation Doctorale</th>
-                   
+                    <th scope="col" class="w-23">Description</th>
+                    <th scope="col" class="w-7">co-directeur</th>
+                    <th scope="col" class="w-23">Formation Doctorale</th>
+                    <th scope="col" class="23">action</th>
 
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>cd61213</td>
+                    <td>bakouch</td>
+                    <td>anouar</td>
+                    <td> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, sequi quam accusantium tempora minus eaque, quas culpa est odio alias voluptatem minima inventore reiciendis blanditiis cupiditate assumenda ratione nisi necessitatibus.
+                       </td>
+                    <td class="d-flex flex-wrap justify-content-between align-items-center">
+                        <button class="btn btn-primary btn-sm mb-3" type="button" (click)="open(mymodal)">modifier</button>
+                        <button class="btn btn-primary btn-sm" type="button">supprimer</button>
+                    </td>
+                </tr>
                 <tr class="align-text-bottom">
                     <td>cd61213</td>
                     <td>bakouch</td>
                     <td>anouar</td>
-                    <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis dolorem debitis
-                        voluptates quidem accusamus, aut in reprehenderit, sint a minus expedita? Ipsa sunt
-                        laboriosam neque quaerat. Fugiat odio similique ex?</td>
-                  
+                    <td> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, sequi quam accusantium tempora minus eaque, quas culpa est odio alias voluptatem minima inventore reiciendis blanditiis cupiditate assumenda ratione nisi necessitatibus.
+                       </td>
+                    <td class="d-flex flex-wrap justify-content-between align-items-center">
+                        <button class="btn btn-primary btn-sm mb-3" type="button">modifier</button>
+                        <button class="btn btn-primary btn-sm" type="button">supprimer</button>
+                    </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quae deleniti quibusdam
-                        minus laborum doloremque assumenda voluptatem eos quos eveniet alias blanditiis non nostrum
-                        dolorem, reprehenderit facere aliquid illo ea.</td>
-                    <td>Thornton</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quae deleniti quibusdam
-                        minus laborum doloremque assumenda voluptatem eos quos eveniet alias blanditiis non nostrum
-                        dolorem, reprehenderit facere aliquid illo ea.</td>
-                  
-                </tr>
-                <tr>
-                    <td>3hhhhhhhhhhhhhhhhh</td>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    
-                </tr>
+               
+               
             </tbody>
         </table>
 
     </div>
 </div>
+
+<!---modal-->
+
+<ng-template class="modal fade" tabindex="-1" role="dialog" #mymodal let-modal aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered w-100" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">l'ajout du sujet</h5>
+        
+        </div>
+        <div class="modal-body">
+     
+            <form >
+
+   <div class="form-group mb-3">
+       <label for="my-textarea" class="mb-3">Titre</label>
+          <textarea maxlength="512" placeholder="Max. 512 caractères" id="my-textarea" class="form-control" name="" rows="3"></textarea>
+   </div>
+
+   <div class="form-group mb-3">
+    <label for="my-textarea" class="mb-3">Description</label>
+       <textarea maxlength="512" placeholder="Max. 2048 caractères" id="my-textarea" class="form-control" name="" rows="3"></textarea>
+   </div>
+
+   <div class="form-group mb-3">
+    <label for="my-select" class="mb-3">co-directeur</label>
+   
+        <select id="my-select" class="form-select" name="">
+            <option>Text</option>
+            <option>Text</option>
+            <option>Text</option>
+        </select>
+  
+</div>
+
+   <div class="form-group">
+       <label for="my-select" class="mb-3">Formation Doctorale</label>
+      
+           <select id="my-select" class="form-select" name="">
+               <option>Text</option>
+               <option>Text</option>
+               <option>Text</option>
+           </select>
+     
+   </div>
+
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-dismiss="modal" (click)="modal.dismiss('Cross click')">annuler</button>
+          <button class="btn btn-primary btn-confirmer"  (click)="modal.close('Save click')">confirmer</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>

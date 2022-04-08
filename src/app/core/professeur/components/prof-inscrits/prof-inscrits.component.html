@@ -17,7 +17,7 @@
                 <td>cne</td>
                 <td>nom</td>
                 <td>prenom</td>
-                <td>titre</td>
+                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, explicabo ea veniam a ut facere esse mollitia id exercitationem facilis, at, eius quis quod? Saepe vel exercitationem quis amet harum?</td>
                 <td>
                     <button class="btn btn-primary modifier-btn" data-toggle="modal" data-target="#exampleModalCenter"
                     (click)="open(mymodal)">Modifier le titre</button>
@@ -39,7 +39,7 @@
             </div>
             <div class="modal-body">
                 <label for="sujetTitre" class="mb-3">Titre</label>
-                <textarea type="text" class="form-control" id="sujetTitre" aria-describedby="emailHelp" placeholder="Titre"></textarea>
+                <textarea maxlength="500" type="text" class="form-control" id="sujetTitre" aria-describedby="emailHelp" placeholder="500 characters"></textarea>
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" data-dismiss="modal" (click)="modal.dismiss('Cross click')">annuler</button>
