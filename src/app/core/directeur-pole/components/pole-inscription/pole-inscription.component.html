@@ -1,0 +1,86 @@
+<div class="container col-lg-12" style="margin-top: 30px"></div>
+      <div class="row container-fluid mt-3">
+        <div class="col-12 table-responsive">
+          <table
+            id="table"
+            data-toggle="table"
+            data-search="true"
+            data-filter-control="true"
+            data-show-export="true"
+            data-click-to-select="true"
+            data-toolbar="#toolbar"
+            class="table table-align-middle"
+          >
+            <thead>
+              <tr>
+                <th
+                  data-field="sujet"
+                  data-filter-control="input"
+                  data-sortable="true"
+                  scope="col"
+                  class="w-43"
+                >
+                  sujet
+                </th>
+                <th
+                  data-field="Directeur"
+                  data-filter-control="input"
+                  data-sortable="true"
+                  scope="col"
+                  class="w-15"
+                >
+                  Directeur
+                </th>
+                <th
+                  data-field="Co-Directeur"
+                  data-filter-control="input"
+                  data-sortable="true"
+                  scope="col"
+                  class="w-15"
+                >
+                  Co-Directeur
+                </th>
+                <th
+                  data-field="Candidat"
+                  data-filter-control="input"
+                  data-sortable="true"
+                  scope="col"
+                  class="w-15"
+                >
+                  Candidat
+                </th>
+                <th
+                  data-field="Formation doctorale"
+                  data-filter-control="input"
+                  data-sortable="true"
+                  scope="col"
+                  class="w-43"
+                >
+                  Formation doctorale
+                </th>
+                <th
+                  data-field="CED"
+                  data-filter-control="input"
+                  data-sortable="true"
+                  scope="col"
+                  class="w-15"
+                >
+                  CED
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td>$ inscription.titre_sujet </td>
+                <td>$ inscription.directeur </td>
+                <td>$ inscription.codirecteur </td>
+                <td>
+                  $ inscription.nomCandidat  $ inscription.prenomCandidat 
+                </td>
+                <td>$ inscription.formation_doctorale </td>
+                <td>$ inscription.ced </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

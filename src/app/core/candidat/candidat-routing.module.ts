@@ -14,36 +14,40 @@ import { NotificationsComponent } from "./components/notifications/notifications
 import { PostulerComponent } from "./components/postuler/postuler.component";
 
 
-const routes:Routes= [
+const routes: Routes = [
 
-    {   path: '' , redirectTo : '/candidat/info_personnels' , pathMatch : 'full' },
+    { path: '', redirectTo: '/candidat/info_personnels', pathMatch: 'full' },
 
-    {   path : 'candidat' , component: CandidatMainComponent , children :  [
+    {
+        path: 'candidat', component: CandidatMainComponent, children: [
 
-    {   path : 'info_personnels' , component : InfoPersonnelsComponent},
-    {   path : 'postuler', component : PostulerComponent},
-    {   path : 'notifications' , component : NotificationsComponent },
+            { path: 'info_personnels', component: InfoPersonnelsComponent },
+            { path: 'postuler', component: PostulerComponent },
+            { path: 'notifications', component: NotificationsComponent },
 
-    {   path : 'parcours' , redirectTo : 'parcours/bac' , pathMatch : 'full'},   
+            { path: 'parcours', redirectTo: 'parcours/bac', pathMatch: 'full' },
 
-    {   path : 'parcours',component : ParcoursComponent , children : [
-        {   path : 'bac' ,component : BacComponent },
-        {   path : 'dut' ,component : DutComponent },
-        {   path : 'cingenieur' , component : CIngenieurComponent },
-        {   path : 'master' , component : MasterComponent },
-        {   path : 'licence' , component : LicenceComponent },
-        {   path : 'doctorat_medecine' , component : DoctoratMedecineComponent },
-    ]},
+            {
+                path: 'parcours', component: ParcoursComponent, children: [
+                    { path: 'bac', component: BacComponent },
+                    { path: 'dut', component: DutComponent },
+                    { path: 'cingenieur', component: CIngenieurComponent },
+                    { path: 'master', component: MasterComponent },
+                    { path: 'licence', component: LicenceComponent },
+                    { path: 'doctorat_medecine', component: DoctoratMedecineComponent },
+                ]
+            },
 
-    ]}
+        ]
+    }
 
 ];
 
 @NgModule(
     {
-        imports : [RouterModule.forChild(routes)],
-        exports : [RouterModule]
+        imports: [RouterModule.forChild(routes)],
+        exports: [RouterModule]
     }
 )
 
-export class CandidatRoutingModule{}
+export class CandidatRoutingModule { }
