@@ -1,16 +1,23 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CandidatComponent } from "./core/candidat/components/candidat.component";
-import { DirecteurPoleComponent } from "./core/directeur-pole/components/directeur-pole.component";
-import { DirecteurPoleModule } from "./core/directeur-pole/directeur-pole.module";
+import { MainCedComponent } from "./core/directeur-ced/components/main-ced/main-ced.component";
+
+
+import { MainProfComponent } from "./core/professeur/components/main-prof/main-prof.component";
+
 import { HomeComponent } from "./public/home/home.component";
+import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 
 const routes:Routes= [
 
-    
-    {path : 'home' , component : HomeComponent},
-    {path : 'pole' , component : DirecteurPoleComponent},
-    { path : 'candidat' , component : CandidatComponent}
+  
+    { path : 'professeur' , component : MainProfComponent},
+    { path : 'candidat' , component : CandidatComponent},
+    { path : 'home' , component : HomeComponent},
+    { path : 'ced' , component : MainCedComponent},
+    { path : '**' , component : PageNotFoundComponent}
+
 
 ];
 

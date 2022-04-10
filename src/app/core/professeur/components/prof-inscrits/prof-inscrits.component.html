@@ -1,0 +1,50 @@
+<div class="container-fluid mt-3">
+
+    <div class="table-responsive">
+    
+        <table class="table table-align-middle">
+            <thead>
+              <tr>
+                <th scope="col" class="w-7">cne</th>
+                <th scope="col" class="w-15">nom</th>
+                <th scope="col" class="w-13">prenom</th>
+                <th scope="col" class="w-43">axe | titre</th>
+                <th scope="col" class="w-13"> action </th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr tal:repeat="inscription inscriptions">
+                <td>cne</td>
+                <td>nom</td>
+                <td>prenom</td>
+                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, explicabo ea veniam a ut facere esse mollitia id exercitationem facilis, at, eius quis quod? Saepe vel exercitationem quis amet harum?</td>
+                <td>
+                    <button class="btn btn-primary modifier-btn" data-toggle="modal" data-target="#exampleModalCenter"
+                    (click)="open(mymodal)">Modifier le titre</button>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+    
+        </div>
+    </div>
+    
+      <!-- Modal -->
+      <ng-template class="modal fade" tabindex="-1" role="dialog" #mymodal let-modal aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered w-100" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Modification du titre</h5>
+            
+            </div>
+            <div class="modal-body">
+                <label for="sujetTitre" class="mb-3">Titre</label>
+                <textarea maxlength="500" type="text" class="form-control" id="sujetTitre" aria-describedby="emailHelp" placeholder="500 characters"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-dismiss="modal" (click)="modal.dismiss('Cross click')">annuler</button>
+              <button class="btn btn-primary btn-confirmer"  (click)="modal.close('Save click')">confirmer</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>

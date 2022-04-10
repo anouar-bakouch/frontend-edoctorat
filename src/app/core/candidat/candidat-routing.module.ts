@@ -5,6 +5,7 @@ import { BacComponent } from "./components/bac/bac.component";
 import { CIngenieurComponent } from "./components/c-ingenieur/c-ingenieur.component";
 import { CandidatMainComponent } from "./components/candidat-main/candidat-main.component";
 import { ParcoursComponent } from "./components/candidat-mini-header/parcours.component";
+import { ContainerComponent } from "./components/container/container.component";
 import { DoctoratMedecineComponent } from "./components/doctorat-medecine/doctorat-medecine.component";
 import { DutComponent } from "./components/dut/dut.component";
 import { InfoPersonnelsComponent } from "./components/info-personnels/info-personnels.component";
@@ -16,16 +17,19 @@ import { PostulerComponent } from "./components/postuler/postuler.component";
 
 const routes: Routes = [
 
-    { path: '', redirectTo: '/candidat/info_personnels', pathMatch: 'full' },
+
 
     {
-        path: 'candidat', component: CandidatMainComponent, children: [
+        path : 'candidat' , redirectTo : 'candidat/info_personnels',pathMatch : 'full'
+    },
+    {   path : 'candidat' , component: ContainerComponent , children :  [
 
             { path: 'info_personnels', component: InfoPersonnelsComponent },
             { path: 'postuler', component: PostulerComponent },
             { path: 'notifications', component: NotificationsComponent },
 
             { path: 'parcours', redirectTo: 'parcours/bac', pathMatch: 'full' },
+
 
             {
                 path: 'parcours', component: ParcoursComponent, children: [
@@ -38,6 +42,8 @@ const routes: Routes = [
                 ]
             },
 
+
+
         ]
     }
 
@@ -45,8 +51,8 @@ const routes: Routes = [
 
 @NgModule(
     {
-        imports: [RouterModule.forChild(routes)],
-        exports: [RouterModule]
+        imports : [RouterModule.forChild(routes)]
+
     }
 )
 
