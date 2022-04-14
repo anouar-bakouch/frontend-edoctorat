@@ -85,4 +85,9 @@ export class AuthService {
   public saveUserInfo(info: UserInfo) {
     window.localStorage.setItem(USER_INFO, JSON.stringify(info));
   }
+  public logOut() {
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.removeItem(REFRESH_TOKEN_KEY);
+    window.localStorage.removeItem(USER_INFO);
+  }
 }
