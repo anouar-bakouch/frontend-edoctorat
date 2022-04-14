@@ -1,7 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import PreRegistration from 'src/app/models/PreRegistration';
 import { RegisterService } from 'src/app/public/services/auth/register.service';
 
@@ -13,7 +21,11 @@ import { RegisterService } from 'src/app/public/services/auth/register.service';
 export class CandidatRegisterComponent {
   isVerifyingToken = true;
   showTokenInvalid = false;
+  showPasswordsMisMatch = false;
   preRegData: PreRegistration | undefined;
+  showRegError = false;
+  isRegistering = false;
+
   form = new FormGroup({
     password: new FormControl('', [Validators.required]),
     confPassword: new FormControl('', [Validators.required]),
@@ -36,7 +48,8 @@ export class CandidatRegisterComponent {
 
   constructor(
     activeRoute: ActivatedRoute,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private router: Router
   ) {
     activeRoute.queryParams.subscribe({
       next: (params) => {
@@ -59,5 +72,49 @@ export class CandidatRegisterComponent {
         });
       },
     });
+    if (!this.showTokenInvalid) {
+      // this can be swapped for something better,
+      this.form.controls['confPassword'].valueChanges.subscribe({
+        next: (value) => {
+          if (value !== this.form.controls['password'].value) {
+            this.showPasswordsMisMatch = true;
+          } else {
+            this.showPasswordsMisMatch = false;
+          }
+        },
+      });
+    }
+  }
+
+  onSubmit() {
+    if (this.showPasswordsMisMatch) return;
+    const payload = {
+      cne: this.form.controls['cne'].value,
+      nom: this.preRegData?.nom,
+      prenom: this.preRegData?.prenom,
+      email: this.preRegData?.email,
+      password: this.form.controls['password'].value,
+      pays: this.form.controls['nationalite'].value,
+      cin: this.form.controls['cin'].value,
+      nomCandidatAr: this.form.controls['nomAr'].value,
+      prenomCandidatAr: this.form.controls['prenomAr'].value,
+      adresse: this.form.controls['adresse'].value,
+      sexe: this.form.controls['sex'].value,
+      villeDeNaissance: this.form.controls['lieuN'].value,
+      villeDeNaissanceAr: this.form.controls['lieuNAr'].value,
+      ville: this.form.controls['ville'].value,
+      dateDeNaissance: this.form.controls['dateN'].value,
+      typeDeHandiCape: this.form.controls['thandCap'].value,
+      situationfamiliale: this.form.controls['sitFam'].value,
+    };
+    this.isRegistering = true;
+    this.registerService
+      .registerCandidat(payload)
+      .then((data) => {
+        this.router.navigateByUrl('/connexion/candidat/login/');
+      })
+      .catch((error) => {
+        this.showRegError = true;
+      });
   }
 }

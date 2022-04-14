@@ -1,6 +1,6 @@
 <div app-header></div>
 <div *ngIf="!isVerifyingToken && !showTokenInvalid">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <label for="Email">Email</label>
     <input
       type="email"
@@ -39,6 +39,9 @@
       id="confPassword"
       formControlName="confPassword"
     />
+    <p *ngIf="showPasswordsMisMatch" style="color: red">
+      Les mots de passe ne correspondent pas
+    </p>
     <label for="cin">CIN</label>
     <input type="text" name="cin" id="cin" formControlName="cin" />
     <label for="cne">CNE</label>
@@ -100,8 +103,20 @@
       <option value="aucune" selected>Aucune</option>
     </select>
 
-    <input type="submit" value="S'inscrire" [disabled]="!form.valid" />
+    <input
+      *ngIf="!isRegistering"
+      type="submit"
+      value="S'inscrire"
+      [disabled]="!form.valid"
+    />
+    <h5 *ngIf="isRegistering" style="color: blue">
+      Veuillez patienter, enregistrement du compte en cours
+    </h5>
   </form>
+  <h4 *ngIf="showRegError" style="color: red">
+    Erreur lors de l'enregistrement. Vérifiez si vous n'avez pas encore créé de
+    compte.
+  </h4>
 </div>
 
 <div *ngIf="isVerifyingToken">
