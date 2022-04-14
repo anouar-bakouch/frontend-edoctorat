@@ -15,6 +15,7 @@ import { HttpService } from './services/http.service';
 import { PublicRoutingModule } from './public-routing.module';
 import { ConnexionComponent } from './components/auth/connexion/connexion.component';
 import { CandidatLoginComponent } from './components/auth/candidat-login/candidat-login.component';
+import { CandidatPreRegisterComponent } from './components/auth/candidat-pre-register/candidat-pre-register.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CandidatLoginComponent } from './components/auth/candidat-login/candida
     WelcomeComponent,
     ConnexionComponent,
     CandidatLoginComponent,
+    CandidatPreRegisterComponent,
   ],
   imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule],
   exports: [HomeComponent],

@@ -1,0 +1,30 @@
+<div app-header></div>
+<h3>S'inscrire</h3>
+<form [formGroup]="form">
+  <label for="email">Email</label>
+  <input
+    type="email"
+    name="email"
+    formControlName="email"
+    id="email"
+    placeholder="Email"
+  />
+  <label for="nom">Nom</label>
+  <input
+    type="text"
+    name="nom"
+    formControlName="nom"
+    id="nom"
+    placeholder="Nom"
+  />
+  <label for="prenom">Prenom</label>
+  <input
+    type="text"
+    name="prenom"
+    formControlName="prenom"
+    id="prenom"
+    placeholder="Prenom"
+  />
+  <input type="submit" value="S'inscrire" [disabled]="!form.valid" />
+</form>
+<div app-footer></div>
