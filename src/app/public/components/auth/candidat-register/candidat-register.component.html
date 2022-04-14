@@ -1,1 +1,15 @@
-<p>candidat-register works!</p>
+<div app-header></div>
+<div *ngIf="!isVerifyingToken && !showTokenInvalid">
+  <p>Token valid</p>
+</div>
+<div *ngIf="isVerifyingToken">
+  <h5>
+    Veuillez patienter, vérification de vos informations de préinscription...
+  </h5>
+</div>
+<div *ngIf="showTokenInvalid">
+  <h4 style="color: red">
+    Le jeton que nous avons reçu est invalide ou a expiré
+  </h4>
+</div>
+<div app-footer></div>
