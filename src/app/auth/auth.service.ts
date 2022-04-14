@@ -1,13 +1,19 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import Token from '../models/Token';
+import UserInfo from '../models/UserInfo';
 import {
   REFRESH_TOKEN_KEY,
   STATUS_AUTH_OK,
   TOKEN_KEY,
+  USER_INFO,
 } from '../utils/constants';
 
 @Injectable({
@@ -43,11 +49,30 @@ export class AuthService {
           },
           complete: () => {
             if (!errorsOccured) {
-              reslove_(STATUS_AUTH_OK);
+              this.getUserInfo(data_.access).subscribe({
+                next: (info: UserInfo) => {
+                  this.saveUserInfo(info);
+                  reslove_(STATUS_AUTH_OK);
+                },
+                error: (_: HttpErrorResponse) => {
+                  reject(
+                    "Une erreur inconnue s'est produite de notre part. Essayez de vous connecter plus tard"
+                  );
+                },
+              });
             }
           },
         });
     });
+  }
+
+  private getUserInfo(accessToken: string) {
+    return this.httpClient.get<UserInfo>(
+      `${environment.API_URL}/api/get-user-info/`,
+      {
+        headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
+      }
+    );
   }
 
   private storeTokens(token: string, refreshToken: string) {
@@ -56,5 +81,8 @@ export class AuthService {
   }
   public getAuthToken(): string | undefined | null {
     return window.localStorage.getItem(TOKEN_KEY);
+  }
+  public saveUserInfo(info: UserInfo) {
+    window.localStorage.setItem(USER_INFO, JSON.stringify(info));
   }
 }
