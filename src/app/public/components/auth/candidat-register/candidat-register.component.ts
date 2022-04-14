@@ -17,6 +17,21 @@ export class CandidatRegisterComponent {
   form = new FormGroup({
     password: new FormControl('', [Validators.required]),
     confPassword: new FormControl('', [Validators.required]),
+    cin: new FormControl('', [Validators.required]),
+    cne: new FormControl('', [Validators.required]),
+    nomAr: new FormControl(''),
+    prenomAr: new FormControl(''),
+    dateN: new FormControl('', [Validators.required]),
+    sex: new FormControl('', [Validators.required]),
+    lieuN: new FormControl('', [Validators.required]),
+    lieuNAr: new FormControl(''),
+    adresse: new FormControl('', [Validators.required]),
+    ville: new FormControl('', [Validators.required]),
+    tel: new FormControl('', [Validators.required]),
+    nationalite: new FormControl('', [Validators.required]),
+    sitFam: new FormControl('celebataire', [Validators.required]),
+    handCap: new FormControl('non', [Validators.required]),
+    thandCap: new FormControl('aucune'),
   });
 
   constructor(

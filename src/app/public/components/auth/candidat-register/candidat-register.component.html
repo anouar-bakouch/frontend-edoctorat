@@ -1,12 +1,115 @@
 <div app-header></div>
 <div *ngIf="!isVerifyingToken && !showTokenInvalid">
-  <p>Token valid</p>
+  <form [formGroup]="form">
+    <label for="Email">Email</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      disabled
+      value="{{ preRegData?.email }}"
+    />
+    <label for="nom">Nom</label>
+    <input
+      type="text"
+      name="nom"
+      id="nom"
+      disabled
+      value="{{ preRegData?.nom }}"
+    />
+    <label for="prenom">Prenom</label>
+    <input
+      type="text"
+      name="prenom"
+      id="prenom"
+      disabled
+      value="{{ preRegData?.prenom }}"
+    />
+    <label for="password">Mot de passe</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      formControlName="password"
+    />
+    <label for="confPassword">Confirmer mot de passe</label>
+    <input
+      type="password"
+      name="confPassword"
+      id="confPassword"
+      formControlName="confPassword"
+    />
+    <label for="cin">CIN</label>
+    <input type="text" name="cin" id="cin" formControlName="cin" />
+    <label for="cne">CNE</label>
+    <input type="text" name="cne" id="cne" formControlName="cne" />
+    <label for="nomAr">Nom en arabe</label>
+    <input type="text" name="nomAr" id="nomAr" formControlName="nomAr" />
+    <label for="prenomAr" Prenom en arabe></label>
+    <input
+      type="text"
+      name="prenomAr"
+      id="prenomAr"
+      formControlName="prenomAr"
+    />
+    <label for="dateN">Date de naissance</label>
+    <input type="date" name="dateN" id="dateN" formControlName="dateN" />
+    <label for="sex">Sexe</label>
+    <select name="sex" id="sex" formControlName="sex">
+      <option value="m" selected>Masculine</option>
+      <option value="f">Feminine</option>
+    </select>
+    <label for="lieuN">Lieu de naissance</label>
+    <input type="text" name="lieuN" id="lieuN" formControlName="lieuN" />
+    <label for="lieuNAr">Lieu de naissance en arabe</label>
+    <input type="text" name="lieuNAr" id="lieuNAr" formControlName="lieuNAr" />
+    <label for="adresse">Adresse</label>
+    <textarea
+      name="adresse"
+      id="adresse"
+      cols="30"
+      rows="10"
+      formControlName="adresse"
+      placeholder="Adresse"
+    ></textarea>
+    <label for="ville">Ville</label>
+    <input type="text" name="ville" id="ville" formControlName="ville" />
+    <label for="tel">Numero de telephone</label>
+    <input type="tel" name="tel" id="tel" formControlName="tel" />
+    <label for="nationalite">Nationalite</label>
+    <select name="nationalite" id="nationalite" formControlName="nationalite">
+      <option value="maroc" selected>Maroc</option>
+      <option value="england">England</option>
+    </select>
+    <label for="sitFam">Situation familiale</label>
+    <select name="sitFam" id="sitFam" formControlName="sitFam">
+      <option value="celebataire">Celebataire</option>
+      <option value="mariee">Mariee</option>
+    </select>
+    <label for="handCap">Êtes-vous handicapé ?</label>
+    <select name="handCap" id="handCap" formControlName="handCap">
+      <option value="oui">Oui</option>
+      <option value="non">Non</option>
+    </select>
+    <label for="thandCap">Type de handicap (si oui)</label>
+    <select name="thandCap" id="thandCap" formControlName="thandCap">
+      <option value="handicape_physique">Handicap Physique</option>
+      <option value="handicape_auditif">Handicap Auditif</option>
+      <option value="handicape_visuel">Handicap Visuel</option>
+      <option value="autre">Autre</option>
+      <option value="aucune" selected>Aucune</option>
+    </select>
+
+    <input type="submit" value="S'inscrire" [disabled]="!form.valid" />
+  </form>
 </div>
+
 <div *ngIf="isVerifyingToken">
   <h5>
     Veuillez patienter, vérification de vos informations de préinscription...
   </h5>
 </div>
+
 <div *ngIf="showTokenInvalid">
   <h4 style="color: red">
     Le jeton que nous avons reçu est invalide ou a expiré
