@@ -1,5 +1,6 @@
 <div app-header></div>
-<form [formGroup]="form">
+<h3 *ngIf="showError" style="color: red">{{ errorText }}</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <label for="email">Email</label>
   <input
     id="email"
@@ -16,7 +17,13 @@
     name="password"
     placeholder="Password"
   />
-  <input type="submit" [disabled]="!form.valid" value="Login" />
+  <input
+    *ngIf="!showLoading"
+    type="submit"
+    [disabled]="!form.valid"
+    value="Login"
+  />
+  <h4 *ngIf="showLoading">Attendre svp</h4>
   <p>
     Vous n'avez pas de compte ?<a routerLink="/connexion/candidat/register"
       >Inscrivez-vous ici</a

@@ -5,7 +5,6 @@ import { ConnexionComponent } from './components/auth/connexion/connexion.compon
 import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
-  { path: '', component: MainComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'connexion/candidat/login', component: CandidatLoginComponent },
 ];
