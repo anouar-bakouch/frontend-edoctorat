@@ -3,15 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { CandidatComponent } from './core/candidat/components/candidat.component';
 import { MainCedComponent } from './core/directeur-ced/components/main-ced/main-ced.component';
 import { MainProfComponent } from './core/professeur/components/main-prof/main-prof.component';
-import { HomeComponent } from './public/components/home_page/home/home.component';
+import { HomeComponent } from './public/components/home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'professeur', component: MainProfComponent },
   { path: 'candidat', component: CandidatComponent },
   { path: 'ced', component: MainCedComponent },
-  { path: '', component: HomeComponent },
-  { path: 'home', redirectTo: '/' },
   { path: '**', component: PageNotFoundComponent },
 ];
 
