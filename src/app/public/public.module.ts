@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import { CedComponent } from './ced/ced.component';
@@ -13,6 +14,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HttpService } from './services/http.service';
 import { PublicRoutingModule } from './public-routing.module';
 import { ConnexionComponent } from './components/auth/connexion/connexion.component';
+import { CandidatLoginComponent } from './components/auth/candidat-login/candidat-login.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,9 @@ import { ConnexionComponent } from './components/auth/connexion/connexion.compon
     MainComponent,
     WelcomeComponent,
     ConnexionComponent,
+    CandidatLoginComponent,
   ],
-  imports: [CommonModule, PublicRoutingModule],
+  imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule],
   exports: [HomeComponent],
   providers: [HttpService],
 })

@@ -1,0 +1,26 @@
+<div app-header></div>
+<form [formGroup]="form">
+  <label for="email">Email</label>
+  <input
+    id="email"
+    type="email"
+    formControlName="email"
+    name="email"
+    placeholder="Email"
+  />
+  <label for="password">Mot de passe</label>
+  <input
+    id="password"
+    type="password"
+    formControlName="password"
+    name="password"
+    placeholder="Password"
+  />
+  <input type="submit" [disabled]="!form.valid" value="Login" />
+  <p>
+    Vous n'avez pas de compte ?<a routerLink="/connexion/candidat/register"
+      >Inscrivez-vous ici</a
+    >
+  </p>
+</form>
+<div app-footer></div>
