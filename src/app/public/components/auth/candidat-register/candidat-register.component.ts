@@ -11,6 +11,7 @@ import { RegisterService } from 'src/app/public/services/auth/register.service';
   styleUrls: ['./candidat-register.component.css'],
 })
 export class CandidatRegisterComponent {
+  
   isVerifyingToken = true;
   showTokenInvalid = false;
   preRegData: PreRegistration | undefined;
