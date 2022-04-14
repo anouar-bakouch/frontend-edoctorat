@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Laboratoire } from 'src/app/models/Laboratoire';
 
-import { HttpService } from '../services/http.service';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: '[app-main]',

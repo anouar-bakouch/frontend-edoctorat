@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CalendrierComponent } from './calendrier/calendrier.component';
-import { CedComponent } from './ced/ced.component';
-import { ConseilsComponent } from './conseils/conseils.component';
-import { FooterComponent } from './footer/footer.component';
-import { FormationsComponent } from './formations/formations.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { LaboratoiresComponent } from './laboratoires/laboratoires.component';
-import { MainComponent } from './main/main.component';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { CalendrierComponent } from './home_page/calendrier/calendrier.component';
+import { CedComponent } from './home_page/ced/ced.component';
+import { ConseilsComponent } from './home_page/footer/conseils/conseils.component';
+import { FooterComponent } from './home_page/footer/footer.component';
+import { FormationsComponent } from './home_page/formations/formations.component';
+import { HeaderComponent } from './home_page/header/header.component';
+import { LaboratoiresComponent } from './home_page/laboratoires/laboratoires.component';
+import { MainComponent } from './home_page/main/main.component';
+import { WelcomeComponent } from './home_page/welcome/welcome.component';
 import { HttpService } from './services/http.service';
 import { PublicRoutingModule } from './public-routing.module';
-import { ConnexionComponent } from './components/auth/connexion/connexion.component';
+import { ConnexionComponent } from './home_page/connexion/connexion.component';
 import { CandidatLoginComponent } from './components/auth/candidat-login/candidat-login.component';
 import { CandidatPreRegisterComponent } from './components/auth/candidat-pre-register/candidat-pre-register.component';
 import { CandidatRegisterComponent } from './components/auth/candidat-register/candidat-register.component';
+import { HomeComponent } from './home_page/home/home.component';
 
 @NgModule({
   declarations: [
@@ -39,4 +39,5 @@ import { CandidatRegisterComponent } from './components/auth/candidat-register/c
   exports: [HomeComponent],
   providers: [HttpService],
 })
+
 export class PublicModule {}

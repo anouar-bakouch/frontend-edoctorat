@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Laboratoire } from 'src/app/models/Laboratoire';
-import { HttpService } from '../services/http.service';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: '[app-laboratoires]',
