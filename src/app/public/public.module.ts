@@ -18,6 +18,7 @@ import { HttpService } from './services/http.service';
 import { MainComponent } from './components/main/main.component';
 import { LaboratoiresComponent } from './components/laboratoires/laboratoires.component';
 import { ContainerComponent } from './components/container/container.component';
+import { CandidatAuthComponent } from './components/auth/candidat-auth/candidat-auth.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ContainerComponent } from './components/container/container.component';
     CandidatRegisterComponent,
     LaboratoiresComponent,
     MainComponent,
-    ContainerComponent
+    ContainerComponent,
+    CandidatAuthComponent
   ],
   imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule],
   exports: [HomeComponent],

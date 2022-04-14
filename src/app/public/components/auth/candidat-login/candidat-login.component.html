@@ -1,4 +1,4 @@
-<div app-header></div>
+
 <h3 *ngIf="showError" class="text-danger">{{ errorText }}</h3>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <label for="email">Email</label>
@@ -30,4 +30,4 @@
     >
   </p>
 </form>
-<div app-footer></div>
+

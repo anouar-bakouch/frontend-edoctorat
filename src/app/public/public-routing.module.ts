@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CandidatAuthComponent } from './components/auth/candidat-auth/candidat-auth.component';
 import { CandidatLoginComponent } from './components/auth/candidat-login/candidat-login.component';
 import { CandidatPreRegisterComponent } from './components/auth/candidat-pre-register/candidat-pre-register.component';
 import { CandidatRegisterComponent } from './components/auth/candidat-register/candidat-register.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
 import { ContainerComponent } from './components/container/container.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
 
 
@@ -17,24 +19,21 @@ const routes: Routes = [
      
     { path : 'infos' , component : MainComponent},
 
-    { path: 'connexion', component: ConnexionComponent , children : [
+    { path: 'candidat', component: CandidatAuthComponent , children : [
 
-      { path: 'candidat/login/', component: CandidatLoginComponent },
+      { path : 'connexion', component : ConnexionComponent},
+
+      { path: 'login', component: CandidatLoginComponent },
   
-      {
-        path: 'candidat/pre-register',
-        component: CandidatPreRegisterComponent,
-      },
+      { path: 'pre-register',component: CandidatPreRegisterComponent},
       
-      {
-        path: 'candidat/register',
-        component: CandidatRegisterComponent,
-      }
-  
+      { path: 'register', component: CandidatRegisterComponent}
   
     ] }
 
-  ]},
+  ]}
+
+  
 
   
 

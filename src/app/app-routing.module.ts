@@ -7,15 +7,19 @@ import { HomeComponent } from './public/components/home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+
+  { path : '', redirectTo : 'home/infos' , pathMatch : 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'professeur', component: MainProfComponent },
   { path: 'candidat', component: CandidatComponent },
   { path: 'ced', component: MainCedComponent },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
+
 export class AppRoutingModule {}

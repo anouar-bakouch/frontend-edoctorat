@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./candidat-login.component.css'],
 })
 export class CandidatLoginComponent {
+  
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
