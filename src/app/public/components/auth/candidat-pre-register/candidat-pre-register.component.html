@@ -2,6 +2,10 @@
 <h3>S'inscrire</h3>
 <div *ngIf="!showEmailConfMsg">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h5>
+      Les informations saisies ici seront utilisées pour vérifier votre compte.
+      Assurez-vous qu'ils sont valides
+    </h5>
     <label for="email">Email</label>
     <input
       type="email"
@@ -32,6 +36,11 @@
       value="S'inscrire"
       [disabled]="!form.valid"
     />
+    <p>
+      Vous avez déjà un compte?<a routerLink="/connexion/candidat/login"
+        >S'identifier</a
+      >
+    </p>
     <h5 *ngIf="showLoading" style="color: blue">S'il vous plaît, attendez</h5>
   </form>
   <h3 *ngIf="showError" style="color: red">

@@ -8,7 +8,7 @@ import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   { path: 'connexion', component: ConnexionComponent },
-  { path: 'connexion/candidat/login/', component: CandidatLoginComponent },
+  { path: 'connexion/candidat/login', component: CandidatLoginComponent },
   {
     path: 'connexion/candidat/pre-register',
     component: CandidatPreRegisterComponent,
