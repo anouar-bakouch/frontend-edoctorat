@@ -12,6 +12,7 @@ import { MainComponent } from './main/main.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HttpService } from './services/http.service';
 import { PublicRoutingModule } from './public-routing.module';
+import { ConnexionComponent } from './components/auth/connexion/connexion.component';
 
 @NgModule({
   declarations: [
@@ -24,17 +25,11 @@ import { PublicRoutingModule } from './public-routing.module';
     HomeComponent,
     LaboratoiresComponent,
     MainComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ConnexionComponent,
   ],
-  imports: [
-    CommonModule,
-    PublicRoutingModule
-  ],
-  exports : [
-    HomeComponent
-  ],
-  providers : [
-    HttpService
-  ]
+  imports: [CommonModule, PublicRoutingModule],
+  exports: [HomeComponent],
+  providers: [HttpService],
 })
-export class PublicModule { }
+export class PublicModule {}
