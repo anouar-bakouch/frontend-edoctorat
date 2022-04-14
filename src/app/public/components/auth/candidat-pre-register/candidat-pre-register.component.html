@@ -1,30 +1,52 @@
 <div app-header></div>
 <h3>S'inscrire</h3>
-<form [formGroup]="form">
-  <label for="email">Email</label>
-  <input
-    type="email"
-    name="email"
-    formControlName="email"
-    id="email"
-    placeholder="Email"
-  />
-  <label for="nom">Nom</label>
-  <input
-    type="text"
-    name="nom"
-    formControlName="nom"
-    id="nom"
-    placeholder="Nom"
-  />
-  <label for="prenom">Prenom</label>
-  <input
-    type="text"
-    name="prenom"
-    formControlName="prenom"
-    id="prenom"
-    placeholder="Prenom"
-  />
-  <input type="submit" value="S'inscrire" [disabled]="!form.valid" />
-</form>
+<div *ngIf="!showEmailConfMsg">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      formControlName="email"
+      id="email"
+      placeholder="Email"
+    />
+    <label for="nom">Nom</label>
+    <input
+      type="text"
+      name="nom"
+      formControlName="nom"
+      id="nom"
+      placeholder="Nom"
+    />
+    <label for="prenom">Prenom</label>
+    <input
+      type="text"
+      name="prenom"
+      formControlName="prenom"
+      id="prenom"
+      placeholder="Prenom"
+    />
+    <input
+      *ngIf="!showLoading"
+      type="submit"
+      value="S'inscrire"
+      [disabled]="!form.valid"
+    />
+    <h5 *ngIf="showLoading" style="color: blue">S'il vous plaît, attendez</h5>
+  </form>
+  <h3 *ngIf="showError" style="color: red">
+    Une erreur s'est produite lors de la communication avec notre serveur.
+    Réessayez plus tard. Désolé pour le dérangement
+  </h3>
+</div>
+
+<div *ngIf="showEmailConfMsg">
+  <h3>confirmez votre email</h3>
+  <h6>
+    Pour procéder à votre inscription, un e-mail de confirmation a été envoyé à
+    votre adresse e-mail. Assurez-vous de vérifier votre dossier spam au cas où
+    vous ne le trouveriez pas dans votre boîte de réception. Le lien de
+    vérification est valide pendant 30 minutes. Vous pouvez fermer cette page.
+  </h6>
+</div>
 <div app-footer></div>

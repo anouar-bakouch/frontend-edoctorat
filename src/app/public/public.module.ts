@@ -16,6 +16,7 @@ import { PublicRoutingModule } from './public-routing.module';
 import { ConnexionComponent } from './components/auth/connexion/connexion.component';
 import { CandidatLoginComponent } from './components/auth/candidat-login/candidat-login.component';
 import { CandidatPreRegisterComponent } from './components/auth/candidat-pre-register/candidat-pre-register.component';
+import { CandidatRegisterComponent } from './components/auth/candidat-register/candidat-register.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CandidatPreRegisterComponent } from './components/auth/candidat-pre-reg
     ConnexionComponent,
     CandidatLoginComponent,
     CandidatPreRegisterComponent,
+    CandidatRegisterComponent,
   ],
   imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule],
   exports: [HomeComponent],
