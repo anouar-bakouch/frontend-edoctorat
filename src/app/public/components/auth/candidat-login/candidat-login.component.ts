@@ -28,8 +28,8 @@ export class CandidatLoginComponent {
         this.form.get('password')!.value
       )
       .then((status) => {
-        this.showError = false
-        //redirect to candidat page
+        this.showError = false;
+        this.router.navigateByUrl('/candidat');
       })
       .catch((err) => this.showErrorModal(err))
       .finally(() => (this.showLoading = false));
