@@ -49,17 +49,15 @@ export class AuthService {
           },
           complete: () => {
             if (!errorsOccured) {
-              this.getUserInfo(data_.access).subscribe({
-                next: (info: UserInfo) => {
-                  this.saveUserInfo(info);
+              this.getUserInfo(data_.access)
+                .then((_) => {
                   reslove_(STATUS_AUTH_OK);
-                },
-                error: (_: HttpErrorResponse) => {
+                })
+                .catch((_) => {
                   reject(
                     "Une erreur inconnue s'est produite de notre part. Essayez de vous connecter plus tard"
                   );
-                },
-              });
+                });
             }
           },
         });
@@ -67,12 +65,21 @@ export class AuthService {
   }
 
   private getUserInfo(accessToken: string) {
-    return this.httpClient.get<UserInfo>(
-      `${environment.API_URL}/api/get-user-info/`,
-      {
-        headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
-      }
-    );
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .get<UserInfo>(`${environment.API_URL}/api/get-user-info/`, {
+          headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
+        })
+        .subscribe({
+          next: (userInfo) => {
+            this.saveUserInfo(userInfo);
+            resolve(true);
+          },
+          error: (_) => {
+            reject(false);
+          },
+        });
+    });
   }
 
   private storeTokens(token: string, refreshToken: string) {
@@ -89,5 +96,9 @@ export class AuthService {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.removeItem(REFRESH_TOKEN_KEY);
     window.localStorage.removeItem(USER_INFO);
+  }
+  public userLoggedInAndIsInGroup(group: string): boolean {
+    const user = window.localStorage.getItem(USER_INFO);
+    return false;
   }
 }
