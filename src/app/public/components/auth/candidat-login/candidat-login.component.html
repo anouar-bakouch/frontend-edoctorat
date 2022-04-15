@@ -1,12 +1,12 @@
 
 
-<h3 *ngIf="showError" class="text-danger text-center">{{ errorText }}</h3>
+<h5 *ngIf="showError" class="col-sm-12 col-lg-5 text-light text-center  bg-danger m-auto p-3">{{ errorText }}</h5>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
 <div class="container-fluid">
 
-  <div class="col-5 m-auto form-group mt-3">
+  <div class="col-sm-12 col-lg-5 m-auto form-group mt-3">
 
     <label class="form-label font-weight-bold fs-3" for="email"><i class="bi bi-envelope"></i> Email</label>
     <input
@@ -22,7 +22,7 @@
 
   </div>
 
-  <div class="col-5 m-auto form-group mt-3">
+  <div class="col-sm-12 col-lg-5 m-auto form-group mt-3">
 
   <label class="form-label font-weight-bold fs-3" for="password"><i class="bi bi-key"></i> Mot de passe</label>
 
@@ -44,7 +44,7 @@
  </div>
 
 
-  <div class="col-5 m-auto form-group mt-3">
+  <div class="col-sm-12 col-lg-5 m-auto form-group mt-3">
   <h4 *ngIf="showLoading"><img src="/assets/images/connexion/loading.webp" width="300" height="100" /></h4>
   <p>
     Vous n'avez pas de compte ?<a class="m-3" routerLink="/home/candidat/pre-register"

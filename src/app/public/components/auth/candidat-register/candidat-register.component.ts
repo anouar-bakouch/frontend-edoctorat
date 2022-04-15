@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CountriesService } from 'src/app/core/candidat/services/countries.service';
 import PreRegistration from 'src/app/models/PreRegistration';
 import { RegisterService } from 'src/app/public/services/auth/register.service';
 
@@ -10,7 +11,8 @@ import { RegisterService } from 'src/app/public/services/auth/register.service';
   templateUrl: './candidat-register.component.html',
   styleUrls: ['./candidat-register.component.css'],
 })
-export class CandidatRegisterComponent {
+
+export class CandidatRegisterComponent implements OnInit{
   
   isVerifyingToken = true;
   showTokenInvalid = false;
@@ -37,7 +39,8 @@ export class CandidatRegisterComponent {
 
   constructor(
     activeRoute: ActivatedRoute,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private httpCountries:CountriesService
   ) {
     activeRoute.queryParams.subscribe({
       next: (params) => {
@@ -61,4 +64,19 @@ export class CandidatRegisterComponent {
       },
     });
   }
+
+
+
+  public _countries:any;
+
+
+  ngOnInit(): void {
+    this.httpCountries.getCountries().
+   subscribe(
+     res=>{
+      this._countries = res.data;
+     }
+   )
+  }
+
 }
