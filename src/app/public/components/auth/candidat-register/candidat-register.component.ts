@@ -51,6 +51,7 @@ export class CandidatRegisterComponent implements OnInit {
         const token: string | undefined | null = params['token'];
         if (!token) {
           this.showTokenInvalid = true;
+          this.isVerifyingToken = false;
           return;
         }
         registerService.verifyToken(token).subscribe({
