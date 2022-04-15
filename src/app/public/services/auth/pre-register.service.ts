@@ -13,7 +13,7 @@ export class PreRegisterService {
       email,
       nom,
       prenom,
-      origin: `${window.origin}/connexion/candidat/register`,
+      origin: `${window.origin}/home/candidat/register`,
     });
   }
 }

@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
-import { MainComponent } from "src/app/public/main/main.component";
 import { ProfCandidatComponent } from "./components/prof-candidat/prof-candidat.component";
 import { ProfCommissionComponent } from "./components/prof-commission/prof-commission.component";
 import { ProfInscritsComponent } from "./components/prof-inscrits/prof-inscrits.component";

@@ -14,12 +14,6 @@ import { RouterModule } from '@angular/router';
 import { DirecteurPoleComponent } from './components/directeur-pole.component';
 import { PoleCalendrierComponent } from './components/pole-calendrier/pole-calendrier.component';
 
-
-
-
-
-
-
 @NgModule({
   declarations: [
     HeaderComponent,

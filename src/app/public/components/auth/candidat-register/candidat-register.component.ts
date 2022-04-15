@@ -1,15 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { CountriesService } from 'src/app/core/candidat/services/countries.service';
 import PreRegistration from 'src/app/models/PreRegistration';
 import { RegisterService } from 'src/app/public/services/auth/register.service';
 
@@ -18,7 +12,7 @@ import { RegisterService } from 'src/app/public/services/auth/register.service';
   templateUrl: './candidat-register.component.html',
   styleUrls: ['./candidat-register.component.css'],
 })
-export class CandidatRegisterComponent {
+export class CandidatRegisterComponent implements OnInit {
   isVerifyingToken = true;
   showTokenInvalid = false;
   showPasswordsMisMatch = false;
@@ -49,7 +43,8 @@ export class CandidatRegisterComponent {
   constructor(
     activeRoute: ActivatedRoute,
     private registerService: RegisterService,
-    private router: Router
+    private router: Router,
+    private httpCountries: CountriesService
   ) {
     activeRoute.queryParams.subscribe({
       next: (params) => {
@@ -111,10 +106,18 @@ export class CandidatRegisterComponent {
     this.registerService
       .registerCandidat(payload)
       .then((data) => {
-        this.router.navigateByUrl('/connexion/candidat/login/');
+        this.router.navigateByUrl('/home/candidat/login');
       })
       .catch((error) => {
         this.showRegError = true;
       });
+  }
+
+  public _countries: any;
+
+  ngOnInit(): void {
+    this.httpCountries.getCountries().subscribe((res) => {
+      this._countries = res.data;
+    });
   }
 }

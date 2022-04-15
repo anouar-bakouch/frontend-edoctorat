@@ -1,6 +1,5 @@
-<div app-header></div>
-<div *ngIf="!isVerifyingToken && !showTokenInvalid">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div  *ngIf="!isVerifyingToken && !showTokenInvalid">
+  <form [formGroup]="form">
     <label for="Email">Email</label>
     <input
       type="email"
@@ -80,10 +79,11 @@
     <label for="tel">Numero de telephone</label>
     <input type="tel" name="tel" id="tel" formControlName="tel" />
     <label for="nationalite">Nationalite</label>
+    
     <select name="nationalite" id="nationalite" formControlName="nationalite">
-      <option value="maroc" selected>Maroc</option>
-      <option value="england">England</option>
+      <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
     </select>
+
     <label for="sitFam">Situation familiale</label>
     <select name="sitFam" id="sitFam" formControlName="sitFam">
       <option value="celebataire">Celebataire</option>
@@ -94,6 +94,7 @@
       <option value="oui">Oui</option>
       <option value="non">Non</option>
     </select>
+
     <label for="thandCap">Type de handicap (si oui)</label>
     <select name="thandCap" id="thandCap" formControlName="thandCap">
       <option value="handicape_physique">Handicap Physique</option>
@@ -120,15 +121,15 @@
   </h4>
 </div>
 
-<div *ngIf="isVerifyingToken">
+<div class="col-7 text-center m-auto p-3" *ngIf="isVerifyingToken">
   <h5>
     Veuillez patienter, vérification de vos informations de préinscription...
   </h5>
 </div>
 
-<div *ngIf="showTokenInvalid">
-  <h4 style="color: red">
+<div class="col-7 text-center m-auto" *ngIf="showTokenInvalid">
+  <h4 class="text-light bg-danger p-3">
     Le jeton que nous avons reçu est invalide ou a expiré
   </h4>
 </div>
-<div app-footer></div>
+

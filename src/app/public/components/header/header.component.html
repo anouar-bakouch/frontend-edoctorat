@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">
+
+        <img width="200" src="/assets/images/usmba-logo.png" alt="" srcset="">
+
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-primary font-weight-bold" href="#ced" id="poles_doctorales" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="display-15"> POLE D'ETUDES DOCTORALES</span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="poles_doctorales">
+                  <li><a class="dropdown-item text-darkblue" href="/reglement/centre">Description</a></li>
+                  <li><a class="dropdown-item text-darkblue" href="#ced">Centre D'Etudes Docotrales</a></li>
+            
+                </ul>
+              </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary font-weight-bold" href="#labo">LABORATOIRE DE RECHERECHE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary font-weight-bold" href="#formations">FORMATION DOCTORALE</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle brand-primary text-primary font-weight-bold" href="#" id="reglements" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              REGLEMENT ET CANDIDATURE
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="reglements">
+              <li><a class="dropdown-item text-darkblue" href="reglement/">Charte de Doctorat</a></li>
+              <li><a class="dropdown-item text-darkblue" href="reglement/postule">Comment Candidater</a></li>
+              <li><a class="dropdown-item text-darkblue" href="/candidat/candidat_choose">Candidater</a></li>
+            </ul>
+          </li>
+          <li class="nav-item ml-3">
+            <a class="nav-link brand-primary text-primary font-weight-bold" routerLink="/home/candidat/connexion">
+                <i class="bi bi-person-circle fs-3"></i></a>
+          </li>
+          <li class="nav-item ml-3 d-flex justify-content-center align-items-center">
+           
+            <select class="form-select form-select-sm" (change)="changeLanguage($event)">
+             <option value="Fr" [selected]="language =='Fr'">Fr</option>
+             <option value="Ar" [selected]="language =='Ar'" >Ar</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
