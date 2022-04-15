@@ -17,13 +17,12 @@ const routes: Routes = [
     component: ContainerComponent,
     children: [
       { path: 'infos', component: MainComponent },
+      { path: 'connexion', component: ConnexionComponent },
 
       {
         path: 'candidat',
         component: CandidatAuthComponent,
         children: [
-          { path: 'connexion', component: ConnexionComponent },
-
           { path: 'login', component: CandidatLoginComponent },
 
           { path: 'pre-register', component: CandidatPreRegisterComponent },
