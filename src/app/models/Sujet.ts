@@ -1,13 +1,14 @@
+import { FormationDoctorale } from "./FormationDoctorale";
+import { Professeur } from "./Professeur";
 
 
 export interface Sujet {
-
-    idSujet:number;
-    idProfesseur:number;
-    idCodirecteur:number;
-    titreSujet:string;
+    id:number;
+    professeur:Professeur;
+    coDirecteur:Professeur;
+    titre:string;
     description:string;
+    formationDoctorale:FormationDoctorale;
     publier:boolean;
-    idFormationDoctorale:number;
 
 }
