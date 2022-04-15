@@ -11,17 +11,19 @@ import { ProfResultatComponent } from './components/prof-resultat/prof-resultat.
 import { OptionsComponent } from './components/options/options.component';
 import { HeaderProfComponent } from './components/header/header-prof.component';
 import { ContainerComponent } from './components/container/container.component';
+import { ProfSujetComponent } from './components/prof-sujet/prof-sujet.component';
 
 @NgModule({
   declarations: [
-      MainProfComponent,
-      ProfCandidatComponent,
-      ProfCommissionComponent,
-      ProfInscritsComponent,
-      ProfResultatComponent,
-      OptionsComponent,
-      HeaderProfComponent,
-      ContainerComponent
+    MainProfComponent,
+    ProfCandidatComponent,
+    ProfCommissionComponent,
+    ProfInscritsComponent,
+    ProfResultatComponent,
+    OptionsComponent,
+    HeaderProfComponent,
+    ContainerComponent,
+    ProfSujetComponent
   ],
   imports: [
     CommonModule,
@@ -29,10 +31,10 @@ import { ContainerComponent } from './components/container/container.component';
     RouterModule,
     ProfesseurRoutingModule
   ],
-  exports : [
-      MainProfComponent
+  exports: [
+    MainProfComponent
   ],
-  bootstrap :[
+  bootstrap: [
     MainProfComponent
   ]
 })
