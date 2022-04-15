@@ -11,6 +11,7 @@ import { PreRegisterService } from 'src/app/public/services/auth/pre-register.se
 export class CandidatPreRegisterComponent {
   constructor(private service: PreRegisterService) {}
 
+  errorText: string | undefined = undefined;
   showEmailConfMsg = false;
   showError = false;
   showLoading = false;
@@ -21,6 +22,7 @@ export class CandidatPreRegisterComponent {
   });
 
   onSubmit() {
+    this.errorText = undefined;
     this.showError = false;
     this.showLoading = true;
     this.service
@@ -34,7 +36,15 @@ export class CandidatPreRegisterComponent {
           this.showEmailConfMsg = true;
         },
         error: (error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            this.errorText =
+              "Une erreur s'est produite lors de l'exécution de la demande. Il est possible qu'un compte soit déjà lié aux informations fournies";
+          } else {
+            this.errorText =
+              "Une erreur s'est produite lors de la communication avec notre serveur.Réessayez plus tard. Désolé pour le dérangement";
+          }
           this.showError = true;
+          this.showLoading = false;
         },
         complete: () => (this.showLoading = false),
       });
