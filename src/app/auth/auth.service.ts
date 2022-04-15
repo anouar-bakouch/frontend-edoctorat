@@ -97,8 +97,13 @@ export class AuthService {
     window.localStorage.removeItem(REFRESH_TOKEN_KEY);
     window.localStorage.removeItem(USER_INFO);
   }
-  public userLoggedInAndIsInGroup(group: string): boolean {
-    const user = window.localStorage.getItem(USER_INFO);
-    return false;
+  public userLoggedInAndInGroup(group: string): boolean {
+    const user: object | UserInfo = JSON.parse(
+      window.localStorage.getItem(USER_INFO) ?? '{}'
+    );
+    if (Object.keys(user).length === 0) return false;
+    if (!(user as UserInfo).groups) return false;
+    if ((user as UserInfo).groups.indexOf(group) <= -1) return false;
+    return true;
   }
 }
