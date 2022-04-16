@@ -17,7 +17,7 @@ export class ConnexionComponent {
       .signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((authUser: AuthUser) => {
         if (authUser) {
-          
+          console.log(authUser.idToken);
         }
       })
       .catch((err) => {

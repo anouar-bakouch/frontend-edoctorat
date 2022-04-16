@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import AuthProf from '../models/AuthProf';
 import Token from '../models/Token';
 import UserInfo from '../models/UserInfo';
 import {
@@ -60,6 +61,30 @@ export class AuthService {
                 });
             }
           },
+        });
+    });
+  }
+
+  loginProfessor(idToken: string) {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .post<AuthProf>(`${environment.API_URL}/api/verify-is-prof/`, {
+          token: idToken,
+        })
+        .subscribe({
+          next: (authData: AuthProf) => {
+            this.storeTokens(authData.access, authData.refresh);
+            const userInfo: UserInfo = {
+              email: authData.email,
+              groups: authData.groups,
+              nom: authData.nom,
+              prenom: authData.prenom,
+              pathPhoto: authData.pathPhoto,
+            };
+            this.saveUserInfo(userInfo);
+            resolve(true);
+          },
+          error: (_) => reject(false),
         });
     });
   }
