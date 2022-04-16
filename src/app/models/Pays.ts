@@ -1,9 +1,4 @@
-
-
 export interface Pays {
-
-    idPays:number;
-    nomPays:number;
-    isoName:string;
-
+  id: number;
+  nom: string;
 }

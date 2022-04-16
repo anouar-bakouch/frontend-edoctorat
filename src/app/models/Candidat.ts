@@ -1,29 +1,25 @@
-
+import { CompteUser } from './CompteUser';
+import { Pays } from './Pays';
 
 export interface Candidat {
-
-    cne:string;  
-    idPays:number;
-    cin :string;
-    nomCandidat:string;
-    nomCandidatAr:string;
-    prenomCandidat:string;
-    prenomCandidatAr:string;
-    adresse:string;
-    adresseAr:string;
-    sexe:string;
-    villeDeNaissance:string;
-    villeDeNaissanceAr:string;
-    ville:string;
-    dateDeNaissance:string;
-    typeDeHandiCape:string;
-    academie:string;
-    mailCandidat:string;
-    telCandidat:string;
-    pathCv:string;
-    pathPhoto:string;
-    idUser:number;
-    etatDossier:number;
-    situation_familiale:string;
-
+  cne: string;
+  pays: Pays;
+  cin: string;
+  nomCandidatAr: string | undefined;
+  prenomCandidatAr: string | undefined;
+  adresse: string;
+  adresseAr: string | undefined;
+  sexe: string;
+  villeDeNaissance: string;
+  villeDeNaissanceAr: string | undefined;
+  ville: string;
+  dateDeNaissance: string;
+  typeDeHandiCape: string;
+  academie: string | undefined;
+  telCandidat: string;
+  pathCv: string | undefined;
+  pathPhoto: string | undefined;
+  user: CompteUser;
+  etatDossier: number | undefined;
+  situation_familiale: string | undefined;
 }
