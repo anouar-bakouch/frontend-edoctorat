@@ -8,7 +8,7 @@ import { Sujet } from 'src/app/models/Sujet';
 })
 export class OperationsService {
 
-  private _url:string= 'https://6240d0a719f6098792404149.mockapi.io/sujet';
+  private _url: string = 'http://127.0.0.1:8000/api/sujets/';
 
   constructor(private http:HttpClient) { }
 
@@ -28,14 +28,14 @@ export class OperationsService {
     
     //still don't know what the backend needs the id or whatever 
     // i expect it will be using the id
-    return this.http.delete<Sujet>(this._url+'/'+sujet.idSujet);
+    return this.http.delete<Sujet>(this._url+'/'+sujet.id);
 
   }
 
   public updateSujet(sujet:Sujet):Observable<Sujet>{
    
     // the same here
-   return this.http.put<Sujet>(this._url+'/'+sujet.idSujet,sujet);
+   return this.http.put<Sujet>(this._url+'/'+sujet.id,sujet);
 
   }
 
