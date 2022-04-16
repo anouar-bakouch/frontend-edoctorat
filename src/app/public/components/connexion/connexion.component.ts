@@ -7,18 +7,21 @@ import AuthUser from 'src/app/models/GoogleAuthUser';
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css'],
 })
-export class ConnexionComponent implements OnInit {
+export class ConnexionComponent {
   showLoading = false;
   constructor(private socialAuthService: SocialAuthService) {}
 
-  ngOnInit(): void {
-    this.socialAuthService.authState.subscribe((user: AuthUser) => {
-      console.log(user.idToken);
-    });
-  }
-
   public loginProf() {
     this.showLoading = true;
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((authUser: AuthUser) => {
+        if (authUser) {
+          
+        }
+      })
+      .catch((err) => {
+        this.showLoading = false;
+      });
   }
 }
