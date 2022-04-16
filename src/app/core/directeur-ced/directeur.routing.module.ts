@@ -5,10 +5,11 @@ import { DirecteurCedSujetComponent } from "./components/directeur-ced-sujet/dir
 import { DirecteurCedCandidatComponent } from "./components/directeur-ced-candidat/directeur-ced-candidat.component";
 import { DirecteurCedCommissionComponent } from "./components/directeur-ced-commission/directeur-ced-commission.component";
 import { DirecteurCedResultatComponent } from "./components/directeur-ced-resultat/directeur-ced-resultat.component";
+import { IsCEDGuard } from "src/app/guards/is-ced.guard";
 
 const routes:Routes= [
 
- { path : 'ced' , component : PrincipaleCedComponent , children : [
+ { path : 'ced' , component : PrincipaleCedComponent , canActivateChild: [IsCEDGuard], children : [
      
   { path : 'sujetced' , component :DirecteurCedSujetComponent},
   { path : 'candidatced',component : DirecteurCedCandidatComponent},
