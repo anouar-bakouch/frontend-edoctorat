@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { AuthService } from 'src/app/auth/auth.service';
 import AuthUser from 'src/app/models/GoogleAuthUser';
 
 @Component({
@@ -9,19 +11,30 @@ import AuthUser from 'src/app/models/GoogleAuthUser';
 })
 export class ConnexionComponent {
   showLoading = false;
-  constructor(private socialAuthService: SocialAuthService) {}
+  showProfAuthError = false;
+  constructor(
+    private socialAuthService: SocialAuthService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   public loginProf() {
     this.showLoading = true;
+    this.showProfAuthError = false;
     this.socialAuthService
       .signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((authUser: AuthUser) => {
         if (authUser) {
-          console.log(authUser.idToken);
+          this.authService
+            .loginProfessor(authUser.idToken)
+            .then((_) => {
+              this.router.navigateByUrl('/professeur');
+            })
+            .catch((err) => {
+              this.showProfAuthError = true;
+            });
         }
       })
-      .catch((err) => {
-        this.showLoading = false;
-      });
+      .finally(() => (this.showLoading = false));
   }
 }
