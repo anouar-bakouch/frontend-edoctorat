@@ -8,10 +8,14 @@ import { PublicModule } from './public/public.module';
 import { HttpService } from './public/services/http.service';
 import { SharedModule } from './shared/shared.module';
 
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CoreModule,
@@ -19,9 +23,26 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     HttpClientModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    SocialLoginModule,
   ],
-  providers: [HttpService],
-  bootstrap: [AppComponent]
+  providers: [
+    HttpService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '51178298268-gtsk5m1a7k4ngsv2896hh7qv0fi4jra9.apps.googleusercontent.com'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
