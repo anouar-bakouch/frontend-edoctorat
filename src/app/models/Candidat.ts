@@ -1,9 +1,11 @@
 import { CompteUser } from './CompteUser';
-import { Pays } from './Pays';
 
 export interface Candidat {
   cne: string;
-  pays: Pays;
+  pays: string;
+  nom: string;
+  prenom: string;
+  email: string;
   cin: string;
   nomCandidatAr: string | undefined;
   prenomCandidatAr: string | undefined;
@@ -19,7 +21,6 @@ export interface Candidat {
   telCandidat: string;
   pathCv: string | undefined;
   pathPhoto: string | undefined;
-  user: CompteUser;
   etatDossier: number | undefined;
   situation_familiale: string | undefined;
 }
