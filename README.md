@@ -1,3 +1,3 @@
 
 
-the alternative contains the last updates , i have chosen to make changes there so if we don't agree on something we can always check the master branch
+to helo writing the rapport about edoctorat : visit this link <a href="https://docs.google.com/document/d/1VmeP33f4LJYPQHCHCpUuuzYsEkl0Vysc8ZV5LlUZft8/edit#">google docs</a>
