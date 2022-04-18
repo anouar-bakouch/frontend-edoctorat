@@ -12,6 +12,7 @@ import { OptionsComponent } from './components/options/options.component';
 import { HeaderProfComponent } from './components/header/header-prof.component';
 import { ContainerComponent } from './components/container/container.component';
 import { ProfSujetComponent } from './components/prof-sujet/prof-sujet.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,10 @@ import { ProfSujetComponent } from './components/prof-sujet/prof-sujet.component
     CommonModule,
     HttpClientModule,
     RouterModule,
-    ProfesseurRoutingModule
+    ProfesseurRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    
   ],
   exports: [
     MainProfComponent

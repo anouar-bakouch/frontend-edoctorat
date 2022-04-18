@@ -1,3 +1,4 @@
+import { Sujet } from "./Sujet";
 
 
 export interface Professeur {
@@ -14,5 +15,6 @@ export interface Professeur {
     nombreEncadrer: number;
     nombreProposer: number;
     nomComplet: string;
+    sujets:Sujet[];
 
 }
