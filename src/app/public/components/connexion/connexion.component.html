@@ -1,9 +1,28 @@
-<div class="d-flex flex-wrap justify-content-around align-items-center border border-primary" style="height:43vh;">
-    
-    <h3>Se connecter au tant que</h3>
-    <button class="btn btn-outline-primary" routerLink="/home/candidat/login">Candidat</button>
-    <button class="btn btn-outline-primary" type="button" routerLink="/home/professeur/login">Professeur</button>
-
+<div class="loadingModal" *ngIf="showLoading">
+  <div class="modalContent">
+    <h3 class="text-primary">Authentification en cours</h3>
+    <p>
+      Après vous être connecté avec Google, nous devons vérifier que vous êtes
+      un professeur. Veuillez patienter, vous serez bientôt redirigé si tout se
+      passe bien.
+    </p>
+  </div>
 </div>
-
-
+<h5
+  *ngIf="showProfAuthError"
+  class="col-sm-12 col-lg-5 text-light text-center bg-danger m-auto p-3"
+>
+  Un professeur avec le compte Google choisi n'existe pas.
+</h5>
+<div
+  class="d-flex flex-wrap justify-content-around align-items-center border border-primary"
+  style="height: 43vh"
+>
+  <h3>Se connecter au tant que</h3>
+  <button class="btn btn-outline-primary" routerLink="/home/candidat/login">
+    Candidat
+  </button>
+  <button class="btn btn-outline-primary" type="button" (click)="loginProf()">
+    Professeur
+  </button>
+</div>

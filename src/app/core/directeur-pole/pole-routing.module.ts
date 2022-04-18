@@ -8,33 +8,29 @@ import { PoleCommuniquerComponent } from './components/pole-communiquer/pole-com
 import { PoleCandidatComponent } from './components/pole-candidat/pole-candidat.component';
 import { PoleInscriptionComponent } from './components/pole-inscription/pole-inscription.component';
 import { PoleCalendrierComponent } from './components/pole-calendrier/pole-calendrier.component';
+import { IsDPoleGuard } from 'src/app/guards/is-dpole.guard';
 
 const routes: Routes = [
-
   { path: 'pole', redirectTo: '/pole/sujets', pathMatch: 'full' },
 
   {
-    path: 'pole', component: DirecteurMainComponent, children: [
-
+    path: 'pole',
+    canActivateChild: [IsDPoleGuard],
+    component: DirecteurMainComponent,
+    children: [
       { path: 'sujets', component: PoleSujetComponent },
       { path: 'commission', component: PoleCommissionComponent },
       { path: 'communiquer', component: PoleCommuniquerComponent },
       { path: 'candidat', component: PoleCandidatComponent },
       { path: 'calendrier', component: PoleCalendrierComponent },
-      { path: 'inscription', component: PoleInscriptionComponent }
-
-    ]
-  }
-
+      { path: 'inscription', component: PoleInscriptionComponent },
+    ],
+  },
 ];
-
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [RouterModule]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class PoleRoutingModule { }
+export class PoleRoutingModule {}

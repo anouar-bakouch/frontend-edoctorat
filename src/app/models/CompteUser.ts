@@ -1,10 +1,5 @@
-
-
 export interface CompteUser {
-
-  idUser:number;
-  nomUser:string;
-  password:string;
-  role:string;
-
+  first_name: string;
+  last_name: string;
+  email: string;
 }

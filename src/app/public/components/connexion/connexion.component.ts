@@ -1,16 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { AuthService } from 'src/app/auth/auth.service';
+import AuthUser from 'src/app/models/GoogleAuthUser';
 
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
-  styleUrls: ['./connexion.component.css']
+  styleUrls: ['./connexion.component.css'],
 })
+export class ConnexionComponent {
+  showLoading = false;
+  showProfAuthError = false;
+  constructor(
+    private socialAuthService: SocialAuthService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-export class ConnexionComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  public loginProf() {
+    this.showLoading = true;
+    this.showProfAuthError = false;
+    this.socialAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((authUser: AuthUser) => {
+        if (authUser) {
+          this.authService
+            .loginProfessor(authUser.idToken)
+            .then((_) => {
+              this.router.navigateByUrl('/professeur');
+            })
+            .catch((err) => {
+              this.showProfAuthError = true;
+            });
+        }
+      })
+      .finally(() => (this.showLoading = false));
   }
-
 }

@@ -7,14 +7,17 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import AuthProf from '../models/AuthProf';
 import Token from '../models/Token';
 import UserInfo from '../models/UserInfo';
 import {
   REFRESH_TOKEN_KEY,
   STATUS_AUTH_OK,
+  TOKEN_INSERT_DATE_TIME,
   TOKEN_KEY,
   USER_INFO,
 } from '../utils/constants';
+import { getDaysDelta } from '../utils/date';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +67,30 @@ export class AuthService {
     });
   }
 
+  loginProfessor(idToken: string) {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .post<AuthProf>(`${environment.API_URL}/api/verify-is-prof/`, {
+          token: idToken,
+        })
+        .subscribe({
+          next: (authData: AuthProf) => {
+            this.storeTokens(authData.access, authData.refresh);
+            const userInfo: UserInfo = {
+              email: authData.email,
+              groups: authData.groups,
+              nom: authData.nom,
+              prenom: authData.prenom,
+              pathPhoto: authData.pathPhoto,
+            };
+            this.saveUserInfo(userInfo);
+            resolve(true);
+          },
+          error: (_) => reject(false),
+        });
+    });
+  }
+
   private getUserInfo(accessToken: string) {
     return new Promise((resolve, reject) => {
       this.httpClient
@@ -85,6 +112,7 @@ export class AuthService {
   private storeTokens(token: string, refreshToken: string) {
     window.localStorage.setItem(TOKEN_KEY, token);
     window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+    window.localStorage.setItem(TOKEN_INSERT_DATE_TIME, new Date().toString());
   }
   public getAuthToken(): string | undefined | null {
     return window.localStorage.getItem(TOKEN_KEY);
@@ -98,6 +126,10 @@ export class AuthService {
     window.localStorage.removeItem(USER_INFO);
   }
   public userLoggedInAndInGroup(group: string): boolean {
+    const lastTkInsert = window.localStorage.getItem(TOKEN_INSERT_DATE_TIME);
+    if (!lastTkInsert) return false;
+    const days = Math.abs(getDaysDelta(Date.parse(lastTkInsert), new Date()));
+    if (days > 0) return false;
     const user: object | UserInfo = JSON.parse(
       window.localStorage.getItem(USER_INFO) ?? '{}'
     );

@@ -5,6 +5,9 @@ import { MainCedComponent } from './core/directeur-ced/components/main-ced/main-
 import { DirecteurPoleComponent } from './core/directeur-pole/components/directeur-pole.component';
 import { MainProfComponent } from './core/professeur/components/main-prof/main-prof.component';
 import { IsCandidatGuard } from './guards/is-candidat.guard';
+import { IsCEDGuard } from './guards/is-ced.guard';
+import { IsDPoleGuard } from './guards/is-dpole.guard';
+import { IsProfessorGuard } from './guards/is-professor.guard';
 import { HomeComponent } from './public/components/home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
@@ -17,8 +20,16 @@ const routes: Routes = [
     canActivate: [IsCandidatGuard],
   },
   { path: 'candidat', component: CandidatComponent },
-  { path: 'pole', component: DirecteurPoleComponent },
-  { path: 'ced', component: MainCedComponent },
+  {
+    path: 'pole',
+    component: DirecteurPoleComponent,
+    canActivate: [IsProfessorGuard, IsDPoleGuard],
+  },
+  {
+    path: 'ced',
+    component: MainCedComponent,
+    canActivate: [IsProfessorGuard, IsCEDGuard],
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
