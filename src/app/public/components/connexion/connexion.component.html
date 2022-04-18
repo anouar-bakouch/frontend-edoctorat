@@ -1,4 +1,5 @@
 <div class="loadingModal" *ngIf="showLoading">
+
   <div class="modalContent">
     <h3 class="text-primary">Authentification en cours</h3>
     <p>
@@ -7,22 +8,54 @@
       passe bien.
     </p>
   </div>
+
 </div>
-<h5
-  *ngIf="showProfAuthError"
-  class="col-sm-12 col-lg-5 text-light text-center bg-danger m-auto p-3"
->
+<h5 *ngIf="showProfAuthError" class="col-sm-12 col-lg-5 text-light text-center bg-danger m-auto p-3 m-3">
   Un professeur avec le compte Google choisi n'existe pas.
 </h5>
-<div
-  class="d-flex flex-wrap justify-content-around align-items-center border border-primary"
-  style="height: 43vh"
->
-  <h3>Se connecter au tant que</h3>
-  <button class="btn btn-outline-primary" routerLink="/home/candidat/login">
-    Candidat
-  </button>
-  <button class="btn btn-outline-primary" type="button" (click)="loginProf()">
-    Professeur
-  </button>
+
+<div class="row m-3" >
+
+  <div class="col-sm-12 col-lg-6 d-flex justify-content-center align-items-center">
+
+  <div class="col-12">
+   
+    <img src="/assets/images/ced/team4.JPG" class="img-fluid img-thumbnail" alt="">
+
+  </div>
+
+  </div>
+  <div class="col-sm-12 col-lg-6 d-flex flex-column justify-content-center align-items-between">
+
+    <div class="col m-3">
+      <button class="btn btn-outline-primary" routerLink="/home/candidat/login">
+        <i class="bi bi-file-person"></i>  Candidat
+      </button>
+    </div>
+
+    <div class="col m-3">
+      <button class="btn btn-outline-primary" type="button" (click)="loginProf()">
+        <i class="bi bi-file-person"></i>  Professeur
+      </button>
+    </div>
+
+    <div class="col m-3">
+      <button class="btn btn-outline-primary" type="button">
+        <i class="bi bi-file-person"></i>  Directeur du pole
+      </button>
+    </div>
+
+    <div class="col m-3">
+      <button class="btn btn-outline-primary" type="button">
+        <i class="bi bi-file-person"></i>  Directeur du laboratoire
+      </button>
+    </div>
+
+    <div class="col m-3">
+      <button class="btn btn-outline-primary" type="button">
+        <i class="bi bi-file-person"></i>  Directeur du centre d'étude doctorales
+      </button>
+    </div>
+
+  </div>
 </div>
