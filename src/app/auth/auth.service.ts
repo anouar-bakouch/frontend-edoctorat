@@ -8,10 +8,7 @@ import { environment } from 'src/environments/environment';
 import AuthProf from '../models/AuthProf';
 import Token from '../models/Token';
 import UserInfo from '../models/UserInfo';
-import {
-  STATUS_AUTH_OK,
-  USER_INFO,
-} from '../utils/constants';
+import { STATUS_AUTH_OK, USER_INFO } from '../utils/constants';
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
@@ -24,6 +21,7 @@ export class AuthService {
   ) {}
 
   loginCandidat(email: string, password: string): Promise<any> {
+    this.logOut();
     let errorsOccured = false;
     let data_: Token;
     return new Promise((reslove_, reject) => {
@@ -66,6 +64,7 @@ export class AuthService {
   }
 
   loginProfessor(idToken: string) {
+    this.logOut();
     return new Promise((resolve, reject) => {
       this.httpClient
         .post<AuthProf>(`${environment.API_URL}/api/verify-is-prof/`, {
