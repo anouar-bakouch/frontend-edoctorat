@@ -124,13 +124,25 @@ export class AuthService {
 
   public userLoggedInAndInGroup(group: string): boolean {
     const isTokenOld = this.tokenStorage.checkIfTokenIsOld();
-    if (isTokenOld) return false;
+    if (isTokenOld) {
+      this.logOut();
+      return false;
+    }
     const user: object | UserInfo = JSON.parse(
       window.localStorage.getItem(USER_INFO) ?? '{}'
     );
-    if (Object.keys(user).length === 0) return false;
-    if (!(user as UserInfo).groups) return false;
-    if ((user as UserInfo).groups.indexOf(group) <= -1) return false;
+    if (Object.keys(user).length === 0) {
+      this.logOut();
+      return false;
+    }
+    if (!(user as UserInfo).groups) {
+      this.logOut();
+      return false;
+    }
+    if ((user as UserInfo).groups.indexOf(group) <= -1) {
+      this.logOut();
+      return false;
+    }
     return true;
   }
 }
