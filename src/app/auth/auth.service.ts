@@ -114,7 +114,6 @@ export class AuthService {
       refresh: rtk,
     });
   }
-  public getLasTokenInsertDate() 
   public storeTokens(token: string, refreshToken: string | undefined) {
     window.localStorage.setItem(TOKEN_KEY, token);
     refreshToken &&
@@ -144,11 +143,11 @@ export class AuthService {
     if (!lastTkInsert) return true;
     const days = Math.abs(getDaysDelta(Date.parse(lastTkInsert), new Date()));
     if (days > 0) return true;
-    return false
+    return false;
   }
   public userLoggedInAndInGroup(group: string): boolean {
-    const isTokenOld = this.checkIfTokenIsOld()
-    if (isTokenOld) return false
+    const isTokenOld = this.checkIfTokenIsOld();
+    if (isTokenOld) return false;
     const user: object | UserInfo = JSON.parse(
       window.localStorage.getItem(USER_INFO) ?? '{}'
     );
