@@ -13,6 +13,7 @@ import UserInfo from '../models/UserInfo';
 import {
   REFRESH_TOKEN_KEY,
   STATUS_AUTH_OK,
+  TOKEN_INSERT_DATE_TIME,
   TOKEN_KEY,
   USER_INFO,
 } from '../utils/constants';
@@ -110,6 +111,7 @@ export class AuthService {
   private storeTokens(token: string, refreshToken: string) {
     window.localStorage.setItem(TOKEN_KEY, token);
     window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+    window.localStorage.setItem(TOKEN_INSERT_DATE_TIME, new Date().toString());
   }
   public getAuthToken(): string | undefined | null {
     return window.localStorage.getItem(TOKEN_KEY);
@@ -123,6 +125,9 @@ export class AuthService {
     window.localStorage.removeItem(USER_INFO);
   }
   public userLoggedInAndInGroup(group: string): boolean {
+    const lastTkInsert = window.localStorage.getItem(TOKEN_INSERT_DATE_TIME)
+    if (!lastTkInsert) return false
+    
     const user: object | UserInfo = JSON.parse(
       window.localStorage.getItem(USER_INFO) ?? '{}'
     );

@@ -2,6 +2,8 @@ const TOKEN_KEY = 'tk';
 const REFRESH_TOKEN_KEY = 'rtk';
 const STATUS_AUTH_OK = 'status_auth_ok';
 const USER_INFO = 'uinfo';
+const TOKEN_INSERT_DATE_TIME = 'tkdt';
+
 const CANDIDAT_GROUP_NAME = 'candidat';
 const PROFESSEUR_GROUP_NAME = 'professeur';
 const D_CED_GROUP_NAME = 'directeur_ced';
@@ -20,4 +22,5 @@ export {
   D_LABO_GROUP_NAME,
   D_POLE_GROUP_NAME,
   D_SCOLARITE_GROUP_NAME,
+  TOKEN_INSERT_DATE_TIME,
 };
