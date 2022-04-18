@@ -17,6 +17,7 @@ import {
   TOKEN_KEY,
   USER_INFO,
 } from '../utils/constants';
+import { getDaysDelta } from '../utils/date';
 
 @Injectable({
   providedIn: 'root',
@@ -125,9 +126,10 @@ export class AuthService {
     window.localStorage.removeItem(USER_INFO);
   }
   public userLoggedInAndInGroup(group: string): boolean {
-    const lastTkInsert = window.localStorage.getItem(TOKEN_INSERT_DATE_TIME)
-    if (!lastTkInsert) return false
-    
+    const lastTkInsert = window.localStorage.getItem(TOKEN_INSERT_DATE_TIME);
+    if (!lastTkInsert) return false;
+    const days = Math.abs(getDaysDelta(Date.parse(lastTkInsert), new Date()));
+    if (days > 0) return false;
     const user: object | UserInfo = JSON.parse(
       window.localStorage.getItem(USER_INFO) ?? '{}'
     );
