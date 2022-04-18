@@ -1,4 +1,4 @@
-<div  *ngIf="!isVerifyingToken && !showTokenInvalid">
+<div *ngIf="!isVerifyingToken && !showTokenInvalid">
   <form [formGroup]="form">
     <label for="Email">Email</label>
     <input
@@ -79,9 +79,11 @@
     <label for="tel">Numero de telephone</label>
     <input type="tel" name="tel" id="tel" formControlName="tel" />
     <label for="nationalite">Nationalite</label>
-    
+
     <select name="nationalite" id="nationalite" formControlName="nationalite">
-      <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
+      <option value="{{ country.country }}" *ngFor="let country of _countries">
+        {{ country.country }}
+      </option>
     </select>
 
     <label for="sitFam">Situation familiale</label>
@@ -132,4 +134,3 @@
     Le jeton que nous avons reçu est invalide ou a expiré
   </h4>
 </div>
-
