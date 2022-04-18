@@ -108,14 +108,28 @@ export class AuthService {
         });
     });
   }
-
-  private storeTokens(token: string, refreshToken: string) {
+  public refreshAuthToken() {
+    const rtk = this.getRefreshToken();
+    return this.httpClient.post(`${environment.API_URL}/api/token/refresh/`, {
+      refresh: rtk,
+    });
+  }
+  public getLasTokenInsertDate() 
+  public storeTokens(token: string, refreshToken: string | undefined) {
     window.localStorage.setItem(TOKEN_KEY, token);
-    window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
-    window.localStorage.setItem(TOKEN_INSERT_DATE_TIME, new Date().toString());
+    refreshToken &&
+      window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+    refreshToken &&
+      window.localStorage.setItem(
+        TOKEN_INSERT_DATE_TIME,
+        new Date().toString()
+      );
   }
   public getAuthToken(): string | undefined | null {
     return window.localStorage.getItem(TOKEN_KEY);
+  }
+  public getRefreshToken(): string | undefined | null {
+    return window.localStorage.getItem(REFRESH_TOKEN_KEY);
   }
   public saveUserInfo(info: UserInfo) {
     window.localStorage.setItem(USER_INFO, JSON.stringify(info));
@@ -125,11 +139,16 @@ export class AuthService {
     window.localStorage.removeItem(REFRESH_TOKEN_KEY);
     window.localStorage.removeItem(USER_INFO);
   }
-  public userLoggedInAndInGroup(group: string): boolean {
+  public checkIfTokenIsOld() {
     const lastTkInsert = window.localStorage.getItem(TOKEN_INSERT_DATE_TIME);
-    if (!lastTkInsert) return false;
+    if (!lastTkInsert) return true;
     const days = Math.abs(getDaysDelta(Date.parse(lastTkInsert), new Date()));
-    if (days > 0) return false;
+    if (days > 0) return true;
+    return false
+  }
+  public userLoggedInAndInGroup(group: string): boolean {
+    const isTokenOld = this.checkIfTokenIsOld()
+    if (isTokenOld) return false
     const user: object | UserInfo = JSON.parse(
       window.localStorage.getItem(USER_INFO) ?? '{}'
     );
