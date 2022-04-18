@@ -17,6 +17,7 @@ import {
   throwError,
 } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 type TKRefreshResp = {
   access: string;
@@ -29,7 +30,10 @@ export class TokenRefreshInterceptor implements HttpInterceptor {
     null
   );
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private tkStorage: TokenStorageService
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -37,7 +41,7 @@ export class TokenRefreshInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
-        const isTOkenOld = this.authService.checkIfTokenIsOld();
+        const isTOkenOld = this.tkStorage.checkIfTokenIsOld();
         if (isTOkenOld) return throwError(() => error);
         if (
           error instanceof HttpErrorResponse &&
@@ -61,10 +65,7 @@ export class TokenRefreshInterceptor implements HttpInterceptor {
       return this.authService.refreshAuthToken().pipe(
         switchMap((tkResponse) => {
           this.isRefreshing = false;
-          this.authService.storeTokens(
-            (tkResponse as TKRefreshResp)['access'],
-            undefined
-          );
+          this.tkStorage.storeTokens((tkResponse as TKRefreshResp)['access']);
           this.refreshTokenSubject.next(tkResponse);
           return next.handle(request);
         }),
@@ -77,7 +78,7 @@ export class TokenRefreshInterceptor implements HttpInterceptor {
     return this.refreshTokenSubject.pipe(
       filter((tk) => tk !== null),
       take(1),
-      switchMap((tk) => next.handle(request))
+      switchMap((_) => next.handle(request))
     );
   }
 }
