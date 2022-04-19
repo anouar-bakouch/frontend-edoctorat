@@ -18,11 +18,12 @@ import { DoctoratMedecineComponent } from './components/doctorat-medecine/doctor
 import { MasterComponent } from './components/master/master.component';
 import { LicenceComponent } from './components/licence/licence.component';
 import { InfoPersonnelsComponent } from './components/info-personnels/info-personnels.component';
-import { SujersComponent } from './components/sujers/sujers.component';
+import { SujersComponent } from './components/sujets/sujers.component';
 import { ChoisirSujetsComponent } from './components/choisir-sujets/choisir-sujets.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { CandidatMainComponent } from './components/candidat-main/candidat-main.component';
 import { ContainerComponent } from './components/container/container.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 
 
@@ -54,7 +55,8 @@ import { ContainerComponent } from './components/container/container.component';
     HttpClientModule,
     CandidatRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RxReactiveFormsModule
   ],
   exports : [
    CandidatComponent

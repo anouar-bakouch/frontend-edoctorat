@@ -7,7 +7,7 @@ import { CandidatRegisterComponent } from './components/auth/candidat-register/c
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
 import { CedComponent } from './components/ced/ced.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
-import { ConseilsComponent } from './components/footer/conseils/conseils.component';
+import { ConseilsComponent } from './components/conseils/conseils.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormationsComponent } from './components/formations/formations.component';
 import { HeaderComponent } from './components/header/header.component';

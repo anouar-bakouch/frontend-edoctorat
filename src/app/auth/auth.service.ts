@@ -4,14 +4,12 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import AuthProf from '../models/AuthProf';
 import Token from '../models/Token';
 import UserInfo from '../models/UserInfo';
-import {
-  STATUS_AUTH_OK,
-  USER_INFO,
-} from '../utils/constants';
+import { STATUS_AUTH_OK, USER_INFO } from '../utils/constants';
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
@@ -23,7 +21,11 @@ export class AuthService {
     private tokenStorage: TokenStorageService
   ) {}
 
+  currentUserSubjet: BehaviorSubject<UserInfo | undefined> =
+    new BehaviorSubject(this.getCurrentUser());
+
   loginCandidat(email: string, password: string): Promise<any> {
+    this.logOut();
     let errorsOccured = false;
     let data_: Token;
     return new Promise((reslove_, reject) => {
@@ -66,6 +68,7 @@ export class AuthService {
   }
 
   loginProfessor(idToken: string) {
+    this.logOut();
     return new Promise((resolve, reject) => {
       this.httpClient
         .post<AuthProf>(`${environment.API_URL}/api/verify-is-prof/`, {
@@ -80,6 +83,11 @@ export class AuthService {
               nom: authData.nom,
               prenom: authData.prenom,
               pathPhoto: authData.pathPhoto,
+              misc: {
+                grade: authData.grade,
+                nombreProposer: authData.nombreProposer,
+                nombreEncadrer: authData.nombreEncadrer,
+              },
             };
             this.saveUserInfo(userInfo);
             resolve(true);
@@ -118,6 +126,26 @@ export class AuthService {
     window.localStorage.setItem(USER_INFO, JSON.stringify(info));
   }
 
+  private getCurrentUser(): UserInfo | undefined {
+    const info = JSON.parse(window.localStorage.getItem(USER_INFO) || '{}');
+    if (Object.keys(info).length <= 0) return undefined;
+    return info;
+  }
+
+  public updateUserInfo(
+    nom: string,
+    prenom: string,
+    pathPhoto: string | undefined
+  ) {
+    const info = this.getCurrentUser();
+    if (!info) return;
+    info.nom = nom;
+    info.prenom = prenom;
+    info.pathPhoto = pathPhoto;
+    this.saveUserInfo(info);
+    this.currentUserSubjet.next(info);
+  }
+
   public logOut() {
     this.tokenStorage.clearTokens();
     window.localStorage.removeItem(USER_INFO);
@@ -125,13 +153,25 @@ export class AuthService {
 
   public userLoggedInAndInGroup(group: string): boolean {
     const isTokenOld = this.tokenStorage.checkIfTokenIsOld();
-    if (isTokenOld) return false;
+    if (isTokenOld) {
+      this.logOut();
+      return false;
+    }
     const user: object | UserInfo = JSON.parse(
       window.localStorage.getItem(USER_INFO) ?? '{}'
     );
-    if (Object.keys(user).length === 0) return false;
-    if (!(user as UserInfo).groups) return false;
-    if ((user as UserInfo).groups.indexOf(group) <= -1) return false;
+    if (Object.keys(user).length === 0) {
+      this.logOut();
+      return false;
+    }
+    if (!(user as UserInfo).groups) {
+      this.logOut();
+      return false;
+    }
+    if ((user as UserInfo).groups.indexOf(group) <= -1) {
+      this.logOut();
+      return false;
+    }
     return true;
   }
 }

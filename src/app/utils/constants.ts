@@ -3,6 +3,9 @@ const REFRESH_TOKEN_KEY = 'rtk';
 const STATUS_AUTH_OK = 'status_auth_ok';
 const USER_INFO = 'uinfo';
 const TOKEN_INSERT_DATE_TIME = 'tkdt';
+const GRADE_KEY = 'grade';
+const NB_ENCADRER_KEY = 'nombreEncadrer';
+const NB_PROPOSER_KEY = 'nombreProposer';
 
 const CANDIDAT_GROUP_NAME = 'candidat';
 const PROFESSEUR_GROUP_NAME = 'professeur';
@@ -23,4 +26,7 @@ export {
   D_POLE_GROUP_NAME,
   D_SCOLARITE_GROUP_NAME,
   TOKEN_INSERT_DATE_TIME,
+  GRADE_KEY,
+  NB_ENCADRER_KEY,
+  NB_PROPOSER_KEY,
 };

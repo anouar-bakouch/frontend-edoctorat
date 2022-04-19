@@ -30,7 +30,7 @@ export class ConnexionComponent {
             .then((_) => {
               this.router.navigateByUrl('/professeur');
             })
-            .catch((err) => {
+            .catch((_) => {
               this.showProfAuthError = true;
             });
         }

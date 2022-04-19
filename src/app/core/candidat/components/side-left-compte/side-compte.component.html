@@ -2,11 +2,12 @@
 
         <div class="card w-100">
             <div class="card-header">
-            <img class="img-fluid " src="/assets/images/test_purposes.jpg"  alt="image candidat">
+          
+            <img class="img-fluid " [src]=" candidatInfo?.pathPhoto ? candidatInfo?.pathPhoto : '/assets/images/unknown_pic.jpg' " alt="image candidat">
             </div>
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5 class="card-title text-center">{{candidatInfo?.prenom}} {{candidatInfo?.nom }} </h5>
+              <p class="card-text text-center text-primary">{{candidatInfo?.email}}</p>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">

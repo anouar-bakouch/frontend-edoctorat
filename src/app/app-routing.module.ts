@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'professeur',
     component: MainProfComponent,
-    canActivate: [IsCandidatGuard],
+    //canActivate: [IsCandidatGuard],
   },
   { path: 'candidat', component: CandidatComponent },
   {

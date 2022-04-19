@@ -4,6 +4,7 @@ type UserInfo = {
   email: string;
   pathPhoto: string | undefined | null;
   groups: string[];
+  misc: Object | undefined;
 };
 
 export default UserInfo;

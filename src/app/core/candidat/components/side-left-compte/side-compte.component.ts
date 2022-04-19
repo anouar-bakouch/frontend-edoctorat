@@ -1,26 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import UserInfo from 'src/app/models/UserInfo';
 
 @Component({
   selector: '[app-side-compte]',
   templateUrl: './side-compte.component.html',
-  styleUrls: ['./side-compte.component.css']
+  styleUrls: ['./side-compte.component.css'],
 })
-
 export class SideCompteComponent implements OnInit {
+  public candidatInfo!: UserInfo;
 
-  constructor(private router:Router) { }
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.currentUserSubjet
+      .pipe(filter((u) => u != undefined))
+      .subscribe((uinfo) => {
+        this.candidatInfo = uinfo!;
+      });
   }
-/*
-  public postuler(){
-    this.router.navigate(['../postuler'],{ relativeTo : this.router})
-  }
-
-  public infoPerso(){
-    this.router.navigate(['../info_personnels'],{relativeTo : this.router})
-  }
-*/
-
 }

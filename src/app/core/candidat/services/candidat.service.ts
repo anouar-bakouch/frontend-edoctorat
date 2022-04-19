@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Candidat } from 'src/app/models/Candidat';
 import { environment } from 'src/environments/environment';
 
@@ -16,7 +17,22 @@ export class CandidatService {
         .subscribe({
           next: (data) => {
             resolve(data);
-            console.log(data);
+          },
+          error: (err) => reject(err),
+        });
+    });
+  }
+
+  updateCandidatInfo(candidat: any): Promise<Candidat> {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .put<Candidat>(`${environment.API_URL}/api/candidat-info/`, candidat)
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
           },
         });
     });
