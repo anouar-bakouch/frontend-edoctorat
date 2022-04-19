@@ -83,6 +83,9 @@ export class AuthService {
               nom: authData.nom,
               prenom: authData.prenom,
               pathPhoto: authData.pathPhoto,
+              misc: {
+                grade: authData.grade,
+              },
             };
             this.saveUserInfo(userInfo);
             resolve(true);

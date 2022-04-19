@@ -6,6 +6,7 @@ type AuthProf = {
   groups: string[];
   refresh: string;
   access: string;
+  grade: string;
 };
 
 export default AuthProf;
