@@ -3,7 +3,11 @@ import { FormBuilder } from '@angular/forms';
 import { Candidat } from 'src/app/models/Candidat';
 import { CandidatService } from '../../services/candidat.service';
 import { CountriesService } from '../../services/countries.service';
-import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
+import {
+  even,
+  RxFormBuilder,
+  RxFormGroup,
+} from '@rxweb/reactive-form-validators';
 @Component({
   selector: 'app-info-personnels',
   templateUrl: './info-personnels.component.html',
@@ -11,7 +15,8 @@ import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 })
 export class InfoPersonnelsComponent implements OnInit {
   isUpdating = false;
-  errOccured = false;
+  permitUpdate = true;
+  errorText: string | undefined;
   private countries: any;
   public selectedFile: File | undefined;
   public candidatInfoForm = <RxFormGroup>this.fservice.group({
@@ -110,6 +115,7 @@ export class InfoPersonnelsComponent implements OnInit {
   }
 
   updateCandidatInfo() {
+    this.errorText = undefined;
     this.isUpdating = true;
     let formdata = this.candidatInfoForm.toFormData();
     this.selectedFile &&
@@ -118,15 +124,27 @@ export class InfoPersonnelsComponent implements OnInit {
       .updateCandidatInfo(formdata)
       .then((_) => {})
       .catch((err) => {
-        this.errOccured = true;
+        this.errorText =
+          "Une erreur s'est produite lors de la mise à jour. Revérifiez vos données ou réessayez plus tard.";
         console.log(err);
       })
       .finally(() => (this.isUpdating = false));
   }
 
   public onFileSelected(event: any) {
-    if (event.target.files.length > 0) {
-      this.selectedFile = <File>event.target.files[0];
+    const target = event.target as HTMLInputElement;
+    const files = target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      if (file.size > 1000000) {
+        this.errorText =
+          'La taille du fichier ne peut pas être supérieure à 1 Mo.';
+        this.permitUpdate = false;
+      } else {
+        this.errorText = undefined;
+        this.permitUpdate = true;
+        this.selectedFile = file;
+      }
     }
   }
 }
