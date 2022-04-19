@@ -85,6 +85,8 @@ export class AuthService {
               pathPhoto: authData.pathPhoto,
               misc: {
                 grade: authData.grade,
+                nombreProposer: authData.nombreProposer,
+                nombreEncadrer: authData.nombreEncadrer,
               },
             };
             this.saveUserInfo(userInfo);

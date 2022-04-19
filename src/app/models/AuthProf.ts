@@ -7,6 +7,8 @@ type AuthProf = {
   refresh: string;
   access: string;
   grade: string;
+  nombreProposer: number;
+  nombreEncadrer: number;
 };
 
 export default AuthProf;
