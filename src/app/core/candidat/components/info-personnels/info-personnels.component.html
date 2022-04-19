@@ -4,7 +4,7 @@
       <div class="row mb-3">
         <div class="col-lg-10">
           <div >
-            <p>Path Photo : </p>
+            <p>Path Photo : {{candidatInfo?.pathPhoto}}</p>
           </div>
     
           <div class="mb-3">
@@ -258,6 +258,24 @@
     
       <div class="row mb-3">
 
+        <div class="col-lg-3">
+          <div class="form-group required">
+            <label
+              class="col-form-label-sm h6 control-label"
+              for="id_lieu_naissance"
+              >Ville de naissance en Arabe:</label
+            >
+            <input
+              type="text"
+              name="ville_naissance"
+              formControlName = "villeDeNaissanceAr"
+              class="form-control form-control-sm"
+              maxlength="17"
+              required=""
+              id="id_lieu_naissance"
+            />
+          </div>
+        </div>
 
         <div class="col-lg-3">
           <div class="form-group required">
@@ -307,7 +325,7 @@
         
            <div class="col-3">
         
-            <button class="btn btn-primary m-auto" type="button">confirmer</button>
+            <button class="btn btn-primary m-auto" type="submit">confirmer</button>
         </div>
 
     </form>

@@ -12,6 +12,7 @@ import { CountriesService } from '../../services/countries.service';
 })
 export class InfoPersonnelsComponent implements OnInit {
   private countries: any;
+  public selectedFile = null;
   public candidatInfoForm = this.fservice.group({
     prenomCandidat: [''],
     nomCandidat: [''],
@@ -61,6 +62,7 @@ export class InfoPersonnelsComponent implements OnInit {
 
   getCandidatInfo(){
     this.candidatService.getCandidatInfo().then(res=>{
+      console.log(res)
       this.candidatInfo = res;
       this.candidatInfoForm.get('prenomCandidat')?.setValue(this.candidatInfo.prenom);
       this.candidatInfoForm.get('prenomCandidatAr')?.setValue(this.candidatInfo.prenomCandidatAr);
@@ -89,8 +91,9 @@ export class InfoPersonnelsComponent implements OnInit {
 
   updateCandidatInfo(){
 
+
     let candidat:Candidat = {
-      
+
       prenom : this.candidatInfoForm.get('prenomCandidat')?.value,
       cne: this.candidatInfoForm.get('cneCandidat')?.value,
       pays: this.candidatInfoForm.get('pays')?.value,
@@ -118,6 +121,12 @@ export class InfoPersonnelsComponent implements OnInit {
     }
 
     this.candidatService.updateCandidatInfo(candidat);
+
+  }
+
+  onFileSelected(event:any){
+
+   this.selectedFile = event.target.files[0];
 
   }
 
