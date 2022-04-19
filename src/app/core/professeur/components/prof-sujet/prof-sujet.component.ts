@@ -14,9 +14,9 @@ import { OperationsService } from '../../services/operations.service';
 })
 
 export class ProfSujetComponent implements OnInit {
-  public sujets: Sujet[]=[];
-  public professeurs: Professeur[]=[];
-  public formationDoctorales: FormationDoctorale[]=[];
+  public sujets: Sujet[] = [];
+  public professeurs: Professeur[] = [];
+  public formationDoctorales: FormationDoctorale[] = [];
   public formationDoctorale: FormationDoctorale = {
     id: 0,
     ced: 0,
@@ -27,7 +27,7 @@ export class ProfSujetComponent implements OnInit {
     initiale: '',
     dateAccreditation: ''
   };
-  public prof:Professeur ={
+  public prof: Professeur = {
     id: 0,
     telProfesseur: '',
     pathPhoto: '',
@@ -42,7 +42,7 @@ export class ProfSujetComponent implements OnInit {
     nomComplet: '',
     sujets: []
   }
-  public coDirecteur:Professeur ={
+  public coDirecteur: Professeur = {
     id: 0,
     telProfesseur: '',
     pathPhoto: '',
@@ -57,7 +57,7 @@ export class ProfSujetComponent implements OnInit {
     nomComplet: '',
     sujets: []
   }
-  public currentProfesseur:Professeur ={
+  public currentProfesseur: Professeur = {
     id: 0,
     telProfesseur: '',
     pathPhoto: '',
@@ -126,7 +126,7 @@ export class ProfSujetComponent implements OnInit {
     coDirecteur: new FormControl(""),
     formationDoctorale: new FormControl("")
   })
-  
+
   ngOnInit(): void {
     this.getAllSujets()
   }
@@ -160,24 +160,24 @@ export class ProfSujetComponent implements OnInit {
     this.operationsService.getSujets().subscribe(data => {
       // console.log(data);
       // this.sujets = data.sujets;
-      this.prof = data;
+      this.sujets = data;
       // console.log(this.prof)
-      this.sujets = this.prof.sujets
-      this.prof.sujets.forEach(element => {
-        //console.log(element.formationDoctorale) 
-          this.operationsService.getformDoct(element.formationDoctorale).subscribe(data=>{
-          //console.log(data)
-          element.formationDoctorale = data
-        })
-        console.log(element.coDirecteur)
-        if (element.coDirecteur!=null){this.operationsService.getProfesseur(element.coDirecteur).subscribe(data => {
-          // console.log(data)
-          element.coDirecteur = data
-        })}
-        element.coDirecteur = this.coDirecteur
+      //this.sujets = this.prof.sujets
+      // this.prof.sujets.forEach(element => {
+      //   //console.log(element.formationDoctorale) 
+      //     this.operationsService.getformDoct(element.formationDoctorale).subscribe(data=>{
+      //     //console.log(data)
+      //     element.formationDoctorale = data
+      //   })
+      //   console.log(element.coDirecteur)
+      //   if (element.coDirecteur!=null){this.operationsService.getProfesseur(element.coDirecteur).subscribe(data => {
+      //     // console.log(data)
+      //     element.coDirecteur = data
+      //   })}
+      //   element.coDirecteur = this.coDirecteur
 
-      });
-      
+      // });
+
     })
   }
   getAllFormationDoctorales() {
@@ -210,8 +210,27 @@ export class ProfSujetComponent implements OnInit {
     // this.sujet.professeur = this.currentProfesseur
     // this.sujet.formationDoctorale = this.formationDoctorale
     console.log(this.sujet);
-    
+
     this.operationsService.addSujet(this.sujet).subscribe((data) => {
+      console.log(data)
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
+
+  onClickDelete(s: Sujet) {
+    console.log(s.id)
+    this.operationsService.deleteSujet(this.sujet).subscribe((data) => {
+      console.log(data)
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
+  onClickUpdate(s: Sujet) {
+    console.log(s.id)
+    this.operationsService.updateSujet(this.sujet).subscribe((data) => {
       console.log(data)
     },
       (err) => {
