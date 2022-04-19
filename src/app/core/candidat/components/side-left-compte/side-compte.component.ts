@@ -1,32 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Candidat } from 'src/app/models/Candidat';
+import UserInfo from 'src/app/models/UserInfo';
 import { CandidatService } from '../../services/candidat.service';
 
 @Component({
   selector: '[app-side-compte]',
   templateUrl: './side-compte.component.html',
-  styleUrls: ['./side-compte.component.css']
+  styleUrls: ['./side-compte.component.css'],
 })
 export class SideCompteComponent implements OnInit {
+  public candidatInfo!: UserInfo;
 
-  public candidatInfo !: Candidat;
-
-  constructor(private router:Router,public candidatService:CandidatService) { }
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
-
-    this.candidatService.getCandidatInfo().then(res=>{
-
-    this.candidatInfo = res;
-
-    console.log(res);
-
-    })
+    this.authService.currentUserSubjet
+      .pipe(filter((u) => u != undefined))
+      .subscribe((uinfo) => {
+        this.candidatInfo = uinfo!;
+      });
   }
-
-
-  // i have to add the code for in case there is an update in an other component
-
-
 }
