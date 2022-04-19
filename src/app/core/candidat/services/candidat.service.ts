@@ -27,11 +27,14 @@ export class CandidatService {
 
     return new Promise((resolve, reject) => {
       this.httpClient
-        .put<Candidat>(`${environment.API_URL}/api/candidat-info/`,candidat) // i still don't know if i have to add the cin to the url or not
+        .put<Candidat>(`${environment.API_URL}/api/candidat-info/`,candidat)
         .subscribe({
           next: (data) => {
             resolve(data);
           },
+          error: (err) => {
+            reject(err)
+          }
         });
     });
 

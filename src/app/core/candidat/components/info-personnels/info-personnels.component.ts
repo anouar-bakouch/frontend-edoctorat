@@ -10,6 +10,7 @@ import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
   styleUrls: ['./info-personnels.component.css'],
 })
 export class InfoPersonnelsComponent implements OnInit {
+  isUpdating = false;
   private countries: any;
   public selectedFile: File | undefined;
   public candidatInfoForm = <RxFormGroup>this.fservice.group({
@@ -108,37 +109,6 @@ export class InfoPersonnelsComponent implements OnInit {
   }
 
   updateCandidatInfo() {
-    /*
-    let candidat:Candidat = {
-
-      prenom : this.candidatInfoForm.get('prenom')?.value,
-      cne: this.candidatInfoForm.get('cne')?.value,
-      pays: this.candidatInfoForm.get('pays')?.value,
-      nom: this.candidatInfoForm.get('nom')?.value,
-      email: this.candidatInfoForm.get('mailCandidat')?.value,
-      cin: this.candidatInfoForm.get('cin')?.value,
-      nomCandidatAr: this.candidatInfoForm.get('nomCandidat')?.value,
-      prenomCandidatAr: this.candidatInfoForm.get('prenomCandidatAr')?.value,
-      adresse: this.candidatInfoForm.get('adresse')?.value,
-      adresseAr: this.candidatInfoForm.get('adresseAr')?.value,
-      sexe: this.candidatInfoForm.get('sexe')?.value,
-      villeDeNaissance: this.candidatInfoForm.get('villeDeNaissance')?.value,
-      villeDeNaissanceAr: this.candidatInfoForm.get('villeDeNaissanceAr')?.value,
-      ville: this.candidatInfoForm.get('ville')?.value,
-      dateDeNaissance: this.candidatInfoForm.get('dateDeNaissance')?.value,
-      typeDeHandiCape: this.candidatInfoForm.get('typeDeHandicap')?.value,
-      academie: this.candidatInfoForm.get('academie')?.value,
-      telCandidat: this.candidatInfoForm.get('telCandidat')?.value,
-      pathCv: this.candidatInfoForm.get('pathCv')?.value,
-      pathPhoto: this.candidatInfoForm.get('pathPhoto')?.value,
-      etatDossier: this.candidatInfoForm.get('etatDossier')?.value,
-      situation_familiale: this.candidatInfoForm.get('situation_familiale')?.value,
-      fonctionnaire:this.candidatInfoForm.get('fonctionnaire')?.value,
-
-    }
-    
-    */
-
     let formdata = this.candidatInfoForm.toFormData();
     this.selectedFile &&
       formdata.set('pathPhoto', this.selectedFile, this.selectedFile.name);
