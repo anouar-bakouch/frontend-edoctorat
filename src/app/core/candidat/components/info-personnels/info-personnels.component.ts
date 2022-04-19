@@ -131,7 +131,9 @@ export class InfoPersonnelsComponent implements OnInit {
   onFileSelected(event:any){
 
    this.selectedFile = <File> event.target.files[0];
-
+ 
+   alert('hi')
+   console.log(this.selectedFile)
 
   }
 
