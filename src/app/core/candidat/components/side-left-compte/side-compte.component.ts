@@ -1,26 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Candidat } from 'src/app/models/Candidat';
+import { CandidatService } from '../../services/candidat.service';
 
 @Component({
   selector: '[app-side-compte]',
   templateUrl: './side-compte.component.html',
   styleUrls: ['./side-compte.component.css']
 })
-
 export class SideCompteComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  public candidatInfo !: Candidat;
+
+  constructor(private router:Router,public candidatService:CandidatService) { }
 
   ngOnInit(): void {
-  }
-/*
-  public postuler(){
-    this.router.navigate(['../postuler'],{ relativeTo : this.router})
+
+    this.candidatService.getCandidatInfo().then(res=>{
+
+    this.candidatInfo = res;
+
+    })
   }
 
-  public infoPerso(){
-    this.router.navigate(['../info_personnels'],{relativeTo : this.router})
-  }
-*/
+
+  // i have to add the code for in case there is an update in an other component
+
 
 }
