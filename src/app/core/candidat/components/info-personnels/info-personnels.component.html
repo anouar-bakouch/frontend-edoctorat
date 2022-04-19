@@ -169,9 +169,9 @@
 
               <select formControlName="sexe" class="form-select form-select-sm " name="sexe" required="" id="id_sexe">
     
-                <option value="M">M</option>
-    
-                <option value="F">F</option>
+                <option *ngIf="candidatInfo?.sexe === 'm' " value="f" >F</option>
+
+                <option selected [value]="candidatInfo?.sexe">{{candidatInfo?.sexe}}</option>
 
               </select>
 

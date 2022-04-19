@@ -62,7 +62,6 @@ export class InfoPersonnelsComponent implements OnInit {
       this.candidatInfoForm.get('adresse')?.setValue(this.candidatInfo.adresse);
       this.candidatInfoForm.get('adresseAr')?.setValue(this.candidatInfo.adresseAr);
       this.candidatInfoForm.get('pays')?.setValue(this.candidatInfo.pays);
-      this.candidatInfoForm.get('sexe')?.setValue(this.candidatInfo.sexe);
       this.candidatInfoForm.get('ville')?.setValue(this.candidatInfo.ville);
       this.candidatInfoForm.get('villeDeNaissance')?.setValue(this.candidatInfo.villeDeNaissance);
       this.candidatInfoForm.get('villeDeNaissanceAr')?.setValue(this.candidatInfo.villeDeNaissanceAr);
@@ -73,8 +72,7 @@ export class InfoPersonnelsComponent implements OnInit {
       this.candidatInfoForm.get('telCandidat')?.setValue(this.candidatInfo.telCandidat);
       this.candidatInfoForm.get('pathPhoto')?.setValue(this.candidatInfo.pathPhoto);
       this.candidatInfoForm.get('situation_familiale')?.setValue(this.candidatInfo.situation_familiale);
-
-
+      this.candidatInfoForm.get('foctionnaire')?.setValue(this.candidatInfo.fonctionnaire);
       
     })
     
