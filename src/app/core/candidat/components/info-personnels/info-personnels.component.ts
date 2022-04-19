@@ -3,17 +3,17 @@ import { FormBuilder } from '@angular/forms';
 import { Candidat } from 'src/app/models/Candidat';
 import { CandidatService } from '../../services/candidat.service';
 import { CountriesService } from '../../services/countries.service';
-import {RxFormBuilder} from '@rxweb/reactive-form-validators';
-
+import {RxFormBuilder, RxFormGroup} from '@rxweb/reactive-form-validators';
 @Component({
   selector: 'app-info-personnels',
   templateUrl: './info-personnels.component.html',
   styleUrls: ['./info-personnels.component.css'],
 })
+
 export class InfoPersonnelsComponent implements OnInit {
   private countries: any;
   public selectedFile !:File;
-  public candidatInfoForm = this.fservice.group({
+  public candidatInfoForm = <RxFormGroup> this.fservice.group({
     prenomCandidat: [''],
     nomCandidat: [''],
     nomCandidatAr: [''],
@@ -42,7 +42,7 @@ export class InfoPersonnelsComponent implements OnInit {
 
   constructor(
     private httpCountries: CountriesService,
-    private fservice: FormBuilder,
+    private fservice: RxFormBuilder,
     private candidatService: CandidatService
   ) {}
 
@@ -91,7 +91,7 @@ export class InfoPersonnelsComponent implements OnInit {
 
   updateCandidatInfo(){
 
-
+/*
     let candidat:Candidat = {
 
       prenom : this.candidatInfoForm.get('prenomCandidat')?.value,
@@ -119,14 +119,19 @@ export class InfoPersonnelsComponent implements OnInit {
       fonctionnaire:this.candidatInfoForm.get('fonctionnaire')?.value,
 
     }
+    
+    */
 
-    this.candidatService.updateCandidatInfo(candidat);
+    let formdata = this.candidatInfoForm.toFormData();
+    formdata.append('pathPhoto',this.selectedFile,this.selectedFile.name);
+    this.candidatService.updateCandidatInfo(formdata);
 
   }
 
   onFileSelected(event:any){
 
    this.selectedFile = <File> event.target.files[0];
+
 
   }
 

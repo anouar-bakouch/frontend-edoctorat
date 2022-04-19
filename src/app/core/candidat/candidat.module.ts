@@ -23,6 +23,7 @@ import { ChoisirSujetsComponent } from './components/choisir-sujets/choisir-suje
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { CandidatMainComponent } from './components/candidat-main/candidat-main.component';
 import { ContainerComponent } from './components/container/container.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 
 
@@ -54,7 +55,8 @@ import { ContainerComponent } from './components/container/container.component';
     HttpClientModule,
     CandidatRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RxReactiveFormsModule
   ],
   exports : [
    CandidatComponent

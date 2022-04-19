@@ -23,7 +23,7 @@ export class CandidatService {
     });
   }
 
-  updateCandidatInfo(candidat:Candidat){
+  updateCandidatInfo(candidat:any){
 
     return new Promise((resolve, reject) => {
       this.httpClient
