@@ -1,335 +1,323 @@
 <div class="row">
-<form [formGroup]="candidatInfoForm" (ngSubmit)="updateCandidatInfo()">
+  <form [formGroup]="candidatInfoForm" (ngSubmit)="updateCandidatInfo()">
+    <div class="row mb-3">
+      <div class="col-lg-10">
+        <div>
+          <p>Path Photo : {{ candidatInfo?.pathPhoto }}</p>
+        </div>
 
-      <div class="row mb-3">
-        <div class="col-lg-10">
-
-          <div >
-            <p>Path Photo : {{candidatInfo?.pathPhoto}}</p>
-          </div>
-    
-          <div class="mb-3">
-            <label for="formFile" class="form-label">Importer votre Photo:</label>
-            <input
-              onclick="onFileSelected($event)"
-              class="form-control"
-              type="file"
-              accept="image/png, image/jpeg, image/bmp"
-              formControlName = "pathPhoto"
-            />
-          </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Importer votre Photo:</label>
+          <input
+            (change)="onFileSelected($event)"
+            class="form-control"
+            type="file"
+            accept="image/png, image/jpeg, image/bmp"
+            formControlName="pathPhoto"
+          />
         </div>
       </div>
-    
-      <div class="row mb-3">
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_nom"
-            
-              >Nom:</label
-            >
-            <input
-              type="text"
-              name="nom"
-              class="form-control form-control-sm"
-              maxlength="50"
-              required=""
-              formControlName="nomCandidat"
-              id="id_nom"
-            />
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_prenom"
-              >Prénom:</label
-            >
-            <input
-              type="text"
-              name="prenom"
-              value=""
-              class="form-control form-control-sm"
-              maxlength="50"
-              required=""
-              id="id_prenom"
-              formControlName="prenomCandidat"
-            />
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_cin"
-              >CIN:</label
-            >
-            <input
-              type="text"
-              name="cin"
-             
-              class="form-control form-control-sm"
-              maxlength="12"
-              min="2"
-              required=""
-              id="id_cin"
+    </div>
 
-              formControlName="cinCandidat"
-            />
-          </div>
+    <div class="row mb-3">
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label class="col-form-label-sm h6 control-label" for="id_nom"
+            >Nom:</label
+          >
+          <input
+            type="text"
+            name="nom"
+            class="form-control form-control-sm"
+            maxlength="50"
+            required=""
+            formControlName="nomCandidat"
+            id="id_nom"
+          />
         </div>
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_cne"
-              >CNE:</label
-            >
-            <input
-              type="text"
-              name="cne"
-              value="${candidat.cne}"
-              class="form-control form-control-sm"
-              maxlength="12"
-              min="2"
-              required=""
-              formControlName="cneCandidat"
-              id="id_cne"
-            />
-          </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label class="col-form-label-sm h6 control-label" for="id_prenom"
+            >Prénom:</label
+          >
+          <input
+            type="text"
+            name="prenom"
+            value=""
+            class="form-control form-control-sm"
+            maxlength="50"
+            required=""
+            id="id_prenom"
+            formControlName="prenomCandidat"
+          />
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label class="col-form-label-sm h6 control-label" for="id_cin"
+            >CIN:</label
+          >
+          <input
+            type="text"
+            name="cin"
+            class="form-control form-control-sm"
+            maxlength="12"
+            min="2"
+            required=""
+            id="id_cin"
+            formControlName="cinCandidat"
+          />
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label class="col-form-label-sm h6 control-label" for="id_cne"
+            >CNE:</label
+          >
+          <input
+            type="text"
+            name="cne"
+            value="${candidat.cne}"
+            class="form-control form-control-sm"
+            maxlength="12"
+            min="2"
+            required=""
+            formControlName="cneCandidat"
+            id="id_cne"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label class="col-form-label-sm h6" for="id_nom_ar"
+            >Nom en arabe</label
+          >
+          <input
+            type="text"
+            name="nom_ar"
+            class="form-control form-control-sm"
+            maxlength="50"
+            id="id_nom_ar"
+            formControlName="nomCandidatAr"
+          />
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label class="col-form-label-sm h6" for="id_prenom_ar"
+            >Prénom en arabe:</label
+          >
+          <input
+            type="text"
+            name="prenom_ar"
+            value="${candidat.prenomCandidatAr}"
+            class="form-control form-control-sm"
+            maxlength="50"
+            id="id_prenom_ar"
+            formControlName="prenomCandidatAr"
+          />
         </div>
       </div>
 
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label
+            class="col-form-label-sm h6 control-label"
+            for="id_date_naissance"
+            >Date de naissance:</label
+          >
 
-      <div class="row mb-3">
-        <div class="col-lg-3">
+          <input
+            type="date"
+            name="date_naissance"
+            value="${candidat.dateDeNaissance}"
+            class="form-control form-control-sm"
+            required=""
+            id="id_date_naissance"
+            formControlName="dateDeNaissance"
+          />
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label class="col-form-label-sm h6 control-label" for="id_sexe"
+            >Sexe:</label
+          >
+
           <div class="form-group">
-            <label class="col-form-label-sm h6" for="id_nom_ar"
-              >Nom en arabe</label
-            >
-            <input
-              type="text"
-              name="nom_ar"
-
-              class="form-control form-control-sm"
-              maxlength="50"
-              id="id_nom_ar"
-              formControlName = "nomCandidatAr"
-            />
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="form-group">
-            <label class="col-form-label-sm h6" for="id_prenom_ar"
-              >Prénom en arabe:</label
-            >
-            <input
-              type="text"
-              name="prenom_ar"
-              value="${candidat.prenomCandidatAr}"
-              class="form-control form-control-sm"
-              maxlength="50"
-              id="id_prenom_ar"
-              formControlName = "prenomCandidatAr"
-            />
-          </div>
-        </div>
-    
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_date_naissance"
-              >Date de naissance:</label
-            >
-    
-            <input
-              type="date"
-              name="date_naissance"
-              value="${candidat.dateDeNaissance}"
-              class="form-control form-control-sm"
+            <select
+              formControlName="sexe"
+              class="form-select form-select-sm"
+              name="sexe"
               required=""
-              id="id_date_naissance"
-              formControlName = "dateDeNaissance"
-            />
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_sexe"
-              >Sexe:</label
+              id="id_sexe"
             >
-    
-            <div class="form-group">
+              <option *ngIf="candidatInfo?.sexe === 'm'" value="f">F</option>
 
-              <select formControlName="sexe" class="form-select form-select-sm " name="sexe" required="" id="id_sexe">
-    
-                <option *ngIf="candidatInfo?.sexe === 'm' " value="f" >F</option>
-
-                <option selected [value]="candidatInfo?.sexe">{{candidatInfo?.sexe}}</option>
-
-              </select>
-
-            </div>
+              <option selected [value]="candidatInfo?.sexe">
+                {{ candidatInfo?.sexe }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
-      <div class="row mb-3">
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_lieu_naissance"
-              >Lieu de naissance:</label
-            >
-            <input
-              type="text"
-              name="lieu_naissance"
-              formControlName = "villeDeNaissance"
-              class="form-control form-control-sm"
-              maxlength="200"
-              required=""
-              id="id_lieu_naissance"
-            />
-          </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label
+            class="col-form-label-sm h6 control-label"
+            for="id_lieu_naissance"
+            >Lieu de naissance:</label
+          >
+          <input
+            type="text"
+            name="lieu_naissance"
+            formControlName="villeDeNaissance"
+            class="form-control form-control-sm"
+            maxlength="200"
+            required=""
+            id="id_lieu_naissance"
+          />
         </div>
-        <div class="col-lg-3">
-          <div class="form-group">
-            <label
-              class="col-form-label-sm h6"
-              for="id_lieu_naissance_ar"
-              >Lieu de naissance en arabe:</label
-            >
-            <input
-              type="text"
-              name="lieu_naissance_ar"
-              formControlName = "villeDeNaissanceAr"
-              class="form-control form-control-sm"
-              maxlength="200"
-              id="id_lieu_naissance_ar"
-            />
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_adresse_personnelle"
-              >Adresse de résidence:</label
-            >
-            <input
-              type="text"
-              name=""
-              class="form-control form-control-sm"
-              maxlength="300"
-              required
-              id="id_adresse_personnelle"
-              formControlName="adresse"
-            />
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_ville"
-              >Ville:</label
-            >
-            <input
-              type="text"
-              name="ville"
-        
-              class="form-control form-control-sm"
-              maxlength="45"
-              required=""
-              id="id_ville"
-              formControlName = "ville"
-            />
-            
-          </div>
-        </div>
-
       </div>
-    
-      <div class="row mb-3">
-
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_lieu_naissance"
-              >Ville de naissance en Arabe:</label
-            >
-            <input
-              type="text"
-              name="ville_naissance"
-              formControlName = "villeDeNaissanceAr"
-              class="form-control form-control-sm"
-              maxlength="17"
-              required=""
-              id="id_lieu_naissance"
-            />
-          </div>
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label class="col-form-label-sm h6" for="id_lieu_naissance_ar"
+            >Lieu de naissance en arabe:</label
+          >
+          <input
+            type="text"
+            name="lieu_naissance_ar"
+            formControlName="villeDeNaissanceAr"
+            class="form-control form-control-sm"
+            maxlength="200"
+            id="id_lieu_naissance_ar"
+          />
         </div>
-
-        <div class="col-lg-3">
-          <div class="form-group required">
-            <label
-              class="col-form-label-sm h6 control-label"
-              for="id_telephone"
-              >Téléphone:</label
-            >
-            <input
-              type="tel"
-              name="telephone"
-              formControlName = "telCandidat"
-              class="form-control form-control-sm"
-              maxlength="20"
-              required=""
-              id="id_telephone"
-            />
-          </div>
-          </div>
-
-          <div class="col-lg-3">
-            <div class="form-group required">
-                <label class="col-form-label-sm h6 control-label"
-                    for="id_Province_bac">Pays</label>
-                <select data-live-search="true" id="pays_s" formControlName="pays"  class="form-control form-control-sm" required="" id="id_Province_bac">
-    
-                    <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
-             
-                </select>
-            </div>
-
+      </div>
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label
+            class="col-form-label-sm h6 control-label"
+            for="id_adresse_personnelle"
+            >Adresse de résidence:</label
+          >
+          <input
+            type="text"
+            name=""
+            class="form-control form-control-sm"
+            maxlength="300"
+            required
+            id="id_adresse_personnelle"
+            formControlName="adresse"
+          />
         </div>
-
-        <div class="col-lg-3">
-          <div class="form-group required">
-              <label class="col-form-label-sm h6 control-label">fonctionnaire</label>
-               <select formControlName="fonctionnaire" name="" class="form-control form-control-sm">
-                 <option value="oui">oui</option>
-                 <option value="non">non</option>
-               </select>
-          </div>
-
       </div>
 
-         
-           </div>
-        
-           <div class="col-3">
-        
-            <button class="btn btn-primary m-auto" type="submit">confirmer</button>
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label class="col-form-label-sm h6 control-label" for="id_ville"
+            >Ville:</label
+          >
+          <input
+            type="text"
+            name="ville"
+            class="form-control form-control-sm"
+            maxlength="45"
+            required=""
+            id="id_ville"
+            formControlName="ville"
+          />
         </div>
+      </div>
+    </div>
 
-    </form>
+    <div class="row mb-3">
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label
+            class="col-form-label-sm h6 control-label"
+            for="id_lieu_naissance"
+            >Ville de naissance en Arabe:</label
+          >
+          <input
+            type="text"
+            name="ville_naissance"
+            formControlName="villeDeNaissanceAr"
+            class="form-control form-control-sm"
+            maxlength="17"
+            required=""
+            id="id_lieu_naissance"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label class="col-form-label-sm h6 control-label" for="id_telephone"
+            >Téléphone:</label
+          >
+          <input
+            type="tel"
+            name="telephone"
+            formControlName="telCandidat"
+            class="form-control form-control-sm"
+            maxlength="20"
+            required=""
+            id="id_telephone"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label
+            class="col-form-label-sm h6 control-label"
+            for="id_Province_bac"
+            >Pays</label
+          >
+          <select
+            data-live-search="true"
+            id="pays_s"
+            formControlName="pays"
+            class="form-control form-control-sm"
+            required=""
+            id="id_Province_bac"
+          >
+            <option
+              value="{{ country.country }}"
+              *ngFor="let country of _countries"
+            >
+              {{ country.country }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="form-group required">
+          <label class="col-form-label-sm h6 control-label"
+            >fonctionnaire</label
+          >
+          <select
+            formControlName="fonctionnaire"
+            name=""
+            class="form-control form-control-sm"
+          >
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <button class="btn btn-primary m-auto" type="submit">confirmer</button>
+    </div>
+  </form>
 </div>
-
-
