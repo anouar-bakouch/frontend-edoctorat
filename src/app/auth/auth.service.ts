@@ -4,6 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import AuthProf from '../models/AuthProf';
 import Token from '../models/Token';
@@ -19,6 +20,8 @@ export class AuthService {
     private httpClient: HttpClient,
     private tokenStorage: TokenStorageService
   ) {}
+
+  currentUserSubjet: BehaviorSubject<UserInfo | undefined> = new BehaviorSubject(this.getCurrentUser())
 
   loginCandidat(email: string, password: string): Promise<any> {
     this.logOut();
