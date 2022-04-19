@@ -156,11 +156,8 @@
               required=""
               id="id_sexe"
             >
-              <option *ngIf="candidatInfo?.sexe === 'm'" value="f">F</option>
-
-              <option selected [value]="candidatInfo?.sexe">
-                {{ candidatInfo?.sexe }}
-              </option>
+              <option value="m" selected>Masculine</option>
+              <option value="f">Feminine</option>
             </select>
           </div>
         </div>

@@ -103,6 +103,7 @@ export class InfoPersonnelsComponent implements OnInit {
       this.candidatInfoForm
         .get('foctionnaire')
         ?.setValue(this.candidatInfo.fonctionnaire);
+      this.candidatInfoForm.get('sexe')?.setValue(this.candidatInfo.sexe);
     });
   }
 
