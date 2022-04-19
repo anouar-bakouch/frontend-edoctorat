@@ -51,6 +51,15 @@ export class InfoPersonnelsComponent implements OnInit {
       this.countries = res.data;
     });
 
+    this.getCandidatInfo();
+    
+  }
+
+  get _countries() {
+    return this.countries;
+  }
+
+  getCandidatInfo(){
     this.candidatService.getCandidatInfo().then(res=>{
       this.candidatInfo = res;
       this.candidatInfoForm.get('prenomCandidat')?.setValue(this.candidatInfo.prenom);
@@ -75,11 +84,6 @@ export class InfoPersonnelsComponent implements OnInit {
       this.candidatInfoForm.get('foctionnaire')?.setValue(this.candidatInfo.fonctionnaire);
       
     })
-    
-  }
-
-  get _countries() {
-    return this.countries;
   }
 
 
