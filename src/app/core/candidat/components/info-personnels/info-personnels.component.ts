@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Candidat } from 'src/app/models/Candidat';
-import { environment } from 'src/environments/environment';
 import { CandidatService } from '../../services/candidat.service';
 import { CountriesService } from '../../services/countries.service';
+import {RxFormBuilder} from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-info-personnels',
@@ -12,7 +12,7 @@ import { CountriesService } from '../../services/countries.service';
 })
 export class InfoPersonnelsComponent implements OnInit {
   private countries: any;
-  public selectedFile = null;
+  public selectedFile !:File;
   public candidatInfoForm = this.fservice.group({
     prenomCandidat: [''],
     nomCandidat: [''],
@@ -126,7 +126,7 @@ export class InfoPersonnelsComponent implements OnInit {
 
   onFileSelected(event:any){
 
-   this.selectedFile = event.target.files[0];
+   this.selectedFile = <File> event.target.files[0];
 
   }
 

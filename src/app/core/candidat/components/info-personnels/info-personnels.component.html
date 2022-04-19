@@ -3,6 +3,7 @@
 
       <div class="row mb-3">
         <div class="col-lg-10">
+
           <div >
             <p>Path Photo : {{candidatInfo?.pathPhoto}}</p>
           </div>
@@ -10,8 +11,10 @@
           <div class="mb-3">
             <label for="formFile" class="form-label">Importer votre Photo:</label>
             <input
+              onclick="onFileSelected($event)"
               class="form-control image_input"
               type="file"
+             
               id="formFile"
               accept="image/png, image/jpeg, image/bmp"
               formControlName = "pathPhoto"
