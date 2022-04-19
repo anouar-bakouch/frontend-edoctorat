@@ -66,8 +66,8 @@ export class InfoPersonnelsComponent implements OnInit {
       this.candidatInfoForm.get('prenomCandidatAr')?.setValue(this.candidatInfo.prenomCandidatAr);
       this.candidatInfoForm.get('nomCandidat')?.setValue(this.candidatInfo.nom);
       this.candidatInfoForm.get('nomCandidatAr')?.setValue(this.candidatInfo.nomCandidatAr);
-      this.candidatInfoForm.get('cin')?.setValue(this.candidatInfo.cin);
-      this.candidatInfoForm.get('cne')?.setValue(this.candidatInfo.cne);
+      this.candidatInfoForm.get('cinCandidat')?.setValue(this.candidatInfo.cin);
+      this.candidatInfoForm.get('cneCandidat')?.setValue(this.candidatInfo.cne);
       this.candidatInfoForm.get('adresse')?.setValue(this.candidatInfo.adresse);
       this.candidatInfoForm.get('adresseAr')?.setValue(this.candidatInfo.adresseAr);
       this.candidatInfoForm.get('pays')?.setValue(this.candidatInfo.pays);

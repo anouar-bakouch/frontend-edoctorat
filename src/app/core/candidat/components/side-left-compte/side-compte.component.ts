@@ -20,6 +20,8 @@ export class SideCompteComponent implements OnInit {
 
     this.candidatInfo = res;
 
+    console.log(res);
+
     })
   }
 
