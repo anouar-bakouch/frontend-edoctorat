@@ -8,6 +8,7 @@ import {
   RxFormBuilder,
   RxFormGroup,
 } from '@rxweb/reactive-form-validators';
+import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-info-personnels',
   templateUrl: './info-personnels.component.html',
@@ -48,7 +49,8 @@ export class InfoPersonnelsComponent implements OnInit {
   constructor(
     private httpCountries: CountriesService,
     private fservice: RxFormBuilder,
-    private candidatService: CandidatService
+    private candidatService: CandidatService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -122,7 +124,11 @@ export class InfoPersonnelsComponent implements OnInit {
       formdata.set('pathPhoto', this.selectedFile, this.selectedFile.name);
     this.candidatService
       .updateCandidatInfo(formdata)
-      .then((_) => {})
+      .then((d) => {
+        if (d) {
+          this.authService.updateUserInfo(d.nom, d.prenom, d.pathPhoto);
+        }
+      })
       .catch((err) => {
         this.errorText =
           "Une erreur s'est produite lors de la mise à jour. Revérifiez vos données ou réessayez plus tard.";

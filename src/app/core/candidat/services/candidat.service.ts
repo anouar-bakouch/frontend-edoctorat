@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-
 export class CandidatService {
   constructor(private httpClient: HttpClient) {}
 
@@ -23,22 +22,18 @@ export class CandidatService {
     });
   }
 
-  updateCandidatInfo(candidat:any){
-
+  updateCandidatInfo(candidat: any): Promise<Candidat> {
     return new Promise((resolve, reject) => {
       this.httpClient
-        .put<Candidat>(`${environment.API_URL}/api/candidat-info/`,candidat)
+        .put<Candidat>(`${environment.API_URL}/api/candidat-info/`, candidat)
         .subscribe({
           next: (data) => {
             resolve(data);
           },
           error: (err) => {
-            reject(err)
-          }
+            reject(err);
+          },
         });
     });
-
   }
-
-
 }

@@ -117,6 +117,24 @@ export class AuthService {
     window.localStorage.setItem(USER_INFO, JSON.stringify(info));
   }
 
+  private getCurrentUser(): UserInfo | undefined {
+    const info = JSON.parse(window.localStorage.getItem(USER_INFO) || '{}');
+    if (Object.keys(info).length <= 0) return undefined;
+    return info;
+  }
+
+  public updateUserInfo(
+    nom: string,
+    prenom: string,
+    pathPhoto: string | undefined
+  ) {
+    const info = this.getCurrentUser();
+    if (!info) return;
+    info.nom = nom;
+    info.prenom = prenom;
+    info.pathPhoto = pathPhoto;
+  }
+
   public logOut() {
     this.tokenStorage.clearTokens();
     window.localStorage.removeItem(USER_INFO);
