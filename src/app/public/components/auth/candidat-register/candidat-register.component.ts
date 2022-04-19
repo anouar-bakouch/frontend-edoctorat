@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { CountriesService } from 'src/app/core/candidat/services/countries.service';
 import PreRegistration from 'src/app/models/PreRegistration';
 import { RegisterService } from 'src/app/public/services/auth/register.service';
@@ -44,8 +45,10 @@ export class CandidatRegisterComponent implements OnInit {
     activeRoute: ActivatedRoute,
     private registerService: RegisterService,
     private router: Router,
-    private httpCountries: CountriesService
+    private httpCountries: CountriesService,
+    private authService: AuthService
   ) {
+    authService.logOut();
     activeRoute.queryParams.subscribe({
       next: (params) => {
         const token: string | undefined | null = params['token'];
