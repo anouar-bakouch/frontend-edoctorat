@@ -21,7 +21,8 @@ export class AuthService {
     private tokenStorage: TokenStorageService
   ) {}
 
-  currentUserSubjet: BehaviorSubject<UserInfo | undefined> = new BehaviorSubject(this.getCurrentUser())
+  currentUserSubjet: BehaviorSubject<UserInfo | undefined> =
+    new BehaviorSubject(this.getCurrentUser());
 
   loginCandidat(email: string, password: string): Promise<any> {
     this.logOut();
@@ -136,6 +137,8 @@ export class AuthService {
     info.nom = nom;
     info.prenom = prenom;
     info.pathPhoto = pathPhoto;
+    this.saveUserInfo(info);
+    this.currentUserSubjet.next(info);
   }
 
   public logOut() {

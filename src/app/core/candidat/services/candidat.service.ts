@@ -18,6 +18,7 @@ export class CandidatService {
           next: (data) => {
             resolve(data);
           },
+          error: (err) => reject(err),
         });
     });
   }

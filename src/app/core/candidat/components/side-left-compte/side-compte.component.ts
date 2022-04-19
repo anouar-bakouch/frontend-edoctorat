@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Candidat } from 'src/app/models/Candidat';
 import UserInfo from 'src/app/models/UserInfo';
-import { CandidatService } from '../../services/candidat.service';
 
 @Component({
   selector: '[app-side-compte]',
