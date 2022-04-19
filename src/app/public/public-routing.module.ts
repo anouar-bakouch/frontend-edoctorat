@@ -18,7 +18,6 @@ const routes: Routes = [
     children: [
       { path: 'infos', component: MainComponent },
       { path: 'connexion', component: ConnexionComponent },
-
       {
         path: 'candidat',
         component: CandidatAuthComponent,
@@ -31,7 +30,8 @@ const routes: Routes = [
         ],
       },
     ],
-  },
+  }
+
 ];
 
 @NgModule({

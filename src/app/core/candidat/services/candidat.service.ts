@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Candidat } from 'src/app/models/Candidat';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class CandidatService {
   constructor(private httpClient: HttpClient) {}
 
@@ -16,9 +18,10 @@ export class CandidatService {
         .subscribe({
           next: (data) => {
             resolve(data);
-            console.log(data);
           },
         });
     });
   }
+
+
 }
