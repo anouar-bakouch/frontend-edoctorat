@@ -11,6 +11,7 @@ import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 })
 export class InfoPersonnelsComponent implements OnInit {
   isUpdating = false;
+  errOccured = false;
   private countries: any;
   public selectedFile: File | undefined;
   public candidatInfoForm = <RxFormGroup>this.fservice.group({
@@ -109,10 +110,18 @@ export class InfoPersonnelsComponent implements OnInit {
   }
 
   updateCandidatInfo() {
+    this.isUpdating = true;
     let formdata = this.candidatInfoForm.toFormData();
     this.selectedFile &&
       formdata.set('pathPhoto', this.selectedFile, this.selectedFile.name);
-    this.candidatService.updateCandidatInfo(formdata);
+    this.candidatService
+      .updateCandidatInfo(formdata)
+      .then((_) => {})
+      .catch((err) => {
+        this.errOccured = true;
+        console.log(err);
+      })
+      .finally(() => (this.isUpdating = false));
   }
 
   public onFileSelected(event: any) {

@@ -314,7 +314,16 @@
     </div>
 
     <div class="col-3">
-      <button class="btn btn-primary m-auto" type="submit">confirmer</button>
+      <button *ngIf="!isUpdating" class="btn btn-primary m-auto" type="submit">
+        confirmer
+      </button>
+      <h4 *ngIf="isUpdating">
+        <img
+          src="/assets/images/connexion/loading.webp"
+          width="300"
+          height="100"
+        />
+      </h4>
     </div>
   </form>
 </div>
