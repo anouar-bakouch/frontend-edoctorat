@@ -23,5 +23,19 @@ export class CandidatService {
     });
   }
 
+  updateCandidatInfo(candidat:Candidat){
+
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .put<Candidat>(`${environment.API_URL}/api/candidat-info/`,candidat) // i still don't know if i have to add the cin to the url or not
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+        });
+    });
+
+  }
+
 
 }
