@@ -34,7 +34,7 @@ export class CandidatRegisterComponent implements OnInit {
     lieuNAr: new FormControl(''),
     adresse: new FormControl('', [Validators.required]),
     ville: new FormControl('', [Validators.required]),
-    tel: new FormControl('', [Validators.required]),
+    telCandidat: new FormControl('', [Validators.required]),
     nationalite: new FormControl('', [Validators.required]),
     sitFam: new FormControl('celebataire', [Validators.required]),
     handCap: new FormControl('non', [Validators.required]),
@@ -46,7 +46,7 @@ export class CandidatRegisterComponent implements OnInit {
     private registerService: RegisterService,
     private router: Router,
     private httpCountries: CountriesService,
-    private authService: AuthService
+    authService: AuthService
   ) {
     authService.logOut();
     activeRoute.queryParams.subscribe({
