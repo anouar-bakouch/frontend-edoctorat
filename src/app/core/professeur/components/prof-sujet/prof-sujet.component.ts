@@ -198,13 +198,13 @@ export class ProfSujetComponent implements OnInit {
   }
 
   onClickSubmit() {
-    console.log('success')
-    this.operationsService.getProfesseur(this.form.get('coDirecteur')?.value).subscribe(data => {
-      this.coDirecteur = data;
-    })
-    this.operationsService.getformDoct(this.form.get('formationDoctorale')?.value).subscribe(data => {
-      this.formationDoctorale = data;
-    })
+    // console.log('success')
+    // this.operationsService.getProfesseur(this.form.get('coDirecteur')?.value).subscribe(data => {
+    //   this.coDirecteur = data;
+    // })
+    // this.operationsService.getformDoct(this.form.get('formationDoctorale')?.value).subscribe(data => {
+    //   this.formationDoctorale = data;
+    // })
     this.sujet = this.form.value
     // this.sujet.coDirecteur = this.coDirecteur
     // this.sujet.professeur = this.currentProfesseur
