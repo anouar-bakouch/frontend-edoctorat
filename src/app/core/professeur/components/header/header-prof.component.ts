@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import UserInfo from 'src/app/models/UserInfo';
 
 @Component({
   selector: '[app-header-prof]',
   templateUrl: './header-prof.component.html',
-  styleUrls: ['./header-prof.component.css']
+  styleUrls: ['./header-prof.component.css'],
 })
-
-export class HeaderProfComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class HeaderProfComponent {
+  prof!: UserInfo;
+  constructor(authService: AuthService) {
+    authService.currentUserSubjet
+      .pipe(filter((u) => u !== undefined))
+      .subscribe((uinfo) => (this.prof = uinfo!));
   }
-
 }
