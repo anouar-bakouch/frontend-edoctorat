@@ -13,12 +13,12 @@ export class InfoPersonnelsComponent implements OnInit {
   private countries: any;
   public selectedFile: File | undefined;
   public candidatInfoForm = <RxFormGroup>this.fservice.group({
-    prenomCandidat: [''],
-    nomCandidat: [''],
+    prenom: [''],
+    nom: [''],
     nomCandidatAr: [''],
     prenomCandidatAr: [''],
-    cinCandidat: [''],
-    cneCandidat: [''],
+    cin: [''],
+    cne: [''],
     adresse: [''],
     adresseAr: [''],
     pays: [''],
@@ -60,18 +60,16 @@ export class InfoPersonnelsComponent implements OnInit {
     this.candidatService.getCandidatInfo().then((res) => {
       console.log(res);
       this.candidatInfo = res;
-      this.candidatInfoForm
-        .get('prenomCandidat')
-        ?.setValue(this.candidatInfo.prenom);
+      this.candidatInfoForm.get('prenom')?.setValue(this.candidatInfo.prenom);
       this.candidatInfoForm
         .get('prenomCandidatAr')
         ?.setValue(this.candidatInfo.prenomCandidatAr);
-      this.candidatInfoForm.get('nomCandidat')?.setValue(this.candidatInfo.nom);
+      this.candidatInfoForm.get('nom')?.setValue(this.candidatInfo.nom);
       this.candidatInfoForm
         .get('nomCandidatAr')
         ?.setValue(this.candidatInfo.nomCandidatAr);
-      this.candidatInfoForm.get('cinCandidat')?.setValue(this.candidatInfo.cin);
-      this.candidatInfoForm.get('cneCandidat')?.setValue(this.candidatInfo.cne);
+      this.candidatInfoForm.get('cin')?.setValue(this.candidatInfo.cin);
+      this.candidatInfoForm.get('cne')?.setValue(this.candidatInfo.cne);
       this.candidatInfoForm.get('adresse')?.setValue(this.candidatInfo.adresse);
       this.candidatInfoForm
         .get('adresseAr')
@@ -112,12 +110,12 @@ export class InfoPersonnelsComponent implements OnInit {
     /*
     let candidat:Candidat = {
 
-      prenom : this.candidatInfoForm.get('prenomCandidat')?.value,
-      cne: this.candidatInfoForm.get('cneCandidat')?.value,
+      prenom : this.candidatInfoForm.get('prenom')?.value,
+      cne: this.candidatInfoForm.get('cne')?.value,
       pays: this.candidatInfoForm.get('pays')?.value,
-      nom: this.candidatInfoForm.get('nomCandidat')?.value,
+      nom: this.candidatInfoForm.get('nom')?.value,
       email: this.candidatInfoForm.get('mailCandidat')?.value,
-      cin: this.candidatInfoForm.get('cinCandidat')?.value,
+      cin: this.candidatInfoForm.get('cin')?.value,
       nomCandidatAr: this.candidatInfoForm.get('nomCandidat')?.value,
       prenomCandidatAr: this.candidatInfoForm.get('prenomCandidatAr')?.value,
       adresse: this.candidatInfoForm.get('adresse')?.value,
