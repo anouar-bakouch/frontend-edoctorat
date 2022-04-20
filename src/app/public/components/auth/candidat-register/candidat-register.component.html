@@ -294,21 +294,22 @@
               *ngIf="!isRegistering"
               type="submit"
               value="S'inscrire"
+              class="btn btn-primary"
               [disabled]="!form.valid"
             />
-
-            <h5 *ngIf="isRegistering" style="color: blue">
+            
+            <h5 *ngIf="isRegistering" class="text-primary">
               Veuillez patienter, enregistrement du compte en cours
             </h5>
           </form>
-          <h4 *ngIf="showRegError" style="color: red">
+          <h4 *ngIf="showRegError" class="text-danger">
             Erreur lors de l'enregistrement. Vérifiez si vous n'avez pas encore
             créé de compte.
           </h4>
         </div>
 
         <div class="col-7 text-center m-auto p-3" *ngIf="isVerifyingToken">
-          <h5>
+          <h5 class="text-primary">
             Veuillez patienter, vérification de vos informations de
             préinscription...
           </h5>
