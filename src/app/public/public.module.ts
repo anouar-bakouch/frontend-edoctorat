@@ -19,6 +19,7 @@ import { MainComponent } from './components/main/main.component';
 import { LaboratoiresComponent } from './components/laboratoires/laboratoires.component';
 import { ContainerComponent } from './components/container/container.component';
 import { CandidatAuthComponent } from './components/auth/candidat-auth/candidat-auth.component';
+import { CandidatForgetPasswordComponent } from './components/auth/candidat-forget-password/candidat-forget-password.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CandidatAuthComponent } from './components/auth/candidat-auth/candidat-
     LaboratoiresComponent,
     MainComponent,
     ContainerComponent,
-    CandidatAuthComponent
+    CandidatAuthComponent,
+    CandidatForgetPasswordComponent
   ],
   imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule],
   exports: [HomeComponent],

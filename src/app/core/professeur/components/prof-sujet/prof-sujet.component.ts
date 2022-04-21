@@ -27,6 +27,7 @@ export class ProfSujetComponent implements OnInit {
     initiale: '',
     dateAccreditation: ''
   };
+
   public prof: Professeur = {
     id: 0,
     telProfesseur: '',
@@ -158,7 +159,7 @@ export class ProfSujetComponent implements OnInit {
 
   getAllSujets() {
     this.operationsService.getSujets().subscribe(data => {
-      // console.log(data);
+       console.log(data);
       // this.sujets = data.sujets;
       this.sujets = data;
       // console.log(this.prof)

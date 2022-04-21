@@ -17,7 +17,7 @@ export class OperationsService {
   // normally we need to get sujets by id of prof
   // http://127.0.0.1:8000/api/professeurs/id_professeur
   // private _url: string = 'http://127.0.0.1:8000/api/professeurs/1';
-  private _url: string = 'http://127.0.0.1:8000/api/sujets/';
+  private _url: string = 'http://129.151.236.119/api/sujets/';
 
   constructor(private http: HttpClient) { }
 
@@ -28,12 +28,12 @@ export class OperationsService {
   }
 
   public getProfesseurs(): Observable<Professeur[]> {
-    let _url = 'http://127.0.0.1:8000/api/professeurs/';
+    let _url = 'http://129.151.236.119/api/professeurs/';
     return this.http.get<Professeur[]>(_url);
 
   }
   public getProfesseur(id: Professeur): Observable<Professeur> {
-    let _url = `http://127.0.0.1:8000/api/professeurs/${id}/`;
+    let _url = `'http://129.151.236.119/api/professeurs/${id}/`;
     return this.http.get<Professeur>(_url);
 
   }
@@ -42,24 +42,21 @@ export class OperationsService {
     return this.http.get<FormationDoctorale>(_url);
 
   }
+
+  
   public getSujets(): Observable<Sujet[]> {
 
     return this.http.get<Sujet[]>(this._url);
 
   }
-  // public getSujets(): Observable<Professeur> {
 
-  //   return this.http.get<Professeur>(this._url);
-
-  // }
 
   public addSujet(sujet: Sujet): Observable<Sujet> {
     let header = new HttpHeaders().set(
       "Authorization",
       "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUwMzAzOTAyLCJpYXQiOjE2NTAzMDAzMDIsImp0aSI6IjA5YTVlNDI0ZmVmYjQyZmViMzNlM2Q5MzQ3ZTIyZDJjIiwidXNlcl9pZCI6MX0.Yp0wi_gkzCwyWARWKazN7d_ARu0bBngGHP_bCXVK0h8"
     );
-    let _url: string = 'http://127.0.0.1:8000/api/sujets/';
-    console.log(sujet)
+    let _url: string = 'http://129.151.236.119/api/sujets/';
     return this.http.post<Sujet>(_url, sujet, { headers: header });
 
   }

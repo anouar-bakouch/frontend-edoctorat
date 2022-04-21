@@ -9,10 +9,15 @@ import UserInfo from 'src/app/models/UserInfo';
   styleUrls: ['./header-prof.component.css'],
 })
 export class HeaderProfComponent {
-  prof!: UserInfo;
+
+  public prof!: UserInfo;
   constructor(authService: AuthService) {
+    
     authService.currentUserSubjet
       .pipe(filter((u) => u !== undefined))
       .subscribe((uinfo) => (this.prof = uinfo!));
+
+  
   }
+
 }
