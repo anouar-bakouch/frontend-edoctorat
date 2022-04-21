@@ -10,7 +10,7 @@
                   >Email</label
                 >
                 <input
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                   type="email"
                   name="email"
                   id="email"
@@ -23,7 +23,7 @@
                   >Nom</label
                 >
                 <input
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                   type="text"
                   name="nom"
                   id="nom"
@@ -37,7 +37,7 @@
                 >
 
                 <input
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                   type="text"
                   name="prenom"
                   id="prenom"
@@ -50,7 +50,7 @@
                   >Mot de passe</label
                 >
                 <input
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                   type="password"
                   name="password"
                   id="password"
@@ -66,7 +66,7 @@
                   >Confirmer mot de passe</label
                 >
                 <input
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                   type="password"
                   name="confPassword"
                   id="confPassword"
@@ -74,7 +74,7 @@
                 />
               </div>
 
-              <p *ngIf="showPasswordsMisMatch" style="color: red">
+              <p *ngIf="showPasswordsMisMatch" class="text-danger">
                 Les mots de passe ne correspondent pas
               </p>
 
@@ -109,8 +109,9 @@
                 <input
                   type="text"
                   name="nomAr"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                   id="nomAr"
+                  dir="rtl"
                   formControlName="nomAr"
                 />
               </div>
@@ -121,10 +122,11 @@
                   >Prenom en arabe</label
                 >
                 <input
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                   type="text"
                   name="prenomAr"
                   id="prenomAr"
+                  dir="rtl"
                   formControlName="prenomAr"
                 />
               </div>
@@ -149,7 +151,7 @@
                   name="sex"
                   id="sex"
                   formControlName="sex"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm "
                 >
                   <option value="m" selected>Masculine</option>
                   <option value="f">Feminine</option>
@@ -164,7 +166,7 @@
                   name="lieuN"
                   id="lieuN"
                   formControlName="lieuN"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                 />
               </div>
             </div>
@@ -205,7 +207,7 @@
                   type="text"
                   name="ville"
                   id="ville"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                   formControlName="ville"
                 />
               </div>
@@ -235,7 +237,7 @@
                   name="nationalite"
                   id="nationalite"
                   formControlName="nationalite"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                 >
                   <option
                     value="{{ country.country }}"
@@ -253,9 +255,9 @@
                   name="sitFam"
                   id="sitFam"
                   formControlName="sitFam"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                 >
-                  <option value="celebataire">Celebataire</option>
+                  <option value="celebataire">Célibataire</option>
                   <option value="mariee">Mariee</option>
                 </select>
               </div>
@@ -267,7 +269,7 @@
                   name="handCap"
                   id="handCap"
                   formControlName="handCap"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                 >
                   <option value="oui">Oui</option>
                   <option value="non">Non</option>
@@ -281,7 +283,7 @@
                   name="thandCap"
                   id="thandCap"
                   formControlName="thandCap"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm keyboardInput"
                 >
                   <option value="handicape_physique">Handicap Physique</option>
                   <option value="handicape_auditif">Handicap Auditif</option>
