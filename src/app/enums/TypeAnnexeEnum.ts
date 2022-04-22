@@ -1,9 +1,5 @@
-
-
 enum TypeAnnexeEnum {
-
-    DIPLOME = "Diplome",
-    RELEVE = "Releve",
-    MEMOIRE = "Memoire"
-
+  DIPLOME = 'diplome',
+  RELEVE = 'releve',
+  MEMOIRE = 'memoire',
 }

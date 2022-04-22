@@ -1,14 +1,10 @@
-
-
 enum DiplomeType {
-
-    BAC = "Baccalauréat",
-    DUT = "DUT",
-    CI = "Cycle ingénieur",
-    LICENCE = "Licence",
-    MASTER = "Master",
-    MASTER_SPECIALISE = "Master Specialise",
-    MASTER_EN_SCIENCE_TECHNIQUE = "Master en Science et Technique",
-    DOCTORATE_EN_MEDICINE = "Doctorate en Medicine"
-
+  BAC = 'baccalauréat',
+  DUT = 'dUT',
+  CI = 'cycle ingénieur',
+  LICENCE = 'licence',
+  MASTER = 'master',
+  MASTER_SPECIALISE = 'master specialise',
+  MASTER_EN_SCIENCE_TECHNIQUE = 'master en science et technique',
+  DOCTORATE_EN_MEDICINE = 'doctorate en medicine',
 }
