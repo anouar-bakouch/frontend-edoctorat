@@ -1,31 +1,35 @@
 <div class="container-fluid">
-  <div class="row p-3">
-    <div class="d-flex col col-sm-1 col-md-10 col-lg-10">
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand"> <img
+      class="img-fluid img-thumbnail"
+      src="/assets/images/usmba-logo.png"
+      width="180"
+      height="40"
+      alt=""
+      srcset=""
+    /></a>
+    <div class="d-flex justify-content-around align-items-center w-70">
       <img
-        class="img-fluid"
-        src="/assets/images/usmba-logo.png"
-        width="180"
-        height="40"
-        alt=""
-        srcset=""
-      />
-    </div>
+      class="img-thumbnail mx-3"
+      [src]=" prof?.pathPhoto ? prof?.pathPhoto : '/assets/images/unknown_pic.jpg' " alt="image prof"
+      width="50"
+      height="50"
+      alt=""
+      srcset=""
+    />
+    <div class="d-flex justify-content-center align-items-center ">
+    <span class="text-start">{{ prof.prenom }} {{ prof.nom }}</span>
+  </div> 
 
-    <div class="col col-sm-11 col-md-2 col-lg-2">
-      <div class="d-flex flex-wrap justify-content-between align-items-center">
-        <img
-          class="img-thumbnail"
-          [src]=" prof?.pathPhoto ? prof?.pathPhoto : '/assets/images/unknown_pic.jpg' " alt="image prof"
-          width="40"
-          height="40"
-          alt=""
-          srcset=""
-        />
-        <p>{{ prof.prenom }} {{ prof.nom }}</p>
-        <button class="btn btn-primary btn-sm" type="button">
-          deconnexion
-        </button>
-      </div>
+    <button class="btn btn-primary btn-sm mx-3" type="button">
+      <i class="bi bi-box-arrow-right"></i>
+      deconnexion
+    </button>
+     
     </div>
   </div>
+</nav>
 </div>
+
+

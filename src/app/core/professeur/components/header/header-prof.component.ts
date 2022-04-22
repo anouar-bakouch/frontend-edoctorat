@@ -17,7 +17,6 @@ export class HeaderProfComponent {
       .pipe(filter((u) => u !== undefined))
       .subscribe((uinfo) => (this.prof = uinfo!));
 
-  
   }
 
 }
