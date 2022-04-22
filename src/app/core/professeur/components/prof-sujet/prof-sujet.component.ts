@@ -4,7 +4,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Professeur } from 'src/app/models/Professeur';
+import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
+import UserProf from 'src/app/models/UserProf';
 import { OperationsService } from '../../services/operations.service';
 
 @Component({
@@ -27,83 +29,37 @@ export class ProfSujetComponent implements OnInit {
     initiale: '',
     dateAccreditation: ''
   };
-
+  user: UserProf = {
+    username: '',
+    first_name: '',
+    last_name: ''
+  };
   public prof: Professeur = {
     id: 0,
-    telProfesseur: '',
-    pathPhoto: '',
-    user: 0,
-    etablissement: 0,
-    labo: 0,
-    numSOM: 0,
-    cin: '',
-    grade: '',
-    nombreEncadrer: 0,
-    nombreProposer: 0,
-    nomComplet: '',
-    sujets: []
+    nom: '',
+    prenom: ''
   }
   public coDirecteur: Professeur = {
     id: 0,
-    telProfesseur: '',
-    pathPhoto: '',
-    user: 0,
-    etablissement: 0,
-    labo: 0,
-    numSOM: 0,
-    cin: '-------',
-    grade: '',
-    nombreEncadrer: 0,
-    nombreProposer: 0,
-    nomComplet: '',
-    sujets: []
+    nom: '',
+    prenom: ''
   }
   public currentProfesseur: Professeur = {
     id: 0,
-    telProfesseur: '',
-    pathPhoto: '',
-    user: 0,
-    etablissement: 0,
-    labo: 0,
-    numSOM: 0,
-    cin: '',
-    grade: '',
-    nombreEncadrer: 0,
-    nombreProposer: 0,
-    nomComplet: '',
-    sujets: []
+    nom: '',
+    prenom: ''
   }
   public sujet: Sujet = {
     id: 0,
     professeur: {
       id: 0,
-      telProfesseur: '',
-      pathPhoto: '',
-      user: 0,
-      etablissement: 0,
-      labo: 0,
-      numSOM: 0,
-      cin: '',
-      grade: '',
-      nombreEncadrer: 0,
-      nombreProposer: 0,
-      nomComplet: '',
-      sujets: []
+      nom: '',
+      prenom: ''
     },
     coDirecteur: {
       id: 0,
-      telProfesseur: '',
-      pathPhoto: '',
-      user: 0,
-      etablissement: 0,
-      labo: 0,
-      numSOM: 0,
-      cin: '',
-      grade: '',
-      nombreEncadrer: 0,
-      nombreProposer: 0,
-      nomComplet: '',
-      sujets: []
+      nom: '',
+      prenom: ''
     },
     titre: '',
     description: '',
@@ -119,7 +75,12 @@ export class ProfSujetComponent implements OnInit {
     },
     publier: false
   };
-
+  public result:Result<any> = {
+    count: 0,
+    next: null,
+    previous: null,
+    results: []
+  }
 
   public form = new FormGroup({
     titre: new FormControl(""),
@@ -143,8 +104,8 @@ export class ProfSujetComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    this.getAllFormationDoctorales()
     this.getAllProfesseurs()
+    this.getAllFormationDoctorales()
   }
 
   private getDismissReason(reason: any): string {
@@ -159,60 +120,40 @@ export class ProfSujetComponent implements OnInit {
 
   getAllSujets() {
     this.operationsService.getSujets().subscribe(data => {
-       console.log(data);
-      // this.sujets = data.sujets;
-      this.sujets = data;
-      // console.log(this.prof)
-      //this.sujets = this.prof.sujets
-      // this.prof.sujets.forEach(element => {
-      //   //console.log(element.formationDoctorale) 
-      //     this.operationsService.getformDoct(element.formationDoctorale).subscribe(data=>{
-      //     //console.log(data)
-      //     element.formationDoctorale = data
-      //   })
-      //   console.log(element.coDirecteur)
-      //   if (element.coDirecteur!=null){this.operationsService.getProfesseur(element.coDirecteur).subscribe(data => {
-      //     // console.log(data)
-      //     element.coDirecteur = data
-      //   })}
-      //   element.coDirecteur = this.coDirecteur
+      console.log(data)
 
-      // });
+      this.result = data;
+      this.sujets = this.result.results;
 
     })
   }
   getAllFormationDoctorales() {
     this.operationsService.getFormationDoctorales().subscribe(data => {
-      // console.log(data);
-      // this.sujets = data.sujets;
-      this.formationDoctorales = data;
-      //console.log(this.sujets)
+      console.log(data)
+      this.result = data;
+      this.formationDoctorales = this.result.results;
     })
   }
   getAllProfesseurs() {
     this.operationsService.getProfesseurs().subscribe(data => {
-      //console.log(data);
-      // this.sujets = data.sujets;
-      this.professeurs = data;
-      //console.log(this.sujets)
+      //console.log(data)
+      this.result = data;
+      console.log(this.result.results)
+      this.professeurs = this.result.results;
+      // console.log(this.professeurs)
     })
   }
 
   onClickSubmit() {
-    // console.log('success')
-    // this.operationsService.getProfesseur(this.form.get('coDirecteur')?.value).subscribe(data => {
-    //   this.coDirecteur = data;
-    // })
-    // this.operationsService.getformDoct(this.form.get('formationDoctorale')?.value).subscribe(data => {
-    //   this.formationDoctorale = data;
-    // })
     this.sujet = this.form.value
-    // this.sujet.coDirecteur = this.coDirecteur
-    // this.sujet.professeur = this.currentProfesseur
-    // this.sujet.formationDoctorale = this.formationDoctorale
-    console.log(this.sujet);
-
-    this.operationsService.addSujet(this.sujet).subscribe((data) => {
+    const sujet: JSON = <JSON><unknown>{
+      "coDirecteurId": this.sujet.coDirecteur,
+      "formationDoctoraleId": this.sujet.formationDoctorale,
+      "titre": this.sujet.titre,
+      "description": this.sujet.description
+    }
+    // console.log(sujet);
+    this.operationsService.addSujet(sujet).subscribe((data) => {
       console.log(data)
     },
       (err) => {
@@ -221,8 +162,8 @@ export class ProfSujetComponent implements OnInit {
   }
 
   onClickDelete(s: Sujet) {
-    console.log(s.id)
-    this.operationsService.deleteSujet(this.sujet).subscribe((data) => {
+    // console.log(s.id)
+    this.operationsService.deleteSujet(s).subscribe((data) => {
       console.log(data)
     },
       (err) => {
@@ -230,8 +171,8 @@ export class ProfSujetComponent implements OnInit {
       })
   }
   onClickUpdate(s: Sujet) {
-    console.log(s.id)
-    this.operationsService.updateSujet(this.sujet).subscribe((data) => {
+    // console.log(s.id)
+    this.operationsService.updateSujet(s).subscribe((data) => {
       console.log(data)
     },
       (err) => {
