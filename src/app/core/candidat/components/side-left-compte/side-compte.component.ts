@@ -19,7 +19,12 @@ export class SideCompteComponent implements OnInit {
       .pipe(filter((u) => u != undefined))
       .subscribe((uinfo) => {
         this.candidatInfo = uinfo!;
-        this.candidatInfo.pathPhoto = `${environment.API_URL}${this.candidatInfo.pathPhoto}`
+        if (
+          this.candidatInfo.pathPhoto &&
+          this.candidatInfo.pathPhoto.indexOf(environment.API_URL) <= -1
+        ) {
+          this.candidatInfo.pathPhoto = `${environment.API_URL}${this.candidatInfo.pathPhoto}`;
+        }
       });
   }
 }
