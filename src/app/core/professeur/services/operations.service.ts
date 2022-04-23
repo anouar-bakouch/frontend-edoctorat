@@ -36,11 +36,11 @@ export class OperationsService {
 
   }
   public getProfesseur(id: Professeur): Observable<Professeur> {
-    return this.http.get<Professeur>(this._url2 +'/api/professeurs/${id}/');
+    return this.http.get<Professeur>(this._url2 +`/api/get-professeurs/${id}/`);
 
   }
   public getformDoct(id: FormationDoctorale): Observable<FormationDoctorale> {
-    return this.http.get<FormationDoctorale>(this._url2 +'/api/formation-doctorale/${id}/');
+    return this.http.get<FormationDoctorale>(this._url2 +`/api/formation-doctorale/${id}/`);
 
   }
   public getSujets(): Observable<Result<Sujet>> {
@@ -48,11 +48,6 @@ export class OperationsService {
     return this.http.get<Result<Sujet>>(this._url +'/api/sujets/');
 
   }
-  // public getSujets(): Observable<Professeur> {
-
-  //   return this.http.get<Professeur>(this._url);
-
-  // }
 
   public addSujet(sujet: JSON): Observable<Sujet> {
     return this.http.post<Sujet>(this._url + '/api/sujets/', sujet);
@@ -61,12 +56,12 @@ export class OperationsService {
 
   public deleteSujet(sujet: Sujet): Observable<Sujet> {
     console.log(sujet)
-    return this.http.delete<Sujet>(this._url + sujet.id + '/');
+    return this.http.delete<Sujet>(this._url + '/api/sujets/' + sujet.id + '/');
 
   }
 
-  public updateSujet(sujet: Sujet): Observable<Sujet> {
-    return this.http.put<Sujet>(this._url + '/' + sujet.id + '/', sujet);
+  public updateSujet(sujet: JSON, id:number): Observable<Sujet> {
+    return this.http.put<Sujet>(this._url + '/api/sujets/' + id + '/', sujet);
 
   }
 
