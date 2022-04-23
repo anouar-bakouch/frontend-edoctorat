@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Professeur } from 'src/app/models/Professeur';
@@ -75,7 +75,7 @@ export class ProfSujetComponent implements OnInit {
     },
     publier: false
   };
-  public result:Result<any> = {
+  public result: Result<any> = {
     count: 0,
     next: null,
     previous: null,
@@ -83,14 +83,23 @@ export class ProfSujetComponent implements OnInit {
   }
 
   public form = new FormGroup({
-    titre: new FormControl(""),
-    description: new FormControl(""),
-    coDirecteur: new FormControl(""),
-    formationDoctorale: new FormControl("")
+    titre: new FormControl("", [Validators.required, Validators.minLength(2)]),
+    description: new FormControl("", [Validators.required, Validators.minLength(2)]),
+    coDirecteur: new FormControl(null),
+    formationDoctorale: new FormControl("", [Validators.required])
   })
+
+  arrayRemove = (arr: Professeur[]) => {
+
+    return arr.filter((ele) => {
+      return ele.id !== this.currentProfesseur.id;
+    });
+  }
 
   ngOnInit(): void {
     this.getAllSujets()
+    this.getAllProfesseurs()
+    this.getAllFormationDoctorales()
   }
 
   closeResult: string = '';
@@ -98,16 +107,23 @@ export class ProfSujetComponent implements OnInit {
   constructor(private modalService: NgbModal, private operationsService: OperationsService) { }
 
 
+  fun = (content: any, s: Sujet) => {
+    this.sujet = s
+    this.form.setValue({
+      titre: s.titre,
+      description: s.description,
+      coDirecteur: s.coDirecteur,
+      formationDoctorale: s.formationDoctorale
+    });
+    this.open(content)
+  }
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    this.getAllProfesseurs()
-    this.getAllFormationDoctorales()
   }
-
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -120,63 +136,148 @@ export class ProfSujetComponent implements OnInit {
 
   getAllSujets() {
     this.operationsService.getSujets().subscribe(data => {
-      console.log(data)
-
       this.result = data;
       this.sujets = this.result.results;
-
+      this.currentProfesseur = this.sujets[0].professeur
+      console.log(this.sujets)
     })
   }
   getAllFormationDoctorales() {
     this.operationsService.getFormationDoctorales().subscribe(data => {
-      console.log(data)
       this.result = data;
       this.formationDoctorales = this.result.results;
     })
   }
   getAllProfesseurs() {
     this.operationsService.getProfesseurs().subscribe(data => {
-      //console.log(data)
       this.result = data;
-      console.log(this.result.results)
       this.professeurs = this.result.results;
-      // console.log(this.professeurs)
+      var result = this.arrayRemove(this.professeurs);
+      this.professeurs = result
     })
   }
 
   onClickSubmit() {
     this.sujet = this.form.value
-    const sujet: JSON = <JSON><unknown>{
-      "coDirecteurId": this.sujet.coDirecteur,
-      "formationDoctoraleId": this.sujet.formationDoctorale,
-      "titre": this.sujet.titre,
-      "description": this.sujet.description
+    if (this.sujet.coDirecteur === null) {
+      // console.log('hii')
+      const sujet: JSON = <JSON><unknown>{
+        // "coDirecteurId": this.sujet.coDirecteur,
+        "formationDoctoraleId": this.sujet.formationDoctorale,
+        "titre": this.sujet.titre,
+        "description": this.sujet.description
+      }
+      this.operationsService.addSujet(sujet).subscribe((data) => {
+        this.sujets.push(this.sujet)
+      },
+        (err) => {
+          console.log(err)
+        }, () => {
+          this.form.reset()
+        })
+    } else {
+      const sujet: JSON = <JSON><unknown>{
+        "coDirecteurId": this.sujet.coDirecteur,
+        "formationDoctoraleId": this.sujet.formationDoctorale,
+        "titre": this.sujet.titre,
+        "description": this.sujet.description
+      }
+      this.operationsService.addSujet(sujet).subscribe((data) => {
+        this.sujets.push(this.sujet)
+      },
+        (err) => {
+          console.log(err)
+        }, () => {
+          this.form.reset()
+        })
     }
-    // console.log(sujet);
-    this.operationsService.addSujet(sujet).subscribe((data) => {
-      console.log(data)
-    },
-      (err) => {
-        console.log(err)
-      })
+
+    // get the formation doctoral and coDericteur in add sujets without reload
+
+    // this.operationsService.getformDoct(this.sujet.formationDoctorale).subscribe((data) => {
+    //   this.sujet.formationDoctorale = data
+    // },
+    // (err) => {
+    // })
+
+    // this.operationsService.getProfesseur(this.sujet.coDirecteur).subscribe((data) => {
+    //   this.sujet.coDirecteur = data
+    //   console.log(this.coDirecteur);
+    // })
+
+
   }
 
   onClickDelete(s: Sujet) {
-    // console.log(s.id)
     this.operationsService.deleteSujet(s).subscribe((data) => {
-      console.log(data)
+
+      for (var i = 0; i < this.sujets.length; i++) {
+
+        if (this.sujets[i].id === s.id) {
+
+          this.sujets.splice(i, 1);
+        }
+
+      }
     },
       (err) => {
         console.log(err)
       })
   }
-  onClickUpdate(s: Sujet) {
-    // console.log(s.id)
-    this.operationsService.updateSujet(s).subscribe((data) => {
-      console.log(data)
-    },
-      (err) => {
-        console.log(err)
-      })
+  onClickUpdate() {
+    this.sujet = this.form.value
+    // const sujet: JSON = <JSON><unknown>{
+    //   "coDirecteurId": this.sujet.coDirecteur,
+    //   "formationDoctoraleId": this.sujet.formationDoctorale,
+    //   "titre": this.sujet.titre,
+    //   "description": this.sujet.description
+    // }
+    if (this.sujet.coDirecteur === null) {
+      // console.log('hii')
+      const sujet: JSON = <JSON><unknown>{
+        // "coDirecteurId": this.sujet.coDirecteur,
+        "formationDoctoraleId": this.sujet.formationDoctorale,
+        "titre": this.sujet.titre,
+        "description": this.sujet.description
+      }
+      this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
+        this.sujets.push(this.sujet)
+      },
+        (err) => {
+          console.log(err)
+        }, () => {
+          this.form.reset()
+        })
+    } else {
+      const sujet: JSON = <JSON><unknown>{
+        "coDirecteurId": this.sujet.coDirecteur,
+        "formationDoctoraleId": this.sujet.formationDoctorale,
+        "titre": this.sujet.titre,
+        "description": this.sujet.description
+      }
+      this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
+        this.sujets.push(this.sujet)
+      },
+        (err) => {
+          console.log(err)
+        }, () => {
+          this.form.reset()
+        })
+    }
+    //   this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
+    //     // for (var i = 0; i < this.sujets.length; i++) {
+
+    //     //   if (this.sujets[i].id === this.sujet.id) {
+
+    //     //     this.sujets[i] = this.sujet;
+    //     //   }
+
+    //     // }
+    //   },
+    //     (err) => {
+    //       console.log(err)
+    //     })
+    // }
   }
+
 }
