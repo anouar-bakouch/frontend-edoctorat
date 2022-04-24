@@ -1,8 +1,10 @@
+import { Commission } from "./Commission";
 
 
 export interface Participe {
-
-    idProfesseur:number;
-    idCommission:number;
+    
+    id:number;
+    professeur:number;
+    commission:Commission;
 
 }
