@@ -5,6 +5,7 @@ import Result from 'src/app/models/Result';
 import { CandidatParcoursService } from '../../services/candidat-parcours.service';
 import { CountriesService } from '../../services/countries.service';
 import {DiplomeType} from 'src/app/enums/DiplomeType';
+import { MentionEnum } from 'src/app/enums/MentionEnum';
 
 @Component({
   selector: '[app-bac]',
@@ -121,11 +122,24 @@ export class BacComponent implements OnInit {
     this.candidatBacForm.enable();
   }
 
-   Checkmention(mention:number){
+   public Checkmention(mention:number):MentionEnum.AB | MentionEnum.B | MentionEnum.TB | MentionEnum.E | undefined{
 
    if (mention >= 12 && mention < 14){
-     return 'assez bien'
+     return MentionEnum.AB
    }
+
+   if (mention >= 14 && mention < 16){
+    return MentionEnum.B
+  }
+
+  if (mention >= 16 && mention < 18){
+    return MentionEnum.TB
+  }
+
+  if (mention >= 18 && mention < 20){
+    return MentionEnum.E
+  }
+
 
    }
 
