@@ -1,12 +1,13 @@
+import { Professeur } from "./Professeur";
 
 
 export interface Commission {
 
-   idCommission:number;
+   id:number;
    dateCommission:string;
    heure:string; 
    valider:boolean;
    lieu:string;
-   idLabo:number; 
-
+   labo:number; 
+   professeurs:Professeur[];
 }
