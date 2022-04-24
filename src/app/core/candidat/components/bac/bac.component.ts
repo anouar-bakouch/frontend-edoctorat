@@ -73,6 +73,21 @@ export class BacComponent implements OnInit {
       this.candidatBac = this.result.results[index];
       this.BacExist = true;
       this.candidatBacForm.disable();
+      
+      this.candidatBacForm.get('intitule')?.setValue(this.candidatBac?.intitule);
+      this.candidatBacForm.get('type')?.setValue(this.candidatBac?.type);
+      this.candidatBacForm.get('mention')?.setValue(this.candidatBac?.mention);
+      this.candidatBacForm.get('moyen_generale')?.setValue(this.candidatBac?.moyen_generale);
+      this.candidatBacForm.get('pays')?.setValue(this.candidatBac?.pays);
+      this.candidatBacForm.get('dateCommission')?.setValue(this.candidatBac?.dateCommission);
+      this.candidatBacForm.get('etablissement')?.setValue(this.candidatBac?.etablissement);
+      this.candidatBacForm.get('specialite')?.setValue(this.candidatBac?.specialite);
+      this.candidatBacForm.get('province')?.setValue(this.candidatBac?.province);
+      this.candidatBacForm.get('ville')?.setValue(this.candidatBac?.ville);
+
+
+      
+
       }
 
       else {
@@ -102,7 +117,17 @@ export class BacComponent implements OnInit {
     return this.countries;
   }
 
+  enableUpdate(){
+    this.candidatBacForm.enable();
+  }
 
+   Checkmention(mention:number){
+
+   if (mention >= 12 && mention < 14){
+     return 'assez bien'
+   }
+
+   }
 
 
 }

@@ -13,8 +13,9 @@
                     
                     class="form-control form-control-sm dateBac"
                     required="" id="intitule"
-                    
                     formControlName="intitule"
+                    value="candidatBac.intitule"
+
                     />
             </div>
         </div>
@@ -85,7 +86,6 @@
                 <input type="date"  value=""
                     class="form-control form-control-sm dateBac"
                     required="" id="id_date_diplome_bac"
-                    
                     formControlName="dateCommission"
                     />
             </div>
@@ -127,7 +127,6 @@
             <input type="text" name="province" value=""
             class="form-control form-control-sm" maxlength="50"
             required="" id="id_ville_bac" 
-            
             formControlName="province"
             />
         </div>
@@ -158,7 +157,6 @@
                 <input 
                 type="text" 
                 formControlName="etablissement"
-                value=""
                     class="
 form-control form-control-sm
 etablissementBac
@@ -174,7 +172,6 @@ etablissementBac
                 <input type="number"
                    step=".01" max="20.0"
                     formControlName="bac_diplome"
-                    value=""
                     class="form-control form-control-sm" maxlength="50"
                     required="" id="id_moyenne_bac" />
             </div>
@@ -188,7 +185,6 @@ etablissementBac
             <input class="form-control diplomeBac" type="file"
                 
                 formControlName="bac_diplome"
-
                 required
                 accept="application/pdf" />
 
@@ -206,10 +202,11 @@ etablissementBac
         </div>
     </div>
 
-    <div class="col-6 d-flex justify-content-between align-items-center">
+    <div class="col col-sm-12 col-lg-6 d-flex justify-content-between align-items-center">
         
-        <button class="btn btn-primary m-auto" type="submit">confirmer</button>
-        <button [disabled]="!BacExist " class="btn btn-primary m-auto" type="button"><i class="bi bi-pencil-square"></i> modifier</button>
+        <button class="btn btn-primary btn-sm" type="submit">confirmer</button>
+        <button (click)="enableUpdate()" [disabled]="!BacExist " class="btn btn-primary btn-sm" type="button"><i class="bi bi-pencil-square"></i> modifier</button>
+
     </div>
 
 
