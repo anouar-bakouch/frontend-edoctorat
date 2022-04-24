@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { CountriesService } from '../../services/countries.service';
 
 @Component({
@@ -15,18 +15,19 @@ export class BacComponent implements OnInit {
   private countries:any;
   public _cities:Array<string> = [];
 
-  private selectedCountry!:string;
 
   public candidatBacForm = this.fservice.group({
 
-
-    titre : [''],
-    date_obtention : [''],
-    pays : [''],
-    ville : [''],
-    province : [''],
-    mention : [''],
-    lycee:[''],
+    intitule :['baccalauréat'] , 
+    type : ['',Validators.required],
+    dateCommission : ['',Validators.required],
+    pays : ['',Validators.required],
+    ville : ['',Validators.required],
+    province : ['',Validators.required],
+    mention : ['',Validators.required],
+    etablissement :['',Validators.required],
+    specialite : ['',Validators.required],
+    moyen_generale : ['',Validators.required],
     bac_diplome : [''],
     releves :['']
 
@@ -40,6 +41,9 @@ export class BacComponent implements OnInit {
       this.countries = res.data;
      }
    )
+
+   this.candidatBacForm.get('intitule')?.disable();
+
   }
 
   getCities(){
@@ -52,12 +56,12 @@ export class BacComponent implements OnInit {
   
     }
 
-
-
 get _countries(){
    
   return this.countries;
 }
+
+
  
 
 }

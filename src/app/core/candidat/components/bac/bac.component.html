@@ -1,14 +1,29 @@
-<div class="form-card">
+<div class="form-card my-3">
     <h3 class="text-primary mt-3 border border-primary text-center p-3">BACCALAUREAT</h3>
  <form [formGroup]="candidatBacForm">
     <div class="row">
         
-        <div class="col-sm-3 col-lg-6 mb-3">
+        <div class="col-sm-9 col-lg-4">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="intitule">Intitulé</label>
+
+                <input type="text" 
+                    
+                    class="form-control form-control-sm dateBac"
+                    required="" id="intitule"
+                    
+                    formControlName="intitule"
+                    />
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-lg-4 mb-3">
             <div class="form-group required ">
              
                 <label class="col-form-label-sm control-label"
                     for="id_bac">Type</label>
-                <select formControlName="titre"
+                <select formControlName="type"
                     class="form-control  form-control-sm" required=""
                     id="id_bac">
             
@@ -61,7 +76,7 @@
 
         </div>
 
-        <div class="col-sm-9 col-lg-6">
+        <div class="col-sm-9 col-lg-4">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
                     for="id_date_diplome_bac">Date D'obtention Du Bac</label>
@@ -70,7 +85,7 @@
                     class="form-control form-control-sm dateBac"
                     required="" id="id_date_diplome_bac"
                     
-                    formControlName="date_obtention"
+                    formControlName="dateCommission"
                     />
             </div>
         </div>
@@ -102,6 +117,7 @@
                    </select>
 
         </div>
+
     </div>
 
     <div class="col-4">
@@ -137,10 +153,10 @@
         <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_nom_bac">Lycée </label>
+                    for="id_nom_bac">etablissement </label>
                 <input 
                 type="text" 
-                formControlName="lycee"
+                formControlName="etablissement"
                 value=""
                     class="
 form-control form-control-sm
