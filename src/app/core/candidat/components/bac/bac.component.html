@@ -14,9 +14,17 @@
                     class="form-control form-control-sm dateBac"
                     required="" id="intitule"
                     formControlName="intitule"
-                    value="candidatBac.intitule"
-
+            
                     />
+            </div>
+        </div>
+
+        <div class="col-sm-9 col-lg-4">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_date_diplome_bac">Type</label>
+                    <input class="form-control form-control-sm" type="text" formControlName="type">
+                
             </div>
         </div>
 
@@ -28,22 +36,14 @@
                 <select formControlName="specialite"
                     class="form-control  form-control-sm" 
                     >
-                    <option [selected]="candidatBac?.intitule === 'bac' ? 'true' : 'false' " [value]="t" *ngFor="let t of bacTypes">{{t}}
-                    </option>
+                    <option [selected]="candidatBac?.intitule === t ? 'true' : 'false' " [value]="t" *ngFor="let t of bacTypes">{{t}}
+                   </option>
 
                 </select>
             </div>
 
         </div>
 
-        <div class="col-sm-9 col-lg-4">
-            <div class="form-group required">
-                <label class="col-form-label-sm control-label"
-                    for="id_date_diplome_bac">Type</label>
-                    <input class="form-control form-control-sm" type="text" formControlName="type" value="baccaulauréat">
-                
-            </div>
-        </div>
 
     </div>
 
@@ -68,7 +68,7 @@
                 for="id_Province_bac">Pays</label>
             <select (change)="getCities()"  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
 
-                <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
+                <option [selected]="candidatBac?.pays === country ? 'true' : 'false' " value="{{country.country}}" *ngFor="let country of _countries">{{country.country}} {{candidatBac?.pays}} </option>
          
             </select>
         </div>
@@ -81,7 +81,7 @@
 
                 <select class="form-control form-control-sm" formControlName="ville">
            
-                    <option value="{{city}}" *ngFor="let city of _cities">{{city}}</option>
+                    <option [selected]="candidatBac?.ville === city ? 'true' : 'false' " value="{{city}}" *ngFor="let city of _cities">{{city}} {{candidatBac?.ville }}</option>
                   
                    </select>
 
@@ -109,8 +109,9 @@
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
                     for="id_mentionbac">Mention:</label>
-                <select formControlName="mention" class="form-control form-control-sm" required="" id="id_mentionbac">
-                    <option *ngFor="let m of mentions">{{m}}</option>
+                <select formControlName="mention" class="form-control form-control-sm" id="id_mentionbac">
+                    <option [selected]="candidatBac?.mention === m ? 'true' : 'false' " [value]="m" *ngFor="let m of mentions">{{m}}
+                    </option>
                 </select>
             </div>
         </div>
@@ -136,7 +137,7 @@ etablissementBac
                     Baccalauréat:</label>
                 <input type="number"
                    step=".01" max="20.0"
-                    formControlName="bac_diplome"
+                    formControlName="moyen_generale"
                     class="form-control form-control-sm" maxlength="50"
                     required="" id="id_moyenne_bac" />
             </div>

@@ -45,7 +45,7 @@ export class BacComponent implements OnInit {
   public candidatBacForm = this.fservice.group({
 
     intitule: ['baccalauréat'],
-    type: [null, Validators.required],
+    type: ['baccalauréat', Validators.required],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: [0, Validators.required],
@@ -62,6 +62,8 @@ export class BacComponent implements OnInit {
   ngOnInit(): void {
 
     this.candidatBacForm.get('intitule')?.disable();
+    this.candidatBacForm.get('type')?.disable();
+
     this.httpCountries.getCountries().
       subscribe(
         res => {
@@ -82,7 +84,6 @@ export class BacComponent implements OnInit {
       this.candidatBac = this.result.results[index];
       this.BacExist = true;
       this.candidatBacForm.disable();
-      
       this.candidatBacForm.get('intitule')?.setValue(this.candidatBac?.intitule);
       this.candidatBacForm.get('type')?.setValue(this.candidatBac?.type);
       this.candidatBacForm.get('mention')?.setValue(this.candidatBac?.mention);
@@ -93,7 +94,6 @@ export class BacComponent implements OnInit {
       this.candidatBacForm.get('specialite')?.setValue(this.candidatBac?.specialite);
       this.candidatBacForm.get('province')?.setValue(this.candidatBac?.province);
       this.candidatBacForm.get('ville')?.setValue(this.candidatBac?.ville);
-
       
       
 
@@ -128,6 +128,8 @@ export class BacComponent implements OnInit {
 
   enableUpdate(){
     this.candidatBacForm.enable();
+    this.candidatBacForm.get('intitule')?.disable();
+    this.candidatBacForm.get('type')?.disable();
   }
 
    public Checkmention(mention:number){
