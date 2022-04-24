@@ -10,23 +10,17 @@ import { Sujet } from 'src/app/models/Sujet';
   providedIn: 'root'
 })
 export class OperationsService {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'   // this is our token from the UserService (see Part 1)
-    })
-  };
-  // normally we need to get sujets by id of prof
-  // http://127.0.0.1:8000/api/professeurs/id_professeur
-  // private _url: string = 'http://127.0.0.1:8000/api/professeurs/1';
-  // private _url: string = 'http://129.151.236.119';
-  private _url: string = 'http://127.0.0.1:8000';
-  private _url2:string = 'http://127.0.0.1:8000';
-  // private _url2: string = 'http://129.151.236.119';
+
+
+  private _url: string = 'http://129.151.236.119';
+  // private _url: string = 'http://127.0.0.1:8000';
+  // private _url2:string = 'http://127.0.0.1:8000';
+  private _url2: string = 'http://129.151.236.119';
   constructor(private http: HttpClient) { }
 
   public getFormationDoctorales(): Observable<Result<FormationDoctorale>> {
-    let _url = 'http://127.0.0.1:8000/api/formation-doctorale/';
-    return this.http.get<Result<FormationDoctorale>>(_url);
+    // let _url = 'http://127.0.0.1:8000/api/formation-doctorale/';
+    return this.http.get<Result<FormationDoctorale>>(this._url + '/api/formation-doctorale/');
 
   }
 
