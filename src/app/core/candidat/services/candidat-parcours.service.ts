@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Diplome } from 'src/app/models/Diplome';
+import Result from 'src/app/models/Result';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,7 +15,20 @@ export class CandidatParcoursService {
 
   //http://129.151.236.119/api/candidat-parcours/
 
-  //bac
+  //diplomes
+
+  getDiplomes():Promise<Result<Diplome>>{
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<Result<Diplome>>(`${environment.API_URL}/api/candidat-info/`)
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => reject(err),
+        });
+    });
+  }
 
 
   addDiplome(diplome:Diplome):Promise<Diplome> {
@@ -50,8 +64,5 @@ export class CandidatParcoursService {
    deleteDiplome(diplome:Diplome):Observable<Diplome>{
      return this.http.delete<Diplome>(`${environment.API_URL}/api/candidat-parcours/${diplome.idDiplome}`);
    }
-
-
-
 
 }
