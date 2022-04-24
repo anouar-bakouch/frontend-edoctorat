@@ -19,6 +19,7 @@ export class ProfSujetComponent implements OnInit {
   public sujets: Sujet[] = [];
   public professeurs: Professeur[] = [];
   public formationDoctorales: FormationDoctorale[] = [];
+
   public formationDoctorale: FormationDoctorale = {
     id: 0,
     ced: 0,
@@ -29,11 +30,13 @@ export class ProfSujetComponent implements OnInit {
     initiale: '',
     dateAccreditation: ''
   };
+
   user: UserProf = {
     username: '',
     first_name: '',
     last_name: ''
   };
+
   public prof: Professeur = {
     id: 0,
     nom: '',
@@ -111,12 +114,11 @@ export class ProfSujetComponent implements OnInit {
   public form = new FormGroup({
     titre: new FormControl("", [Validators.required, Validators.minLength(2)]),
     description: new FormControl("", [Validators.required, Validators.minLength(2)]),
-    coDirecteur: new FormControl(null),
+    coDirecteur: new FormControl(""),
     formationDoctorale: new FormControl("", [Validators.required])
   })
 
   arrayRemove = (arr: Professeur[]) => {
-    console.log(this.currentProfesseur)
     return arr.filter((ele) => {
       return ele.id !== this.currentProfesseur.id;
     });
