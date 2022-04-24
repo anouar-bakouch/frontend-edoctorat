@@ -75,6 +75,32 @@ export class ProfSujetComponent implements OnInit {
     },
     publier: false
   };
+  public sujet2: Sujet = {
+    id: 0,
+    professeur: {
+      id: 0,
+      nom: '',
+      prenom: ''
+    },
+    coDirecteur: {
+      id: 0,
+      nom: '',
+      prenom: ''
+    },
+    titre: '',
+    description: '',
+    formationDoctorale: {
+      id: 0,
+      ced: 0,
+      etablissement: 0,
+      axeDeRecherche: '',
+      pathImage: '',
+      titre: '',
+      initiale: '',
+      dateAccreditation: ''
+    },
+    publier: false
+  };
   public result: Result<any> = {
     count: 0,
     next: null,
@@ -90,7 +116,7 @@ export class ProfSujetComponent implements OnInit {
   })
 
   arrayRemove = (arr: Professeur[]) => {
-
+    console.log(this.currentProfesseur)
     return arr.filter((ele) => {
       return ele.id !== this.currentProfesseur.id;
     });
@@ -108,12 +134,12 @@ export class ProfSujetComponent implements OnInit {
 
 
   fun = (content: any, s: Sujet) => {
-    this.sujet = s
+    this.sujet2 = s
     this.form.setValue({
       titre: s.titre,
       description: s.description,
-      coDirecteur: s.coDirecteur,
-      formationDoctorale: s.formationDoctorale
+      coDirecteur: null,
+      formationDoctorale: null
     });
     this.open(content)
   }
@@ -138,7 +164,7 @@ export class ProfSujetComponent implements OnInit {
     this.operationsService.getSujets().subscribe(data => {
       this.result = data;
       this.sujets = this.result.results;
-      this.currentProfesseur = this.sujets[0].professeur
+      // this.currentProfesseur = this.sujets[1].professeur
       console.log(this.sujets)
     })
   }
@@ -152,6 +178,7 @@ export class ProfSujetComponent implements OnInit {
     this.operationsService.getProfesseurs().subscribe(data => {
       this.result = data;
       this.professeurs = this.result.results;
+      console.log(this.professeurs)
       var result = this.arrayRemove(this.professeurs);
       this.professeurs = result
     })
@@ -191,21 +218,6 @@ export class ProfSujetComponent implements OnInit {
           this.form.reset()
         })
     }
-
-    // get the formation doctoral and coDericteur in add sujets without reload
-
-    // this.operationsService.getformDoct(this.sujet.formationDoctorale).subscribe((data) => {
-    //   this.sujet.formationDoctorale = data
-    // },
-    // (err) => {
-    // })
-
-    // this.operationsService.getProfesseur(this.sujet.coDirecteur).subscribe((data) => {
-    //   this.sujet.coDirecteur = data
-    //   console.log(this.coDirecteur);
-    // })
-
-
   }
 
   onClickDelete(s: Sujet) {
@@ -226,22 +238,21 @@ export class ProfSujetComponent implements OnInit {
   }
   onClickUpdate() {
     this.sujet = this.form.value
-    // const sujet: JSON = <JSON><unknown>{
-    //   "coDirecteurId": this.sujet.coDirecteur,
-    //   "formationDoctoraleId": this.sujet.formationDoctorale,
-    //   "titre": this.sujet.titre,
-    //   "description": this.sujet.description
-    // }
     if (this.sujet.coDirecteur === null) {
-      // console.log('hii')
       const sujet: JSON = <JSON><unknown>{
-        // "coDirecteurId": this.sujet.coDirecteur,
         "formationDoctoraleId": this.sujet.formationDoctorale,
         "titre": this.sujet.titre,
         "description": this.sujet.description
       }
-      this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
-        this.sujets.push(this.sujet)
+      this.operationsService.updateSujet(sujet, this.sujet2.id).subscribe((data) => {
+        for (var i = 0; i < this.sujets.length; i++) {
+
+          if (this.sujets[i].id === this.sujet2.id) {
+
+            this.sujets[i] = this.sujet;
+          }
+
+        }
       },
         (err) => {
           console.log(err)
@@ -255,8 +266,16 @@ export class ProfSujetComponent implements OnInit {
         "titre": this.sujet.titre,
         "description": this.sujet.description
       }
-      this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
-        this.sujets.push(this.sujet)
+      console.log(sujet)
+      this.operationsService.updateSujet(sujet, this.sujet2.id).subscribe((data) => {
+        for (var i = 0; i < this.sujets.length; i++) {
+
+          if (this.sujets[i].id === this.sujet2.id) {
+
+            this.sujets[i] = this.sujet;
+          }
+
+        }
       },
         (err) => {
           console.log(err)
@@ -264,20 +283,5 @@ export class ProfSujetComponent implements OnInit {
           this.form.reset()
         })
     }
-    //   this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
-    //     // for (var i = 0; i < this.sujets.length; i++) {
-
-    //     //   if (this.sujets[i].id === this.sujet.id) {
-
-    //     //     this.sujets[i] = this.sujet;
-    //     //   }
-
-    //     // }
-    //   },
-    //     (err) => {
-    //       console.log(err)
-    //     })
-    // }
   }
-
 }
