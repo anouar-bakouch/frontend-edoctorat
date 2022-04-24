@@ -142,10 +142,7 @@
                 <label class="col-form-label-sm control-label"
                     for="id_mentionbac">Mention:</label>
                 <select formControlName="mention" class="form-control form-control-sm" required="" id="id_mentionbac">
-                    <option value="Passable">Passable</option>
-                    <option value="Assez bien">Assez Bien</option>
-                    <option value="Bien">Bien</option>
-                    <option value="Très bien">Très Bien</option>
+                    <option *ngFor="let m of mentions">{{m}}</option>
                 </select>
             </div>
         </div>

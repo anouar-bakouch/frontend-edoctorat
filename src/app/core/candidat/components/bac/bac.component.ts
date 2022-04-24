@@ -6,6 +6,7 @@ import { CandidatParcoursService } from '../../services/candidat-parcours.servic
 import { CountriesService } from '../../services/countries.service';
 import {DiplomeType} from 'src/app/enums/DiplomeType';
 import { MentionEnum } from 'src/app/enums/MentionEnum';
+import { CandidatService } from '../../services/candidat.service';
 
 @Component({
   selector: '[app-bac]',
@@ -18,7 +19,8 @@ export class BacComponent implements OnInit {
   constructor(
     private httpCountries: CountriesService,
     private fservice: FormBuilder,
-    private candidatParcours : CandidatParcoursService
+    private candidatParcours : CandidatParcoursService,
+    private candidatService : CandidatService
     ) { }
 
   private countries: any;
@@ -32,6 +34,7 @@ export class BacComponent implements OnInit {
     previous: null,
     results: []
   }
+  public mentions = this.candidatService.mentions;
 
 
   public candidatBacForm = this.fservice.group({
@@ -40,9 +43,9 @@ export class BacComponent implements OnInit {
     type: ['', Validators.required],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
-    ville: ['', Validators.required],
+    ville: [0, Validators.required],
     province: ['', Validators.required],
-    mention: ['', Validators.required],
+    mention: [0, Validators.required],
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
@@ -86,7 +89,7 @@ export class BacComponent implements OnInit {
       this.candidatBacForm.get('province')?.setValue(this.candidatBac?.province);
       this.candidatBacForm.get('ville')?.setValue(this.candidatBac?.ville);
 
-
+      
       
 
       }
@@ -122,7 +125,7 @@ export class BacComponent implements OnInit {
     this.candidatBacForm.enable();
   }
 
-   public Checkmention(mention:number):MentionEnum.AB | MentionEnum.B | MentionEnum.TB | MentionEnum.E | undefined{
+   public Checkmention(mention:number){
 
    if (mention >= 12 && mention < 14){
      return MentionEnum.AB
@@ -140,6 +143,7 @@ export class BacComponent implements OnInit {
     return MentionEnum.E
   }
 
+   return MentionEnum.P
 
    }
 

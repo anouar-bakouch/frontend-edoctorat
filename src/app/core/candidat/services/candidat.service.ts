@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MentionEnum } from 'src/app/enums/MentionEnum';
 import { Candidat } from 'src/app/models/Candidat';
 import { environment } from 'src/environments/environment';
 
@@ -38,4 +39,9 @@ export class CandidatService {
         });
     });
   }
+
+  public mentions = [MentionEnum.P,MentionEnum.AB,MentionEnum.B,MentionEnum.TB,MentionEnum.E];
+      
+  
+
 }
