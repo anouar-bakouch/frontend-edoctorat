@@ -1,5 +1,6 @@
-<div class="form-card">
+<div class="form-card my-3">
     <h3 class="text-primary mt-3 border border-primary text-center p-3">BACCALAUREAT</h3>
+    
  <form [formGroup]="candidatBacForm">
     <div class="row">
         
@@ -205,9 +206,10 @@ etablissementBac
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-6 d-flex justify-content-between align-items-center">
         
-        <button class="btn btn-primary m-auto" type="button">confirmer</button>
+        <button class="btn btn-primary m-auto" type="submit">confirmer</button>
+        <button [disabled]="!BacExist " class="btn btn-primary m-auto" type="button"><i class="bi bi-pencil-square"></i> modifier</button>
     </div>
 
 

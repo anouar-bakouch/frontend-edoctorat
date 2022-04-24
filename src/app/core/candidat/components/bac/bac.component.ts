@@ -4,6 +4,7 @@ import { Diplome } from 'src/app/models/Diplome';
 import Result from 'src/app/models/Result';
 import { CandidatParcoursService } from '../../services/candidat-parcours.service';
 import { CountriesService } from '../../services/countries.service';
+import {DiplomeType} from 'src/app/enums/DiplomeType';
 
 @Component({
   selector: '[app-bac]',
@@ -21,7 +22,9 @@ export class BacComponent implements OnInit {
 
   private countries: any;
   public _cities: Array<string> = [];
-  private candidatDiplome : Diplome [] = [];
+  public candidatBac : Diplome | undefined;
+  public message !: string;
+  public BacExist:boolean = false;
   public result: Result<any> = {
     count: 0,
     next: null,
@@ -62,12 +65,22 @@ export class BacComponent implements OnInit {
      
       this.result = res;
 
-      console.log(res);
+      const index = this.result.results.findIndex((object: any) => {
+        return object.type === DiplomeType.BAC;
+      });
 
-      console.log(this.result.results);
+      if(index !== -1) {
+      this.candidatBac = this.result.results[index];
+      this.BacExist = true;
+      this.candidatBacForm.disable();
+      }
 
-      
-      
+      else {
+        this.message = 'vous pouvez continuer a modifier votre parcours'
+        this.BacExist = false;
+      }
+
+          
       })
     
     

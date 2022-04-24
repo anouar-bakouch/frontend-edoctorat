@@ -1,6 +1,6 @@
-enum DiplomeType {
+export enum DiplomeType {
   BAC = 'baccalauréat',
-  DUT = 'dUT',
+  DUT = 'dut',
   CI = 'cycle ingénieur',
   LICENCE = 'licence',
   MASTER = 'master',

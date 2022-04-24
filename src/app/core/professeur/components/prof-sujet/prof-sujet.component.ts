@@ -114,7 +114,7 @@ export class ProfSujetComponent implements OnInit {
   public form = new FormGroup({
     titre: new FormControl("", [Validators.required, Validators.minLength(2)]),
     description: new FormControl("", [Validators.required, Validators.minLength(2)]),
-    coDirecteur: new FormControl(null),
+    coDirecteur: new FormControl(""),
     formationDoctorale: new FormControl("", [Validators.required])
   })
 
