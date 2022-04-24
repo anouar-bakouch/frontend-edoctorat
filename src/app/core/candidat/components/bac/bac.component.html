@@ -24,53 +24,11 @@
             <div class="form-group required ">
              
                 <label class="col-form-label-sm control-label"
-                    for="id_bac">Type</label>
-                <select formControlName="type"
-                    class="form-control  form-control-sm" required=""
-                    id="id_bac">
-            
-                    <option value="Sciences Maths B">Sciences Maths B
-                    </option>
-
-                    <option value="Sciences Maths A">Sciences Maths A
-                    </option>
-                    <option value="Sciences de la Vie et de la Terre">
-                        Sciences de la Vie et de la Terre
-                    </option>
-
-                    <option value="Sciences Physiques et Chimiques">
-                        Sciences
-                        Physiques et Chimiques
-                    </option>
-                    <option value="Sciences Economiques">Sciences
-                        Economiques
-                    </option>
-
-                    <option
-                        value="Techniques de Gestion et de Comptabilité">
-                        Techniques de Gestion et de Comptabilité
-                    </option>
-                    <option value="Sciences agronomiques">Sciences
-                        agronomiques
-                    </option>
-
-                    <option
-                        value="Sciences et Technologies Electriques">
-                        Sciences et Technologies Electriques
-                    </option>
-                    <option value="Sciences et Technologies Mécaniques">
-                        Sciences et Technologies Mécaniques
-                    </option>
-                    <option value="Arts Appliqués">Arts Appliqués
-                    </option>
-                    <option value="Sciences Humaines">Sciences Humaines
-                    </option>
-                    <option value="Sciences de la Chariaâ">Sciences de
-                        la
-                        Chariaâ
-                    </option>
-                    <option value="Sciences de Langue Arabe">Sciences de
-                        Langue Arabe
+                    for="id_bac">Specialité</label>
+                <select formControlName="specialite"
+                    class="form-control  form-control-sm" 
+                    >
+                    <option [selected]="candidatBac?.intitule === 'bac' ? 'true' : 'false' " [value]="t" *ngFor="let t of bacTypes">{{t}}
                     </option>
 
                 </select>
@@ -79,6 +37,19 @@
         </div>
 
         <div class="col-sm-9 col-lg-4">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_date_diplome_bac">Type</label>
+                    <input class="form-control form-control-sm" type="text" formControlName="type" value="baccaulauréat">
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-lg-3">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
                     for="id_date_diplome_bac">Date D'obtention Du Bac</label>
@@ -91,10 +62,7 @@
             </div>
         </div>
 
-    </div>
-
-    <div class="row mb-3">
-    <div class="col-4">
+    <div class="col-3">
         <div class="form-group required">
             <label class="col-form-label-sm control-label"
                 for="id_Province_bac">Pays</label>
@@ -106,7 +74,7 @@
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-3">
         <div class="form-group required">
             <label class="col-form-label-sm control-label"
                 for="id_ville_bac">Ville</label>
@@ -121,7 +89,7 @@
 
     </div>
 
-    <div class="col-4">
+    <div class="col-3">
         <div class="form-group required">
             <label class="col-form-label-sm control-label">Province</label>
             <input type="text" name="province" value=""

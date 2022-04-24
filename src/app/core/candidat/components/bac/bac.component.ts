@@ -23,6 +23,7 @@ export class BacComponent implements OnInit {
     private candidatService : CandidatService
     ) { }
 
+
   private countries: any;
   public _cities: Array<string> = [];
   public candidatBac : Diplome | undefined;
@@ -34,13 +35,17 @@ export class BacComponent implements OnInit {
     previous: null,
     results: []
   }
-  public mentions = this.candidatService.mentions;
 
+  public mentions = this.candidatService.mentions;
+  public bacTypes = this.candidatService.TypeBac;
+
+
+  //remember that type will always be bac in this case so in case of post 
 
   public candidatBacForm = this.fservice.group({
 
     intitule: ['baccalauréat'],
-    type: ['', Validators.required],
+    type: [null, Validators.required],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: [0, Validators.required],
@@ -147,5 +152,8 @@ export class BacComponent implements OnInit {
 
    }
 
-
+   
 }
+
+
+
