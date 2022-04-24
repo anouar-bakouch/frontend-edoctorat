@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { Commission } from 'src/app/models/Commission';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
+import { Participe } from 'src/app/models/Participe';
 import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
@@ -12,10 +14,10 @@ import { Sujet } from 'src/app/models/Sujet';
 export class OperationsService {
 
 
-  private _url: string = 'http://129.151.236.119';
-  // private _url: string = 'http://127.0.0.1:8000';
-  // private _url2:string = 'http://127.0.0.1:8000';
-  private _url2: string = 'http://129.151.236.119';
+  // private _url: string = 'http://129.151.236.119';
+  private _url: string = 'http://127.0.0.1:8000';
+  private _url2:string = 'http://127.0.0.1:8000';
+  // private _url2: string = 'http://129.151.236.119';
   constructor(private http: HttpClient) { }
 
   public getFormationDoctorales(): Observable<Result<FormationDoctorale>> {
@@ -59,5 +61,15 @@ export class OperationsService {
 
   }
 
+  public getParticipes(): Observable<Result<Participe>> {
 
+    return this.http.get<Result<Participe>>(this._url + '/api/participe/');
+
+  }
+
+  public getCommission(id:number): Observable<Commission> {
+
+    return this.http.get<Commission>(this._url + '/api/commission/'+id+'/');
+
+  }
 }
