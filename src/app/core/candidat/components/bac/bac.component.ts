@@ -62,6 +62,10 @@ export class BacComponent implements OnInit {
      
       this.result = res;
 
+      console.log(res);
+
+      console.log(this.result.results);
+
       
       
       })

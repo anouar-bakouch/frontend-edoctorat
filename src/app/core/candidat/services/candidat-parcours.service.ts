@@ -20,7 +20,7 @@ export class CandidatParcoursService {
   getDiplomes():Promise<Result<Diplome>>{
     return new Promise((resolve, reject) => {
       this.http
-        .get<Result<Diplome>>(`${environment.API_URL}/api/candidat-info/`)
+        .get<Result<Diplome>>(`${environment.API_URL}/api/candidat-parcours/`)
         .subscribe({
           next: (data) => {
             resolve(data);
