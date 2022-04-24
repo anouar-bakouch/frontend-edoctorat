@@ -6,6 +6,7 @@
         type="button"
         (click)="open(mymodal)"
       >
+      <i class="bi bi-plus-square-dotted"></i>
         ajouter un sujet
       </button>
     </div>
@@ -33,17 +34,19 @@
             class="d-flex flex-wrap justify-content-between align-items-center"
           >
             <button
-              class="btn btn-primary btn-sm mb-3"
+              class="btn btn-primary btn-sm my-1"
               type="button"
               (click)="fun(mymodal1, s)"
             >
+            <i class="bi bi-pencil-square"></i>
               modifier
             </button>
             <button
-              class="btn btn-primary btn-sm"
+              class="btn btn-primary btn-sm my-1"
               type="button"
               (click)="onClickDelete(s)"
             >
+            <i class="bi bi-x-lg"></i>
               supprimer
             </button>
           </td>

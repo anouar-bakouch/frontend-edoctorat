@@ -8,6 +8,7 @@ import UserInfo from 'src/app/models/UserInfo';
   templateUrl: './header-prof.component.html',
   styleUrls: ['./header-prof.component.css'],
 })
+
 export class HeaderProfComponent {
 
   public prof!: UserInfo;
@@ -16,7 +17,6 @@ export class HeaderProfComponent {
     authService.currentUserSubjet
       .pipe(filter((u) => u !== undefined))
       .subscribe((uinfo) => (this.prof = uinfo!));
-
   }
 
 }
