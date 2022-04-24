@@ -66,9 +66,9 @@
         <div class="form-group required">
             <label class="col-form-label-sm control-label"
                 for="id_Province_bac">Pays</label>
-            <select (change)="getCities()"  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
+            <select  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
 
-                <option [selected]="candidatBac?.pays === country ? 'true' : 'false' " value="{{country.country}}" *ngFor="let country of _countries">{{country.country}} {{candidatBac?.pays}} </option>
+                <option [selected]="candidatBac?.pays === country ? 'true' : 'false' " value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
          
             </select>
         </div>
@@ -79,11 +79,7 @@
             <label class="col-form-label-sm control-label"
                 for="id_ville_bac">Ville</label>
 
-                <select class="form-control form-control-sm" formControlName="ville">
-           
-                    <option [selected]="candidatBac?.ville === city ? 'true' : 'false' " value="{{city}}" *ngFor="let city of _cities">{{city}} {{candidatBac?.ville }}</option>
-                  
-                   </select>
+               <input class="form-control form-control-sm" type="text" formControlName="ville" />
 
         </div>
 

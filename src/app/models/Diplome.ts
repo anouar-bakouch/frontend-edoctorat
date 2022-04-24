@@ -1,4 +1,4 @@
-
+import { Annexe } from "./Annexe";
 
 export interface Diplome {
 
@@ -14,6 +14,7 @@ export interface Diplome {
     ville:string;
     province:string;
     moyen_generale:number;
+    annexe : Annexe;
 
 
 }

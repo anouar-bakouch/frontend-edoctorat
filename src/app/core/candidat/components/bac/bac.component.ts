@@ -7,6 +7,7 @@ import { CountriesService } from '../../services/countries.service';
 import {DiplomeType} from 'src/app/enums/DiplomeType';
 import { MentionEnum } from 'src/app/enums/MentionEnum';
 import { CandidatService } from '../../services/candidat.service';
+import { Annexe } from 'src/app/models/Annexe';
 
 @Component({
   selector: '[app-bac]',
@@ -94,8 +95,18 @@ export class BacComponent implements OnInit {
       this.candidatBacForm.get('specialite')?.setValue(this.candidatBac?.specialite);
       this.candidatBacForm.get('province')?.setValue(this.candidatBac?.province);
       this.candidatBacForm.get('ville')?.setValue(this.candidatBac?.ville);
-      
-      
+         
+     
+
+      const annexe:Annexe = {
+        idAnnexe:0,
+        idDiplome:0,
+        typeAnnexe:'',
+        titre:'',
+        pathFile:''
+      };
+
+      annexe = this.candidatBac.
 
       }
 
@@ -111,15 +122,6 @@ export class BacComponent implements OnInit {
 
   }
 
-  getCities() {
-
-    const index = this._countries.findIndex((object: any) => {
-      return object.country === this.candidatBacForm.get('pays')?.value;
-    });
-
-    this._cities = this._countries[index].cities;
-
-  }
 
   get _countries() {
 
@@ -132,27 +134,7 @@ export class BacComponent implements OnInit {
     this.candidatBacForm.get('type')?.disable();
   }
 
-   public Checkmention(mention:number){
-
-   if (mention >= 12 && mention < 14){
-     return MentionEnum.AB
-   }
-
-   if (mention >= 14 && mention < 16){
-    return MentionEnum.B
-  }
-
-  if (mention >= 16 && mention < 18){
-    return MentionEnum.TB
-  }
-
-  if (mention >= 18 && mention < 20){
-    return MentionEnum.E
-  }
-
-   return MentionEnum.P
-
-   }
+ 
 
    
 }
