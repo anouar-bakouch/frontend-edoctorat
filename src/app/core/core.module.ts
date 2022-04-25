@@ -18,6 +18,9 @@ import { ProfesseurModule } from './professeur/profeseur.module';
   ],
   exports : [
     ProfesseurModule,
+    DirecteurCedModule,
+    DirecteurLaboModule,
+    DirecteurPoleModule,
     CandidatModule
   ]
 })

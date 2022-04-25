@@ -1,7 +1,7 @@
 <div class="form-card my-3">
     <h3 class="text-primary mt-3 border border-primary text-center p-3">BACCALAUREAT</h3>
     
- <form [formGroup]="candidatBacForm">
+ <form [formGroup]="candidatBacForm" (ngSubmit)="addBac()">
     <div class="row">
         
         <div class="col-sm-9 col-lg-4">

@@ -46,7 +46,7 @@
         <div class="form-group required">
             <label class="col-form-label-sm control-label"
                 for="id_Province_dut">Pays</label>
-            <select (change)="getCities()"  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
+            <select  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
 
                 <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
          

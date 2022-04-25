@@ -57,6 +57,7 @@ export class BacComponent implements OnInit {
     titre: '',
     pathFile: ''
   }
+
   public bac:Diplome = {
     idDiplome: 0,
     intitule: '',
@@ -95,7 +96,6 @@ export class BacComponent implements OnInit {
 
     this.candidatBacForm.get('intitule')?.disable();
     this.candidatBacForm.get('type')?.disable();
-
     this.httpCountries.getCountries().
       subscribe(
         res => {
@@ -161,13 +161,10 @@ export class BacComponent implements OnInit {
   addBac(){
     this.errorText = undefined;
     this.isUpdating = true;
+
     let formdata = this.candidatBacForm.toFormData();
-
-    
-
-    
-   
-    this.candidatParcours.addDiplome(this.candidatBacForm).then(res=>{
+  
+    this.candidatParcours.addDiplome(formdata).then(res=>{
 
       console.log(res);
 
