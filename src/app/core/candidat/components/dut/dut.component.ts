@@ -34,7 +34,7 @@ export class DutComponent implements OnInit {
   public _cities: Array<string> = [];
   public candidatDut : Diplome | undefined;
   public message !: string;
-  public BacExist:boolean = false;
+  public DutExist:boolean = false;
 
   public mentions = this.candidatService.mentions;
   public TypesDut = this.candidatService.TypeDut;
@@ -77,9 +77,15 @@ export class DutComponent implements OnInit {
         }
       )
 
+    this.getDutInfo();
+    
 
+  }
+
+  getDutInfo(){
     this.candidatParcours.getDiplomes().then(res=>{
      
+      this.isFetchingInfo = false;
       this.result = res;
 
       const index = this.result.results.findIndex((object: any) => {
@@ -87,9 +93,9 @@ export class DutComponent implements OnInit {
       });
 
       if(index !== -1) {
-
+      
       this.candidatDut = this.result.results[index];
-      this.BacExist = true;
+      this.DutExist = true;
       this.candidatDutForm.disable();
       this.candidatDutForm.get('intitule')?.setValue(this.candidatDut?.intitule);
       this.candidatDutForm.get('type')?.setValue(this.candidatDut?.type);
@@ -110,16 +116,12 @@ export class DutComponent implements OnInit {
 
       else {
         this.message = 'vous pouvez continuer a modifier votre parcours'
-        this.BacExist = false;
+        this.DutExist = false;
       }
 
           
       })
-    
-    
-
   }
-
 
   get _countries() {
 

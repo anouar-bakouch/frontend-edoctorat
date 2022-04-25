@@ -181,9 +181,9 @@ etablissementBac
 
     <div class="col col-sm-12 col-lg-6 d-flex justify-content-between align-items-center">
         
-        <button class="btn btn-primary btn-sm" type="submit">confirmer</button>
+        <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-check-circle"></i> confirmer</button>
         <button (click)="enableUpdate()" [disabled]="!BacExist " class="btn btn-primary btn-sm" type="button"><i class="bi bi-pencil-square"></i> modifier</button>
-        <button class="btn btn-danger btn-sm" type="submit"><i class="bi bi-x-circle"></i> supprimer</button>
+        <button [disabled]="!BacExist " class="btn btn-danger btn-sm" type="submit"><i class="bi bi-x-circle"></i> supprimer</button>
        
     </div>
 
