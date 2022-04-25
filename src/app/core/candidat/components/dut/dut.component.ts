@@ -32,12 +32,11 @@ export class DutComponent implements OnInit {
 
   private countries: any;
   public _cities: Array<string> = [];
-  public candidatBac : Diplome | undefined;
+  public candidatDut : Diplome | undefined;
   public message !: string;
   public BacExist:boolean = false;
 
   public mentions = this.candidatService.mentions;
-  public bacTypes = this.candidatService.TypeBac;
 
 
   //remember that type will always be bac in this case so in case of post 
@@ -85,28 +84,28 @@ export class DutComponent implements OnInit {
       this.result = res;
 
       const index = this.result.results.findIndex((object: any) => {
-        return object.type === DiplomeType.BAC;
+        return object.type === DiplomeType.DUT;
       });
 
       if(index !== -1) {
 
-      this.candidatBac = this.result.results[index];
+      this.candidatDut = this.result.results[index];
       this.BacExist = true;
       this.candidatDutForm.disable();
-      this.candidatDutForm.get('intitule')?.setValue(this.candidatBac?.intitule);
-      this.candidatDutForm.get('type')?.setValue(this.candidatBac?.type);
-      this.candidatDutForm.get('mention')?.setValue(this.candidatBac?.mention);
-      this.candidatDutForm.get('moyen_generale')?.setValue(this.candidatBac?.moyen_generale);
-      this.candidatDutForm.get('pays')?.setValue(this.candidatBac?.pays);
-      this.candidatDutForm.get('dateCommission')?.setValue(this.candidatBac?.dateCommission);
-      this.candidatDutForm.get('etablissement')?.setValue(this.candidatBac?.etablissement);
-      this.candidatDutForm.get('specialite')?.setValue(this.candidatBac?.specialite);
-      this.candidatDutForm.get('province')?.setValue(this.candidatBac?.province);
-      this.candidatDutForm.get('ville')?.setValue(this.candidatBac?.ville);
+      this.candidatDutForm.get('intitule')?.setValue(this.candidatDut?.intitule);
+      this.candidatDutForm.get('type')?.setValue(this.candidatDut?.type);
+      this.candidatDutForm.get('mention')?.setValue(this.candidatDut?.mention);
+      this.candidatDutForm.get('moyen_generale')?.setValue(this.candidatDut?.moyen_generale);
+      this.candidatDutForm.get('pays')?.setValue(this.candidatDut?.pays);
+      this.candidatDutForm.get('dateCommission')?.setValue(this.candidatDut?.dateCommission);
+      this.candidatDutForm.get('etablissement')?.setValue(this.candidatDut?.etablissement);
+      this.candidatDutForm.get('specialite')?.setValue(this.candidatDut?.specialite);
+      this.candidatDutForm.get('province')?.setValue(this.candidatDut?.province);
+      this.candidatDutForm.get('ville')?.setValue(this.candidatDut?.ville);
          
-      const annexe:Annexe | undefined =  this.candidatBac?.annexe;
+      const annexe:Annexe | undefined =  this.candidatDut?.annexe;
 
-      console.log(this.candidatBac?.annexe);
+      console.log(this.candidatDut?.annexe);
 
       }
 
