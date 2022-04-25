@@ -1,164 +1,56 @@
-<div class="horizontal-menu">
-        <nav class="navbar top-navbar col-lg-12 col-12 p-0">
-          <div class="container">
-            <div
-              class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center"
-            >
-              <a class="navbar-brand brand-logo" href="/">
-                <img
-                class="bi me-2" width="300" height="70"
-                  src="/assets/images/usmba-logo.png"
-                  alt="logo"
-                />
-               
-              </a>
-            </div>
-            <div
-              class="navbar-menu-wrapper d-flex align-items-center justify-content-end"
-            >
-              <ul class="navbar-nav mr-lg-2">
-                <li class="nav-item nav-search d-none d-lg-block">
-                  <div class="input-group"></div>
-                </li>
-              </ul>
-              <ul class="navbar-nav navbar-nav-right d-flex flex-row">
-                <li class="nav-item nav-profile dropdown ">
-                  <a
-                    class="nav-link d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-                    id="profileDropdown"
-                    href="#"
-                    data-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <div class="nav-profile-img">
-                      <!-- <img src="${prof.pathPhoto}" alt="image" /> -->
-                      <img src="/assets/images/home/calendrier/etudiant_calendrier.jpg" alt="image" class="bi me-2" width="40" height="32"/>
-                    </div>
-                    <div class="nav-profile-text">
-                      <p class="text-black font-weight-semibold m-0">
-                        <!-- ${prof.nomProfesseur} ${prof.prenomProfesseur} -->
-                        nomProfesseur 
-                      </p>
-                    </div>
-                  </a>
-                  <div
-                    class="dropdown-menu navbar-dropdown"
-                    aria-labelledby="profileDropdown"
-                  >
-                    <a class="dropdown-item" href="#">
-                      <i class="mdi mdi-cached mr-2 text-success"></i> Activity
-                      Log
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                      <i class="mdi mdi-logout mr-2 text-primary"></i> Signout
-                    </a>
-                  </div>
-                </li>
-                <div class="container-fluid justify-content-end mt-2">
-                  <a href="/sign_out" class="deconnexion" style="display: flex">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="27"
-                      height="27"
-                      fill="currentColor"
-                      class="bi bi-box-arrow-right"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </ul>
-              <button
-                class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
-                type="button"
-                data-toggle="horizontal-menu-toggle"
-              >
-                <span class="mdi mdi-menu"></span>
-              </button>
-            </div>
+<div class="container-fluid">
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand"> <img
+      class="img-fluid img-thumbnail"
+      src="/assets/images/usmba-logo.png"
+      width="180"
+      height="40"
+      alt=""
+      srcset=""
+    /></a>
+    <div class="d-flex justify-content-around align-items-center w-70">
+      <img
+      class="img-thumbnail mx-3"
+      [src]="  '/assets/images/unknown_pic.jpg' " alt="image prof"
+      width="50"
+      height="50"
+      alt=""
+      srcset=""
+    />
+    <div class="d-flex justify-content-center align-items-center ">
+    <span class="text-start"></span>
+  </div> 
+
+    <button class="btn btn-primary btn-sm mx-3" type="button">
+      <i class="bi bi-box-arrow-right"></i>
+      deconnexion
+    </button>
+     
+    </div>
+  </div>
+</nav>
+</div>     
+
+<div class="d-flex justify-content-center align-items-center border border-primary">
+<nav class="navbar navbar-expand-lg navbar-light text-primary">
+    <div class="container-fluid">
+      <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+
+             <button class="btn btn-outline-primary mx-3" routerLinkActive="active" routerLink="/pole/sujets" type="button">Sujets</button>
+             <button class="btn btn-outline-primary mx-3" routerLinkActive="active" routerLink="/pole/candidat">Candidats</button>
+             <button class="btn btn-outline-primary mx-3" routerLinkActive="active" routerLink="/pole/commission">Commissions</button>
+             <button class="btn btn-outline-primary mx-3" routerLinkActive="active" routerLink="/pole/calendrier">Calendrier</button>
+             <button class="btn btn-outline-primary mx-3" routerLinkActive="active" routerLink="/pole/communiquer">Communiquer</button>
+             <button class="btn btn-outline-primary mx-3" routerLinkActive="active" routerLink="/pole/inscription" >Inscription</button>
+        
           </div>
-        </nav>
-        <nav class="bottom-navbar navbar navbar-expand-lg">
-          <div class="container justify-content-md-center">
-            <ul class="nav page-navigation justify-content-md-center align-items-center ">
-              <li class="nav-item" >
-                <a class="nav-link" routerLink="/pole/sujets">
-                  <i class="mdi mdi-compass-outline menu-icon"></i>
-                  <span class="menu-title">Sujets</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="/pole/candidat" class="nav-link">
-                  <i class="mdi mdi-monitor-dashboard menu-icon"></i>
-                  <span class="menu-title">Candidats</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/pole/commission">
-                  <i class="mdi mdi-chart-bar menu-icon"></i>
-                  <span class="menu-title">Comissions</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/pole/calendrier">
-                  <i class="fas fa-calendar-alt menu-icon"></i>
-                  <span class="menu-title">Calendrier</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/pole/communiquer">
-                  <i class="fas fa-paper-plane menu-icon"></i>
-                  <span class="menu-title">Communiquer</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/pole/inscription">
-                  <i class="fas fa-address-card menu-icon"></i>
-                  <span class="menu-title">Inscription</span>
-                </a>
-              </li>
-
-              <!-- <li class="nav-item">
-                <div class="nav-link d-flex">
-                  <div class="nav-item dropdown">
-                    <a
-                      class="nav-link count-indicator dropdown-toggle text-white font-weight-semibold"
-                      id="notificationDropdown"
-                      href="#"
-                      data-toggle="dropdown"
-                    >
-                      Francais
-                    </a>
-                    <div
-                      class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                      aria-labelledby="notificationDropdown"
-                    >
-                      <a class="dropdown-item" href="#">
-                        <i class="flag-icon flag-icon-bl mr-3"></i> Francais
-                      </a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">
-                        <i class="flag-icon flag-icon-ma mr-3"></i> Arabe
-                      </a>
-                    </div>
-                  </div>
-                  <a class="text-white" href="/"
-                    ><i class="mdi mdi-home-circle"></i
-                  ></a>
-                </div>
-              </li> -->
-            </ul>
-          </div>
-        </nav>
       </div>
+    </div>
+  </nav>
+  </div>
+
