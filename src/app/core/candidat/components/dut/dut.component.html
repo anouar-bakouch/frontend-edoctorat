@@ -1,7 +1,7 @@
 <div class="form-card my-3">
-    <h3 class="text-primary mt-3 border border-primary text-center p-3">BACCALAUREAT</h3>
+    <h3 class="text-primary mt-3 border border-primary text-center p-3">Diplome Universitaire de technologie</h3>
     <p  class="text-primary mt-3 border border-primary text-center p-3">
-        ne remplissez ce formulaire si vous seulement disposez dut sinon veuillez l'ignorer
+        <i class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"></i> ne remplissez ce formulaire si vous seulement disposez dut sinon veuillez l'ignorer
     </p>
 
  <form [formGroup]="candidatDutForm" (ngSubmit)="addBac()">
@@ -39,7 +39,7 @@
                 <select formControlName="specialite"
                     class="form-control  form-control-sm" 
                     >
-                    <option [selected]="candidatDut?.intitule === t ? 'true' : 'false' " [value]="t" *ngFor="let t of bacTypes">{{t}}
+                    <option [selected]="candidatDut?.intitule === t ? 'true' : 'false' " [value]="t" *ngFor="let t of TypesDut">{{t}}
                    </option>
 
                 </select>
@@ -55,7 +55,7 @@
         <div class="col-lg-3">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_date_diplome_bac">Date D'obtention Du Bac</label>
+                    for="id_date_diplome_bac">Date D'obtention Du Dut</label>
 
                 <input type="date"  value=""
                     class="form-control form-control-sm dateBac"
@@ -118,7 +118,7 @@
         <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_nom_bac">etablissement </label>
+                    for="id_nom_bac">etablissement / université </label>
                 <input 
                 type="text" 
                 formControlName="etablissement"
@@ -132,8 +132,8 @@ etablissementBac
         <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_moyenne_bac">Moyenne Générale du
-                    Baccalauréat:</label>
+                    for="id_moyenne_bac">Moyenne Générale des 
+                    4 semestres:</label>
                 <input type="number"
                    step=".01" max="20.0"
                     formControlName="moyen_generale"

@@ -37,6 +37,7 @@ export class DutComponent implements OnInit {
   public BacExist:boolean = false;
 
   public mentions = this.candidatService.mentions;
+  public TypesDut = this.candidatService.TypeDut;
 
 
   //remember that type will always be bac in this case so in case of post 
@@ -46,7 +47,6 @@ export class DutComponent implements OnInit {
   errorText: string | undefined;
   isFetchingInfo = true;
   public selectedFile: File | undefined;
-
 
 
   public candidatDutForm = <RxFormGroup> this.fservice.group({
@@ -62,7 +62,6 @@ export class DutComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    bac_diplome: [''],
     releves: ['']
 
   })

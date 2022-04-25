@@ -30,7 +30,6 @@ export class CandidatParcoursService {
     });
   }
 
-
   addDiplome(diplome:any):Promise<Result<Diplome>> {
     return new Promise((resolve, reject) => {
       this.http
