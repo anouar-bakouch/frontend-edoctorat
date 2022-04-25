@@ -50,7 +50,7 @@ export class BacComponent implements OnInit {
   isUpdating = false;
   permitUpdate = true;
   errorText: string | undefined;
-  isFetchingInfo = true;
+  public isFetchingInfo = true;
   public selectedFile: File | undefined;
   public annexe = {
     typeAnnexe : '',
@@ -103,9 +103,15 @@ export class BacComponent implements OnInit {
         }
       )
 
+     this.getBacInfo();
+    
 
+  }
+
+  getBacInfo(){
     this.candidatParcours.getDiplomes().then(res=>{
      
+      this.isFetchingInfo = false;
       this.result = res;
 
       const index = this.result.results.findIndex((object: any) => {
@@ -141,9 +147,6 @@ export class BacComponent implements OnInit {
 
           
       })
-    
-    
-
   }
 
 
