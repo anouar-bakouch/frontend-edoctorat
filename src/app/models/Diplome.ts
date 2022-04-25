@@ -3,7 +3,6 @@ import { Annexe } from "./Annexe";
 export interface Diplome {
 
     idDiplome:number;
-    cne:string;
     intitule:string;
     type:string;
     dateCommission:string;

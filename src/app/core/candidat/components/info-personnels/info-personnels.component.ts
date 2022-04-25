@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Candidat } from 'src/app/models/Candidat';
 import { CandidatService } from '../../services/candidat.service';
 import { CountriesService } from '../../services/countries.service';
@@ -15,12 +14,15 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./info-personnels.component.css'],
 })
 export class InfoPersonnelsComponent implements OnInit {
-  isUpdating = false;
-  permitUpdate = true;
-  errorText: string | undefined;
-  isFetchingInfo = true;
+
+  public isUpdating = false;
+  public permitUpdate = true;
+  public errorText: string | undefined;
+  public isFetchingInfo = true;
   private countries: any;
-  public selectedFile: File | undefined;
+  public selectedFile: File | undefined;  
+  public candidatInfo: Candidat | undefined;
+
   public candidatInfoForm = <RxFormGroup>this.fservice.group({
     prenom: [''],
     nom: [''],
@@ -44,8 +46,6 @@ export class InfoPersonnelsComponent implements OnInit {
     situation_familiale: [''],
     fonctionnaire: [''],
   });
-
-  public candidatInfo: Candidat | undefined;
 
   constructor(
     private httpCountries: CountriesService,
