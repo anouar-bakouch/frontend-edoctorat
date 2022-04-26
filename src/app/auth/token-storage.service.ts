@@ -39,9 +39,10 @@ export class TokenStorageService {
   public getRefreshToken(): string | undefined | null {
     return window.localStorage.getItem(REFRESH_TOKEN_KEY);
   }
+  public updateAuthToken(token: string) {
+    window.localStorage.setItem(TOKEN_KEY, token);
+  }
   public clearTokens() {
-    window.localStorage.removeItem(TOKEN_INSERT_DATE_TIME);
-    window.localStorage.removeItem(TOKEN_KEY);
-    window.localStorage.removeItem(REFRESH_TOKEN_KEY);
+    window.localStorage.clear();
   }
 }

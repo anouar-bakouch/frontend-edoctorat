@@ -14,7 +14,7 @@ import {
   SocialAuthServiceConfig,
 } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
-import { httpInterceptorProviders } from './shared/interceptors/index_';
+import { AUTH_INTERCEPTOR_PROVIDERS } from './shared/interceptors/authorization.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +27,7 @@ import { httpInterceptorProviders } from './shared/interceptors/index_';
     AppRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
   ],
   providers: [
     HttpService,
@@ -45,7 +45,7 @@ import { httpInterceptorProviders } from './shared/interceptors/index_';
         ],
       } as SocialAuthServiceConfig,
     },
-    httpInterceptorProviders,
+    AUTH_INTERCEPTOR_PROVIDERS,
   ],
   bootstrap: [AppComponent],
 })
