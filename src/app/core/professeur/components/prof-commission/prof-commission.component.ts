@@ -20,7 +20,7 @@ export class ProfCommissionComponent implements OnInit {
     valider: false,
     lieu: '',
     labo: 0,
-    professeurs: []
+    participants: []
   }
   public result: Result<any> = {
     count: 0,
@@ -36,33 +36,23 @@ export class ProfCommissionComponent implements OnInit {
   constructor(private operationsService: OperationsService) { }
 
   ngOnInit(): void {
-    this.getAllParticipes()
+    this.getCommissions()
   }
 
-  getAllParticipes() {
-    this.operationsService.getParticipes().subscribe(data => {
-      this.result = data;
-      this.participes = this.result.results;
-      this.currentProfesseur.id = this.participes[0].professeur
-      this.participes.forEach(p => {
-        this.getCommission(p.commission.id)
-      });
+  getCommissions(){
+    this.operationsService.getCommissions().subscribe(data => {
+      console.log(data)
+      this.commissions = data;
       console.log(this.commissions)
-    })
-  }
+      // for (var i = 0; i < this.commissions.participants.length; i++) {
 
-  getCommission(id: number){
-    this.operationsService.getCommission(id).subscribe(data => {
-      this.commission = data;
-      for (var i = 0; i < this.commission.professeurs.length; i++) {
+      //   if (this.commissions.participants[i].id === this.currentProfesseur.id) {
 
-        if (this.commission.professeurs[i].id === this.currentProfesseur.id) {
+      //     this.commissions.participants.splice(i, 1);
+      //   }
 
-          this.commission.professeurs.splice(i, 1);
-        }
-
-      }
-      this.commissions.push(this.commission)
+      // }
+      // this.commissions.push(this.commission)
     })
   }
 }

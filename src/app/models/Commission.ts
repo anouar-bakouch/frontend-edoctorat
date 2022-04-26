@@ -9,5 +9,5 @@ export interface Commission {
    valider:boolean;
    lieu:string;
    labo:number; 
-   professeurs:Professeur[];
+   participants:Professeur[];
 }
