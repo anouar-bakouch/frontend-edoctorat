@@ -121,7 +121,7 @@
                 <label class="col-form-label-sm control-label"
                     for="id_mentionbac">Mention:</label>
                 <select formControlName="mention" class="form-control form-control-sm" id="id_mentionbac">
-                    <option [selected]="candidatLicence?.mention === m ? 'true' : 'false' " [value]="m" *ngFor="let m of mentions">{{m}}
+                    <option [selected]="candidatLicence?.mention === m.value ? 'true' : 'false' " [value]="m.value" *ngFor="let m of mentions">{{m.value}}
                     </option>
                 </select>
             </div>

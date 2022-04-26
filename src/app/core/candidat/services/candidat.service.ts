@@ -43,12 +43,18 @@ export class CandidatService {
     });
   }
 
- // public DiplomeTypes = Object.keys(DutOption).map((key) => ({ key , value: DutOption[key] as keyof typeof DutOption }));
 
  public mentions = Object.keys(MentionEnum).map((name) => {
   return {
     name,
     value: MentionEnum[name as keyof typeof MentionEnum],
+  };
+});
+
+ public TypesBac = Object.keys(BacOption).map((name) => {
+  return {
+    name,
+    value: BacOption[name as keyof typeof BacOption],
   };
 });
 

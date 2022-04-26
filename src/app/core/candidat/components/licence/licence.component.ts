@@ -79,8 +79,7 @@ export class LicenceComponent implements OnInit {
       )
 
     this.getLicenceInfo();
-
-    console.log(this.candidatService.arr2)
+    alert(this.mentions)
     
 
   }
