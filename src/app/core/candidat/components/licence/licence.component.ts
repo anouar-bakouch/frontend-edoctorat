@@ -19,7 +19,7 @@ import {
   styleUrls: ['./licence.component.css']
 })
 
-export class CIngenieurComponent implements OnInit {
+export class LicenceComponent implements OnInit {
 
   result!: Result<Diplome>;
 
@@ -33,9 +33,9 @@ export class CIngenieurComponent implements OnInit {
 
   private countries: any;
   public _cities: Array<string> = [];
-  public candidatCI : Diplome | undefined;
+  public candidatLicence : Diplome | undefined;
   public message !: string;
-  public CIExist:boolean = false;
+  public LicenceExist:boolean = false;
 
   public mentions = this.candidatService.mentions;
   public TypesCI = this.candidatService.TypesCI;
@@ -50,7 +50,7 @@ export class CIngenieurComponent implements OnInit {
   public selectedFile: File | undefined;
 
 
-  public candidatCIForm = <RxFormGroup> this.fservice.group({
+  public candidatLicenceForm = <RxFormGroup> this.fservice.group({
 
     intitule: [DiplomeType.CI],
     type: [DiplomeType.CI, Validators.required],
@@ -69,8 +69,8 @@ export class CIngenieurComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.candidatCIForm.get('intitule')?.disable();
-    this.candidatCIForm.get('type')?.disable();
+    this.candidatLicenceForm.get('intitule')?.disable();
+    this.candidatLicenceForm.get('type')?.disable();
     this.httpCountries.getCountries().
       subscribe(
         res => {
@@ -96,29 +96,29 @@ export class CIngenieurComponent implements OnInit {
 
       if(index !== -1) {
       
-      this.candidatCI = this.result.results[index];
-      this.CIExist = true;
-      this.candidatCIForm.disable();
-      this.candidatCIForm.get('intitule')?.setValue(this.candidatCI?.intitule);
-      this.candidatCIForm.get('type')?.setValue(this.candidatCI?.type);
-      this.candidatCIForm.get('mention')?.setValue(this.candidatCI?.mention);
-      this.candidatCIForm.get('moyen_generale')?.setValue(this.candidatCI?.moyen_generale);
-      this.candidatCIForm.get('pays')?.setValue(this.candidatCI?.pays);
-      this.candidatCIForm.get('dateCommission')?.setValue(this.candidatCI?.dateCommission);
-      this.candidatCIForm.get('etablissement')?.setValue(this.candidatCI?.etablissement);
-      this.candidatCIForm.get('specialite')?.setValue(this.candidatCI?.specialite);
-      this.candidatCIForm.get('province')?.setValue(this.candidatCI?.province);
-      this.candidatCIForm.get('ville')?.setValue(this.candidatCI?.ville);
+      this.candidatLicence = this.result.results[index];
+      this.LicenceExist = true;
+      this.candidatLicenceForm.disable();
+      this.candidatLicenceForm.get('intitule')?.setValue(this.candidatLicence?.intitule);
+      this.candidatLicenceForm.get('type')?.setValue(this.candidatLicence?.type);
+      this.candidatLicenceForm.get('mention')?.setValue(this.candidatLicence?.mention);
+      this.candidatLicenceForm.get('moyen_generale')?.setValue(this.candidatLicence?.moyen_generale);
+      this.candidatLicenceForm.get('pays')?.setValue(this.candidatLicence?.pays);
+      this.candidatLicenceForm.get('dateCommission')?.setValue(this.candidatLicence?.dateCommission);
+      this.candidatLicenceForm.get('etablissement')?.setValue(this.candidatLicence?.etablissement);
+      this.candidatLicenceForm.get('specialite')?.setValue(this.candidatLicence?.specialite);
+      this.candidatLicenceForm.get('province')?.setValue(this.candidatLicence?.province);
+      this.candidatLicenceForm.get('ville')?.setValue(this.candidatLicence?.ville);
          
-      const annexe:Annexe | undefined =  this.candidatCI?.annexe;
+      const annexe:Annexe | undefined =  this.candidatLicence?.annexe;
 
-      console.log(this.candidatCI?.annexe);
+      console.log(this.candidatLicence?.annexe);
 
       }
 
       else {
         this.message = 'vous pouvez continuer a modifier votre parcours'
-        this.CIExist = false;
+        this.LicenceExist = false;
       }
 
           
@@ -131,16 +131,16 @@ export class CIngenieurComponent implements OnInit {
   }
 
   enableUpdate(){
-    this.candidatCIForm.enable();
-    this.candidatCIForm.get('intitule')?.disable();
-    this.candidatCIForm.get('type')?.disable();
+    this.candidatLicenceForm.enable();
+    this.candidatLicenceForm.get('intitule')?.disable();
+    this.candidatLicenceForm.get('type')?.disable();
   }
 
   addBac(){
     this.errorText = undefined;
     this.isUpdating = true;
 
-    let formdata = this.candidatCIForm.toFormData();
+    let formdata = this.candidatLicenceForm.toFormData();
   
     this.candidatParcours.addDiplome(formdata).then(res=>{
 
