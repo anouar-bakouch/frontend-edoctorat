@@ -17,7 +17,7 @@
             المقابل. إذا كان الأمر كذلك ، قم بتحميل مشروعك البحثي بتنسيق pdf </li>
     </ol>
 
-    <div class="col-12 mt-5">
+    <div class="col-12 mt-5 ">
     <table class="table table-responsive">
         <thead>
             <tr class="table-primary">
@@ -39,20 +39,32 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let s of sujets">
                 <td>
                     <input name="btSelectItem" type="checkbox" />
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                    {{s.id}}
+                </td>
+                <td>
+                    {{s.formationDoctorale.titre}}
+                </td>
+                <td>
+                    {{s.professeur.prenom}} {{s.professeur.nom}}
+                </td>
+                <td>
+                    {{s.titre}}
+                </td>
+                <td>
+                    {{s.formationDoctorale.ced}}
+                </td>
+                <td>
+                    {{s.formationDoctorale.titre}}
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-    <input type="button" name="postuler" class="postuler btn btn-primary" value="POSTULER" disabled />
+    <input type="button" name="postuler" class="postuler btn btn-primary my-3" value="POSTULER" disabled />
 </form>

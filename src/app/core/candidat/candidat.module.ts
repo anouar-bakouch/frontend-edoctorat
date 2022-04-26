@@ -27,6 +27,7 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { ProfilCandidatComponent } from './components/profil-candidat/profil-candidat.component';
 import { LicenceProComponent } from './components/licence-pro/licence-pro.component';
 import { MasterProComponent } from './components/master-pro/master-pro.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 

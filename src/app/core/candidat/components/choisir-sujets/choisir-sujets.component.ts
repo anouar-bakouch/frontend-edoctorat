@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Sujet } from 'src/app/models/Sujet';
+import { CandidatPostulerService } from '../../services/candidat-postuler.service';
 
 @Component({
   selector: '[app-choisir-sujets]',
@@ -8,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 
 export class ChoisirSujetsComponent implements OnInit {
 
-  constructor() { }
+ 
+  public sujets:Sujet[] = [];
+
+
+  constructor(public candidatPostuler : CandidatPostulerService) { }
 
   ngOnInit(): void {
+    this.getPublishedSujets();
+  }
+
+  getPublishedSujets(){
+     this.candidatPostuler.getPublishedSubjects().then(res=>{
+       this.sujets = res.results;
+     })
   }
 
 }
