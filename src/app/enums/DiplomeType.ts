@@ -1,3 +1,7 @@
+
+
+// before any update , talk to anouar about this file , because it is used widely !!!
+
 export enum DiplomeType {
 
   BAC = 'baccalauréat',
