@@ -24,6 +24,7 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { CandidatMainComponent } from './components/candidat-main/candidat-main.component';
 import { ContainerComponent } from './components/container/container.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { ProfilCandidatComponent } from './components/profil-candidat/profil-candidat.component';
 
 
 
@@ -47,7 +48,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     ChoisirSujetsComponent,
     NotificationsComponent,
     CandidatMainComponent,
-    ContainerComponent
+    ContainerComponent,
+    ProfilCandidatComponent
   ],
   imports: [
     CommonModule,
