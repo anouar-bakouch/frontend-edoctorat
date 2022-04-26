@@ -21,6 +21,7 @@ const routes: Routes = [
     redirectTo: 'candidat/info_personnels',
     pathMatch: 'full',
   },
+  { path: 'profil', component: ProfilCandidatComponent },
   {
     path: 'candidat',
     component: ContainerComponent,
