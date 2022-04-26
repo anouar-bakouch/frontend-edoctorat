@@ -30,11 +30,10 @@ export class CandidatParcoursService {
     });
   }
 
-
-  addDiplome(diplome:Diplome):Promise<Diplome> {
+  addDiplome(diplome:any):Promise<Result<Diplome>> {
     return new Promise((resolve, reject) => {
       this.http
-        .post<Diplome>(`${environment.API_URL}/api/candidat-parcours/`, diplome)
+        .post<Result<Diplome>>(`${environment.API_URL}/api/candidat-parcours/`, diplome)
         .subscribe({
           next: (data) => {
             resolve(data);

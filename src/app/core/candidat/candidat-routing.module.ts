@@ -14,6 +14,7 @@ import { LicenceComponent } from './components/licence/licence.component';
 import { MasterComponent } from './components/master/master.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { PostulerComponent } from './components/postuler/postuler.component';
+import { ProfilCandidatComponent } from './components/profil-candidat/profil-candidat.component';
 
 const routes: Routes = [
   {
@@ -21,14 +22,19 @@ const routes: Routes = [
     redirectTo: 'candidat/info_personnels',
     pathMatch: 'full',
   },
+  
+  { path: 'profil', component: ProfilCandidatComponent },
+
   {
     path: 'candidat',
+    
     component: ContainerComponent,
     canActivateChild: [IsCandidatGuard],
     children: [
       { path: 'info_personnels', component: InfoPersonnelsComponent },
       { path: 'postuler', component: PostulerComponent },
       { path: 'notifications', component: NotificationsComponent },
+      
 
       { path: 'parcours', redirectTo: 'parcours/bac', pathMatch: 'full' },
 

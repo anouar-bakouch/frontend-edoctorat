@@ -1,9 +1,8 @@
-
+import { Annexe } from "./Annexe";
 
 export interface Diplome {
 
     idDiplome:number;
-    cne:string;
     intitule:string;
     type:string;
     dateCommission:string;
@@ -14,6 +13,7 @@ export interface Diplome {
     ville:string;
     province:string;
     moyen_generale:number;
+    annexe : Annexe;
 
 
 }

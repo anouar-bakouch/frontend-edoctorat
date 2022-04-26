@@ -1,80 +1,112 @@
-<div class="form-card">
-    <h3 class="text-primary mt-3 border border-primary text-center p-3">Cycle Ingenieur</h3>
- <form [formGroup]="candidatIngenieureForm">
+<div *ngIf="isFetchingInfo">
+    <h4>
+      <img src="/assets/images/connexion/loading.webp" width="300" height="100" />
+    </h4>
+</div>
+
+<div *ngIf="!isFetchingInfo" class="row">
+    <h5
+      *ngIf="errorText"
+      class="col-sm-12 col-lg-5 text-light text-center bg-danger m-auto p-3"
+    >
+      {{ errorText }}
+    </h5>
+<div class="form-card my-3">
+    <h3 class="text-primary mt-3 border border-primary text-center p-3">Diplome d'ingénieur</h3>
+    <p  class="text-primary mt-3 border border-primary text-center p-3">
+        <i class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"></i> ne remplissez ce formulaire si vous seulement disposez d'un diplome d'ingénieur sinon veuillez l'ignorer
+    </p>
+
+ <form [formGroup]="candidatCIForm" (ngSubmit)="addBac()">
     <div class="row">
         
-        <div class="col-sm-3 col-lg-6 mb-3">
-            <div class="form-group required ">
-             
-                <label class="col-form-label-sm control-label"
-                    for="id_specialite">specialite</label>
-
-                   <input id="id_speciliate" formControlName="specialite" class="form-control form-control-sm" type="text" name="" />
-
-            </div>
-
-        </div>
-        <div class="col-sm-3 col-lg-6 mb-3">
-            <div class="form-group required ">
-             
-                <label class="col-form-label-sm control-label"
-                    for="id_specialite">Titre / Filiere</label>
-
-                   <input id="id_titrefiliere" formControlName="titrefiliere" class="form-control form-control-sm" type="text" name="" />
-
-            </div>
-
-        </div>
-
-        <div class="col-sm-9 col-lg-6">
+        <div class="col-sm-9 col-lg-4">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_date_ingenieur">Date D'obtention Du Diplôme:</label>
+                    for="intitule">Intitulé</label>
 
-                <input type="date"  value=""
-                    class="form-control form-control-sm dateDut"
-                    required="" id="id_titre_dut"
-                    formControlName="dateIngenieur"
+                <input type="text" 
+                    
+                    class="form-control form-control-sm dateBac"
+                    required="" id="intitule"
+                    formControlName="intitule"
+            
                     />
             </div>
         </div>
 
+        <div class="col-sm-9 col-lg-4">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_date_diplome_bac">Type</label>
+                    <input class="form-control form-control-sm" type="text" formControlName="type">
+                
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-lg-4 mb-3">
+            <div class="form-group required ">
+             
+                <label class="col-form-label-sm control-label"
+                    for="id_bac">Specialité</label>
+                <select formControlName="specialite"
+                    class="form-control  form-control-sm" 
+                    >
+                    <option [selected]="candidatCI?.intitule === t ? 'true' : 'false' " [value]="t" *ngFor="let t of TypesCI">{{t}}
+                   </option>
+
+                </select>
+            </div>
+
+        </div>
+
+
     </div>
 
     <div class="row mb-3">
-    <div class="col-4">
+
+        <div class="col-lg-3">
+            <div class="form-group required">
+                <label class="col-form-label-sm control-label"
+                    for="id_date_diplome_bac">Date D'obtention Du Cycle d'ingénieur</label>
+
+                <input type="date"  value=""
+                    class="form-control form-control-sm dateBac"
+                    required="" id="id_date_diplome_bac"
+                    formControlName="dateCommission"
+                    />
+            </div>
+        </div>
+
+    <div class="col-3">
         <div class="form-group required">
             <label class="col-form-label-sm control-label"
-                for="id_Province_ingenieur">Pays</label>
-            <select (change)="getCities()"  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
+                for="id_Province_bac">Pays</label>
+            <select  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
 
-                <option  value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
+                <option [selected]="candidatCI?.pays === country ? 'true' : 'false' " value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
          
             </select>
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-3">
         <div class="form-group required">
             <label class="col-form-label-sm control-label"
-                for="id_ville_ingenieur">Ville</label>
+                for="id_ville_bac">Ville</label>
 
-                <select class="form-control form-control-sm" formControlName="ville">
-           
-                    <option value="{{city}}" *ngFor="let city of _cities">{{city}}</option>
-                  
-                   </select>
+               <input class="form-control form-control-sm" type="text" formControlName="ville" />
 
         </div>
+
     </div>
 
-    <div class="col-4">
+    <div class="col-3">
         <div class="form-group required">
             <label class="col-form-label-sm control-label">Province</label>
             <input type="text" name="province" value=""
             class="form-control form-control-sm" maxlength="50"
-            required="" id="id_ville_ingenieur" 
-            
+            required="" id="id_ville_ci" 
             formControlName="province"
             />
         </div>
@@ -88,12 +120,10 @@
         <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_mention_ingenieur">Mention:</label>
-                <select formControlName="mention" class="form-control form-control-sm" required="" id="id_mentionbac">
-                    <option value="Passable">Passable</option>
-                    <option value="Assez bien">Assez Bien</option>
-                    <option value="Bien">Bien</option>
-                    <option value="Très bien">Très Bien</option>
+                    for="id_mentionbac">Mention:</label>
+                <select formControlName="mention" class="form-control form-control-sm" id="id_mentionbac">
+                    <option [selected]="candidatCI?.mention === m ? 'true' : 'false' " [value]="m" *ngFor="let m of mentions">{{m}}
+                    </option>
                 </select>
             </div>
         </div>
@@ -101,29 +131,27 @@
         <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    >Etablissement / Université </label>
+                    for="id_nom_bac">etablissement / université </label>
                 <input 
                 type="text" 
-                formControlName="Etablissement"
-                value=""
+                formControlName="etablissement"
                     class="
 form-control form-control-sm
 etablissementBac
-" maxlength="50" required="" id="id_nom_dut" />
+" maxlength="50" required="" id="id_nom_bac" />
             </div>
         </div>
 
         <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_moyenne_ingenieur">Moyenne Générale de tous les semestres:
-        </label>
+                    for="id_moyenne_bac">Moyenne Générale des 
+                    6 semestres:</label>
                 <input type="number"
                    step=".01" max="20.0"
-                    formControlName="ingenieur_note"
-                    value=""
+                    formControlName="moyen_generale"
                     class="form-control form-control-sm" maxlength="50"
-                    required="" id="id_moyenne_ingenieur" />
+                    required="" id="id_moyenne_ci" />
             </div>
         </div>
 
@@ -131,45 +159,37 @@ etablissementBac
    
     <div class="row mt-5">
         <div class="mb-3">
-            <label for="bac_dip" class="form-label">Diplôme Cycle Ingénieur pdf <span class="text-danger h6"> < 4MO </span></label>
-            <input class="form-control diplomeIngenieur" type="file"
-                
-                formControlName="ingenieur_diplome"
-
+            <label for="ci_dip" class="form-label">Diplôme d'ingénieur pdf <span class="text-danger h6"> < 4MO </span></label>
+            <input class="form-control diplomeci" type="file"
+                formControlName="ci_diplome"
                 required
                 accept="application/pdf" />
 
         </div>
 
         <div class="mb-3">
-            <label for="relDut" class="form-label">Relevés de notes pdf  <span class="text-danger h6"> < 4MO </span></label>
-            <input class="form-control releveIngeniure" type="file"
-                id="relDut"  accept="application/pdf"
+            <label for="relBac" class="form-label">Relevés de notes pdf  <span class="text-danger h6"> < 4MO </span></label>
+            <input class="form-control releveCI" type="file"
+                id="relBac"  accept="application/pdf"
                 required 
                 
-                formControlName="releves"
-
-                />
-        </div>
-        <div class="mb-3">
-            <label for="relIngenieur" class="form-label">Résumé Mémoire de PFE:pdf <span class="text-danger h6">  < 4MO </span></label>
-            <input class="form-control releveIngeniure" type="file"
-                id="relIngenieur"  accept="application/pdf"
-                required 
-                
-                formControlName="memoirepfe"
+                formControlName="releves_ci"
 
                 />
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col col-sm-12 col-lg-6 d-flex justify-content-between align-items-center">
         
-        <button class="btn btn-primary m-auto" type="button">confirmer</button>
+        <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-check-circle"></i> confirmer</button>
+        <button (click)="enableUpdate()" [disabled]="!CIExist " class="btn btn-primary btn-sm" type="button"><i class="bi bi-pencil-square"></i> modifier</button>
+        <button [disabled]="!CIExist " class="btn btn-danger btn-sm" type="submit"><i class="bi bi-x-circle"></i> supprimer</button>
+    
     </div>
 
 
 
 </form>
+</div>
 </div>
 
