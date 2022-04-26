@@ -33,12 +33,12 @@ export class CIngenieurComponent implements OnInit {
 
   private countries: any;
   public _cities: Array<string> = [];
-  public candidatDut : Diplome | undefined;
+  public candidatCI : Diplome | undefined;
   public message !: string;
-  public DutExist:boolean = false;
+  public CIExist:boolean = false;
 
   public mentions = this.candidatService.mentions;
-  public TypesCI = this.candidatService.TypeDut;
+  public TypesCI = this.candidatService.TypesCI;
 
 
   //remember that type will always be bac in this case so in case of post 
@@ -50,11 +50,10 @@ export class CIngenieurComponent implements OnInit {
   public selectedFile: File | undefined;
 
 
-  public candidatDutForm = <RxFormGroup> this.fservice.group({
+  public candidatCIForm = <RxFormGroup> this.fservice.group({
 
-
-    intitule: [DiplomeType.DUT],
-    type: [DiplomeType.DUT, Validators.required],
+    intitule: [DiplomeType.CI],
+    type: [DiplomeType.CI, Validators.required],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: ['', Validators.required],
@@ -63,15 +62,15 @@ export class CIngenieurComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    dut_diplome : [''],
-    releves_dut: ['']
+    CI_diplome : [''],
+    releves_CI: ['']
 
   })
 
   ngOnInit(): void {
 
-    this.candidatDutForm.get('intitule')?.disable();
-    this.candidatDutForm.get('type')?.disable();
+    this.candidatCIForm.get('intitule')?.disable();
+    this.candidatCIForm.get('type')?.disable();
     this.httpCountries.getCountries().
       subscribe(
         res => {
@@ -79,12 +78,12 @@ export class CIngenieurComponent implements OnInit {
         }
       )
 
-    this.getDutInfo();
+    this.getCIInfo();
     
 
   }
 
-  getDutInfo(){
+  getCIInfo(){
     this.candidatParcours.getDiplomes().then(res=>{
      
       console.log(res);
@@ -92,34 +91,34 @@ export class CIngenieurComponent implements OnInit {
       this.result = res;
 
       const index = this.result.results.findIndex((object: any) => {
-        return object.intitule === DiplomeType.DUT; // temporarly
+        return object.intitule === DiplomeType.CI; // temporarly
       });
 
       if(index !== -1) {
       
-      this.candidatDut = this.result.results[index];
-      this.DutExist = true;
-      this.candidatDutForm.disable();
-      this.candidatDutForm.get('intitule')?.setValue(this.candidatDut?.intitule);
-      this.candidatDutForm.get('type')?.setValue(this.candidatDut?.type);
-      this.candidatDutForm.get('mention')?.setValue(this.candidatDut?.mention);
-      this.candidatDutForm.get('moyen_generale')?.setValue(this.candidatDut?.moyen_generale);
-      this.candidatDutForm.get('pays')?.setValue(this.candidatDut?.pays);
-      this.candidatDutForm.get('dateCommission')?.setValue(this.candidatDut?.dateCommission);
-      this.candidatDutForm.get('etablissement')?.setValue(this.candidatDut?.etablissement);
-      this.candidatDutForm.get('specialite')?.setValue(this.candidatDut?.specialite);
-      this.candidatDutForm.get('province')?.setValue(this.candidatDut?.province);
-      this.candidatDutForm.get('ville')?.setValue(this.candidatDut?.ville);
+      this.candidatCI = this.result.results[index];
+      this.CIExist = true;
+      this.candidatCIForm.disable();
+      this.candidatCIForm.get('intitule')?.setValue(this.candidatCI?.intitule);
+      this.candidatCIForm.get('type')?.setValue(this.candidatCI?.type);
+      this.candidatCIForm.get('mention')?.setValue(this.candidatCI?.mention);
+      this.candidatCIForm.get('moyen_generale')?.setValue(this.candidatCI?.moyen_generale);
+      this.candidatCIForm.get('pays')?.setValue(this.candidatCI?.pays);
+      this.candidatCIForm.get('dateCommission')?.setValue(this.candidatCI?.dateCommission);
+      this.candidatCIForm.get('etablissement')?.setValue(this.candidatCI?.etablissement);
+      this.candidatCIForm.get('specialite')?.setValue(this.candidatCI?.specialite);
+      this.candidatCIForm.get('province')?.setValue(this.candidatCI?.province);
+      this.candidatCIForm.get('ville')?.setValue(this.candidatCI?.ville);
          
-      const annexe:Annexe | undefined =  this.candidatDut?.annexe;
+      const annexe:Annexe | undefined =  this.candidatCI?.annexe;
 
-      console.log(this.candidatDut?.annexe);
+      console.log(this.candidatCI?.annexe);
 
       }
 
       else {
         this.message = 'vous pouvez continuer a modifier votre parcours'
-        this.DutExist = false;
+        this.CIExist = false;
       }
 
           
@@ -132,16 +131,16 @@ export class CIngenieurComponent implements OnInit {
   }
 
   enableUpdate(){
-    this.candidatDutForm.enable();
-    this.candidatDutForm.get('intitule')?.disable();
-    this.candidatDutForm.get('type')?.disable();
+    this.candidatCIForm.enable();
+    this.candidatCIForm.get('intitule')?.disable();
+    this.candidatCIForm.get('type')?.disable();
   }
 
   addBac(){
     this.errorText = undefined;
     this.isUpdating = true;
 
-    let formdata = this.candidatDutForm.toFormData();
+    let formdata = this.candidatCIForm.toFormData();
   
     this.candidatParcours.addDiplome(formdata).then(res=>{
 

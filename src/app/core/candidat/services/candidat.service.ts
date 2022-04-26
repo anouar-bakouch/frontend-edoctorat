@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BacOption } from 'src/app/enums/BacOption';
+import { CIOption } from 'src/app/enums/CIOption';
 import { DutOption } from 'src/app/enums/DutOption';
 import { MentionEnum } from 'src/app/enums/MentionEnum';
 import { Candidat } from 'src/app/models/Candidat';
@@ -91,6 +92,33 @@ export class CandidatService {
                     DutOption.STID,
                     DutOption.TC
   ];                 
+
+  public TypesCI = [
+                   CIOption.E2I,
+                   CIOption.G2E,
+                   CIOption.GAi,
+                   CIOption.GC,
+                   CIOption.GEA,
+                   CIOption.GEEI,
+                   CIOption.GI,
+                   CIOption.GIL,
+                   CIOption.GInf,
+                   CIOption.GLT,
+                   CIOption.GM,
+                   CIOption.GMi,
+                   CIOption.GPEE,
+                   CIOption.GPM,
+                   CIOption.GSE,
+                   CIOption.GST,
+                   CIOption.GTR,
+                   CIOption.Ge,
+                   CIOption.Gme,
+                   CIOption.Gmul,
+                   CIOption.IG,
+                   CIOption.If,
+                   CIOption.MIAGE,
+                   CIOption.MT
+  ];
 
 
 
