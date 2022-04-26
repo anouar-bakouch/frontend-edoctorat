@@ -62,8 +62,8 @@ export class CIngenieurComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    CI_diplome : [''],
-    releves_CI: ['']
+    ci_diplome : [''],
+    releves_ci: ['']
 
   })
 

@@ -12,9 +12,9 @@
       {{ errorText }}
     </h5>
 <div class="form-card my-3">
-    <h3 class="text-primary mt-3 border border-primary text-center p-3">Diplome Universitaire de technologie</h3>
+    <h3 class="text-primary mt-3 border border-primary text-center p-3">Diplome d'ingénieur</h3>
     <p  class="text-primary mt-3 border border-primary text-center p-3">
-        <i class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"></i> ne remplissez ce formulaire si vous seulement disposez dut sinon veuillez l'ignorer
+        <i class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"></i> ne remplissez ce formulaire si vous seulement disposez d'un diplome d'ingénieur sinon veuillez l'ignorer
     </p>
 
  <form [formGroup]="candidatCIForm" (ngSubmit)="addBac()">
@@ -52,7 +52,7 @@
                 <select formControlName="specialite"
                     class="form-control  form-control-sm" 
                     >
-                    <option [selected]="candidatCi?.intitule === t ? 'true' : 'false' " [value]="t" *ngFor="let t of TypesDut">{{t}}
+                    <option [selected]="candidatCI?.intitule === t ? 'true' : 'false' " [value]="t" *ngFor="let t of TypesCI">{{t}}
                    </option>
 
                 </select>
@@ -84,7 +84,7 @@
                 for="id_Province_bac">Pays</label>
             <select  formControlName="pays" class="form-control form-control-sm" required="" id="id_Province_bac">
 
-                <option [selected]="candidatDut?.pays === country ? 'true' : 'false' " value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
+                <option [selected]="candidatCI?.pays === country ? 'true' : 'false' " value="{{country.country}}" *ngFor="let country of _countries">{{country.country}}</option>
          
             </select>
         </div>
@@ -122,7 +122,7 @@
                 <label class="col-form-label-sm control-label"
                     for="id_mentionbac">Mention:</label>
                 <select formControlName="mention" class="form-control form-control-sm" id="id_mentionbac">
-                    <option [selected]="candidatDut?.mention === m ? 'true' : 'false' " [value]="m" *ngFor="let m of mentions">{{m}}
+                    <option [selected]="candidatCI?.mention === m ? 'true' : 'false' " [value]="m" *ngFor="let m of mentions">{{m}}
                     </option>
                 </select>
             </div>
@@ -159,7 +159,7 @@ etablissementBac
    
     <div class="row mt-5">
         <div class="mb-3">
-            <label for="ci_dip" class="form-label">Diplôme Dut pdf <span class="text-danger h6"> < 4MO </span></label>
+            <label for="ci_dip" class="form-label">Diplôme d'ingénieur pdf <span class="text-danger h6"> < 4MO </span></label>
             <input class="form-control diplomeci" type="file"
                 formControlName="ci_diplome"
                 required
