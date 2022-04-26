@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   templateUrl: './info-personnels.component.html',
   styleUrls: ['./info-personnels.component.css'],
 })
+
 export class InfoPersonnelsComponent implements OnInit {
 
   public isUpdating = false;
