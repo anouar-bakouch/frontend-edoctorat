@@ -21,7 +21,6 @@ export class OperationsService {
   constructor(private http: HttpClient) { }
 
   public getFormationDoctorales(): Observable<Result<FormationDoctorale>> {
-    // let _url = 'http://127.0.0.1:8000/api/formation-doctorale/';
     return this.http.get<Result<FormationDoctorale>>(this._url + '/api/formation-doctorale/');
 
   }
@@ -61,15 +60,10 @@ export class OperationsService {
 
   }
 
-  public getParticipes(): Observable<Result<Participe>> {
 
-    return this.http.get<Result<Participe>>(this._url + '/api/participe/');
+  public getCommissions(): Observable<Commission[]> {
 
-  }
-
-  public getCommission(id:number): Observable<Commission> {
-
-    return this.http.get<Commission>(this._url + '/api/commission/'+id+'/');
+    return this.http.get<Commission[]>(this._url + '/api/participant/');
 
   }
 }
