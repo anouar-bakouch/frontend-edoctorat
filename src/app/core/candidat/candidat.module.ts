@@ -62,7 +62,8 @@ import { MasterProComponent } from './components/master-pro/master-pro.component
     CandidatRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    RxReactiveFormsModule
+    RxReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   exports : [
    CandidatComponent

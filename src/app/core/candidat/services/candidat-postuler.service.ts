@@ -17,7 +17,7 @@ export class CandidatPostulerService {
   getPublishedSubjects():Promise<Result<Sujet>>{
     return new Promise((resolve, reject) => {
       this.http
-        .get<Result<Sujet>>(`${environment.API_URL}/api/candidat-parcours/`)
+        .get<Result<Sujet>>(this._url)
         .subscribe({
           next: (data) => {
             resolve(data);
