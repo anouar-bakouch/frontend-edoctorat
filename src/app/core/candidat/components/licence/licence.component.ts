@@ -52,8 +52,8 @@ export class LicenceComponent implements OnInit {
 
   public candidatLicenceForm = <RxFormGroup> this.fservice.group({
 
-    intitule: [DiplomeType.CI],
-    type: [DiplomeType.CI, Validators.required],
+    intitule: [DiplomeType.LICENCE],
+    type: [DiplomeType.LICENCE, Validators.required],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: ['', Validators.required],
@@ -62,8 +62,8 @@ export class LicenceComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    ci_diplome : [''],
-    releves_ci: ['']
+    licence_diplome : [''],
+    releves_licence: ['']
 
   })
 
@@ -78,12 +78,14 @@ export class LicenceComponent implements OnInit {
         }
       )
 
-    this.getCIInfo();
+    this.getLicenceInfo();
+
+    console.log(this.candidatService.arr2)
     
 
   }
 
-  getCIInfo(){
+  getLicenceInfo(){
     this.candidatParcours.getDiplomes().then(res=>{
      
       console.log(res);
@@ -91,7 +93,7 @@ export class LicenceComponent implements OnInit {
       this.result = res;
 
       const index = this.result.results.findIndex((object: any) => {
-        return object.intitule === DiplomeType.CI; // temporarly
+        return object.type === DiplomeType.LICENCE; // temporarly
       });
 
       if(index !== -1) {

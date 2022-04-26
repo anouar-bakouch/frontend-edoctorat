@@ -25,6 +25,7 @@ import { CandidatMainComponent } from './components/candidat-main/candidat-main.
 import { ContainerComponent } from './components/container/container.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { ProfilCandidatComponent } from './components/profil-candidat/profil-candidat.component';
+import { LicenceProComponent } from './components/licence-pro/licence-pro.component';
 
 
 
@@ -49,7 +50,8 @@ import { ProfilCandidatComponent } from './components/profil-candidat/profil-can
     NotificationsComponent,
     CandidatMainComponent,
     ContainerComponent,
-    ProfilCandidatComponent
+    ProfilCandidatComponent,
+    LicenceProComponent
   ],
   imports: [
     CommonModule,

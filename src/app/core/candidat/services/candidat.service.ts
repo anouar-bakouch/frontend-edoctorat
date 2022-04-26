@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BacOption } from 'src/app/enums/BacOption';
 import { CIOption } from 'src/app/enums/CIOption';
+import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { DutOption } from 'src/app/enums/DutOption';
 import { MentionEnum } from 'src/app/enums/MentionEnum';
 import { Candidat } from 'src/app/models/Candidat';
@@ -42,7 +43,14 @@ export class CandidatService {
     });
   }
 
-  public mentions = [MentionEnum.P,MentionEnum.AB,MentionEnum.B,MentionEnum.TB,MentionEnum.E];
+ // public DiplomeTypes = Object.keys(DutOption).map((key) => ({ key , value: DutOption[key] as keyof typeof DutOption }));
+
+ public mentions = Object.keys(MentionEnum).map((name) => {
+  return {
+    name,
+    value: MentionEnum[name as keyof typeof MentionEnum],
+  };
+});
 
   public TypeBac:BacOption [] = [
                     BacOption.arA,
