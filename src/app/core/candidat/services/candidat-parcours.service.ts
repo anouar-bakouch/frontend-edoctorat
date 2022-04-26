@@ -9,13 +9,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 
+
 export class CandidatParcoursService {
 
   constructor(public http:HttpClient) { }
 
-  //http://129.151.236.119/api/candidat-parcours/
-
-  //diplomes
 
   getDiplomes():Promise<Result<Diplome>>{
     return new Promise((resolve, reject) => {
