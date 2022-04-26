@@ -62,7 +62,8 @@ export class DutComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    releves: ['']
+    dut_diplome : [''],
+    releves_dut: ['']
 
   })
 
@@ -85,11 +86,12 @@ export class DutComponent implements OnInit {
   getDutInfo(){
     this.candidatParcours.getDiplomes().then(res=>{
      
+      console.log(res);
       this.isFetchingInfo = false;
       this.result = res;
 
       const index = this.result.results.findIndex((object: any) => {
-        return object.type === DiplomeType.DUT;
+        return object.intitule === DiplomeType.DUT; // temporarly
       });
 
       if(index !== -1) {
