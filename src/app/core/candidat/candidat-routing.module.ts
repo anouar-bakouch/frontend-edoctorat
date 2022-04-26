@@ -35,8 +35,7 @@ const routes: Routes = [
       { path: 'postuler', component: PostulerComponent },
       { path: 'notifications', component: NotificationsComponent },
       
-
-      { path: 'parcours', redirectTo: 'parcours/bac', pathMatch: 'full' },
+      { path: 'parcours', redirectTo: 'parcours/BAC', pathMatch: 'full' },
 
       {
         path: 'parcours',
