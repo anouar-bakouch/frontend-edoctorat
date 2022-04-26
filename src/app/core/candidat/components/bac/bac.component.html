@@ -53,7 +53,7 @@
                 <select formControlName="specialite"
                     class="form-control  form-control-sm" 
                     >
-                    <option [selected]="candidatBac?.intitule === t ? 'true' : 'false' " [value]="t" *ngFor="let t of bacTypes">{{t}}
+                    <option [selected]="candidatBac?.intitule === t.value ? 'true' : 'false' " [value]="t.value" *ngFor="let t of bacTypes">{{t.value}}
                    </option>
 
                 </select>

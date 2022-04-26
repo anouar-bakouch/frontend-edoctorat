@@ -38,7 +38,7 @@ export class LicenceComponent implements OnInit {
   public LicenceExist:boolean = false;
 
   public mentions = this.candidatService.mentions;
-  public TypesCI = this.candidatService.TypesCI;
+  public TypesLicence = this.candidatService.TypesCI;
 
 
   //remember that type will always be bac in this case so in case of post 
@@ -86,8 +86,7 @@ export class LicenceComponent implements OnInit {
 
   getLicenceInfo(){
     this.candidatParcours.getDiplomes().then(res=>{
-     
-      console.log(res);
+
       this.isFetchingInfo = false;
       this.result = res;
 

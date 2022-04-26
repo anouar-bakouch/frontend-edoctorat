@@ -52,7 +52,7 @@
                 <select formControlName="specialite"
                     class="form-control  form-control-sm" 
                     >
-                    <option [selected]="candidatLicence?.intitule === t ? 'true' : 'false' " [value]="t" *ngFor="let t of TypesCI">{{t}}
+                    <option [selected]="candidatLicence?.intitule === t.value ? 'true' : 'false' " [value]="t.value" *ngFor="let t of TypesLicence">{{t.value}}
                    </option>
 
                 </select>

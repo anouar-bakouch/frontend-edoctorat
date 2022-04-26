@@ -51,89 +51,36 @@ export class CandidatService {
   };
 });
 
- public TypesBac = Object.keys(BacOption).map((name) => {
+ public TypeBac = Object.keys(BacOption).map((name) => {
   return {
     name,
     value: BacOption[name as keyof typeof BacOption],
   };
 });
 
-  public TypeBac:BacOption [] = [
-                    BacOption.arA,
-                    BacOption.sA,
-                    BacOption.sE,
-                    BacOption.sH,
-                    BacOption.scA,
-                    BacOption.scB,
-                    BacOption.slA,
-                    BacOption.slC,
-                    BacOption.spC,
-                    BacOption.stE,
-                    BacOption.stM,
-                    BacOption.svT,
-                    BacOption.tgC
-                  ];
-        
-  public TypeDut:DutOption [] = [ 
-                    DutOption.BPA,
-                    DutOption.BTP,
-                    DutOption.CEG,
-                    DutOption.CJ,
-                    DutOption.CPM,
-                    DutOption.DCE,
-                    DutOption.DEA,
-                    DutOption.DEC,
-                    DutOption.DI,
-                    DutOption.EE,
-                    DutOption.GACO,
-                    DutOption.GB,
-                    DutOption.GBOA,
-                    DutOption.GCCD,
-                    DutOption.GCGP,
-                    DutOption.GEII,
-                    DutOption.GI,
-                    DutOption.GLT,
-                    DutOption.GIM,
-                    DutOption.GMP,
-                    DutOption.GTE,
-                    DutOption.HSE,
-                    DutOption.MP,
-                    DutOption.IQ,
-                    DutOption.PEC,
-                    DutOption.QLIO,
-                    DutOption.RT,
-                    DutOption.SGM,
-                    DutOption.STID,
-                    DutOption.TC
-  ];                 
+ public TypeDut = Object.keys(DutOption).map((name) => {
+  return {
+    name,
+    value: DutOption[name as keyof typeof DutOption],
+  };
+});
 
-  public TypesCI = [
-                   CIOption.E2I,
-                   CIOption.G2E,
-                   CIOption.GAi,
-                   CIOption.GC,
-                   CIOption.GEA,
-                   CIOption.GEEI,
-                   CIOption.GI,
-                   CIOption.GIL,
-                   CIOption.GInf,
-                   CIOption.GLT,
-                   CIOption.GM,
-                   CIOption.GMi,
-                   CIOption.GPEE,
-                   CIOption.GPM,
-                   CIOption.GSE,
-                   CIOption.GST,
-                   CIOption.GTR,
-                   CIOption.Ge,
-                   CIOption.Gme,
-                   CIOption.Gmul,
-                   CIOption.IG,
-                   CIOption.If,
-                   CIOption.MIAGE,
-                   CIOption.MT
-  ];
+  public TypesCI = Object.keys(CIOption).map((name) => {
+    return {
+      name,
+      value: CIOption[name as keyof typeof CIOption],
+    };
+  });
 
+  public TypesDiplomes = Object.keys(DiplomeType).map((name) => {
+    return {
+      name,
+      value: DiplomeType[name as keyof typeof DiplomeType],
+    };
+  });
+  
+
+    
 
 
       

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CandidatService } from '../../services/candidat.service';
 
 @Component({
   selector: '[app-parcours]',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParcoursComponent implements OnInit {
 
-  constructor() { }
+  public parcours = this.candidatService.TypesDiplomes;;
+
+  constructor(public candidatService :CandidatService) { }
 
   ngOnInit(): void {
+   
   }
 
 }

@@ -21,6 +21,8 @@
           <li><a class="dropdown-item text-darkblue" routerLink="master" routerLinkActive="active">MASTER</a></li>
           <li><a class="dropdown-item text-darkblue" routerLink="cingenieur" routerLinkActive="active">CYCLE D'INGENIEURS</a></li>
           <li><a class="dropdown-item text-darkblue" routerLink="doctorat_medecine" routerLinkActive="active">DOCTORAT EN MEDECINE</a></li>
+          <li><a class="dropdown-item text-darkblue" [routerLink]="p.value" routerLinkActive="active" *ngFor="let p of parcours">{{p.value}}</a></li>
+          
         </ul>
       </li>
      
