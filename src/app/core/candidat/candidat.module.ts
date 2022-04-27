@@ -28,6 +28,7 @@ import { ProfilCandidatComponent } from './components/profil-candidat/profil-can
 import { LicenceProComponent } from './components/licence-pro/licence-pro.component';
 import { MasterProComponent } from './components/master-pro/master-pro.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -64,7 +65,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ReactiveFormsModule,
     FormsModule,
     RxReactiveFormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   exports : [
    CandidatComponent

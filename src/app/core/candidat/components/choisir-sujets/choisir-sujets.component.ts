@@ -15,6 +15,7 @@ export class ChoisirSujetsComponent implements OnInit {
   public labo:string = '';
   public formationDotorale:string = '';
   public sujet:string = '';
+  public page:number = 1;
 
   constructor(public candidatPostuler : CandidatPostulerService) { }
 

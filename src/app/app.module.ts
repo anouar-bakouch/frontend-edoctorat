@@ -15,6 +15,8 @@ import {
 } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { AUTH_INTERCEPTOR_PROVIDERS } from './shared/interceptors/authorization.interceptor';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +30,8 @@ import { AUTH_INTERCEPTOR_PROVIDERS } from './shared/interceptors/authorization.
     SharedModule,
     ReactiveFormsModule,
     SocialLoginModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [
     HttpService,
