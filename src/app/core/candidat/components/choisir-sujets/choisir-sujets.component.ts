@@ -12,7 +12,7 @@ export class ChoisirSujetsComponent implements OnInit {
 
  
   public sujets:Sujet[] = [];
-
+  public titre:string = '';
 
   constructor(public candidatPostuler : CandidatPostulerService) { }
 
@@ -23,7 +23,19 @@ export class ChoisirSujetsComponent implements OnInit {
   getPublishedSujets(){
      this.candidatPostuler.getPublishedSubjects().then(res=>{
        this.sujets = res.results;
+       this.titre =  this.sujets[0].titre;
      })
+  }
+
+  search(){
+    if(this.titre === ''){
+      this.ngOnInit();
+    }
+    else {
+      this.sujets = this.sujets.filter(res=>{
+        return res.titre.toLocaleLowerCase().match(this.titre.toLocaleLowerCase());
+      })
+    }
   }
 
 }
