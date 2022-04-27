@@ -12,7 +12,9 @@ export class ChoisirSujetsComponent implements OnInit {
 
  
   public sujets:Sujet[] = [];
-  public titre:string = '';
+  public labo:string = '';
+  public formationDotorale:string = '';
+  public sujet:string = '';
 
   constructor(public candidatPostuler : CandidatPostulerService) { }
 
@@ -23,17 +25,39 @@ export class ChoisirSujetsComponent implements OnInit {
   getPublishedSujets(){
      this.candidatPostuler.getPublishedSubjects().then(res=>{
        this.sujets = res.results;
-       this.titre =  this.sujets[0].titre;
+       
      })
   }
 
-  search(){
-    if(this.titre === ''){
+  searchLabo(){
+    if(this.labo === ''){
       this.ngOnInit();
     }
     else {
       this.sujets = this.sujets.filter(res=>{
-        return res.titre.toLocaleLowerCase().match(this.titre.toLocaleLowerCase());
+        return res.titre.toLocaleLowerCase().match(this.labo.toLocaleLowerCase());
+      })
+    }
+  }
+
+  searchFormation(){
+    if(this.formationDotorale === ''){
+      this.ngOnInit();
+    }
+    else {
+      this.sujets = this.sujets.filter(res=>{
+        return res.formationDoctorale.titre.toLocaleLowerCase().match(this.formationDotorale.toLocaleLowerCase());
+      })
+    }
+  }
+
+  searchSujet(){
+    if(this.sujet === ''){
+      this.ngOnInit();
+    }
+    else {
+      this.sujets = this.sujets.filter(res=>{
+        return res.titre.toLocaleLowerCase().match(this.sujet.toLocaleLowerCase());
       })
     }
   }
