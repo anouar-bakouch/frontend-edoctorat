@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Commission } from 'src/app/models/Commission';
+import { Examiner } from 'src/app/models/Examiner';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
+import { Inscription } from 'src/app/models/Inscription';
 import { Participe } from 'src/app/models/Participe';
 import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
@@ -64,6 +66,18 @@ export class OperationsService {
   public getCommissions(): Observable<Commission[]> {
 
     return this.http.get<Commission[]>(this._url + '/api/participant/');
+
+  }
+  
+  public getResultats(): Observable<Result<Examiner>> {
+    
+    return this.http.get<Result<Examiner>>(this._url + '/api/examiner/');
+
+  }
+
+  public getMesInscrits(): Observable<Result<Inscription>> {
+
+    return this.http.get<Result<Inscription>>(this._url + '/api/inscrits/');
 
   }
 }
