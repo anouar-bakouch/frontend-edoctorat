@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Inscription } from 'src/app/models/Inscription';
+import Result from 'src/app/models/Result';
+import { OperationsService } from '../../services/operations.service';
 
 @Component({
   selector: 'app-prof-inscrits',
@@ -9,13 +12,20 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 export class ProfInscritsComponent implements OnInit {
-
+  public inscriptions: Inscription[] = [];
+  public resultat: Result<Inscription> = {
+    count: 0,
+    next: '',
+    previous: '',
+    results: []
+  }
   ngOnInit(): void {
+    this.getMesInscrits()
   }
 
   closeResult: string = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private operationsService: OperationsService) {}
      
 
   open(content:any) {
@@ -35,5 +45,11 @@ export class ProfInscritsComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
+  getMesInscrits() {
+    this.operationsService.getMesInscrits().subscribe(data => {
+      console.log(data)
+      this.resultat = data;
+      this.inscriptions = this.resultat.results
+    })
+  }
 }
