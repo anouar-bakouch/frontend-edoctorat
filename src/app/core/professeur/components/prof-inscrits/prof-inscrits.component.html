@@ -13,11 +13,11 @@
               </tr>
             </thead>
             <tbody>
-            <tr tal:repeat="inscription inscriptions">
-                <td>cne</td>
-                <td>nom</td>
-                <td>prenom</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, explicabo ea veniam a ut facere esse mollitia id exercitationem facilis, at, eius quis quod? Saepe vel exercitationem quis amet harum?</td>
+            <tr *ngFor="let i of inscriptions">
+                <td>{{i.candidat.cne}}</td>
+                <td>{{i.candidat.nom}}</td>
+                <td>{{i.candidat.prenom}}</td>
+                <td>{{i.sujet.titre}}</td>
                 <td>
                     <button class="btn btn-primary modifier-btn" data-toggle="modal" data-target="#exampleModalCenter"
                     (click)="open(mymodal)">Modifier le titre</button>
