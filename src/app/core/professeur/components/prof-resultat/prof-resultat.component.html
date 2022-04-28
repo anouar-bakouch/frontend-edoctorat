@@ -21,14 +21,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr >
-                    <td>dev mobile</td>
-                    <td>chdhdh</td>
-                    <td>akram</td>
+                <tr *ngFor="let r of resultats">
+                    <td>{{r.sujet.titre}}</td>
+                    <td>{{r.candidat.cne}}</td>
+                    <td>{{r.candidat.nom}} {{r.candidat.prenom}}</td>
+                    <td>{{r.noteDossier}}</td>
+                    <td>{{r.noteEntretien}}</td>
                     <td>18</td>
-                    <td>18</td>
-                    <td>18</td>
-                    <td>listeprincipale</td>
+                    <td>{{r.decision}}</td>
 
                 </tr>
             </tbody>
