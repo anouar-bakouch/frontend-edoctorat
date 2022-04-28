@@ -1,4 +1,7 @@
-
+type CED = {
+    id: number,
+    titre: string
+}
 
 export interface FormationDoctorale {
 
