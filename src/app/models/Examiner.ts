@@ -1,13 +1,18 @@
+import { Candidat } from "./Candidat";
+import { Commission } from "./Commission";
+import { Sujet } from "./Sujet";
 
 
 export interface Examiner {
 
-    idSujet:number;
+    id:number;
+    sujet:Sujet;
     cne:string;
     noteDossier:number;
     noteEntretien:number;
     decision:string;
-    idCommission:number;
+    commission:number;
+    candidat:Candidat;
     publier:boolean;
 
 }
