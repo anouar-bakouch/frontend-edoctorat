@@ -1,11 +1,15 @@
+import { Candidat } from "./Candidat";
+import { Sujet } from "./Sujet";
 
 
 export interface Inscription {
 
-    cne:string;
-    idSujet:number;
-    dateDiposeDossier:string;
-    remarque:string;
-    valider:boolean;
+    id: number;
+    candidat: Candidat;
+    sujet: Sujet;
+    dateDiposeDossier: string;
+    remarque: string;
+    valider: boolean;
+    pathFile: string;
 
 }
