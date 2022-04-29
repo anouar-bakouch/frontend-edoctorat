@@ -249,7 +249,7 @@
           />
         </div>
       </div>
-
+ 
       <div
         class="col col-sm-12 col-lg-6 d-flex justify-content-between align-items-center"
       >
@@ -260,18 +260,12 @@
           *ngIf="!isUpdating"
         >
           <i class="bi bi-check-circle"></i> confirmer
-        </button>
-      </div>
 
-      <div *ngIf="isUpdating">
-        <h4>
-          <img
-            src="/assets/images/connexion/loading.webp"
-            width="300"
-            height="100"
-          />
-        </h4>
+        </button>
+        <span *ngIf="isUpdating" class="spinner-grow text-primary spinner-grow-lg" role="status" aria-hidden="true"></span>
       </div>
+     
+     
     </form>
   </div>
 </div>
