@@ -8,6 +8,7 @@ import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { CandidatService } from '../../services/candidat.service';
 import { Annexe } from 'src/app/models/Annexe';
 import {
+  disable,
   even,
   RxFormBuilder,
   RxFormGroup,
@@ -39,10 +40,11 @@ export class BacComponent implements OnInit {
   public releveFile: File | undefined;
   DIPLOME_FILE = 'dfile';
   RELEVE_FILE = 'rfile';
+  public bacExists = false;
 
   public candidatBacForm = <RxFormGroup>this.fservice.group({
     intitule: ['Baccalauréat'],
-    type: ['baccalauréat', Validators.required],
+    type: ['baccalauréat'],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: ['', Validators.required],
@@ -51,8 +53,8 @@ export class BacComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    bac_diplome: [''],
-    releves: [''],
+    bac_diplome: ['', Validators.required],
+    releves: ['', Validators.required],
   });
 
   ngOnInit(): void {
@@ -61,9 +63,21 @@ export class BacComponent implements OnInit {
     this.httpCountries.getCountries().subscribe((res) => {
       this.countries = res.data;
     });
+    this.candidatBacForm.valueChanges.subscribe({
+      next: (f) => {
+        console.clear();
+        for (let s of Object.keys(this.candidatBacForm.controls)) {
+          if (!this.candidatBacForm.controls[s].valid) {
+            console.log(s);
+          }
+        }
+      },
+    });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.candidatBacForm.value);
+  }
 
   onFileSelected(event: Event, type: string) {
     this.errorText = undefined;
@@ -72,10 +86,15 @@ export class BacComponent implements OnInit {
     if (files && files.length > 0) {
       const file = files[0];
       if (file.size > 4194304) {
-        this.errorText =
-          type == this.DIPLOME_FILE
-            ? 'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo'
-            : 'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
+        if (type === this.DIPLOME_FILE) {
+          this.candidatBacForm.controls['bac_diplome'].setValue('');
+          this.errorText =
+            'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
+        } else if (type === this.RELEVE_FILE) {
+          this.candidatBacForm.controls['releves'].setValue('');
+          this.errorText =
+            'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
+        }
         return;
       }
       if (type == this.DIPLOME_FILE) {
