@@ -114,7 +114,6 @@
               id="id_Province_bac"
             >
               <option
-                [selected]="candidatBac?.pays === country ? 'true' : 'false'"
                 value="{{ country.country }}"
                 *ngFor="let country of countries"
               >
@@ -218,10 +217,12 @@
             >Diplôme BACCALAUREAT pdf
             <span class="text-danger h6"> < 4MO </span></label
           >
+          <h6 class="text-primary" *ngIf="diplomeFileLink">
+            Fichier Courant : {{ diplomeFileLink }}
+          </h6>
           <input
             class="form-control diplomeBac"
             type="file"
-            required
             accept="application/pdf"
             formControlName="diplomeFile"
             [writeFile]="true"
@@ -234,6 +235,9 @@
             >Relevés de notes pdf
             <span class="text-danger h6"> < 4MO </span></label
           >
+          <h6 class="text-primary" *ngIf="releveFileLink">
+            Fichier Courant : {{ releveFileLink }}
+          </h6>
           <input
             class="form-control releveBac"
             type="file"

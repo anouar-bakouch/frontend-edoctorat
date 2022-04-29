@@ -6,32 +6,44 @@ import Result from 'src/app/models/Result';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-
 export class CandidatParcoursService {
+  constructor(public http: HttpClient) {}
 
-  constructor(public http:HttpClient) { }
-
-
-  getDiplomes():Promise<Result<Diplome>>{
+  getDiplomes(
+    type: string | undefined = undefined
+  ): Promise<Result<Diplome> | Diplome | undefined> {
     return new Promise((resolve, reject) => {
       this.http
         .get<Result<Diplome>>(`${environment.API_URL}/api/candidat-parcours/`)
         .subscribe({
           next: (data) => {
-            resolve(data);
+            if (type) {
+              let res = undefined;
+              data.results.every((entry) => {
+                if (entry.type === type) {
+                  res = entry;
+                }
+                return entry.type !== type;
+              });
+              resolve(res);
+            } else {
+              resolve(data);
+            }
           },
           error: (err) => reject(err),
         });
     });
   }
 
-  addDiplome(diplome:any):Promise<Result<Diplome>> {
+  addDiplome(diplome: any): Promise<Result<Diplome>> {
     return new Promise((resolve, reject) => {
       this.http
-        .post<Result<Diplome>>(`${environment.API_URL}/api/candidat-parcours/`, diplome)
+        .post<Result<Diplome>>(
+          `${environment.API_URL}/api/candidat-parcours/`,
+          diplome
+        )
         .subscribe({
           next: (data) => {
             resolve(data);
@@ -43,10 +55,13 @@ export class CandidatParcoursService {
     });
   }
 
-  updateDiplome(diplome:Diplome):Promise<Diplome> {
+  updateDiplome(diplome: Diplome): Promise<Diplome> {
     return new Promise((resolve, reject) => {
       this.http
-        .put<Diplome>(`${environment.API_URL}/api/candidat-parcours/${diplome.idDiplome}`, diplome)
+        .put<Diplome>(
+          `${environment.API_URL}/api/candidat-parcours/${diplome.idDiplome}`,
+          diplome
+        )
         .subscribe({
           next: (data) => {
             resolve(data);
@@ -58,8 +73,9 @@ export class CandidatParcoursService {
     });
   }
 
-   deleteDiplome(diplome:Diplome):Observable<Diplome>{
-     return this.http.delete<Diplome>(`${environment.API_URL}/api/candidat-parcours/${diplome.idDiplome}`);
-   }
-
+  deleteDiplome(diplome: Diplome): Observable<Diplome> {
+    return this.http.delete<Diplome>(
+      `${environment.API_URL}/api/candidat-parcours/${diplome.idDiplome}`
+    );
+  }
 }

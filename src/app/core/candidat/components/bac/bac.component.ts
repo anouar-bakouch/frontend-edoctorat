@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { Diplome } from 'src/app/models/Diplome';
-import Result from 'src/app/models/Result';
 import { CandidatParcoursService } from '../../services/candidat-parcours.service';
 import { CountriesService } from '../../services/countries.service';
 import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { CandidatService } from '../../services/candidat.service';
-import { Annexe } from 'src/app/models/Annexe';
-import {
-  disable,
-  even,
-  RxFormBuilder,
-  RxFormGroup,
-} from '@rxweb/reactive-form-validators';
+import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
+import { TypeAnnexeEnum } from 'src/app/enums/TypeAnnexeEnum';
 
 @Component({
   selector: '[app-bac]',
@@ -30,18 +24,18 @@ export class BacComponent implements OnInit {
   public countries: any;
   public candidatBac: Diplome | undefined;
   public message!: string;
-  public isFetchingInfo: boolean = false;
+  public isFetchingInfo: boolean = true;
   public errorText: string | undefined;
   public isUpdating: boolean = false;
 
   public mentions = this.candidatService.mentions;
   public bacTypes = this.candidatService.TypeBac;
-
-  public diplomeFile: File | undefined;
-  public releveFile: File | undefined;
   DIPLOME_FILE = 'dfile';
   RELEVE_FILE = 'rfile';
+  diplomeFileLink: string | undefined;
+  releveFileLink: string | undefined;
   public bacExists = false;
+  diplome: Diplome | undefined;
 
   public candidatBacForm = <RxFormGroup>this.fservice.group({
     intitule: ['Baccalauréat'],
@@ -62,6 +56,52 @@ export class BacComponent implements OnInit {
     this.httpCountries.getCountries().subscribe((res) => {
       this.countries = res.data;
     });
+    this.candidatParcours
+      .getDiplomes(DiplomeType.BAC)
+      .then((diplome) => {
+        if (diplome) {
+          diplome = diplome as Diplome;
+          this.diplome = diplome;
+          this.bacExists = true;
+          this.candidatBacForm.controls['dateCommission'].setValue(
+            diplome.dateCommission
+          );
+          this.candidatBacForm.controls['pays'].setValue(diplome.pays);
+          this.candidatBacForm.controls['ville'].setValue(diplome.ville);
+          this.candidatBacForm.controls['province'].setValue(diplome.province);
+          this.candidatBacForm.controls['mention'].setValue(diplome.mention);
+          this.candidatBacForm.controls['etablissement'].setValue(
+            diplome.etablissement
+          );
+          this.candidatBacForm.controls['specialite'].setValue(
+            diplome.specialite
+          );
+          this.candidatBacForm.controls['moyen_generale'].setValue(
+            diplome.moyen_generale
+          );
+          this.candidatBacForm.controls['moyen_generale'].setValue(
+            diplome.moyen_generale
+          );
+          this.candidatBacForm.controls['diplomeFile'].removeValidators(
+            Validators.required
+          );
+          this.candidatBacForm.controls['relevefile'].removeValidators(
+            Validators.required
+          );
+          diplome.annexes.forEach((annexe) => {
+            if (annexe.typeAnnexe == TypeAnnexeEnum.DIPLOME) {
+              this.diplomeFileLink = annexe.pathFile.substring(
+                annexe.pathFile.lastIndexOf('/') + 1
+              );
+            } else if (annexe.typeAnnexe == TypeAnnexeEnum.RELEVE) {
+              this.releveFileLink = annexe.pathFile.substring(
+                annexe.pathFile.lastIndexOf('/') + 1
+              );
+            }
+          });
+        }
+      })
+      .finally(() => (this.isFetchingInfo = false));
   }
 
   onSubmit() {
@@ -97,11 +137,6 @@ export class BacComponent implements OnInit {
             'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
         }
         return;
-      }
-      if (type == this.DIPLOME_FILE) {
-        this.diplomeFile = file;
-      } else if (type == this.RELEVE_FILE) {
-        this.releveFile = file;
       }
     }
   }

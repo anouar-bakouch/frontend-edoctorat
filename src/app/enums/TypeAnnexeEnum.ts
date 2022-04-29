@@ -3,3 +3,5 @@ enum TypeAnnexeEnum {
   RELEVE = 'releve',
   MEMOIRE = 'memoire',
 }
+
+export { TypeAnnexeEnum };
