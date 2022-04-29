@@ -49,7 +49,7 @@ export class DutComponent implements OnInit {
 
   public candidatDutForm = <RxFormGroup>this.fservice.group({
     intitule: [DiplomeType.DUT],
-    type: [DiplomeType.DUT, Validators.required],
+    type: [DiplomeType.DUT],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: ['', Validators.required],
@@ -58,16 +58,16 @@ export class DutComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    dut_diplome: [''],
-    releves_dut: [''],
+    diplomeFile: ['', Validators.required],
+    relevefile: ['', Validators.required]
   });
 
   ngOnInit(): void {
-    this.candidatDutForm.get('intitule')?.disable();
-    this.candidatDutForm.get('type')?.disable();
+
     this.httpCountries.getCountries().subscribe((res) => {
       this.countries = res.data;
     });
+
     this.candidatParcours
     .getDiplomes(DiplomeType.DUT)
     .then((diplome) => {

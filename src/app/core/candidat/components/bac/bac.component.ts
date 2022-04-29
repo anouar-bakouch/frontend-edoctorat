@@ -40,8 +40,8 @@ export class BacComponent implements OnInit {
   diplome: Diplome | undefined;
 
   public candidatBacForm = <RxFormGroup>this.fservice.group({
-    intitule: ['Baccalauréat'],
-    type: ['baccalauréat'],
+    intitule: [DiplomeType.BAC],
+    type: [DiplomeType.BAC],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: ['', Validators.required],
