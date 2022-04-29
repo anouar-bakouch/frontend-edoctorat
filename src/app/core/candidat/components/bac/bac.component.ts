@@ -22,7 +22,7 @@ import {
 export class BacComponent implements OnInit {
   constructor(
     private httpCountries: CountriesService,
-    private fservice: FormBuilder,
+    private fservice: RxFormBuilder,
     private candidatParcours: CandidatParcoursService,
     private candidatService: CandidatService
   ) {}
@@ -32,6 +32,7 @@ export class BacComponent implements OnInit {
   public message!: string;
   public isFetchingInfo: boolean = false;
   public errorText: string | undefined;
+  public isUpdating: boolean = false;
 
   public mentions = this.candidatService.mentions;
   public bacTypes = this.candidatService.TypeBac;
@@ -53,30 +54,30 @@ export class BacComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    bac_diplome: ['', Validators.required],
-    releves: ['', Validators.required],
+    diplomeFile: ['', Validators.required],
+    relevefile: ['', Validators.required],
   });
 
   ngOnInit(): void {
-    this.candidatBacForm.get('intitule')?.disable();
-    this.candidatBacForm.get('type')?.disable();
     this.httpCountries.getCountries().subscribe((res) => {
       this.countries = res.data;
-    });
-    this.candidatBacForm.valueChanges.subscribe({
-      next: (f) => {
-        console.clear();
-        for (let s of Object.keys(this.candidatBacForm.controls)) {
-          if (!this.candidatBacForm.controls[s].valid) {
-            console.log(s);
-          }
-        }
-      },
     });
   }
 
   onSubmit() {
-    console.log(this.candidatBacForm.value);
+    this.isUpdating = true;
+    const formData = this.candidatBacForm.toFormData();
+    formData.set('diplomeFile', formData.get('diplomeFile[0]'));
+    formData.set('releveFile', formData.get('relevefile[0]'));
+    formData.delete('releveFile[0]');
+    formData.delete('diplomeFile[0]');
+    console.log(formData.get('releveFile'));
+    console.log(formData.get('diplomeFile'));
+    this.candidatParcours
+      .addDiplome(formData)
+      .then((d) => console.log(d))
+      .catch((err) => console.log(err))
+      .finally(() => (this.isUpdating = false));
   }
 
   onFileSelected(event: Event, type: string) {

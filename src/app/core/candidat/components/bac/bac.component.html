@@ -38,7 +38,7 @@
               required=""
               id="intitule"
               formControlName="intitule"
-              [disabled]="true"
+              readonly
             />
           </div>
         </div>
@@ -54,6 +54,7 @@
               class="form-control form-control-sm"
               type="text"
               formControlName="type"
+              readonly
             />
           </div>
         </div>
@@ -222,7 +223,8 @@
             type="file"
             required
             accept="application/pdf"
-            formControlName="bac_diplome"
+            formControlName="diplomeFile"
+            [writeFile]="true"
             (change)="onFileSelected($event, 'dfile')"
           />
         </div>
@@ -237,7 +239,8 @@
             type="file"
             id="relBac"
             accept="application/pdf"
-            formControlName="releves"
+            formControlName="relevefile"
+            [writeFile]="true"
             (change)="onFileSelected($event, 'rfile')"
           />
         </div>
@@ -250,9 +253,20 @@
           class="btn btn-primary btn-sm"
           type="submit"
           [disabled]="!candidatBacForm.valid"
+          *ngIf="!isUpdating"
         >
           <i class="bi bi-check-circle"></i> confirmer
         </button>
+      </div>
+
+      <div *ngIf="isUpdating">
+        <h4>
+          <img
+            src="/assets/images/connexion/loading.webp"
+            width="300"
+            height="100"
+          />
+        </h4>
       </div>
     </form>
   </div>
