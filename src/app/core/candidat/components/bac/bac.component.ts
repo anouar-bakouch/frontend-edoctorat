@@ -58,6 +58,7 @@ export class BacComponent implements OnInit {
     this.httpCountries.getCountries().subscribe((res) => {
       this.countries = res.data;
     });
+    
     this.candidatParcours
       .getDiplomes(DiplomeType.BAC)
       .then((diplome) => {
@@ -117,7 +118,9 @@ export class BacComponent implements OnInit {
       this.candidatParcours
         .addDiplome(formData)
         .then((_) => {
-          alert('Succès');
+          swal({
+            icon: "success"
+         })
         })
         .catch((_) => {
           this.errorText =
@@ -134,7 +137,7 @@ export class BacComponent implements OnInit {
       this.candidatParcours
         .updateDiplome(formData, this.diplome.id)
         .then((_) => swal({
-          icon: "success",
+          icon: "success"
        }))
         .catch((_) => {
           this.errorText =
