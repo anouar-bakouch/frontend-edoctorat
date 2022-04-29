@@ -118,7 +118,6 @@ export class BacComponent implements OnInit {
         .addDiplome(formData)
         .then((_) => {
           alert('Succès');
-          swal("Hello world!");
         })
         .catch((_) => {
           this.errorText =
@@ -134,7 +133,9 @@ export class BacComponent implements OnInit {
       }
       this.candidatParcours
         .updateDiplome(formData, this.diplome.id)
-        .then((_) => alert('Succès'))
+        .then((_) => swal({
+          icon: "success",
+       }))
         .catch((_) => {
           this.errorText =
             "Une erreur s'est produite de notre côté, réessayez plus tard.";
