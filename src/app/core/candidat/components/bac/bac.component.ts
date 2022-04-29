@@ -111,13 +111,33 @@ export class BacComponent implements OnInit {
     formData.set('releveFile', formData.get('relevefile[0]'));
     formData.delete('releveFile[0]');
     formData.delete('diplomeFile[0]');
-    console.log(formData.get('releveFile'));
-    console.log(formData.get('diplomeFile'));
-    this.candidatParcours
-      .addDiplome(formData)
-      .then((d) => console.log(d))
-      .catch((err) => console.log(err))
-      .finally(() => (this.isUpdating = false));
+    if (!this.bacExists) {
+      this.candidatParcours
+        .addDiplome(formData)
+        .then((_) => {
+          alert('Succès');
+        })
+        .catch((_) => {
+          this.errorText =
+            "Une erreur s'est produite de notre côté, réessayez plus tard.";
+        })
+        .finally(() => (this.isUpdating = false));
+    } else {
+      if (formData.get('diplomeFile') === 'null') {
+        formData.delete('diplomeFile');
+      }
+      if (formData.get('releveFile') === 'null') {
+        formData.delete('releveFile');
+      }
+      this.candidatParcours
+        .updateDiplome(formData, this.diplome.id)
+        .then((_) => alert('Succès'))
+        .catch((_) => {
+          this.errorText =
+            "Une erreur s'est produite de notre côté, réessayez plus tard.";
+        })
+        .finally(() => (this.isUpdating = false));
+    }
   }
 
   onFileSelected(event: Event, type: string) {

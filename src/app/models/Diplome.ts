@@ -1,7 +1,7 @@
 import { Annexe } from './Annexe';
 
 export interface Diplome {
-  idDiplome: number;
+  id: number;
   intitule: string;
   type: string;
   dateCommission: string;

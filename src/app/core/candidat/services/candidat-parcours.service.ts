@@ -55,11 +55,11 @@ export class CandidatParcoursService {
     });
   }
 
-  updateDiplome(diplome: Diplome): Promise<Diplome> {
+  updateDiplome(diplome: any, diplomeId: number): Promise<Diplome> {
     return new Promise((resolve, reject) => {
       this.http
-        .put<Diplome>(
-          `${environment.API_URL}/api/candidat-parcours/${diplome.idDiplome}`,
+        .patch<Diplome>(
+          `${environment.API_URL}/api/candidat-parcours/${diplomeId}/`,
           diplome
         )
         .subscribe({
@@ -73,9 +73,9 @@ export class CandidatParcoursService {
     });
   }
 
-  deleteDiplome(diplome: Diplome): Observable<Diplome> {
+  deleteDiplome(diplomeId: number): Observable<Diplome> {
     return this.http.delete<Diplome>(
-      `${environment.API_URL}/api/candidat-parcours/${diplome.idDiplome}`
+      `${environment.API_URL}/api/candidat-parcours/${diplomeId}/`
     );
   }
 }
