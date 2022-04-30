@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import Config from 'src/app/models/Config';
 import { Sujet } from 'src/app/models/Sujet';
 import { CandidatPostulerService } from '../../services/candidat-postuler.service';
@@ -12,18 +13,28 @@ import { CandidatService } from '../../services/candidat.service';
 
 export class ChoisirSujetsComponent implements OnInit {
 
- 
+
+  // still need developement
+
   public sujets:Sujet[] = [];
   public labo:string = '';
   public formationDotorale:string = '';
   public sujet:string = '';
   public page:number = 1;
   public config!:Config;
+  public nbrSujetsChoisies:number | undefined = 0;
+  public nbrSujetsAPostuler:number | undefined = 0;
+  isDisabled:boolean = false;
 
-  constructor(public candidatPostuler : CandidatPostulerService,public candidatConfig:CandidatService) { }
+
+
+  constructor(public candidatPostuler : CandidatPostulerService,
+              public candidatConfig:CandidatService
+              ) { }
 
   ngOnInit(): void {
     this.getPublishedSujets();
+    this.getConfigInfo();
   }
 
   getPublishedSujets(){
@@ -35,7 +46,7 @@ export class ChoisirSujetsComponent implements OnInit {
   getConfigInfo(){
     this.candidatConfig.getConfigInfo().then(res=>{
       this.config = res;
-      console.log(this.config)
+      this.nbrSujetsAPostuler = this.config.max_sujet_postuler;
     })
   }
 
@@ -70,6 +81,22 @@ export class ChoisirSujetsComponent implements OnInit {
         return res.titre.toLocaleLowerCase().match(this.sujet.toLocaleLowerCase());
       })
     }
+  }
+
+  choseSujet(s:Sujet,event){
+
+    if(event.target.checked){
+      this.nbrSujetsChoisies++;
+    }
+
+    if(!event.target.checked){
+      this.nbrSujetsChoisies--;
+    }
+
+    if(this.nbrSujetsChoisies >= this.nbrSujetsAPostuler){
+      this.isDisabled = true;
+    }
+
   }
 
 }

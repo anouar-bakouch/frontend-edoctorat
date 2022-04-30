@@ -1,4 +1,4 @@
-<form>
+
   <p>Vous avez sujet(s) choisis</p>
 
   <ol class="list-group list-group-flush">
@@ -69,12 +69,12 @@
     <table class="table table-responsive table-bordered">
       <thead>
         <tr class="table-primary">
-          <th scope="col" class="w-16">action</th>
-          <th scope="col" class="w-16">Laboratoire</th>
+          <th scope="col" class="w-7">action</th>
+          <th scope="col" class="w-32">Laboratoire</th>
           <th scope="col" class="w-16">Prof</th>
-          <th scope="col" class="w-16">Sujet</th>
+          <th scope="col" class="w-20">Sujet</th>
           <th scope="col" class="w-16">CED</th>
-          <th scope="col" class="w-16">Formation doctorale</th>
+          <th scope="col" class="w-17">Formation doctorale</th>
         </tr>
       </thead>
       <tbody>
@@ -84,7 +84,7 @@
           "
         >
           <td>
-            <input name="btSelectItem" type="checkbox" />
+            <input [disabled]="isDisabled" (click)="choseSujet(s,$event)" class="form-check form-check-lg" name="btSelectItem" type="checkbox" />
           </td>
           <td>
             {{ s.formationDoctorale.titre }}
@@ -101,9 +101,9 @@
           </td>
         </tr>
       </tbody>
-
       <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </table>
+
   </div>
 
   <input
@@ -113,4 +113,4 @@
     value="POSTULER"
     disabled
   />
-</form>
+
