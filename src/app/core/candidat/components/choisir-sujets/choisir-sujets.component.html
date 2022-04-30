@@ -69,13 +69,12 @@
     <table class="table table-responsive table-bordered">
       <thead>
         <tr class="table-primary">
-          <th scope="col" class="w-7"></th>
-          <th scope="col" class="w-7">id</th>
-          <th scope="col" class="w-7">Laboratoire</th>
-          <th scope="col" class="w-3">Prof</th>
-          <th scope="col" class="w-23">Sujet</th>
-          <th scope="col" class="w-7">CED</th>
-          <th scope="col" class="w-43">Formation doctorale</th>
+          <th scope="col" class="w-16">action</th>
+          <th scope="col" class="w-16">Laboratoire</th>
+          <th scope="col" class="w-16">Prof</th>
+          <th scope="col" class="w-16">Sujet</th>
+          <th scope="col" class="w-16">CED</th>
+          <th scope="col" class="w-16">Formation doctorale</th>
         </tr>
       </thead>
       <tbody>
@@ -86,9 +85,6 @@
         >
           <td>
             <input name="btSelectItem" type="checkbox" />
-          </td>
-          <td>
-            {{ s.id }}
           </td>
           <td>
             {{ s.formationDoctorale.titre }}
