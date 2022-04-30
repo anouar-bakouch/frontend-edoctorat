@@ -6,6 +6,7 @@ import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { DutOption } from 'src/app/enums/DutOption';
 import { MentionEnum } from 'src/app/enums/MentionEnum';
 import { Candidat } from 'src/app/models/Candidat';
+import Config from 'src/app/models/Config';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -43,6 +44,19 @@ export class CandidatService {
     });
   }
 
+
+  getConfigInfo(): Promise<Config> {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .get<Config>(`${environment.API_URL}/api/get-base-config/`)
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => reject(err),
+        });
+    });
+  }
 
  public mentions = Object.keys(MentionEnum).map((name) => {
   return {

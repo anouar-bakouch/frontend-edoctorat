@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import Config from 'src/app/models/Config';
 import { Sujet } from 'src/app/models/Sujet';
 import { CandidatPostulerService } from '../../services/candidat-postuler.service';
+import { CandidatService } from '../../services/candidat.service';
 
 @Component({
   selector: '[app-choisir-sujets]',
@@ -16,9 +18,9 @@ export class ChoisirSujetsComponent implements OnInit {
   public formationDotorale:string = '';
   public sujet:string = '';
   public page:number = 1;
-  public config:
+  public config!:Config;
 
-  constructor(public candidatPostuler : CandidatPostulerService) { }
+  constructor(public candidatPostuler : CandidatPostulerService,public candidatConfig:CandidatService) { }
 
   ngOnInit(): void {
     this.getPublishedSujets();
@@ -27,8 +29,14 @@ export class ChoisirSujetsComponent implements OnInit {
   getPublishedSujets(){
      this.candidatPostuler.getPublishedSubjects().then(res=>{
        this.sujets = res.results;
-       
      })
+  }
+
+  getConfigInfo(){
+    this.candidatConfig.getConfigInfo().then(res=>{
+      this.config = res;
+      console.log(this.config)
+    })
   }
 
   searchLabo(){
