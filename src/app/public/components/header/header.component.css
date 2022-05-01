@@ -1,3 +1,16 @@
-a {
+li {
     font-size: 13px;
 }
+
+li:hover {
+
+   border: 1px dashed rgb(0, 119, 255);
+   
+}
+
+.darkblue {
+    color:#003556;
+}
+
+
+
