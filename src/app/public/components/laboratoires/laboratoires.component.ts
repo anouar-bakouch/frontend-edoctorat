@@ -12,6 +12,15 @@ import { HttpService } from 'src/app/public/services/http.service';
 export class LaboratoiresComponent implements OnInit {
 
   public laboratoires:Array<Laboratoire> = [];
+
+  getSliderClass(first,last,isEven,isOdd){
+    return {
+      active : first,
+      lastactive : last,
+      even : isEven,
+      odd : isOdd
+  }
+  }
   
   @Input() public laboratoire!:Laboratoire;
 
@@ -21,7 +30,6 @@ export class LaboratoiresComponent implements OnInit {
     this.http.getLaboratoires().subscribe(
       res=>{
         this.laboratoires = res;
-        console.log(res)
       }
     )
   }

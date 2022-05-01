@@ -20,7 +20,6 @@ export class MainComponent implements OnInit {
     this.http.getLaboratoires().subscribe(
       res=>{
         this.laboratoires = res;
-        console.log(res)
       }
     )
 
