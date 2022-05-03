@@ -9,7 +9,7 @@ import { Participe } from 'src/app/models/Participe';
 import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,61 +23,61 @@ export class OperationsService {
   constructor(private http: HttpClient) { }
 
   public getFormationDoctorales(): Observable<Result<FormationDoctorale>> {
-    return this.http.get<Result<FormationDoctorale>>(this._url + '/api/formation-doctorale/');
+    return this.http.get<Result<FormationDoctorale>>(environment.API_URL + '/api/formation-doctorale/');
 
   }
 
   public getProfesseurs(): Observable<Result<Professeur>> {
     
-    return this.http.get<Result<Professeur>>(this._url2 +'/api/get-professeurs/');
+    return this.http.get<Result<Professeur>>(environment.API_URL +'/api/get-professeurs/');
 
   }
   public getProfesseur(id: Professeur): Observable<Professeur> {
-    return this.http.get<Professeur>(this._url2 +`/api/get-professeurs/${id}/`);
+    return this.http.get<Professeur>(environment.API_URL +`/api/get-professeurs/${id}/`);
 
   }
   public getformDoct(id: FormationDoctorale): Observable<FormationDoctorale> {
-    return this.http.get<FormationDoctorale>(this._url2 +`/api/formation-doctorale/${id}/`);
+    return this.http.get<FormationDoctorale>(environment.API_URL +`/api/formation-doctorale/${id}/`);
 
   }
   public getSujets(): Observable<Result<Sujet>> {
 
-    return this.http.get<Result<Sujet>>(this._url +'/api/sujets/');
+    return this.http.get<Result<Sujet>>(environment.API_URL +'/api/sujets/');
 
   }
 
   public addSujet(sujet: JSON): Observable<Sujet> {
-    return this.http.post<Sujet>(this._url + '/api/sujets/', sujet);
+    return this.http.post<Sujet>(environment.API_URL + '/api/sujets/', sujet);
 
   }
 
   public deleteSujet(sujet: Sujet): Observable<Sujet> {
     console.log(sujet)
-    return this.http.delete<Sujet>(this._url + '/api/sujets/' + sujet.id + '/');
+    return this.http.delete<Sujet>(environment.API_URL + '/api/sujets/' + sujet.id + '/');
 
   }
 
   public updateSujet(sujet: JSON, id:number): Observable<Sujet> {
-    return this.http.put<Sujet>(this._url + '/api/sujets/' + id + '/', sujet);
+    return this.http.put<Sujet>(environment.API_URL + '/api/sujets/' + id + '/', sujet);
 
   }
 
 
   public getCommissions(): Observable<Commission[]> {
 
-    return this.http.get<Commission[]>(this._url + '/api/participant/');
+    return this.http.get<Commission[]>(environment.API_URL + '/api/participant/');
 
   }
   
   public getResultats(): Observable<Result<Examiner>> {
     
-    return this.http.get<Result<Examiner>>(this._url + '/api/examiner/');
+    return this.http.get<Result<Examiner>>(environment.API_URL + '/api/examiner/');
 
   }
 
   public getMesInscrits(): Observable<Result<Inscription>> {
 
-    return this.http.get<Result<Inscription>>(this._url + '/api/inscrits/');
+    return this.http.get<Result<Inscription>>(environment.API_URL + '/api/inscrits/');
 
   }
 }
