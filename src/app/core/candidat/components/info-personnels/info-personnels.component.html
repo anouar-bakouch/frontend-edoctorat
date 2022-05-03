@@ -16,9 +16,10 @@
         <div class="mb-3">
           <label for="formFile" class="form-label"
             >Importer votre Photo du Profil
-            <span style="color: red; font-weight: bold">(Taille <= 1mb)</span
+            <span class="text-danger fw-bold">(Taille <= 1mb)</span
             >:</label
           >
+          <p class="text-primary " *ngIf="photoLink"><span class="fw-bold text-decoration-underline">photo courant</span> : {{photoLink}}</p>
           <input
             (change)="onFileSelected($event)"
             class="form-control"

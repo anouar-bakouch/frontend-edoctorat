@@ -23,6 +23,7 @@ export class InfoPersonnelsComponent implements OnInit {
   private countries: any;
   public selectedFile: File | undefined;  
   public candidatInfo: Candidat | undefined;
+  public photoLink:string | undefined;
 
   public candidatInfoForm = <RxFormGroup>this.fservice.group({
     prenom: [''],
@@ -119,6 +120,13 @@ export class InfoPersonnelsComponent implements OnInit {
           .get('foctionnaire')
           ?.setValue(this.candidatInfo.fonctionnaire);
         this.candidatInfoForm.get('sexe')?.setValue(this.candidatInfo.sexe);
+
+        if(res.pathPhoto){
+          this.photoLink = res.pathPhoto.substring(
+            res.pathPhoto.lastIndexOf('/') + 1
+          );
+        }
+
       })
       .catch((err) => {
         setTimeout(() => window.location.reload(), 2000);
