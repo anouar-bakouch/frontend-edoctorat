@@ -7,9 +7,7 @@ import { CountriesService } from '../../services/countries.service';
 import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { CandidatService } from '../../services/candidat.service';
 import { Annexe } from 'src/app/models/Annexe';
-import {
-  RxFormGroup,
-} from '@rxweb/reactive-form-validators';
+import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import swal from 'sweetalert';
 import { TypeAnnexeEnum } from 'src/app/enums/TypeAnnexeEnum';
 
@@ -23,7 +21,7 @@ export class DutComponent implements OnInit {
 
   constructor(
     private httpCountries: CountriesService,
-    private fservice: FormBuilder,
+    private fservice: RxFormBuilder,
     private candidatParcours: CandidatParcoursService,
     private candidatService: CandidatService
   ) {}
@@ -59,121 +57,122 @@ export class DutComponent implements OnInit {
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
     diplomeFile: ['', Validators.required],
-    relevefile: ['', Validators.required]
+    relevefile: ['', Validators.required],
   });
 
   ngOnInit(): void {
-
     this.httpCountries.getCountries().subscribe((res) => {
       this.countries = res.data;
     });
 
     this.candidatParcours
-    .getDiplomes(DiplomeType.DUT)
-    .then((diplome) => {
-      if (diplome) {
-        diplome = diplome as Diplome;
-        this.diplome = diplome;
-        this.DutExist = true;
-        this.candidatDutForm.controls['dateCommission'].setValue(
-          diplome.dateCommission
-        );
-        this.candidatDutForm.controls['pays'].setValue(diplome.pays);
-        this.candidatDutForm.controls['ville'].setValue(diplome.ville);
-        this.candidatDutForm.controls['province'].setValue(diplome.province);
-        this.candidatDutForm.controls['mention'].setValue(diplome.mention);
-        this.candidatDutForm.controls['etablissement'].setValue(
-          diplome.etablissement
-        );
-        this.candidatDutForm.controls['specialite'].setValue(
-          diplome.specialite
-        );
-        this.candidatDutForm.controls['moyen_generale'].setValue(
-          diplome.moyen_generale
-        );
-        this.candidatDutForm.controls['moyen_generale'].setValue(
-          diplome.moyen_generale
-        );
-        this.candidatDutForm.controls['diplomeFile'].removeValidators(
-          Validators.required
-        );
-        this.candidatDutForm.controls['relevefile'].removeValidators(
-          Validators.required
-        );
-        diplome.annexes.forEach((annexe) => {
-          if (annexe.typeAnnexe == TypeAnnexeEnum.DIPLOME) {
-            this.diplomeFileLink = annexe.pathFile.substring(
-              annexe.pathFile.lastIndexOf('/') + 1
-            );
-          } else if (annexe.typeAnnexe == TypeAnnexeEnum.RELEVE) {
-            this.releveFileLink = annexe.pathFile.substring(
-              annexe.pathFile.lastIndexOf('/') + 1
-            );
-          }
-        });
-      }
-    })
-    .finally(() => (this.isFetchingInfo = false));
-}
-
-onSubmit() {
-  this.isUpdating = true;
-  const formData = this.candidatDutForm.toFormData();
-  formData.set('diplomeFile', formData.get('diplomeFile[0]'));
-  formData.set('releveFile', formData.get('relevefile[0]'));
-  formData.delete('releveFile[0]');
-  formData.delete('diplomeFile[0]');
-  if (!this.DutExist) {
-    this.candidatParcours
-      .addDiplome(formData)
-      .then((_) => {
-        swal({
-          icon: "success"
-       })
+      .getDiplomes(DiplomeType.DUT)
+      .then((diplome) => {
+        if (diplome) {
+          diplome = diplome as Diplome;
+          this.diplome = diplome;
+          this.DutExist = true;
+          this.candidatDutForm.controls['dateCommission'].setValue(
+            diplome.dateCommission
+          );
+          this.candidatDutForm.controls['pays'].setValue(diplome.pays);
+          this.candidatDutForm.controls['ville'].setValue(diplome.ville);
+          this.candidatDutForm.controls['province'].setValue(diplome.province);
+          this.candidatDutForm.controls['mention'].setValue(diplome.mention);
+          this.candidatDutForm.controls['etablissement'].setValue(
+            diplome.etablissement
+          );
+          this.candidatDutForm.controls['specialite'].setValue(
+            diplome.specialite
+          );
+          this.candidatDutForm.controls['moyen_generale'].setValue(
+            diplome.moyen_generale
+          );
+          this.candidatDutForm.controls['moyen_generale'].setValue(
+            diplome.moyen_generale
+          );
+          this.candidatDutForm.controls['diplomeFile'].removeValidators(
+            Validators.required
+          );
+          this.candidatDutForm.controls['relevefile'].removeValidators(
+            Validators.required
+          );
+          diplome.annexes.forEach((annexe) => {
+            if (annexe.typeAnnexe == TypeAnnexeEnum.DIPLOME) {
+              this.diplomeFileLink = annexe.pathFile.substring(
+                annexe.pathFile.lastIndexOf('/') + 1
+              );
+            } else if (annexe.typeAnnexe == TypeAnnexeEnum.RELEVE) {
+              this.releveFileLink = annexe.pathFile.substring(
+                annexe.pathFile.lastIndexOf('/') + 1
+              );
+            }
+          });
+        }
       })
-      .catch((_) => {
-        this.errorText =
-          "Une erreur s'est produite de notre côté, réessayez plus tard.";
-      })
-      .finally(() => (this.isUpdating = false));
-  } else {
-    if (formData.get('diplomeFile') === 'null') {
-      formData.delete('diplomeFile');
-    }
-    if (formData.get('releveFile') === 'null') {
-      formData.delete('releveFile');
-    }
-    this.candidatParcours
-      .updateDiplome(formData, this.diplome.id)
-      .then((_) => swal({
-        icon: "success"
-     }))
-      .catch((_) => {
-        this.errorText =
-          "Une erreur s'est produite de notre côté, réessayez plus tard.";
-      })
-      .finally(() => (this.isUpdating = false));
+      .finally(() => (this.isFetchingInfo = false));
   }
-}
 
-onFileSelected(event: Event, type: string) {
-  this.errorText = undefined;
-  const target = event.target as HTMLInputElement;
-  const files = target.files;
-  if (files && files.length > 0) {
-    const file = files[0];
-    if (file.size > 4194304) {
-      if (type === this.DIPLOME_FILE) {
-        this.candidatDutForm.controls['Dut_diplome'].setValue('');
-        this.errorText =
-          'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
-      } else if (type === this.RELEVE_FILE) {
-        this.candidatDutForm.controls['releves'].setValue('');
-        this.errorText =
-          'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
+  onSubmit() {
+    this.isUpdating = true;
+    const formData = this.candidatDutForm.toFormData();
+    formData.set('diplomeFile', formData.get('diplomeFile[0]'));
+    formData.set('releveFile', formData.get('relevefile[0]'));
+    formData.delete('releveFile[0]');
+    formData.delete('diplomeFile[0]');
+    if (!this.DutExist) {
+      this.candidatParcours
+        .addDiplome(formData)
+        .then((_) => {
+          swal({
+            icon: 'success',
+          });
+        })
+        .catch((_) => {
+          this.errorText =
+            "Une erreur s'est produite de notre côté, réessayez plus tard.";
+        })
+        .finally(() => (this.isUpdating = false));
+    } else {
+      if (formData.get('diplomeFile') === 'null') {
+        formData.delete('diplomeFile');
       }
-      return;
+      if (formData.get('releveFile') === 'null') {
+        formData.delete('releveFile');
+      }
+      this.candidatParcours
+        .updateDiplome(formData, this.diplome.id)
+        .then((_) =>
+          swal({
+            icon: 'success',
+          })
+        )
+        .catch((_) => {
+          this.errorText =
+            "Une erreur s'est produite de notre côté, réessayez plus tard.";
+        })
+        .finally(() => (this.isUpdating = false));
     }
   }
-}
+
+  onFileSelected(event: Event, type: string) {
+    this.errorText = undefined;
+    const target = event.target as HTMLInputElement;
+    const files = target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      if (file.size > 4194304) {
+        if (type === this.DIPLOME_FILE) {
+          this.candidatDutForm.controls['Dut_diplome'].setValue('');
+          this.errorText =
+            'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
+        } else if (type === this.RELEVE_FILE) {
+          this.candidatDutForm.controls['releves'].setValue('');
+          this.errorText =
+            'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
+        }
+        return;
+      }
+    }
+  }
 }
