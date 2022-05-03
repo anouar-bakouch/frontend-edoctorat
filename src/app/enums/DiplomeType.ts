@@ -1,9 +1,4 @@
-
-
-// before any update , talk to anouar about this file , because it is used widely !!!
-
 export enum DiplomeType {
-
   BAC = 'baccalauréat',
   DUT = 'diplome universitaire de technologie',
   CI = 'cycle ingénieur',
@@ -12,6 +7,5 @@ export enum DiplomeType {
   MASTER = 'master',
   MASTER_SPECIALISE = 'master specialise',
   MASTER_EN_SCIENCE_TECHNIQUE = 'master en science et technique',
-  DOCTORATE_EN_MEDICINE = 'doctorate en medicine'
-  
+  DOCTORATE_EN_MEDICINE = 'doctorate en medicine',
 }
