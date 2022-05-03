@@ -1,6 +1,7 @@
 import { CompteUser } from './CompteUser';
 
 export interface Candidat {
+  id: number;
   cne: string;
   pays: string;
   nom: string;
@@ -23,6 +24,6 @@ export interface Candidat {
   pathPhoto: string | undefined;
   etatDossier: number | undefined;
   situation_familiale: string | undefined;
-  fonctionnaire:string | undefined;
-  
+  fonctionnaire: string | undefined;
+
 }
