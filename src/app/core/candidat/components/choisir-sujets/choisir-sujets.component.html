@@ -112,6 +112,12 @@
       </div>
     </tbody>
   </table>
+  <app-offsetpagination
+    [itemsCount]="itemsCount"
+    [itemsPerPage]="50"
+    (indexChange)="onIndexChange($event)"
+    *ngIf="sujets.length > 0"
+  ></app-offsetpagination>
 </div>
 
 <input

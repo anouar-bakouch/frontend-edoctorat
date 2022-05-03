@@ -20,6 +20,7 @@ export class ChoisirSujetsComponent implements OnInit {
   public nbrSujetsChoisies: number | undefined = 0;
   public nbrSujetsAPostuler: number | undefined = 0;
   isDisabled: boolean = false;
+  itemsCount: number | undefined;
 
   constructor(
     public candidatPostuler: CandidatPostulerService,
@@ -34,6 +35,7 @@ export class ChoisirSujetsComponent implements OnInit {
   getPublishedSujets() {
     this.candidatPostuler.getPublishedSubjects().then((res) => {
       this.sujets = res.results;
+      this.itemsCount = res.count;
     });
   }
 
@@ -92,5 +94,9 @@ export class ChoisirSujetsComponent implements OnInit {
     if (this.nbrSujetsChoisies >= this.nbrSujetsAPostuler) {
       this.isDisabled = true;
     }
+  }
+
+  onIndexChange(offset: number) {
+    console.log(offset);
   }
 }

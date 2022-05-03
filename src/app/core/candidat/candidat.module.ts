@@ -29,8 +29,7 @@ import { LicenceProComponent } from './components/licence-pro/licence-pro.compon
 import { MasterProComponent } from './components/master-pro/master-pro.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -55,7 +54,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ContainerComponent,
     ProfilCandidatComponent,
     LicenceProComponent,
-    MasterProComponent
+    MasterProComponent,
   ],
   imports: [
     CommonModule,
@@ -66,16 +65,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     RxReactiveFormsModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SharedModule,
   ],
-  exports : [
-   CandidatComponent
-  ],
-   providers: [
-     CountriesService
-   ],
-   bootstrap : [
-     CandidatComponent
-   ]
+  exports: [CandidatComponent],
+  providers: [CountriesService],
+  bootstrap: [CandidatComponent],
 })
-export class CandidatModule { }
+export class CandidatModule {}

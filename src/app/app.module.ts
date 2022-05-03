@@ -31,7 +31,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     SocialLoginModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [
     HttpService,
