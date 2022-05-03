@@ -45,6 +45,11 @@ export class OperationsService {
     return this.http.get<Result<Sujet>>(environment.API_URL +'/api/sujets/');
 
   }
+  public getSujet(id:number): Observable<Sujet> {
+
+    return this.http.get<Sujet>(environment.API_URL + '/api/sujets/' + id + '/');
+
+  }
 
   public addSujet(sujet: JSON): Observable<Sujet> {
     return this.http.post<Sujet>(environment.API_URL + '/api/sujets/', sujet);
