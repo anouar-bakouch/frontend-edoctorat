@@ -5,7 +5,7 @@ import { ProfCommissionComponent } from './components/prof-commission/prof-commi
 import { ProfInscritsComponent } from './components/prof-inscrits/prof-inscrits.component';
 import { ProfResultatComponent } from './components/prof-resultat/prof-resultat.component';
 import { ProfSujetComponent } from './components/prof-sujet/prof-sujet.component';
-import { PageNotFoundComponent } from 'src/app/shared/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from 'src/app/shared/components/page-not-found/page-not-found.component';
 import { MainProfComponent } from './components/main-prof/main-prof.component';
 import { ContainerComponent } from './components/container/container.component';
 import { IsProfessorGuard } from 'src/app/guards/is-professor.guard';

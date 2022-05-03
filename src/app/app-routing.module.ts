@@ -9,7 +9,7 @@ import { IsCEDGuard } from './guards/is-ced.guard';
 import { IsDPoleGuard } from './guards/is-dpole.guard';
 import { IsProfessorGuard } from './guards/is-professor.guard';
 import { HomeComponent } from './public/components/home/home.component';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home/infos', pathMatch: 'full' },
