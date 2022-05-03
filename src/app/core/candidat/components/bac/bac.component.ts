@@ -14,7 +14,6 @@ import swal from 'sweetalert';
   templateUrl: './bac.component.html',
   styleUrls: ['./bac.component.css'],
 })
-
 export class BacComponent implements OnInit {
   constructor(
     private httpCountries: CountriesService,
@@ -58,7 +57,7 @@ export class BacComponent implements OnInit {
     this.httpCountries.getCountries().subscribe((res) => {
       this.countries = res.data;
     });
-    
+
     this.candidatParcours
       .getDiplomes(DiplomeType.BAC)
       .then((diplome) => {
@@ -119,8 +118,8 @@ export class BacComponent implements OnInit {
         .addDiplome(formData)
         .then((_) => {
           swal({
-            icon: "success"
-         })
+            icon: 'success',
+          });
         })
         .catch((_) => {
           this.errorText =
@@ -136,9 +135,11 @@ export class BacComponent implements OnInit {
       }
       this.candidatParcours
         .updateDiplome(formData, this.diplome.id)
-        .then((_) => swal({
-          icon: "success"
-       }))
+        .then((_) =>
+          swal({
+            icon: 'success',
+          })
+        )
         .catch((_) => {
           this.errorText =
             "Une erreur s'est produite de notre côté, réessayez plus tard.";
@@ -155,11 +156,11 @@ export class BacComponent implements OnInit {
       const file = files[0];
       if (file.size > 4194304) {
         if (type === this.DIPLOME_FILE) {
-          this.candidatBacForm.controls['bac_diplome'].setValue('');
+          this.candidatBacForm.controls['diplomeFile'].setValue('');
           this.errorText =
             'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
         } else if (type === this.RELEVE_FILE) {
-          this.candidatBacForm.controls['releves'].setValue('');
+          this.candidatBacForm.controls['relevefile'].setValue('');
           this.errorText =
             'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
         }
