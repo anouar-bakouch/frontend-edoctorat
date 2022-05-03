@@ -76,7 +76,7 @@
         <th scope="col" class="w-17">Formation doctorale</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="!isFetchingItems">
       <tr *ngFor="let s of sujets">
         <td>
           <input
@@ -101,16 +101,16 @@
           {{ s.formationDoctorale.titre }}
         </td>
       </tr>
-      <div *ngIf="sujets.length <= 0">
-        <h4>
-          <img
-            src="/assets/images/connexion/loading.webp"
-            width="300"
-            height="100"
-          />
-        </h4>
-      </div>
     </tbody>
+    <div *ngIf="isFetchingItems">
+      <h4>
+        <img
+          src="/assets/images/connexion/loading.webp"
+          width="300"
+          height="100"
+        />
+      </h4>
+    </div>
   </table>
   <app-offsetpagination
     [itemsCount]="itemsCount"
