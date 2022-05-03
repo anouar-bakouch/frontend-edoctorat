@@ -17,9 +17,9 @@ const routes: Routes = [
   {
     path: 'professeur',
     component: MainProfComponent,
-    //canActivate: [IsCandidatGuard],
+    canActivate: [IsCandidatGuard],
   },
-  { path: 'candidat', component: CandidatComponent },
+  { path: 'candidat', loadChildren: () => import('./core/candidat/candidat.module').then(x => x.CandidatModule) } ,
   {
     path: 'pole',
     component: DirecteurPoleComponent,
@@ -30,7 +30,8 @@ const routes: Routes = [
     component: MainCedComponent,
     canActivate: [IsProfessorGuard, IsCEDGuard],
   },
-  { path: '**', component: PageNotFoundComponent },
+ { path: '**', component: PageNotFoundComponent },
+  
 ];
 
 @NgModule({
