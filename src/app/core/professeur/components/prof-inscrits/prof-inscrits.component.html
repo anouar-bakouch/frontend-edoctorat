@@ -20,7 +20,7 @@
                 <td>{{i.sujet.titre}}</td>
                 <td>
                     <button class="btn btn-primary modifier-btn" data-toggle="modal" data-target="#exampleModalCenter"
-                    (click)="open(mymodal)">Modifier le titre</button>
+                    (click)="fun(mymodal, i.sujet)">Modifier le titre</button>
                 </td>
             </tr>
             </tbody>
@@ -32,6 +32,7 @@
       <!-- Modal -->
       <ng-template class="modal fade" tabindex="-1" role="dialog" #mymodal let-modal aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered w-100" role="document">
+           <form [formGroup]="form" (ngSubmit)="onClickSubmit()">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">Modification du titre</h5>
@@ -39,12 +40,13 @@
             </div>
             <div class="modal-body">
                 <label for="sujetTitre" class="mb-3">Titre</label>
-                <textarea maxlength="500" type="text" class="form-control" id="sujetTitre" aria-describedby="emailHelp" placeholder="500 characters"></textarea>
+                <textarea maxlength="500" type="text" class="form-control" id="sujetTitre" aria-describedby="emailHelp" placeholder="500 characters" formControlName="titre"></textarea>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" data-dismiss="modal" (click)="modal.dismiss('Cross click')">annuler</button>
-              <button class="btn btn-primary btn-confirmer"  (click)="modal.close('Save click')">confirmer</button>
+              <button class="btn btn-secondary" data-dismiss="modal" (click)="modal.dismiss('Cross click')" type="button">annuler</button>
+              <button class="btn btn-primary btn-confirmer"  (click)="modal.close('Save click')" [disabled]="form.invalid" type="submit">confirmer</button>
             </div>
           </div>
+          </form>
         </div>
       </ng-template>
