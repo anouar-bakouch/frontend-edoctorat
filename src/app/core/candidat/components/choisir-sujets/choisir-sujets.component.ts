@@ -20,6 +20,8 @@ export class ChoisirSujetsComponent implements OnInit {
   public nbrSujetsChoisies: number | undefined = 0;
   public nbrSujetsAPostuler: number | undefined = 0;
   isDisabled: boolean = false;
+  itemsCount: number | undefined;
+  isFetchingItems = true;
 
   constructor(
     public candidatPostuler: CandidatPostulerService,
@@ -34,6 +36,8 @@ export class ChoisirSujetsComponent implements OnInit {
   getPublishedSujets() {
     this.candidatPostuler.getPublishedSubjects().then((res) => {
       this.sujets = res.results;
+      this.itemsCount = res.count;
+      this.isFetchingItems = false;
     });
   }
 
@@ -92,5 +96,16 @@ export class ChoisirSujetsComponent implements OnInit {
     if (this.nbrSujetsChoisies >= this.nbrSujetsAPostuler) {
       this.isDisabled = true;
     }
+  }
+
+  onIndexChange(offset: number) {
+    if (this.isFetchingItems) return;
+    this.isFetchingItems = true;
+    this.candidatPostuler
+      .getPublishedSubjects(offset)
+      .then((d) => {
+        this.sujets = d.results;
+      })
+      .finally(() => (this.isFetchingItems = false));
   }
 }
