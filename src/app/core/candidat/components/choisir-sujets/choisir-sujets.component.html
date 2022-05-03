@@ -1,116 +1,123 @@
+<p>Vous avez sujet(s) choisis</p>
 
-  <p>Vous avez sujet(s) choisis</p>
+<ol class="list-group list-group-flush">
+  <li class="list-group-item">
+    Rechercher l'axe de recherche ou le titre du sujet /ابحث عن محور البحث او
+    عنوان الموضوع
+  </li>
+  <li class="list-group-item">
+    Cochez pour choisir l'axe ou le sujet voulu / لاختيار انقر فوق المحور أو
+    الموضوع المطلوب
+  </li>
+  <li class="list-group-item">
+    En bas de la page cliquer sur postuler pour confirmer votre choix / POSTULER
+    في الجزء السفلي من الصفحة انقر فوق
+  </li>
+  <li class="list-group-item">
+    En bas de la page va apparaitre votre choix. Attention,certains axes de
+    recherches ou sujets demandent de charger votre projet de recherche
+    correspondant. Si c'est le cas charger votre projet de recherche en format
+    pdf/ سيظهر اختيارك في الجزء السفلي من الصفحة. يرجى ملاحظة أن بعض محاور البحث
+    أو الموضوعات تتطلب منك تحميل مشروعك البحثي المقابل. إذا كان الأمر كذلك ، قم
+    بتحميل مشروعك البحثي بتنسيق pdf
+  </li>
+</ol>
 
-  <ol class="list-group list-group-flush">
-    <li class="list-group-item">
-      Rechercher l'axe de recherche ou le titre du sujet /ابحث عن محور البحث او
-      عنوان الموضوع
-    </li>
-    <li class="list-group-item">
-      Cochez pour choisir l'axe ou le sujet voulu / لاختيار انقر فوق المحور أو
-      الموضوع المطلوب
-    </li>
-    <li class="list-group-item">
-      En bas de la page cliquer sur postuler pour confirmer votre choix /
-      POSTULER في الجزء السفلي من الصفحة انقر فوق
-    </li>
-    <li class="list-group-item">
-      En bas de la page va apparaitre votre choix. Attention,certains axes de
-      recherches ou sujets demandent de charger votre projet de recherche
-      correspondant. Si c'est le cas charger votre projet de recherche en format
-      pdf/ سيظهر اختيارك في الجزء السفلي من الصفحة. يرجى ملاحظة أن بعض محاور
-      البحث أو الموضوعات تتطلب منك تحميل مشروعك البحثي المقابل. إذا كان الأمر
-      كذلك ، قم بتحميل مشروعك البحثي بتنسيق pdf
-    </li>
-  </ol>
-
-  <div class="col-12 mt-5">
-    <div class="d-flex justify-content-between align-items-center my-3">
-      <div class="col-3">
-        <input
-          class="form-control"
-          type="text"
-          name=""
-          [(ngModel)]="labo"
-          (ngModelChange)="searchLabo()"
-          [ngModelOptions]="{ standalone: true }"
-          pattern="[0-9]*(\.[0-9]+)?"
-          placeholder="par labo"
-        />
-      </div>
-
-      <div class="col-3">
-        <input
-          class="form-control"
-          type="text"
-          name=""
-          [(ngModel)]="sujet"
-          (ngModelChange)="searchSujet()"
-          [ngModelOptions]="{ standalone: true }"
-          pattern="[0-9]*(\.[0-9]+)?"
-          placeholder="par sujet"
-        />
-      </div>
-
-      <div class="col-3">
-        <input
-          class="form-control"
-          type="text"
-          name=""
-          [(ngModel)]="formationDotorale"
-          (ngModelChange)="searchFormation()"
-          [ngModelOptions]="{ standalone: true }"
-          pattern="[0-9]*(\.[0-9]+)?"
-          placeholder="par formation doctorale"
-        />
-      </div>
+<div class="col-12 mt-5">
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <div class="col-3">
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        [(ngModel)]="labo"
+        (ngModelChange)="searchLabo()"
+        [ngModelOptions]="{ standalone: true }"
+        pattern="[0-9]*(\.[0-9]+)?"
+        placeholder="par labo"
+      />
     </div>
 
-    <table class="table table-responsive table-bordered">
-      <thead>
-        <tr class="table-primary">
-          <th scope="col" class="w-7">action</th>
-          <th scope="col" class="w-32">Laboratoire</th>
-          <th scope="col" class="w-16">Prof</th>
-          <th scope="col" class="w-20">Sujet</th>
-          <th scope="col" class="w-16">CED</th>
-          <th scope="col" class="w-17">Formation doctorale</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="
-            let s of sujets | paginate: { itemsPerPage: 50, currentPage: page }
-          "
-        >
-          <td>
-            <input [disabled]="isDisabled" (click)="choseSujet(s,$event)" class="form-check form-check-lg" name="btSelectItem" type="checkbox" />
-          </td>
-          <td>
-            {{ s.formationDoctorale.titre }}
-          </td>
-          <td>{{ s.professeur.prenom }} {{ s.professeur.nom }}</td>
-          <td>
-            {{ s.titre }}
-          </td>
-          <td>
-            {{ s.formationDoctorale["ced"]["titre"] }}
-          </td>
-          <td>
-            {{ s.formationDoctorale.titre }}
-          </td>
-        </tr>
-      </tbody>
-      <pagination-controls (pageChange)="page = $event"></pagination-controls>
-    </table>
+    <div class="col-3">
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        [(ngModel)]="sujet"
+        (ngModelChange)="searchSujet()"
+        [ngModelOptions]="{ standalone: true }"
+        pattern="[0-9]*(\.[0-9]+)?"
+        placeholder="par sujet"
+      />
+    </div>
 
+    <div class="col-3">
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        [(ngModel)]="formationDotorale"
+        (ngModelChange)="searchFormation()"
+        [ngModelOptions]="{ standalone: true }"
+        pattern="[0-9]*(\.[0-9]+)?"
+        placeholder="par formation doctorale"
+      />
+    </div>
   </div>
 
-  <input
-    type="button"
-    name="postuler"
-    class="postuler btn btn-primary my-3"
-    value="POSTULER"
-    disabled
-  />
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col" class="w-7">action</th>
+        <th scope="col" class="w-32">Laboratoire</th>
+        <th scope="col" class="w-16">Prof</th>
+        <th scope="col" class="w-20">Sujet</th>
+        <th scope="col" class="w-16">CED</th>
+        <th scope="col" class="w-17">Formation doctorale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sujets">
+        <td>
+          <input
+            [disabled]="isDisabled"
+            (click)="choseSujet(s, $event)"
+            class="form-check form-check-lg"
+            name="btSelectItem"
+            type="checkbox"
+          />
+        </td>
+        <td>
+          {{ s.formationDoctorale.titre }}
+        </td>
+        <td>{{ s.professeur.prenom }} {{ s.professeur.nom }}</td>
+        <td>
+          {{ s.titre }}
+        </td>
+        <td>
+          {{ s.formationDoctorale["ced"]["titre"] }}
+        </td>
+        <td>
+          {{ s.formationDoctorale.titre }}
+        </td>
+      </tr>
+      <div *ngIf="sujets.length <= 0">
+        <h4>
+          <img
+            src="/assets/images/connexion/loading.webp"
+            width="300"
+            height="100"
+          />
+        </h4>
+      </div>
+    </tbody>
+  </table>
+</div>
 
+<input
+  type="button"
+  name="postuler"
+  class="postuler btn btn-primary my-3"
+  value="POSTULER"
+  disabled
+/>

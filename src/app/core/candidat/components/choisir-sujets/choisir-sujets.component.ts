@@ -8,95 +8,89 @@ import { CandidatService } from '../../services/candidat.service';
 @Component({
   selector: '[app-choisir-sujets]',
   templateUrl: './choisir-sujets.component.html',
-  styleUrls: ['./choisir-sujets.component.css']
+  styleUrls: ['./choisir-sujets.component.css'],
 })
-
 export class ChoisirSujetsComponent implements OnInit {
+  public sujets: Sujet[] = [];
+  public labo: string = '';
+  public formationDotorale: string = '';
+  public sujet: string = '';
+  public page: number = 1;
+  public config!: Config;
+  public nbrSujetsChoisies: number | undefined = 0;
+  public nbrSujetsAPostuler: number | undefined = 0;
+  isDisabled: boolean = false;
 
-
-  // still need developement
-
-  public sujets:Sujet[] = [];
-  public labo:string = '';
-  public formationDotorale:string = '';
-  public sujet:string = '';
-  public page:number = 1;
-  public config!:Config;
-  public nbrSujetsChoisies:number | undefined = 0;
-  public nbrSujetsAPostuler:number | undefined = 0;
-  isDisabled:boolean = false;
-
-
-
-  constructor(public candidatPostuler : CandidatPostulerService,
-              public candidatConfig:CandidatService
-              ) { }
+  constructor(
+    public candidatPostuler: CandidatPostulerService,
+    public candidatConfig: CandidatService
+  ) {}
 
   ngOnInit(): void {
     this.getPublishedSujets();
     this.getConfigInfo();
   }
 
-  getPublishedSujets(){
-     this.candidatPostuler.getPublishedSubjects().then(res=>{
-       this.sujets = res.results;
-     })
+  getPublishedSujets() {
+    this.candidatPostuler.getPublishedSubjects().then((res) => {
+      this.sujets = res.results;
+    });
   }
 
-  getConfigInfo(){
-    this.candidatConfig.getConfigInfo().then(res=>{
+  getConfigInfo() {
+    this.candidatConfig.getConfigInfo().then((res) => {
       this.config = res;
       this.nbrSujetsAPostuler = this.config.max_sujet_postuler;
-    })
+    });
   }
 
-  searchLabo(){
-    if(this.labo === ''){
+  searchLabo() {
+    if (this.labo === '') {
       this.ngOnInit();
-    }
-    else {
-      this.sujets = this.sujets.filter(res=>{
-        return res.titre.toLocaleLowerCase().match(this.labo.toLocaleLowerCase());
-      })
+    } else {
+      this.sujets = this.sujets.filter((res) => {
+        return res.titre
+          .toLocaleLowerCase()
+          .match(this.labo.toLocaleLowerCase());
+      });
     }
   }
 
-  searchFormation(){
-    if(this.formationDotorale === ''){
+  searchFormation() {
+    if (this.formationDotorale === '') {
       this.ngOnInit();
-    }
-    else {
-      this.sujets = this.sujets.filter(res=>{
-        return res.formationDoctorale.titre.toLocaleLowerCase().match(this.formationDotorale.toLocaleLowerCase());
-      })
+    } else {
+      this.sujets = this.sujets.filter((res) => {
+        return res.formationDoctorale.titre
+          .toLocaleLowerCase()
+          .match(this.formationDotorale.toLocaleLowerCase());
+      });
     }
   }
 
-  searchSujet(){
-    if(this.sujet === ''){
+  searchSujet() {
+    if (this.sujet === '') {
       this.ngOnInit();
-    }
-    else {
-      this.sujets = this.sujets.filter(res=>{
-        return res.titre.toLocaleLowerCase().match(this.sujet.toLocaleLowerCase());
-      })
+    } else {
+      this.sujets = this.sujets.filter((res) => {
+        return res.titre
+          .toLocaleLowerCase()
+          .match(this.sujet.toLocaleLowerCase());
+      });
     }
   }
 
-  choseSujet(s:Sujet,event){
-
-    if(event.target.checked){
+  choseSujet(s: Sujet, event) {
+    if (event.target.checked) {
       this.nbrSujetsChoisies++;
     }
 
-    if(!event.target.checked){
+    if (!event.target.checked) {
       this.nbrSujetsChoisies--;
     }
 
-    if(this.nbrSujetsChoisies >= this.nbrSujetsAPostuler){
+    if (this.nbrSujetsChoisies >= this.nbrSujetsAPostuler) {
       this.isDisabled = true;
     }
-
   }
-
 }
