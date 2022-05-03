@@ -163,11 +163,11 @@ export class DutComponent implements OnInit {
       const file = files[0];
       if (file.size > 4194304) {
         if (type === this.DIPLOME_FILE) {
-          this.candidatDutForm.controls['Dut_diplome'].setValue('');
+          this.candidatDutForm.controls['diplomeFile'].setValue('');
           this.errorText =
             'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
         } else if (type === this.RELEVE_FILE) {
-          this.candidatDutForm.controls['releves'].setValue('');
+          this.candidatDutForm.controls['relevefile'].setValue('');
           this.errorText =
             'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
         }
