@@ -1,4 +1,4 @@
-<app-alert></app-alert>
+<app-alert *ngIf="alert" [data]="alert"></app-alert>
 <p>Vous avez sujet(s) choisis</p>
 <ol class="list-group list-group-flush">
   <li class="list-group-item">
@@ -88,6 +88,7 @@
             name="btSelectItem"
             type="checkbox"
             (change)="onSelectSubjet($event, s.id)"
+            [checked]="selectedSubjectsId.indexOf(s.id) > -1"
           />
         </td>
         <td>

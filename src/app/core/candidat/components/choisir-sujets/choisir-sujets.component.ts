@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import Config from 'src/app/models/Config';
+import { Postuler } from 'src/app/models/Postuler';
 import { Sujet } from 'src/app/models/Sujet';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { CandidatPostulerService } from '../../services/candidat-postuler.service';
 import { CandidatService } from '../../services/candidat.service';
 
@@ -21,6 +23,8 @@ export class ChoisirSujetsComponent implements OnInit {
   itemsCount: number | undefined;
   isFetchingItems = true;
   selectedSubjectsId: number[] = [];
+  alert: AlertData | undefined = undefined;
+  postules: Postuler[] = [];
 
   constructor(
     public candidatPostuler: CandidatPostulerService,
@@ -32,6 +36,7 @@ export class ChoisirSujetsComponent implements OnInit {
       next: (d) => {
         const postules = d.results;
         postules.forEach((p) => {
+          this.postules.push(p);
           this.selectedSubjectsId.push(p.sujet.id);
         });
       },
@@ -93,15 +98,73 @@ export class ChoisirSujetsComponent implements OnInit {
 
   onSelectSubjet(event: Event, subjet_id: number) {
     const target = event.target as HTMLInputElement;
+    const index = this.selectedSubjectsId.indexOf(subjet_id);
     if (!target.checked) {
-      const index = this.selectedSubjectsId.indexOf(subjet_id);
       if (index > -1) {
         this.selectedSubjectsId.splice(index, 1);
+        this.alert = {
+          type: 'loading',
+          message: "Entrain d'enlever le postule",
+        };
+        let postule: Postuler, pindex: number;
+        this.postules.every((p, index) => {
+          if (p.sujet.id === subjet_id) {
+            postule = p;
+            pindex = index;
+          }
+          return p.sujet.id !== subjet_id;
+        });
+        if (postule) {
+          this.candidatPostuler
+            .deletePostule(postule.id)
+            .then((d) => {
+              if (d) {
+                this.postules.splice(pindex, 1);
+                this.alert = {
+                  type: 'success',
+                  message: 'Postule enlever avec success',
+                };
+              } else {
+                this.alert = {
+                  type: 'error',
+                  message: "Erreur d'opération. Réessayez plus tard",
+                };
+              }
+            })
+            .finally(() => {
+              setTimeout(() => (this.alert = undefined), 3000);
+            });
+        }
         return;
       }
     }
     if (this.selectedSubjectsId.length >= this.maxSujets) return;
+    if (index > -1) return;
     this.selectedSubjectsId.push(subjet_id);
+    this.alert = {
+      type: 'loading',
+      message: 'Entrain de postuler pour le sujet',
+    };
+    this.candidatPostuler
+      .postuler(subjet_id)
+      .then((f) => {
+        if (f) {
+          this.postules.push(f as Postuler);
+          this.alert = {
+            type: 'success',
+            message: 'Sujet postuler avec success',
+          };
+        } else {
+          this.alert = {
+            type: 'error',
+            message: 'Error lors de postuler pour le sujet',
+          };
+        }
+      })
+      .then(() => {
+        setTimeout(() => (this.alert = undefined), 3000);
+        console.log(this.postules);
+      });
   }
 
   onIndexChange(offset: number) {

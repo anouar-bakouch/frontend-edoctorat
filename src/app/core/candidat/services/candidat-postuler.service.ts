@@ -30,6 +30,36 @@ export class CandidatPostulerService {
   }
 
   getSelectedSubjects() {
-    return this.http.get<Result<Postuler>>(`${environment.API_URL}/api/candidat-postules/`);
+    return this.http.get<Result<Postuler>>(
+      `${environment.API_URL}/api/candidat-postules/`
+    );
+  }
+
+  postuler(sujet: number) {
+    return new Promise<Boolean | Postuler>((resolve, _) => {
+      this.http
+        .post<Postuler>(`${environment.API_URL}/api/candidat-postules/`, {
+          sujet,
+        })
+        .subscribe({
+          next: (d) =>
+            resolve({
+              ...d,
+              sujet: { id: d['sujet'] as unknown as number } as Sujet,
+            }),
+          error: (e) => resolve(false),
+        });
+    });
+  }
+
+  deletePostule(id: number) {
+    return new Promise<Boolean>((resolve, _) => {
+      this.http
+        .delete(`${environment.API_URL}/api/candidat-postules/${id}`)
+        .subscribe({
+          next: (d) => resolve(true),
+          error: (e) => resolve(false),
+        });
+    });
   }
 }
