@@ -28,6 +28,14 @@ export class ChoisirSujetsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.candidatPostuler.getSelectedSubjects().subscribe({
+      next: (d) => {
+        const postules = d.results;
+        postules.forEach((p) => {
+          this.selectedSubjectsId.push(p.sujet.id);
+        });
+      },
+    });
     this.getPublishedSujets();
     this.getConfigInfo();
   }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { Postuler } from 'src/app/models/Postuler';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { environment } from 'src/environments/environment';
@@ -26,5 +27,9 @@ export class CandidatPostulerService {
         error: (err) => reject(err),
       });
     });
+  }
+
+  getSelectedSubjects() {
+    return this.http.get<Result<Postuler>>(`${environment.API_URL}/api/candidat-postules/`);
   }
 }
