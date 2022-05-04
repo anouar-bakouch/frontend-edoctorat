@@ -101,45 +101,16 @@ export class ChoisirSujetsComponent implements OnInit {
     const index = this.selectedSubjectsId.indexOf(subjet_id);
     if (!target.checked) {
       if (index > -1) {
-        this.selectedSubjectsId.splice(index, 1);
-        this.alert = {
-          type: 'loading',
-          message: "Entrain d'enlever le postule",
-        };
-        let postule: Postuler, pindex: number;
-        this.postules.every((p, index) => {
-          if (p.sujet.id === subjet_id) {
-            postule = p;
-            pindex = index;
-          }
-          return p.sujet.id !== subjet_id;
-        });
-        if (postule) {
-          this.candidatPostuler
-            .deletePostule(postule.id)
-            .then((d) => {
-              if (d) {
-                this.postules.splice(pindex, 1);
-                this.alert = {
-                  type: 'success',
-                  message: 'Postule enlever avec success',
-                };
-              } else {
-                this.alert = {
-                  type: 'error',
-                  message: "Erreur d'opération. Réessayez plus tard",
-                };
-              }
-            })
-            .finally(() => {
-              setTimeout(() => (this.alert = undefined), 3000);
-            });
-        }
+        this.handleDeletePostule(index, subjet_id);
         return;
       }
     }
     if (this.selectedSubjectsId.length >= this.maxSujets) return;
     if (index > -1) return;
+    this.handleAddPostule(subjet_id);
+  }
+
+  private handleAddPostule(subjet_id: number) {
     this.selectedSubjectsId.push(subjet_id);
     this.alert = {
       type: 'loading',
@@ -165,6 +136,45 @@ export class ChoisirSujetsComponent implements OnInit {
         setTimeout(() => (this.alert = undefined), 3000);
         console.log(this.postules);
       });
+  }
+
+  private handleDeletePostule(index: number, subjet_id: number) {
+    this.selectedSubjectsId.splice(index, 1);
+    this.alert = {
+      type: 'loading',
+      message: "Entrain d'enlever le postule",
+    };
+    let postule: Postuler, pindex: number;
+    this.postules.every((p, index) => {
+      if (p.sujet.id === subjet_id) {
+        postule = p;
+        pindex = index;
+      }
+      return p.sujet.id !== subjet_id;
+    });
+    if (postule) {
+      this.candidatPostuler
+        .deletePostule(postule.id)
+        .then((d) => {
+          if (d) {
+            this.postules.splice(pindex, 1);
+            this.alert = {
+              type: 'success',
+              message: 'Postule enlever avec success',
+            };
+          } else {
+            this.alert = {
+              type: 'error',
+              message: "Erreur d'opération. Réessayez plus tard",
+            };
+          }
+        })
+        .finally(() => {
+          setTimeout(() => (this.alert = undefined), 3000);
+        });
+    } else {
+      this.alert = undefined;
+    }
   }
 
   onIndexChange(offset: number) {
