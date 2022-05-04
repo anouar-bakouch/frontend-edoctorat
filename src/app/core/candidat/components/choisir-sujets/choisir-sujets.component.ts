@@ -17,11 +17,10 @@ export class ChoisirSujetsComponent implements OnInit {
   public sujet: string = '';
   public page: number = 1;
   public config!: Config;
-  public nbrSujetsChoisies: number | undefined = 0;
-  public nbrSujetsAPostuler: number | undefined = 0;
-  isDisabled: boolean = false;
+  public maxSujets: number | undefined = 0;
   itemsCount: number | undefined;
   isFetchingItems = true;
+  selectedSubjectsId: number[] = [];
 
   constructor(
     public candidatPostuler: CandidatPostulerService,
@@ -44,7 +43,7 @@ export class ChoisirSujetsComponent implements OnInit {
   getConfigInfo() {
     this.candidatConfig.getConfigInfo().then((res) => {
       this.config = res;
-      this.nbrSujetsAPostuler = this.config.max_sujet_postuler;
+      this.maxSujets = this.config.max_sujet_postuler;
     });
   }
 
@@ -84,18 +83,17 @@ export class ChoisirSujetsComponent implements OnInit {
     }
   }
 
-  choseSujet(s: Sujet, event) {
-    if (event.target.checked) {
-      this.nbrSujetsChoisies++;
+  onSelectSubjet(event: Event, subjet_id: number) {
+    const target = event.target as HTMLInputElement;
+    if (!target.checked) {
+      const index = this.selectedSubjectsId.indexOf(subjet_id);
+      if (index > -1) {
+        this.selectedSubjectsId.splice(index, 1);
+        return;
+      }
     }
-
-    if (!event.target.checked) {
-      this.nbrSujetsChoisies--;
-    }
-
-    if (this.nbrSujetsChoisies >= this.nbrSujetsAPostuler) {
-      this.isDisabled = true;
-    }
+    if (this.selectedSubjectsId.length >= this.maxSujets) return;
+    this.selectedSubjectsId.push(subjet_id);
   }
 
   onIndexChange(offset: number) {

@@ -80,11 +80,14 @@
       <tr *ngFor="let s of sujets">
         <td>
           <input
-            [disabled]="isDisabled"
-            (click)="choseSujet(s, $event)"
+            [disabled]="
+              selectedSubjectsId.length >= maxSujets &&
+              selectedSubjectsId.indexOf(s.id) === -1
+            "
             class="form-check form-check-lg"
             name="btSelectItem"
             type="checkbox"
+            (change)="onSelectSubjet($event, s.id)"
           />
         </td>
         <td>
