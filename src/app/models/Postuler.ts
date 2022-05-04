@@ -1,10 +1,7 @@
-
+import { Sujet } from './Sujet';
 
 export interface Postuler {
-
-    cne:string;
-    idSujet:number;
-    pathFile:string;
-    valider:boolean;
-    
+  pathFile: string | undefined;
+  sujet: Sujet;
+  id: number;
 }
