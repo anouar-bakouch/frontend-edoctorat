@@ -6,19 +6,19 @@ import { CandidatParcoursService } from '../../services/candidat-parcours.servic
 import { CountriesService } from '../../services/countries.service';
 import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { CandidatService } from '../../services/candidat.service';
-import { Annexe } from 'src/app/models/Annexe';
+
 import {
-  even,
-  RxFormBuilder,
   RxFormGroup,
 } from '@rxweb/reactive-form-validators';
-import * as swal from 'sweetalert';
+import swal from 'sweetalert';
+import { TypeAnnexeEnum } from 'src/app/enums/TypeAnnexeEnum';
 
 @Component({
   selector: '[app-c-ingenieur]',
   templateUrl: './c-ingenieur.component.html',
   styleUrls: ['./c-ingenieur.component.css'],
 })
+
 export class CIngenieurComponent implements OnInit {
   result!: Result<Diplome>;
 
@@ -29,10 +29,9 @@ export class CIngenieurComponent implements OnInit {
     private candidatService: CandidatService
   ) {}
 
-  private countries: any;
+  public countries: any;
   public _cities: Array<string> = [];
   public candidatCI: Diplome | undefined;
-  public message!: string;
   public CIExist: boolean = false;
 
   public mentions = this.candidatService.mentions;
@@ -40,20 +39,22 @@ export class CIngenieurComponent implements OnInit {
 
   //remember that type will always be bac in this case so in case of post
 
-  isUpdating = false;
-  permitUpdate = true;
-  errorText: string | undefined;
-  isFetchingInfo = true;
+  public message!: string;
+  public isFetchingInfo: boolean = true;
+  public errorText: string | undefined;
+  public isUpdating: boolean = false;
   public selectedFile: File | undefined;
   DIPLOME_FILE = 'dfile';
   RELEVE_FILE = 'rfile';
   diplomeFileLink: string | undefined;
   releveFileLink: string | undefined;
+  diplome :Diplome | undefined;
+  CIExists : boolean = false;
 
 
   public candidatCIForm = <RxFormGroup>this.fservice.group({
     intitule: [DiplomeType.CI],
-    type: [DiplomeType.CI, Validators.required],
+    type: [DiplomeType.CI],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: ['', Validators.required],
@@ -62,11 +63,11 @@ export class CIngenieurComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    diplomeFile: [''],
-    releveFile: ['']
+    diplomeFile: ['', Validators.required],
+    relevefile: ['', Validators.required],
   });
 
-  ngOnInit(): void {
+
     ngOnInit(): void {
       this.httpCountries.getCountries().subscribe((res) => {
         this.countries = res.data;
@@ -95,9 +96,7 @@ export class CIngenieurComponent implements OnInit {
             this.candidatCIForm.controls['moyen_generale'].setValue(
               diplome.moyen_generale
             );
-            this.candidatCIForm.controls['moyen_generale'].setValue(
-              diplome.moyen_generale
-            );
+
             this.candidatCIForm.controls['diplomeFile'].removeValidators(
               Validators.required
             );
@@ -119,58 +118,6 @@ export class CIngenieurComponent implements OnInit {
         })
         .finally(() => (this.isFetchingInfo = false));
     }
-  }
-
-  getCIInfo() {
-    this.candidatParcours.getDiplomes().then((res) => {
-      console.log(res);
-      this.isFetchingInfo = false;
-      this.result = res as Result<Diplome>;
-
-      const index = this.result.results.findIndex((object: any) => {
-        return object.intitule === DiplomeType.CI; // temporarly
-      });
-
-      if (index !== -1) {
-        this.candidatCI = this.result.results[index];
-        this.CIExist = true;
-        this.candidatCIForm.disable();
-        this.candidatCIForm
-          .get('intitule')
-          ?.setValue(this.candidatCI?.intitule);
-        this.candidatCIForm.get('type')?.setValue(this.candidatCI?.type);
-        this.candidatCIForm.get('mention')?.setValue(this.candidatCI?.mention);
-        this.candidatCIForm
-          .get('moyen_generale')
-          ?.setValue(this.candidatCI?.moyen_generale);
-        this.candidatCIForm.get('pays')?.setValue(this.candidatCI?.pays);
-        this.candidatCIForm
-          .get('dateCommission')
-          ?.setValue(this.candidatCI?.dateCommission);
-        this.candidatCIForm
-          .get('etablissement')
-          ?.setValue(this.candidatCI?.etablissement);
-        this.candidatCIForm
-          .get('specialite')
-          ?.setValue(this.candidatCI?.specialite);
-        this.candidatCIForm
-          .get('province')
-          ?.setValue(this.candidatCI?.province);
-        this.candidatCIForm.get('ville')?.setValue(this.candidatCI?.ville);
-
-        // const annexe: Annexe | undefined = this.candidatCI?.annexe;
-
-        // console.log(this.candidatCI?.annexe);
-      } else {
-        this.message = 'vous pouvez continuer a modifier votre parcours';
-        this.CIExist = false;
-      }
-    });
-  }
-
-  get _countries() {
-    return this.countries;
-  }
 
   onSubmit() {
     this.isUpdating = true;
@@ -234,6 +181,5 @@ export class CIngenieurComponent implements OnInit {
       }
     }
   }
-
-  
+ 
 }

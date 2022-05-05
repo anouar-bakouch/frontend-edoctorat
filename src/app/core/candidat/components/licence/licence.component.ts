@@ -6,18 +6,19 @@ import { CandidatParcoursService } from '../../services/candidat-parcours.servic
 import { CountriesService } from '../../services/countries.service';
 import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { CandidatService } from '../../services/candidat.service';
-import { Annexe } from 'src/app/models/Annexe';
 import {
-  even,
-  RxFormBuilder,
   RxFormGroup,
 } from '@rxweb/reactive-form-validators';
+import { TypeAnnexeEnum } from 'src/app/enums/TypeAnnexeEnum';
+import swal from 'sweetalert';
 
 @Component({
   selector: '[app-licence]',
   templateUrl: './licence.component.html',
   styleUrls: ['./licence.component.css'],
 })
+
+
 export class LicenceComponent implements OnInit {
   result!: Result<Diplome>;
 
@@ -28,26 +29,24 @@ export class LicenceComponent implements OnInit {
     private candidatService: CandidatService
   ) {}
 
-  private countries: any;
-  public _cities: Array<string> = [];
+  public countries: any;
   public candidatLicence: Diplome | undefined;
   public message!: string;
-  public LicenceExist: boolean = false;
+  public isFetchingInfo: boolean = true;
+  public errorText: string | undefined;
+  public isUpdating: boolean = false;
 
   public mentions = this.candidatService.mentions;
-  public TypesLicence = this.candidatService.TypesCI;
-
-  //remember that type will always be bac in this case so in case of post
-
-  isUpdating = false;
-  permitUpdate = true;
-  errorText: string | undefined;
-  isFetchingInfo = true;
-  public selectedFile: File | undefined;
+  DIPLOME_FILE = 'dfile';
+  RELEVE_FILE = 'rfile';
+  diplomeFileLink: string | undefined;
+  releveFileLink: string | undefined;
+  public LicenceExists = false;
+  diplome: Diplome | undefined;
 
   public candidatLicenceForm = <RxFormGroup>this.fservice.group({
     intitule: [DiplomeType.LICENCE],
-    type: [DiplomeType.LICENCE, Validators.required],
+    type: [DiplomeType.LICENCE],
     dateCommission: ['', Validators.required],
     pays: ['', Validators.required],
     ville: ['', Validators.required],
@@ -56,117 +55,122 @@ export class LicenceComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    licence_diplome: [''],
-    releves_licence: [''],
+    diplomeFile: ['', Validators.required],
+    relevefile: ['', Validators.required],
   });
 
   ngOnInit(): void {
-    this.candidatLicenceForm.get('intitule')?.disable();
-    this.candidatLicenceForm.get('type')?.disable();
     this.httpCountries.getCountries().subscribe((res) => {
       this.countries = res.data;
     });
 
-    this.getLicenceInfo();
-    alert(this.mentions);
-  }
-
-  getLicenceInfo() {
-    this.candidatParcours.getDiplomes().then((res) => {
-      this.isFetchingInfo = false;
-      this.result = res as Result<Diplome>;
-
-      const index = this.result.results.findIndex((object: any) => {
-        return object.type === DiplomeType.LICENCE; // temporarly
-      });
-
-      if (index !== -1) {
-        this.candidatLicence = this.result.results[index];
-        this.LicenceExist = true;
-        this.candidatLicenceForm.disable();
-        this.candidatLicenceForm
-          .get('intitule')
-          ?.setValue(this.candidatLicence?.intitule);
-        this.candidatLicenceForm
-          .get('type')
-          ?.setValue(this.candidatLicence?.type);
-        this.candidatLicenceForm
-          .get('mention')
-          ?.setValue(this.candidatLicence?.mention);
-        this.candidatLicenceForm
-          .get('moyen_generale')
-          ?.setValue(this.candidatLicence?.moyen_generale);
-        this.candidatLicenceForm
-          .get('pays')
-          ?.setValue(this.candidatLicence?.pays);
-        this.candidatLicenceForm
-          .get('dateCommission')
-          ?.setValue(this.candidatLicence?.dateCommission);
-        this.candidatLicenceForm
-          .get('etablissement')
-          ?.setValue(this.candidatLicence?.etablissement);
-        this.candidatLicenceForm
-          .get('specialite')
-          ?.setValue(this.candidatLicence?.specialite);
-        this.candidatLicenceForm
-          .get('province')
-          ?.setValue(this.candidatLicence?.province);
-        this.candidatLicenceForm
-          .get('ville')
-          ?.setValue(this.candidatLicence?.ville);
-
-        // const annexe: Annexe | undefined = this.candidatLicence?.annexe;
-
-        // console.log(this.candidatLicence?.annexe);
-      } else {
-        this.message = 'vous pouvez continuer a modifier votre parcours';
-        this.LicenceExist = false;
-      }
-    });
-  }
-
-  get _countries() {
-    return this.countries;
-  }
-
-  enableUpdate() {
-    this.candidatLicenceForm.enable();
-    this.candidatLicenceForm.get('intitule')?.disable();
-    this.candidatLicenceForm.get('type')?.disable();
-  }
-
-  addBac() {
-    this.errorText = undefined;
-    this.isUpdating = true;
-
-    let formdata = this.candidatLicenceForm.toFormData();
-
     this.candidatParcours
-      .addDiplome(formdata)
-      .then((res) => {
-        console.log(res);
+      .getDiplomes(DiplomeType.LICENCE)
+      .then((diplome) => {
+        if (diplome) {
+          diplome = diplome as Diplome;
+          this.diplome = diplome;
+          this.LicenceExists = true;
+          this.candidatLicenceForm.controls['dateCommission'].setValue(
+            diplome.dateCommission
+          );
+          this.candidatLicenceForm.controls['pays'].setValue(diplome.pays);
+          this.candidatLicenceForm.controls['ville'].setValue(diplome.ville);
+          this.candidatLicenceForm.controls['province'].setValue(diplome.province);
+          this.candidatLicenceForm.controls['mention'].setValue(diplome.mention);
+          this.candidatLicenceForm.controls['etablissement'].setValue(
+            diplome.etablissement
+          );
+          this.candidatLicenceForm.controls['specialite'].setValue(
+            diplome.specialite
+          );
+          this.candidatLicenceForm.controls['moyen_generale'].setValue(
+            diplome.moyen_generale
+          );
+          this.candidatLicenceForm.controls['moyen_generale'].setValue(
+            diplome.moyen_generale
+          );
+          this.candidatLicenceForm.controls['diplomeFile'].removeValidators(
+            Validators.required
+          );
+          this.candidatLicenceForm.controls['relevefile'].removeValidators(
+            Validators.required
+          );
+          diplome.annexes.forEach((annexe) => {
+            if (annexe.typeAnnexe == TypeAnnexeEnum.DIPLOME) {
+              this.diplomeFileLink = annexe.pathFile.substring(
+                annexe.pathFile.lastIndexOf('/') + 1
+              );
+            } else if (annexe.typeAnnexe == TypeAnnexeEnum.RELEVE) {
+              this.releveFileLink = annexe.pathFile.substring(
+                annexe.pathFile.lastIndexOf('/') + 1
+              );
+            }
+          });
+        }
       })
-      .catch((err) => {
-        this.errorText =
-          "Une erreur s'est produite lors de la mise à jour. Revérifiez vos données ou réessayez plus tard.";
-        console.log(err);
-      })
-      .finally(() => (this.isUpdating = false));
+      .finally(() => (this.isFetchingInfo = false));
   }
 
-  public onFileSelected(event: any) {
+  onSubmit() {
+    this.isUpdating = true;
+    const formData = this.candidatLicenceForm.toFormData();
+    formData.set('diplomeFile', formData.get('diplomeFile[0]'));
+    formData.set('releveFile', formData.get('relevefile[0]'));
+    formData.delete('releveFile[0]');
+    formData.delete('diplomeFile[0]');
+    if (!this.LicenceExists) {
+      this.candidatParcours
+        .addDiplome(formData)
+        .then((_) => {
+          swal({
+            icon: 'success',
+          });
+        })
+        .catch((_) => {
+          this.errorText =
+            "Une erreur s'est produite de notre côté, réessayez plus tard.";
+        })
+        .finally(() => (this.isUpdating = false));
+    } else {
+      if (formData.get('diplomeFile') === 'null') {
+        formData.delete('diplomeFile');
+      }
+      if (formData.get('releveFile') === 'null') {
+        formData.delete('releveFile');
+      }
+      this.candidatParcours
+        .updateDiplome(formData, this.diplome.id)
+        .then((_) =>
+          swal({
+            icon: 'success',
+          })
+        )
+        .catch((_) => {
+          this.errorText =
+            "Une erreur s'est produite de notre côté, réessayez plus tard.";
+        })
+        .finally(() => (this.isUpdating = false));
+    }
+  }
+
+  onFileSelected(event: Event, type: string) {
+    this.errorText = undefined;
     const target = event.target as HTMLInputElement;
     const files = target.files;
     if (files && files.length > 0) {
       const file = files[0];
-      if (file.size > 1000000) {
-        this.errorText =
-          'La taille du fichier ne peut pas être supérieure à 1 Mo.';
-        this.permitUpdate = false;
-      } else {
-        this.errorText = undefined;
-        this.permitUpdate = true;
-        this.selectedFile = file;
+      if (file.size > 4194304) {
+        if (type === this.DIPLOME_FILE) {
+          this.candidatLicenceForm.controls['diplomeFile'].setValue('');
+          this.errorText =
+            'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
+        } else if (type === this.RELEVE_FILE) {
+          this.candidatLicenceForm.controls['relevefile'].setValue('');
+          this.errorText =
+            'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
+        }
+        return;
       }
     }
   }
