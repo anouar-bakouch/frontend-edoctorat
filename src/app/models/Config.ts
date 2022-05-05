@@ -8,6 +8,4 @@ export default interface Config {
     date_fin_postuler_sujet_candidat: Date,
     date_fin_modifier_sujet_prof: Date
 
-
-
 }

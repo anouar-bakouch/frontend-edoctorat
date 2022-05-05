@@ -44,6 +44,11 @@ export class CIngenieurComponent implements OnInit {
   errorText: string | undefined;
   isFetchingInfo = true;
   public selectedFile: File | undefined;
+  DIPLOME_FILE = 'dfile';
+  RELEVE_FILE = 'rfile';
+  diplomeFileLink: string | undefined;
+  releveFileLink: string | undefined;
+
 
   public candidatCIForm = <RxFormGroup>this.fservice.group({
     intitule: [DiplomeType.CI],
@@ -56,8 +61,8 @@ export class CIngenieurComponent implements OnInit {
     etablissement: ['', Validators.required],
     specialite: ['', Validators.required],
     moyen_generale: ['', Validators.required],
-    ci_diplome: [''],
-    releves_ci: [''],
+    diplomeFile: [''],
+    releveFile: ['']
   });
 
   ngOnInit(): void {
@@ -121,12 +126,6 @@ export class CIngenieurComponent implements OnInit {
     return this.countries;
   }
 
-  enableUpdate() {
-    this.candidatCIForm.enable();
-    this.candidatCIForm.get('intitule')?.disable();
-    this.candidatCIForm.get('type')?.disable();
-  }
-
   addBac() {
     this.errorText = undefined;
     this.isUpdating = true;
@@ -146,20 +145,26 @@ export class CIngenieurComponent implements OnInit {
       .finally(() => (this.isUpdating = false));
   }
 
-  public onFileSelected(event: any) {
+  onFileSelected(event: Event, type: string) {
+    this.errorText = undefined;
     const target = event.target as HTMLInputElement;
     const files = target.files;
     if (files && files.length > 0) {
       const file = files[0];
-      if (file.size > 1000000) {
-        this.errorText =
-          'La taille du fichier ne peut pas être supérieure à 1 Mo.';
-        this.permitUpdate = false;
-      } else {
-        this.errorText = undefined;
-        this.permitUpdate = true;
-        this.selectedFile = file;
+      if (file.size > 4194304) {
+        if (type === this.DIPLOME_FILE) {
+          this.candidatCIForm.controls['diplomeFile'].setValue('');
+          this.errorText =
+            'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
+        } else if (type === this.RELEVE_FILE) {
+          this.candidatCIForm.controls['relevefile'].setValue('');
+          this.errorText =
+            'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
+        }
+        return;
       }
     }
   }
+
+  
 }

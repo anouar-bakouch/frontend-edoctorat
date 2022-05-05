@@ -159,31 +159,46 @@ etablissementBac
    
     <div class="row mt-5">
         <div class="mb-3">
-            <label for="ci_dip" class="form-label">Diplôme d'ingénieur pdf <span class="text-danger h6"> < 4MO </span></label>
-            <input class="form-control diplomeci" type="file"
-                formControlName="ci_diplome"
-                required
-                accept="application/pdf" />
-
+          <label for="bac_dip" class="form-label"
+            >Diplôme d'ingénieur pdf
+            <span class="text-danger h6"> < 4MO </span></label
+          >
+          <h6 class="text-primary" *ngIf="diplomeFileLink">
+            Fichier Courant : {{ diplomeFileLink }}
+          </h6>
+          <input
+            class="form-control diplomeBac"
+            type="file"
+            accept="application/pdf"
+            formControlName="diplomeFile"
+            [writeFile]="true"
+            (change)="onFileSelected($event, 'dfile')"
+          />
         </div>
 
         <div class="mb-3">
-            <label for="relBac" class="form-label">Relevés de notes pdf  <span class="text-danger h6"> < 4MO </span></label>
-            <input class="form-control releveCI" type="file"
-                id="relBac"  accept="application/pdf"
-                required 
-                
-                formControlName="releves_ci"
-
-                />
+          <label for="relBac" class="form-label"
+            >Relevés de notes pdf
+            <span class="text-danger h6"> < 4MO </span></label
+          >
+          <h6 class="text-primary" *ngIf="releveFileLink">
+            Fichier Courant : {{ releveFileLink }}
+          </h6>
+          <input
+            class="form-control releveBac"
+            type="file"
+            id="relCi"
+            accept="application/pdf"
+            formControlName="releveFile"
+            [writeFile]="true"
+            (change)="onFileSelected($event, 'rfile')"
+          />
         </div>
-    </div>
+      </div>
 
     <div class="col col-sm-12 col-lg-6 d-flex justify-content-between align-items-center">
         
         <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-check-circle"></i> confirmer</button>
-        <button (click)="enableUpdate()" [disabled]="!CIExist " class="btn btn-primary btn-sm" type="button"><i class="bi bi-pencil-square"></i> modifier</button>
-        <button [disabled]="!CIExist " class="btn btn-danger btn-sm" type="submit"><i class="bi bi-x-circle"></i> supprimer</button>
     
     </div>
 

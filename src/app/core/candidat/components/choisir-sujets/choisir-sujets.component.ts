@@ -12,6 +12,7 @@ import { CandidatService } from '../../services/candidat.service';
   templateUrl: './choisir-sujets.component.html',
   styleUrls: ['./choisir-sujets.component.css'],
 })
+
 export class ChoisirSujetsComponent implements OnInit {
   public sujets: Sujet[] = [];
   public labo: string = '';

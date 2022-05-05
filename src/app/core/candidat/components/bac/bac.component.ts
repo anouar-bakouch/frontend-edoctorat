@@ -9,11 +9,13 @@ import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import { TypeAnnexeEnum } from 'src/app/enums/TypeAnnexeEnum';
 import swal from 'sweetalert';
 
+
 @Component({
   selector: '[app-bac]',
   templateUrl: './bac.component.html',
   styleUrls: ['./bac.component.css'],
 })
+
 export class BacComponent implements OnInit {
   constructor(
     private httpCountries: CountriesService,

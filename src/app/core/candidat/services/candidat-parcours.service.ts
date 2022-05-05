@@ -5,9 +5,11 @@ import { Diplome } from 'src/app/models/Diplome';
 import Result from 'src/app/models/Result';
 import { environment } from 'src/environments/environment';
 
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class CandidatParcoursService {
   constructor(public http: HttpClient) {}
 
