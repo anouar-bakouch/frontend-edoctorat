@@ -12,6 +12,7 @@ import {
   RxFormBuilder,
   RxFormGroup,
 } from '@rxweb/reactive-form-validators';
+import * as swal from 'sweetalert';
 
 @Component({
   selector: '[app-c-ingenieur]',
@@ -66,13 +67,58 @@ export class CIngenieurComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.candidatCIForm.get('intitule')?.disable();
-    this.candidatCIForm.get('type')?.disable();
-    this.httpCountries.getCountries().subscribe((res) => {
-      this.countries = res.data;
-    });
-
-    this.getCIInfo();
+    ngOnInit(): void {
+      this.httpCountries.getCountries().subscribe((res) => {
+        this.countries = res.data;
+      });
+  
+      this.candidatParcours
+        .getDiplomes(DiplomeType.CI)
+        .then((diplome) => {
+          if (diplome) {
+            diplome = diplome as Diplome;
+            this.diplome = diplome;
+            this.CIExist = true;
+            this.candidatCIForm.controls['dateCommission'].setValue(
+              diplome.dateCommission
+            );
+            this.candidatCIForm.controls['pays'].setValue(diplome.pays);
+            this.candidatCIForm.controls['ville'].setValue(diplome.ville);
+            this.candidatCIForm.controls['province'].setValue(diplome.province);
+            this.candidatCIForm.controls['mention'].setValue(diplome.mention);
+            this.candidatCIForm.controls['etablissement'].setValue(
+              diplome.etablissement
+            );
+            this.candidatCIForm.controls['specialite'].setValue(
+              diplome.specialite
+            );
+            this.candidatCIForm.controls['moyen_generale'].setValue(
+              diplome.moyen_generale
+            );
+            this.candidatCIForm.controls['moyen_generale'].setValue(
+              diplome.moyen_generale
+            );
+            this.candidatCIForm.controls['diplomeFile'].removeValidators(
+              Validators.required
+            );
+            this.candidatCIForm.controls['relevefile'].removeValidators(
+              Validators.required
+            );
+            diplome.annexes.forEach((annexe) => {
+              if (annexe.typeAnnexe == TypeAnnexeEnum.DIPLOME) {
+                this.diplomeFileLink = annexe.pathFile.substring(
+                  annexe.pathFile.lastIndexOf('/') + 1
+                );
+              } else if (annexe.typeAnnexe == TypeAnnexeEnum.RELEVE) {
+                this.releveFileLink = annexe.pathFile.substring(
+                  annexe.pathFile.lastIndexOf('/') + 1
+                );
+              }
+            });
+          }
+        })
+        .finally(() => (this.isFetchingInfo = false));
+    }
   }
 
   getCIInfo() {
@@ -126,23 +172,46 @@ export class CIngenieurComponent implements OnInit {
     return this.countries;
   }
 
-  addBac() {
-    this.errorText = undefined;
+  onSubmit() {
     this.isUpdating = true;
-
-    let formdata = this.candidatCIForm.toFormData();
-
-    this.candidatParcours
-      .addDiplome(formdata)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        this.errorText =
-          "Une erreur s'est produite lors de la mise à jour. Revérifiez vos données ou réessayez plus tard.";
-        console.log(err);
-      })
-      .finally(() => (this.isUpdating = false));
+    const formData = this.candidatCIForm.toFormData();
+    formData.set('diplomeFile', formData.get('diplomeFile[0]'));
+    formData.set('releveFile', formData.get('relevefile[0]'));
+    formData.delete('releveFile[0]');
+    formData.delete('diplomeFile[0]');
+    if (!this.CIExists) {
+      this.candidatParcours
+        .addDiplome(formData)
+        .then((_) => {
+          swal({
+            icon: 'success',
+          });
+        })
+        .catch((_) => {
+          this.errorText =
+            "Une erreur s'est produite de notre côté, réessayez plus tard.";
+        })
+        .finally(() => (this.isUpdating = false));
+    } else {
+      if (formData.get('diplomeFile') === 'null') {
+        formData.delete('diplomeFile');
+      }
+      if (formData.get('releveFile') === 'null') {
+        formData.delete('releveFile');
+      }
+      this.candidatParcours
+        .updateDiplome(formData, this.diplome.id)
+        .then((_) =>
+          swal({
+            icon: 'success',
+          })
+        )
+        .catch((_) => {
+          this.errorText =
+            "Une erreur s'est produite de notre côté, réessayez plus tard.";
+        })
+        .finally(() => (this.isUpdating = false));
+    }
   }
 
   onFileSelected(event: Event, type: string) {

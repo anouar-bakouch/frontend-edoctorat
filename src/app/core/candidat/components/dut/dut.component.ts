@@ -16,6 +16,7 @@ import { TypeAnnexeEnum } from 'src/app/enums/TypeAnnexeEnum';
   templateUrl: './dut.component.html',
   styleUrls: ['./dut.component.css'],
 })
+
 export class DutComponent implements OnInit {
   result!: Result<Diplome>;
 
@@ -88,9 +89,7 @@ export class DutComponent implements OnInit {
           this.candidatDutForm.controls['moyen_generale'].setValue(
             diplome.moyen_generale
           );
-          this.candidatDutForm.controls['moyen_generale'].setValue(
-            diplome.moyen_generale
-          );
+    
           this.candidatDutForm.controls['diplomeFile'].removeValidators(
             Validators.required
           );

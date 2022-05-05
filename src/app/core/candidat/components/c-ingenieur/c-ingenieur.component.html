@@ -17,7 +17,7 @@
         <i class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"></i> ne remplissez ce formulaire si vous seulement disposez d'un diplome d'ingénieur sinon veuillez l'ignorer
     </p>
 
- <form [formGroup]="candidatCIForm" (ngSubmit)="addBac()">
+ <form [formGroup]="candidatCIForm" (ngSubmit)="onSubmit()">
     <div class="row">
         
         <div class="col-sm-9 col-lg-4">
@@ -68,11 +68,11 @@
         <div class="col-lg-3">
             <div class="form-group required">
                 <label class="col-form-label-sm control-label"
-                    for="id_date_diplome_bac">Date D'obtention Du Cycle d'ingénieur</label>
+                    for="id_date_diplome_ci">Date D'obtention Du Diplome</label>
 
                 <input type="date"  value=""
                     class="form-control form-control-sm dateBac"
-                    required="" id="id_date_diplome_bac"
+                    required="" id="id_date_diplome_ci"
                     formControlName="dateCommission"
                     />
             </div>
