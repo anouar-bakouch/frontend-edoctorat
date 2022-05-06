@@ -3,6 +3,7 @@ import { filter } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import UserInfo from 'src/app/models/UserInfo';
 import { environment } from 'src/environments/environment';
+import { CandidatService } from '../../services/candidat.service';
 
 @Component({
   selector: '[app-side-compte]',
@@ -12,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class SideCompteComponent implements OnInit {
   public candidatInfo!: UserInfo;
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService,candidatService:CandidatService) {}
 
   ngOnInit(): void {
     this.authService.currentUserSubjet

@@ -17,7 +17,7 @@ export class ParcoursComponent implements OnInit {
     value: DiplomeType;
 }[] = [];
 
-  public message:string = 'votre dossier est incomplet , afin de passer pour postuler veuillez completer votre dossier';
+  public message:string = 'votre dossier est incomplet , veuillez completer votre dossier';
 
   public parcoursNotCompleted = this.parcours.filter(x=>{
     x.value = DiplomeType.BAC;
@@ -89,7 +89,7 @@ export class ParcoursComponent implements OnInit {
       if(result === 80 || result === 60 || result === 40 ){
         this.SuccessParcours = ! this.SuccessParcours;
         this.progressBarvalue = 100;
-        this.message = 'félicitations votre dossier est complet , vous pouvez maintenant postuler !';
+        this.message = 'félicitations votre dossier est complet !';
         swal({
           icon: 'success',
          text : this.message
