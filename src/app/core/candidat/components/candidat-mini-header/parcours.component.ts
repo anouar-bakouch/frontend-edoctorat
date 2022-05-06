@@ -61,7 +61,7 @@ export class ParcoursComponent implements OnInit {
           break;
 
           case DiplomeType.CI || DiplomeType.MASTER || DiplomeType.MASTER_SPECIALISE || DiplomeType.MASTER_EN_SCIENCE_TECHNIQUE : 
-                   this.bac_5 = this.bac_5 + 20;
+                   this.bac_5 = this.bac_5 + 60;
 
           break;
 
@@ -71,7 +71,7 @@ export class ParcoursComponent implements OnInit {
           break;
 
           case DiplomeType.DOCTORATE_EN_MEDICINE : 
-                   this.bac_6 = this.bac_6 + 20;
+                   this.bac_6 = this.bac_6 + 80;
           break;
 
           default : 
@@ -86,10 +86,10 @@ export class ParcoursComponent implements OnInit {
       )
 
       // still need to be fixed 
-      
+
       const result:number = this.bac_1+ this.bac_2 + this.bac_3 + this.bac_5 + this.bac_6 ;
  
-      if(result === 80 || result === 60 || result === 40 ){
+      if(result === 80 || result === 60 || result === 100 || result === 120){
         this.SuccessParcours = ! this.SuccessParcours;
         this.progressBarvalue = 100;
         this.message = 'félicitations votre dossier est complet !';
