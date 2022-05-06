@@ -84,6 +84,9 @@ export class ParcoursComponent implements OnInit {
       }
     
       )
+
+      // still need to be fixed 
+      
       const result:number = this.bac_1+ this.bac_2 + this.bac_3 + this.bac_5 + this.bac_6 ;
  
       if(result === 80 || result === 60 || result === 40 ){

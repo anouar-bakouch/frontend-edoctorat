@@ -20,7 +20,6 @@ export class SideCompteComponent implements OnInit {
   public date_fin:any;
   public actual_date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
   public disablePostuler:boolean = false;
-  public message:string = 'vous n\'avez plus le droit de postuler ';
 
   constructor(public authService: AuthService,public candidatConfig:CandidatService) {}
 
@@ -30,7 +29,7 @@ export class SideCompteComponent implements OnInit {
       this.date_debut = res.date_debut_postuler_sujet_candidat;
       this.date_fin = res.date_fin_postuler_sujet_candidat;
 
-      
+
       if(this.actual_date > this.date_fin){
         this.disablePostuler = ! this.disablePostuler;
       }
@@ -42,11 +41,6 @@ export class SideCompteComponent implements OnInit {
     });
   }
 
-  onClick(){
-    swal({
-     text : this.message
-    });
-  }
 
 
   ngOnInit(): void {
