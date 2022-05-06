@@ -1,5 +1,5 @@
 export enum DiplomeType {
-  BAC = 'baccalauréat',
+  BAC = 'baccalauréat', 
   DUT = 'diplome universitaire de technologie',
   CI = 'cycle ingénieur',
   LICENCE = 'licence',

@@ -3,7 +3,7 @@ import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { CandidatParcoursService } from '../../services/candidat-parcours.service';
 import { CandidatService } from '../../services/candidat.service';
 import { Diplome } from 'src/app/models/Diplome';
-import { finalize } from 'rxjs';
+import swal from 'sweetalert';
 
 @Component({
   selector: '[app-parcours]',
@@ -16,14 +16,13 @@ export class ParcoursComponent implements OnInit {
     name: string;
     value: DiplomeType;
 }[] = [];
+
+  public message:string = 'votre dossier est incomplet , afin de passer pour postuler veuillez completer votre dossier';
+
   public parcoursNotCompleted = this.parcours.filter(x=>{
     x.value = DiplomeType.BAC;
   })
 
-
-  verifyParcours(){
-    
-  }
 
   constructor(
     public candidatService :CandidatService,
@@ -33,16 +32,13 @@ export class ParcoursComponent implements OnInit {
   public progressBarvalue:number = 0;
   public OtherDiplomes:boolean = false;
 
-  public bac_1 = 4;
+  public bac_1 = 0;
   public bac_2 = 0;
   public bac_3 = 0;
   public bac_5 = 0;
   public bac_6 = 0;
 
   public SuccessParcours = false;
-
-
-
 
   ngOnInit(): void {
 
@@ -56,31 +52,26 @@ export class ParcoursComponent implements OnInit {
         switch(x.intitule){
 
           case DiplomeType.BAC :
-                  this.bac_1 = this.bac_1 + 16;
-                  console.log('bac')
+                  this.bac_1 = this.bac_1 + 20;
           break;
 
           case DiplomeType.DUT : 
-                   this.bac_2 = this.bac_2 + 16;
-                  console.log('dut')
+                   this.bac_2 = this.bac_2 + 20;
 
           break;
 
           case DiplomeType.CI || DiplomeType.MASTER || DiplomeType.MASTER_SPECIALISE || DiplomeType.MASTER_EN_SCIENCE_TECHNIQUE : 
-                   this.bac_5 = this.bac_5 + 16;
-                  console.log('ci')
+                   this.bac_5 = this.bac_5 + 20;
 
           break;
 
-
           case DiplomeType.LICENCE || DiplomeType.LICENCE_PROFESSIONNELLE : 
-                   this.bac_3 = this.bac_3 + 16;
-                  console.log('licence')
+                   this.bac_3 = this.bac_3 + 20;
 
           break;
 
           case DiplomeType.DOCTORATE_EN_MEDICINE : 
-                   this.bac_6 = this.bac_6 + 16;
+                   this.bac_6 = this.bac_6 + 20;
           break;
 
           default : 
@@ -93,9 +84,19 @@ export class ParcoursComponent implements OnInit {
       }
     
       )
-      this.progressBarvalue = this.bac_1+ this.bac_2 + this.bac_6 + this.bac_5 + this.bac_3;
-      if(this.progressBarvalue === 100){
+      const result:number = this.bac_1+ this.bac_2 + this.bac_3 + this.bac_5 + this.bac_6 ;
+ 
+      if(result === 80 || result === 60 || result === 40 ){
         this.SuccessParcours = ! this.SuccessParcours;
+        this.progressBarvalue = 100;
+        this.message = 'félicitations votre dossier est complet , vous pouvez maintenant postuler !';
+        swal({
+          icon: 'success',
+         text : this.message
+        });
+      }
+      else {
+        this.progressBarvalue = result;
       }
     })
   }
