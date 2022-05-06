@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CandidatParcoursService } from '../../services/candidat-parcours.service';
 
 @Component({
   selector: '[app-candidat-parcours]',
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CandidatParcoursComponent implements OnInit {
-
-
   ngOnInit(): void {
-  
+   
   }
+
+  
 
 }

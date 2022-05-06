@@ -22,7 +22,6 @@ export class PostulerComponent implements OnInit {
   getPublishedSujets(){
      this.candidatPostuler.getPublishedSubjects().then(res=>{
        this.sujets = res.results;
-       console.log(res.results);
      })
   }
 

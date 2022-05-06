@@ -29,8 +29,7 @@ export class BacComponent implements OnInit {
   public message!: string;
   public isFetchingInfo: boolean = true;
   public errorText: string | undefined;
-  public isUpdating: boolean = false;
-
+  public isUpdating: boolean = false;                                   
   public mentions = this.candidatService.mentions;
   public bacTypes = this.candidatService.TypeBac;
   DIPLOME_FILE = 'dfile';

@@ -13,6 +13,23 @@ import { environment } from 'src/environments/environment';
 export class CandidatParcoursService {
   constructor(public http: HttpClient) {}
 
+  getInfoDiplomes(): Promise<Result<Diplome>> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<Result<Diplome>>(
+          `${environment.API_URL}/api/candidat-parcours/` 
+        )
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
+    });
+  }
+
   getDiplomes(
     type: string | undefined = undefined
   ): Promise<Result<Diplome> | Diplome | undefined> {
