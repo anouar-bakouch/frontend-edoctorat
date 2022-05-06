@@ -1,5 +1,4 @@
 
-
         <div class="card w-100">
             <div class="card-header">
           
@@ -21,7 +20,7 @@
                     
                 </a>
               </li>
-              <li class="list-group-item">
+              <li [class.disabled]="disablePostuler" class="list-group-item">
                 <a routerLink="/candidat/postuler" routerLinkActive="_active" class="nav-link btn btn-primary text-light">
                     Postuler
                 </a>
