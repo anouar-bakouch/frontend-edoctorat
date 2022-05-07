@@ -30,6 +30,11 @@ import { MasterProComponent } from './components/master-pro/master-pro.component
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DeugComponent } from './components/deug/deug.component';
+import { DeustComponent } from './components/deust/deust.component';
+import { BtsComponent } from './components/bts/bts.component';
+import { DtsComponent } from './components/dts/dts.component';
+import { MasterStComponent } from './components/master-st/master-st.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ProfilCandidatComponent,
     LicenceProComponent,
     MasterProComponent,
+    DeugComponent,
+    DeustComponent,
+    BtsComponent,
+    DtsComponent,
+    MasterStComponent,
   ],
   imports: [
     CommonModule,

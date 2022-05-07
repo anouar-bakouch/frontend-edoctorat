@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BacOption } from 'src/app/enums/BacOption';
 import { CIOption } from 'src/app/enums/CIOption';
+import { DeugOption } from 'src/app/enums/DeugOption';
 import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { DutOption } from 'src/app/enums/DutOption';
 import { MentionEnum } from 'src/app/enums/MentionEnum';
@@ -90,6 +91,13 @@ export class CandidatService {
     return {
       name,
       value: DiplomeType[name as keyof typeof DiplomeType],
+    };
+  });
+
+  public DeugTypes = Object.keys(DeugOption).map((name) => {
+    return {
+      name,
+      value: DeugOption[name as keyof typeof DeugOption],
     };
   });
   
