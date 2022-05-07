@@ -25,18 +25,18 @@ export class DeustComponent implements OnInit {
   ) {}
 
   public countries: any;
-  public candidatDesut: Diplome | undefined;
+  public candidatDeust: Diplome | undefined;
   public message!: string;
   public isFetchingInfo: boolean = true;
   public errorText: string | undefined;
   public isUpdating: boolean = false;                                   
   public mentions = this.candidatService.mentions;
-  public DesutTypes = this.candidatService.DesutTypes;
+  public DeustTypes = this.candidatService.DeustTypes;
   DIPLOME_FILE = 'dfile';
   RELEVE_FILE = 'rfile';
   diplomeFileLink: string | undefined;
   releveFileLink: string | undefined;
-  public DesutExists = false;
+  public DeustExists = false;
   diplome: Diplome | undefined;
 
   public candidatDeustForm = <RxFormGroup>this.fservice.group({
@@ -60,33 +60,33 @@ export class DeustComponent implements OnInit {
     });
 
     this.candidatParcours
-      .getDiplomes(DiplomeType.Desut)
+      .getDiplomes(DiplomeType.DEUST)
       .then((diplome) => {
         if (diplome) {
           diplome = diplome as Diplome;
           this.diplome = diplome;
-          this.DesutExists = true;
-          this.candidatDesutForm.controls['dateCommission'].setValue(
+          this.DeustExists = true;
+          this.candidatDeustForm.controls['dateCommission'].setValue(
             diplome.dateCommission
           );
-          this.candidatDesutForm.controls['pays'].setValue(diplome.pays);
-          this.candidatDesutForm.controls['ville'].setValue(diplome.ville);
-          this.candidatDesutForm.controls['province'].setValue(diplome.province);
-          this.candidatDesutForm.controls['mention'].setValue(diplome.mention);
-          this.candidatDesutForm.controls['etablissement'].setValue(
+          this.candidatDeustForm.controls['pays'].setValue(diplome.pays);
+          this.candidatDeustForm.controls['ville'].setValue(diplome.ville);
+          this.candidatDeustForm.controls['province'].setValue(diplome.province);
+          this.candidatDeustForm.controls['mention'].setValue(diplome.mention);
+          this.candidatDeustForm.controls['etablissement'].setValue(
             diplome.etablissement
           );
-          this.candidatDesutForm.controls['specialite'].setValue(
+          this.candidatDeustForm.controls['specialite'].setValue(
             diplome.specialite
           );
-          this.candidatDesutForm.controls['moyen_generale'].setValue(
+          this.candidatDeustForm.controls['moyen_generale'].setValue(
             diplome.moyen_generale
           );
 
-          this.candidatDesutForm.controls['diplomeFile'].removeValidators(
+          this.candidatDeustForm.controls['diplomeFile'].removeValidators(
             Validators.required
           );
-          this.candidatDesutForm.controls['relevefile'].removeValidators(
+          this.candidatDeustForm.controls['relevefile'].removeValidators(
             Validators.required
           );
           diplome.annexes.forEach((annexe) => {
@@ -107,12 +107,12 @@ export class DeustComponent implements OnInit {
 
   onSubmit() {
     this.isUpdating = true;
-    const formData = this.candidatDesutForm.toFormData();
+    const formData = this.candidatDeustForm.toFormData();
     formData.set('diplomeFile', formData.get('diplomeFile[0]'));
     formData.set('releveFile', formData.get('relevefile[0]'));
     formData.delete('releveFile[0]');
     formData.delete('diplomeFile[0]');
-    if (!this.DesutExists) {
+    if (!this.DeustExists) {
       this.candidatParcours
         .addDiplome(formData)
         .then((_) => {
@@ -155,11 +155,11 @@ export class DeustComponent implements OnInit {
       const file = files[0];
       if (file.size > 4194304) {
         if (type === this.DIPLOME_FILE) {
-          this.candidatDesutForm.controls['diplomeFile'].setValue('');
+          this.candidatDeustForm.controls['diplomeFile'].setValue('');
           this.errorText =
             'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
         } else if (type === this.RELEVE_FILE) {
-          this.candidatDesutForm.controls['relevefile'].setValue('');
+          this.candidatDeustForm.controls['relevefile'].setValue('');
           this.errorText =
             'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
         }

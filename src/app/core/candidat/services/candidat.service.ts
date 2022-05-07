@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BacOption } from 'src/app/enums/BacOption';
 import { CIOption } from 'src/app/enums/CIOption';
 import { DeugOption } from 'src/app/enums/DeugOption';
+import { DeustOption } from 'src/app/enums/DeustOption';
 import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { DutOption } from 'src/app/enums/DutOption';
 import { MentionEnum } from 'src/app/enums/MentionEnum';
@@ -98,6 +99,13 @@ export class CandidatService {
     return {
       name,
       value: DeugOption[name as keyof typeof DeugOption],
+    };
+  });
+
+  public DeustTypes = Object.keys(DeustOption).map((name) => {
+    return {
+      name,
+      value: DeustOption[name as keyof typeof DeustOption],
     };
   });
   

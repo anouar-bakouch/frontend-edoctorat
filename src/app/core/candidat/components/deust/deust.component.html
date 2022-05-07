@@ -20,11 +20,11 @@
         <i
           class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"
         ></i>
-        la disposition du deug est non obligatoire pour passer au autres
+        la disposition du Deust est non obligatoire pour passer au autres
         diplomes
       </p>
   
-      <form [formGroup]="candidatDeugForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="candidatDeustForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-sm-9 col-lg-4">
             <div class="form-group required">
@@ -70,10 +70,10 @@
               >
                 <option
                   [selected]="
-                    candidatDeug?.intitule === t.value ? 'true' : 'false'
+                    candidatDeust?.intitule === t.value ? 'true' : 'false'
                   "
                   [value]="t.value"
-                  *ngFor="let t of DeugTypes"
+                  *ngFor="let t of DeustTypes"
                 >
                   {{ t.value }}
                 </option>
@@ -88,7 +88,7 @@
               <label
                 class="col-form-label-sm control-label"
                 for="id_date_diplome_bac"
-                >Date D'obtention Du Deug</label
+                >Date D'obtention Du Deust</label
               >
   
               <input
@@ -166,7 +166,7 @@
                 id="id_mentionbac"
               >
                 <option
-                  [selected]="candidatDeug?.mention === m.value ? 'true' : 'false'"
+                  [selected]="candidatDeust?.mention === m.value ? 'true' : 'false'"
                   [value]="m.value"
                   *ngFor="let m of mentions"
                 >
@@ -256,7 +256,7 @@
           <button
             class="btn btn-primary btn-sm"
             type="submit"
-            [disabled]="!candidatDeugForm.valid"
+            [disabled]="!candidatDeustForm.valid"
             *ngIf="!isUpdating"
           >
             <i class="bi bi-check-circle"></i> confirmer
