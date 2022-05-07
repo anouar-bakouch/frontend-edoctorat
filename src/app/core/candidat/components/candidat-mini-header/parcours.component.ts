@@ -55,7 +55,7 @@ export class ParcoursComponent implements OnInit {
                   this.bac_1 = this.bac_1 + 20;
           break;
 
-          case DiplomeType.DUT : 
+          case DiplomeType.DUT || DiplomeType.BTS || DiplomeType.DTS || DiplomeType.DEUG || DiplomeType.DEUST: 
                    this.bac_2 = this.bac_2 + 20;
 
           break;
