@@ -166,4 +166,13 @@ export class DoctoratMedecineComponent implements OnInit {
       }
     }
   }
+
+  deleteDiplome(diplome:Diplome){
+    if (confirm("vous etes sure de supprimer "+diplome.intitule) == true) {
+      this.candidatParcours.deleteDiplome(diplome.id).subscribe(res=>{
+      })
+    } 
+   
+  }
+
 }
