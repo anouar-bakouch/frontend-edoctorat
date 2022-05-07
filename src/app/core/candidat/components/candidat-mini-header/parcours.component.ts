@@ -88,8 +88,8 @@ export class ParcoursComponent implements OnInit {
       // still need to be fixed 
 
       const result:number = this.bac_1+ this.bac_2 + this.bac_3 + this.bac_5 + this.bac_6 ;
- 
-      if(result === 80 || result === 60 || result === 100 || result === 120){
+      alert(result)
+      if(result === 80 || result === 60 || result === 100 ||  result >= 120){
         this.SuccessParcours = ! this.SuccessParcours;
         this.progressBarvalue = 100;
         this.message = 'félicitations votre dossier est complet !';
@@ -97,6 +97,8 @@ export class ParcoursComponent implements OnInit {
           icon: 'success',
          text : this.message
         });
+
+      
       }
       else {
         this.progressBarvalue = result;
