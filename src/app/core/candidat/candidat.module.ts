@@ -35,6 +35,8 @@ import { DeustComponent } from './components/deust/deust.component';
 import { BtsComponent } from './components/bts/bts.component';
 import { DtsComponent } from './components/dts/dts.component';
 import { MasterStComponent } from './components/master-st/master-st.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [

@@ -19,7 +19,7 @@
             <span class="text-danger fw-bold">(Taille <= 1mb)</span
             >:</label
           >
-          <p class="text-primary " *ngIf="photoLink"><span class="fw-bold text-decoration-underline">photo courant</span> : {{photoLink}}</p>
+          <p class="text-primary " *ngIf="photoLink"><i class="bi bi-image"></i> <span class="fw-bold text-decoration-underline m-1">photo courant</span> : {{photoLink}}</p>
           <input
             (change)="onFileSelected($event)"
             class="form-control"
