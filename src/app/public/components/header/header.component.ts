@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: '[app-header]',
@@ -10,19 +11,20 @@ export class HeaderComponent implements OnInit {
 
   public language!:string;
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.language = localStorage.getItem('language') || 'Fr';
+  constructor(
+    public translate: TranslateService
+  ) {
+    translate.addLangs(['ar', 'fr']);
+    translate.setDefaultLang('fr');
   }
 
-public changeLanguage(event:any){
-  
-  let language = event.target.value;
+  ngOnInit(): void {
+   
+  }
 
-  localStorage.setItem('lang',language);
-
-}
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
 
 
 }

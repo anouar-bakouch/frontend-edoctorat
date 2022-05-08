@@ -103,13 +103,16 @@
          <li
             class="nav-item d-flex justify-content-center align-items-center"
           >
-            <select
-              class="form-select form-select-sm"
-              (change)="changeLanguage($event)"
-            >
-              <option value="Fr" [selected]="language == 'Fr'">Fr</option>
-              <option value="Ar" [selected]="language == 'Ar'">Ar</option>
-            </select>
+          <select 
+          class="form-control form-control-sm" 
+          #selectedLang 
+          (change)="switchLang(selectedLang.value)">
+        <option *ngFor="let language of translate.getLangs()" 
+          [value]="language"
+          [selected]="language === translate.currentLang">
+          {{ language }}
+        </option>
+      </select>
           </li>
           
       </ul>

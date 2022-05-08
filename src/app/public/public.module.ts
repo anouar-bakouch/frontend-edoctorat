@@ -42,9 +42,12 @@ import { CandidatForgetPasswordComponent } from './components/auth/candidat-forg
     CandidatAuthComponent,
     CandidatForgetPasswordComponent
   ],
-  imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule,
+    ],
   exports: [HomeComponent],
   providers: [HttpService],
 })
 
 export class PublicModule {}
+
+

@@ -17,6 +17,9 @@ import { GoogleLoginProvider } from 'angularx-social-login';
 import { AUTH_INTERCEPTOR_PROVIDERS } from './shared/interceptors/authorization.interceptor';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +35,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SocialLoginModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    // Initializing TranslateModule with loader
+  TranslateModule.forRoot({
+    loader: {
+     provide: TranslateLoader, // Main provider for loader,
+     useFactory: httpTranslateLoader,
+     deps: [HttpClient], // Dependencies which helps serving loader
+    }
+   })
   ],
   providers: [
     HttpService,
@@ -54,3 +65,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
