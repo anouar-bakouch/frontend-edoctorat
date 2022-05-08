@@ -20,7 +20,7 @@ import { LaboratoiresComponent } from './components/laboratoires/laboratoires.co
 import { ContainerComponent } from './components/container/container.component';
 import { CandidatAuthComponent } from './components/auth/candidat-auth/candidat-auth.component';
 import { CandidatForgetPasswordComponent } from './components/auth/candidat-forget-password/candidat-forget-password.component';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { CandidatForgetPasswordComponent } from './components/auth/candidat-forg
     CandidatAuthComponent,
     CandidatForgetPasswordComponent
   ],
-  imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule,
+  imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule,TranslateModule
     ],
   exports: [HomeComponent],
   providers: [HttpService],

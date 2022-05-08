@@ -1,9 +1,11 @@
 {
-
+    
+    "home" : {
     "Pole_doctorat" : "مركز دراسات الدكتوراه",
     "laboratoire_recherche" : "مختبر أبحاث",
     "formation_doctorale" : "دراسات الدكتوراه",
     "Reglement_candidature" : "القواعد والترشيح" 
+    }
   
   
   }
