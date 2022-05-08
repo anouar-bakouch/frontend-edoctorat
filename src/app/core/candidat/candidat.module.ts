@@ -79,6 +79,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     SharedModule,
+    
   ],
   exports: [CandidatComponent],
   providers: [CountriesService],
