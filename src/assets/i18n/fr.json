@@ -1,10 +1,11 @@
 {
 
   "home" : {  
-  "Pole_doctorat" : "pole d'etudes doctorales",
-  "laboratoire_recherche" : "laboratoire de recherche",
-  "formation_doctorale" : "formation doctorale",
-  "Reglement_candidature" : "reglement et candidature" 
+            "Pole_doctorat" : "POLE D'ETUDES DOCTORALES",
+            "laboratoire_recherche" : "LABORATOIRE DE RECHERCHE",
+            "formation_doctorale" : "FORMATION DOCTORALE",
+            "Reglement_candidature" : "REGLEMENT ET CANDIDATURE",
+            "connecter" : "تسجيل الدخول" 
   }
 
 
