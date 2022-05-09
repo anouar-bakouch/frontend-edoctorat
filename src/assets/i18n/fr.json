@@ -5,7 +5,25 @@
             "laboratoire_recherche" : "LABORATOIRE DE RECHERCHE",
             "formation_doctorale" : "FORMATION DOCTORALE",
             "Reglement_candidature" : "REGLEMENT ET CANDIDATURE",
-            "connecter" : "تسجيل الدخول" 
+            "connecter" : "SE CONNECTER" 
+  },
+
+  "connexion" : {
+      "candidat" : "candidat",
+      "professeur" : "professeur",
+      "directeur_ced" : "directeur du centre d'études doctorales",
+      "directeur_pole" : "directeur de pole",
+      "directeur_labo" : "directeur du laboratoire",
+      "scolarite" : "scolarite"
+  },
+
+  "candidat" : {
+
+    "informations_personnels" : "informations personnels",
+    "parcours" : "parcours", 
+    "postuler" : "postuler",
+    "notifications" : "notifications"
+    
   }
 
 

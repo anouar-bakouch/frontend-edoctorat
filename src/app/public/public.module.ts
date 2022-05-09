@@ -42,8 +42,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CandidatAuthComponent,
     CandidatForgetPasswordComponent
   ],
-  imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule,TranslateModule
-    ],
+  imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule,TranslateModule],
   exports: [HomeComponent],
   providers: [HttpService],
 })
