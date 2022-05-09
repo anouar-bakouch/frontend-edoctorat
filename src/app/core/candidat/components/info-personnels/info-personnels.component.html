@@ -15,11 +15,10 @@
       <div class="col-lg-10">
         <div class="mb-3">
           <label for="formFile" class="form-label"
-            >Importer votre Photo du Profil
+            >{{'candidat.info_perso.importer_photo_profil' | translate }}</label>
             <span class="text-danger fw-bold">(Taille <= 1mb)</span
-            >:</label
-          >
-          <p class="text-primary " *ngIf="photoLink"><i class="bi bi-image"></i> <span class="fw-bold text-decoration-underline m-1">{{'candidat.info_perso.photo_courant' | translate }}</span> : {{photoLink}}</p>
+            >
+          <p class="text-primary " *ngIf="photoLink"><i class="bi bi-image"></i> <span class="fw-bold text-decoration-underline m-1">{{'candidat.info_perso.photo_courant' | translate }}</span>  {{photoLink}}</p>
           <input
             (change)="onFileSelected($event)"
             class="form-control"
@@ -35,7 +34,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_nom"
-            >{{'candidat.info_perso.Nom' | translate }}:</label
+            >{{'candidat.info_perso.Nom' | translate }}</label
           >
           <input
             type="text"
@@ -51,7 +50,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_prenom"
-            >{{'candidat.info_perso.Prenom' | translate }}:</label
+            >{{'candidat.info_perso.Prenom' | translate }}</label
           >
           <input
             type="text"
@@ -68,7 +67,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_cin"
-            >{{'candidat.info_perso.CIN' | translate }}:</label
+            >{{'candidat.info_perso.CIN' | translate }}</label
           >
           <input
             type="text"
@@ -85,7 +84,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_cne"
-            >{{'candidat.info_perso.CNE' | translate }}:</label
+            >{{'candidat.info_perso.CNE' | translate }}</label
           >
           <input
             type="text"
@@ -121,7 +120,7 @@
       <div class="col-lg-3">
         <div class="form-group">
           <label class="col-form-label-sm h6" for="id_prenom_ar"
-            >{{'candidat.info_perso.Prenom_ar' | translate }}:</label
+            >{{'candidat.info_perso.Prenom_ar' | translate }}</label
           >
           <input
             type="text"
@@ -140,7 +139,7 @@
           <label
             class="col-form-label-sm h6 control-label"
             for="id_date_naissance"
-            >{{'candidat.info_perso.date_naissance' | translate }}:</label
+            >{{'candidat.info_perso.date_naissance' | translate }}</label
           >
 
           <input
@@ -157,7 +156,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_sexe"
-            >{{'candidat.info_perso.sexe' | translate }}:</label
+            >{{'candidat.info_perso.sexe' | translate }}</label
           >
 
           <div class="form-group">
@@ -168,8 +167,8 @@
               required=""
               id="id_sexe"
             >
-              <option value="m" selected>Masculine</option>
-              <option value="f">Feminine</option>
+              <option value="m" selected>{{'candidat.info_perso.masculine' | translate }}</option>
+              <option value="f">{{'candidat.info_perso.feminine' | translate }}</option>
             </select>
           </div>
         </div>
@@ -197,7 +196,7 @@
       <div class="col-lg-3">
         <div class="form-group">
           <label class="col-form-label-sm h6" for="id_lieu_naissance_ar"
-            >{{'candidat.info_perso.lieu_naissance_ar' | translate }}:</label
+            >{{'candidat.info_perso.lieu_naissance_ar' | translate }}</label
           >
           <input
             type="text"
@@ -269,7 +268,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_telephone"
-            >{{'candidat.info_perso.telephone' | translate }}:</label
+            >{{'candidat.info_perso.telephone' | translate }}</label
           >
           <input
             type="tel"
@@ -332,7 +331,7 @@
         type="submit"
         [disabled]="!permitUpdate"
       >
-        confirmer
+      {{'candidat.info_perso.confirmer' | translate }}
       </button>
       <h4 *ngIf="isUpdating">
         <img

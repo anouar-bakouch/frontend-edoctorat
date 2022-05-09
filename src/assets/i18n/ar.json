@@ -30,7 +30,7 @@
     "informations_personnels" : "معلومات شخصية",
     "info_perso":{
       "photo_courant" : "الصورة الحالية",
-      "importer photo profil ":"استيراد صورة ملف التعريف الخاص بك (الحجم <= 1mb):",
+      "importer_photo_profil":"استيراد صورة ملف التعريف الخاص بك",
       "Nom": "اللقب بالفرنسية",
       "Prenom":"الاسم بالفرنسية",
       "CIN" : "CIN",
@@ -46,7 +46,10 @@
       "ville_naissance_ar": "مدينة المولد باللغة العربية",
       "fonctionnaire" : "مُوَظَّف",
       "telephone" : "الهاتف",
-      "Pays" : "بلد"
+      "Pays" : "بلد",
+      "confirmer":"أكّد",
+      "masculine": " مذكر",
+      "feminine": "مؤنث"
     },
     "parcours": "التحصيل التعليمي",
     "postuler": "تقديم طلبات",

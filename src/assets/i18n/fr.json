@@ -9,12 +9,12 @@
   },
 
   "connexion" : {
-      "candidat" : "candidat",
-      "professeur" : "professeur",
-      "directeur_ced" : "directeur du centre d'études doctorales",
-      "directeur_pole" : "directeur de pole",
-      "directeur_labo" : "directeur du laboratoire",
-      "scolarite" : "scolarite"
+      "candidat" : "Candidat",
+      "professeur" : "Professeur",
+      "directeur_ced" : "Directeur du centre d'études doctorales",
+      "directeur_pole" : "Directeur de pole",
+      "directeur_labo" : "Directeur du laboratoire",
+      "scolarite" : "Scolarite"
   },
 
   "auth" : {
@@ -33,23 +33,26 @@
     "informations_personnels" : "Informations Personnels",
     "info_perso":{
       "photo_courant" : "photo courant",
-      "importer photo profil ":"Importer votre Photo du Profil (Taille <= 1mb):",
+      "importer_photo_profil":"Importer votre Photo du Profil",
       "Nom": "Nom",
       "Prenom":"Prenom",
       "CIN" : "CIN",
       "CNE":"CNE",
-      "Prenom_ar":"prenom en arabe",
+      "Prenom_ar":"Prenom en arabe",
       "Nom_ar":"Nom en arabe",
       "date_naissance" : "Date de naissance",
       "lieu_naissance" : "Lieu de naissance en Francais",
       "lieu_naissance_ar" : "Lieu de naissance en Arabe",
       "adresse_residence" : "Adresse de résidence",
       "ville_naissance" : "Ville de naissance en francais",
-      "ville_naissace_ar" : "Ville de naissance en arabe",
+      "ville_naissance_ar" : "Ville de naissance en arabe",
       "sexe" : "Sexe",
       "fonctionnaire" : "Fonctionnaire",
       "telephone" : "Téléphone",
-      "Pays" : "Pays"
+      "Pays" : "Pays",
+      "confirmer" : "Confirmer",
+      "masculine": "Masculine",
+      "feminine": "Feminine"
     },
     "parcours" : "Parcours", 
     "postuler" : "Postuler",
