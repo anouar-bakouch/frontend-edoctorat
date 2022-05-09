@@ -20,17 +20,28 @@
       "email":"بريد الالكتروني" ,
       "mot_de_passe":"كلمة السر",
       "pas_de_compte" : "لا يوجد لديك حساب ؟",
-      "inscirvez ":"Inscrivez-vous ici"
-
+      "inscription":"إفتح حساب",
+      "login" : "تسجيل الدخول"
 
     }
   },
   "candidat": {
     
-    "informations_personnels": "informations personnels",
-    "parcours": "parcours",
-    "postuler": "postuler",
-    "notifications": "notifications"
+    "informations_personnels" : "معلومات شخصية",
+    "info_perso":{
+      "photo_courant" : "الصورة الحالية",
+      "importer photo profil ":"استيراد صورة ملف التعريف الخاص بك (الحجم <= 1mb):",
+      "Nom": "اللقب بالفرنسية",
+      "Prenom":"الاسم بالفرنسية",
+      "CIN" : "CIN",
+      "CNE":"CNE",
+      "Prenom_ar":"الاسم باللغة العربية",
+      "Nom_ar":"اللقب باللغة العربية"
+    },
+    "parcours": "التحصيل التعليمي",
+    "postuler": "تقديم طلبات",
+    "notifications": "الإشعارات",
+    "deconnexion" :"تسجيل خروج"
   },
   "footer":{
 

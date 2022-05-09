@@ -22,16 +22,27 @@
 
       "email":"Email" ,
       "mot_de_passe":"Mot de passe",
-      "pas_de_compte" : "Vous n'avez pas un compte",
-      "inscrivez" : "Inscrivez-vous ici"
-      
+      "pas_de_compte" : "Vous n'avez pas un compte ?",
+      "inscription" : "Inscrivez-vous ici",
+      "login" : "se connecter"
+
     }
   },
   "candidat" : {
-    "informations_personnels" : "informations personnels",
-    "parcours" : "parcours", 
-    "postuler" : "postuler",
-    "notifications" : "notifications"
+    "deconnexion" : "deconnexion",
+    "informations_personnels" : "Informations Personnels",
+    "info_perso":{
+      "photo_courant" : "photo courant",
+      "importer photo profil ":"Importer votre Photo du Profil (Taille <= 1mb):",
+      "Nom": "Nom",
+      "Prenom":"Prenom",
+      "CIN" : "CIN",
+      "CNE":"CNE",
+      "Prenom_ar":""
+    },
+    "parcours" : "Parcours", 
+    "postuler" : "Postuler",
+    "notifications" : "Notifications"
 
   }
 

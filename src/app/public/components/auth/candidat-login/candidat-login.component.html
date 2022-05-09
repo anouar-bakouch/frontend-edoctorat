@@ -39,18 +39,21 @@
     *ngIf="!showLoading"
     type="submit"
     [disabled]="!form.valid"
-    value="Login"
+    value="{{'auth.login.login' | translate}}"
   />
  </div>
 
 
   <div class="col-sm-12 col-lg-5 m-auto form-group mt-3">
   <h4 *ngIf="showLoading"><img src="/assets/images/connexion/loading.webp" width="300" height="100" /></h4>
+  <div class="d-flex flex-column justify-content-around align-items-center">
   <p>
-    Vous n'avez pas de compte ?<a class="m-3" routerLink="/home/candidat/pre-register"
-      >Inscrivez-vous ici</a
-    >
+    {{'auth.login.pas_de_compte' | translate }}
   </p>
+  <a class="my-3" class="btn btn-primary" routerLink="/home/candidat/pre-register"
+      > {{'auth.login.inscription' | translate }}</a
+    >
+</div>
 </div>
 
 </div>
