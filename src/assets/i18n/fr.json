@@ -55,6 +55,14 @@
       "feminine": "Feminine"
     },
     "parcours" : "Parcours", 
+    "parcours_" : {
+        "professeur" : "Professeur",
+        "sujet" : "Sujet",
+        "action" : "Action",
+        "laboratoire" : "Laboratoire",
+        "ced" : "ced",
+        "formation doctorale" : "formation doctorale"
+    },
     "postuler" : "Postuler",
     "notifications" : "Notifications"
 
