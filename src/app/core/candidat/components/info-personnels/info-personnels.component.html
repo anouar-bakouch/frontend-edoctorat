@@ -19,7 +19,7 @@
             <span class="text-danger fw-bold">(Taille <= 1mb)</span
             >:</label
           >
-          <p class="text-primary " *ngIf="photoLink"><i class="bi bi-image"></i> <span class="fw-bold text-decoration-underline m-1">photo courant</span> : {{photoLink}}</p>
+          <p class="text-primary " *ngIf="photoLink"><i class="bi bi-image"></i> <span class="fw-bold text-decoration-underline m-1">{{'candidat.info_perso.photo_courant' | translate }}</span> : {{photoLink}}</p>
           <input
             (change)="onFileSelected($event)"
             class="form-control"
@@ -35,7 +35,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_nom"
-            >Nom:</label
+            >{{'candidat.info_perso.Nom' | translate }}:</label
           >
           <input
             type="text"
@@ -51,7 +51,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_prenom"
-            >Prénom:</label
+            >{{'candidat.info_perso.Prenom' | translate }}:</label
           >
           <input
             type="text"
@@ -68,7 +68,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_cin"
-            >CIN:</label
+            >{{'candidat.info_perso.CIN' | translate }}:</label
           >
           <input
             type="text"
@@ -85,7 +85,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_cne"
-            >CNE:</label
+            >{{'candidat.info_perso.CNE' | translate }}:</label
           >
           <input
             type="text"
@@ -106,7 +106,7 @@
       <div class="col-lg-3">
         <div class="form-group">
           <label class="col-form-label-sm h6" for="id_nom_ar"
-            >Nom en arabe</label
+            >{{'candidat.info_perso.Nom_ar' | translate }}</label
           >
           <input
             type="text"
@@ -121,7 +121,7 @@
       <div class="col-lg-3">
         <div class="form-group">
           <label class="col-form-label-sm h6" for="id_prenom_ar"
-            >Prénom en arabe:</label
+            >{{'candidat.info_perso.Prenom_ar' | translate }}:</label
           >
           <input
             type="text"
@@ -140,7 +140,7 @@
           <label
             class="col-form-label-sm h6 control-label"
             for="id_date_naissance"
-            >Date de naissance:</label
+            >{{'candidat.info_perso.date_naissance' | translate }}:</label
           >
 
           <input
@@ -157,7 +157,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_sexe"
-            >Sexe:</label
+            >{{'candidat.info_perso.sexe' | translate }}:</label
           >
 
           <div class="form-group">
@@ -181,7 +181,7 @@
           <label
             class="col-form-label-sm h6 control-label"
             for="id_lieu_naissance"
-            >Lieu de naissance:</label
+            >{{'candidat.info_perso.lieu_naissance' | translate }}</label
           >
           <input
             type="text"
@@ -197,7 +197,7 @@
       <div class="col-lg-3">
         <div class="form-group">
           <label class="col-form-label-sm h6" for="id_lieu_naissance_ar"
-            >Lieu de naissance en arabe:</label
+            >{{'candidat.info_perso.lieu_naissance_ar' | translate }}:</label
           >
           <input
             type="text"
@@ -214,7 +214,7 @@
           <label
             class="col-form-label-sm h6 control-label"
             for="id_adresse_personnelle"
-            >Adresse de résidence:</label
+            >{{'candidat.info_perso.adresse_residence' | translate }}</label
           >
           <input
             type="text"
@@ -231,7 +231,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_ville"
-            >Ville:</label
+            >{{'candidat.info_perso.ville_naissance' | translate }}</label
           >
           <input
             type="text"
@@ -252,7 +252,7 @@
           <label
             class="col-form-label-sm h6 control-label"
             for="id_lieu_naissance"
-            >Ville de naissance en Arabe:</label
+            >{{'candidat.info_perso.ville_naissance_ar' | translate }}</label
           >
           <input
             type="text"
@@ -269,7 +269,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label" for="id_telephone"
-            >Téléphone:</label
+            >{{'candidat.info_perso.telephone' | translate }}:</label
           >
           <input
             type="tel"
@@ -288,7 +288,7 @@
           <label
             class="col-form-label-sm h6 control-label"
             for="id_Province_bac"
-            >Pays</label
+            >{{'candidat.info_perso.Pays' | translate }}</label
           >
           <select
             data-live-search="true"
@@ -311,7 +311,7 @@
       <div class="col-lg-3">
         <div class="form-group required">
           <label class="col-form-label-sm h6 control-label"
-            >fonctionnaire</label
+            >{{'candidat.info_perso.fonctionnaire' | translate }}</label
           >
           <select
             formControlName="fonctionnaire"

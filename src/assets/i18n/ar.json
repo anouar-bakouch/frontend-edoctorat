@@ -36,7 +36,17 @@
       "CIN" : "CIN",
       "CNE":"CNE",
       "Prenom_ar":"الاسم باللغة العربية",
-      "Nom_ar":"اللقب باللغة العربية"
+      "Nom_ar":"اللقب باللغة العربية",
+      "date_naissance" : "تاريخ الميلاد",
+      "lieu_naissance_ar" : "مكان الولادة باللغة العربية",
+      "lieu_naissance" : "مكان الولادة بالفرنسية",
+      "sexe" : "الجنس",
+      "adresse_residence": "عنوان السكن بالفرنسية",
+      "ville_naissance": "مدينة المولد بالفرنسية",
+      "ville_naissance_ar": "مدينة المولد باللغة العربية",
+      "fonctionnaire" : "مُوَظَّف",
+      "telephone" : "الهاتف",
+      "Pays" : "بلد"
     },
     "parcours": "التحصيل التعليمي",
     "postuler": "تقديم طلبات",
