@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'candidat', loadChildren: () => import('./core/candidat/candidat.module').then(x => x.CandidatModule) } ,
   {
     path: 'pole',
+    loadChildren: () => import('./core/directeur-pole/directeur-pole.module').then(x => x.DirecteurPoleModule),
     component: DirecteurPoleComponent,
     canActivate: [IsProfessorGuard, IsDPoleGuard],
   },
