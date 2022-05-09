@@ -1,12 +1,23 @@
 {
-    
-    "home" : {
-                "Pole_doctorat" : "مركز دراسات الدكتوراه",
-                "laboratoire_recherche" : "مختبر أبحاث",
-                "formation_doctorale" : "دراسات الدكتوراه",
-                "Reglement_candidature" : "القواعد والترشيح",
-                "connecter" : "تسجيل الدخول" 
-    }
-  
-  
+  "home": {
+    "Pole_doctorat": "مركز دراسات الدكتوراه",
+    "laboratoire_recherche": "مختبر أبحاث",
+    "formation_doctorale": "دراسات الدكتوراه",
+    "Reglement_candidature": "القواعد والترشيح",
+    "connecter": "تسجيل الدخول"
+  },
+  "connexion": {
+    "candidat": "مُرَشَّح",
+    "professeur": "أستاذ جامعي",
+    "directeur_ced": "مدير مركز دراسة الدكتوراه",
+    "directeur_pole": "مدير القطب",
+    "directeur_labo": "مدير المختبر",
+    "scolarite": "مصلحة الشؤون الطلابية"
+  },
+  "candidat": {
+    "informations_personnels": "informations personnels",
+    "parcours": "parcours",
+    "postuler": "postuler",
+    "notifications": "notifications"
   }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { AuthService } from 'src/app/auth/auth.service';
 import AuthUser from 'src/app/models/GoogleAuthUser';
@@ -15,7 +16,8 @@ export class ConnexionComponent {
   constructor(
     private socialAuthService: SocialAuthService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public translate: TranslateService
   ) {}
 
   public loginProf() {
