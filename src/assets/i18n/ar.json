@@ -14,10 +14,27 @@
     "directeur_labo": "مدير المختبر",
     "scolarite": "مصلحة الشؤون الطلابية"
   },
+  "auth": {
+    "login" :{
+
+      "email":"بريد الالكتروني" ,
+      "mot_de_passe":"كلمة السر",
+      "pas_de_compte" : "لا يوجد لديك حساب ؟",
+      "inscirvez ":"Inscrivez-vous ici"
+
+
+    }
+  },
   "candidat": {
+    
     "informations_personnels": "informations personnels",
     "parcours": "parcours",
     "postuler": "postuler",
     "notifications": "notifications"
+  },
+  "footer":{
+
   }
+
+
 }

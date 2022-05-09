@@ -17,13 +17,22 @@
       "scolarite" : "scolarite"
   },
 
-  "candidat" : {
+  "auth" : {
+    "login" :{
 
+      "email":"Email" ,
+      "mot_de_passe":"Mot de passe",
+      "pas_de_compte" : "Vous n'avez pas un compte",
+      "inscrivez" : "Inscrivez-vous ici"
+      
+    }
+  },
+  "candidat" : {
     "informations_personnels" : "informations personnels",
     "parcours" : "parcours", 
     "postuler" : "postuler",
     "notifications" : "notifications"
-    
+
   }
 
 

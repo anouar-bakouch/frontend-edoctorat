@@ -8,7 +8,7 @@
 
   <div class="col-sm-12 col-lg-5 m-auto form-group mt-3">
 
-    <label class="form-label font-weight-bold fs-3" for="email"><i class="bi bi-envelope"></i> Email</label>
+    <label class="form-label font-weight-bold fs-3" for="email"><i class="bi bi-envelope"></i> {{ 'auth.login.email' |translate}}</label>
     <input
       
       class="form-control"
@@ -17,14 +17,14 @@
       type="email"
       formControlName="email"
       name="email"
-      placeholder="Email"
+      placeholder=" {{ 'auth.login.email' |translate}}"
     />
 
   </div>
 
   <div class="col-sm-12 col-lg-5 m-auto form-group mt-3">
 
-  <label class="form-label font-weight-bold fs-3" for="password"><i class="bi bi-key"></i> Mot de passe</label>
+  <label class="form-label font-weight-bold fs-3" for="password"><i class="bi bi-key"></i> {{ 'auth.login.mot_de_passe' |translate}}</label>
 
   <input
   class="form-control mb-3"
@@ -32,7 +32,7 @@
     type="password"
     formControlName="password"
     name="password"
-    placeholder="Password"
+    placeholder=" {{ 'auth.login.email' |translate}}"
   />
   <input
     class="btn btn-outline-primary"
