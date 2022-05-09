@@ -13,7 +13,9 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 
 const routes: Routes = [
   { path: '', redirectTo: 'home/infos', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home',
+    loadChildren: () => import('./public/public.module').then(x => x.PublicModule),
+   component: HomeComponent },
   {
     path: 'professeur',
     component: MainProfComponent,
