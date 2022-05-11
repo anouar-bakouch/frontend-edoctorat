@@ -129,7 +129,7 @@ export class ChoisirSujetsComponent implements OnInit {
         } else {
           this.alert = {
             type: 'error',
-            message: 'Error lors de postuler pour le sujet',
+            message: 'Error',
           };
         }
       })
