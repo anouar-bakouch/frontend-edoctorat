@@ -70,6 +70,13 @@
   
     },
     "notifications": "الإشعارات",
+    "notifications_details" : {
+      "conseil_1" : "Nous vous invitons à participer à l'entretien de notre commission qui se tiendra le",
+      "liste_principale" : "Liste principale",
+      "liste_d'attente" : "Liste d'attente (dêpot de dossier de 14h à 16h au CED Dhar Mahraz)",
+      "aide_infos" : "مساعدة ومعلومات إضافية",
+      "conseil_2" : "، اطبع طلب التسجيل في الموضوع الذي ترغب في التسجيل فيه وأكمل ملفك بالمستندات المحددة في وثائق لتقديم ملف.       انقر فوق النتيجة لرؤية الموضوعات التي تم قبولك فيها في القائمة الرئيسية. في حالة تلقيك إخطارًا بنتائج تحمل الموضوع مع ذكر (Liste Principale)"
+    },
     "deconnexion" :"تسجيل خروج"
   },
   "footer":{
