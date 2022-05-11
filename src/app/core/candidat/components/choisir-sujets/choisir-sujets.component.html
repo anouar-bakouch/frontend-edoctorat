@@ -1,5 +1,9 @@
 <app-alert *ngIf="alert" [data]="alert"></app-alert>
-
+<div class="p-1">
+  <button type="button" class="btn btn-primary" routerLink="/candidat/sujets_choisies">
+    <i class="bi bi-cart"></i><span class="badge badge-light">{{nbrSujets}} Sujets</span>
+  </button>
+  </div>
 <ol class="list-group list-group-flush">
   <li class="list-group-item">
     Rechercher l'axe de recherche ou le titre du sujet /ابحث عن محور البحث او

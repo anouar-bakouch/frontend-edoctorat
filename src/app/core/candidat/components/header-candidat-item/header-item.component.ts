@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CandidatPostulerService } from '../../services/candidat-postuler.service';
 
 @Component({
   selector: '[app-header-item]',
@@ -8,7 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderItemComponent implements OnInit {
 
-  
+  public nbrSujets:number = 0;
+
   constructor(
     public translate: TranslateService
   ) {
@@ -17,7 +19,9 @@ export class HeaderItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+
+  
+
   }
 
   switchLang(lang: string) {

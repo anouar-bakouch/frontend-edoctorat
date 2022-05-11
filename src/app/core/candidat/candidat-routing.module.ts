@@ -21,6 +21,7 @@ import { MasterComponent } from './components/master/master.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { PostulerComponent } from './components/postuler/postuler.component';
 import { ProfilCandidatComponent } from './components/profil-candidat/profil-candidat.component';
+import { SujersComponent } from './components/sujets/sujers.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,7 @@ const routes: Routes = [
       { path: 'info_personnels', component: InfoPersonnelsComponent },
       { path: 'postuler', component: PostulerComponent },
       { path: 'notifications', component: NotificationsComponent },
-      
+      { path: 'sujets_choisies' , component : SujersComponent},
       { path: 'parcours', redirectTo: 'parcours/'+DiplomeType.BAC, pathMatch: 'full' },
 
       {
