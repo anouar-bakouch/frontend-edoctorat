@@ -54,26 +54,31 @@ export class ParcoursComponent implements OnInit {
 
           case DiplomeType.BAC :
                   this.bac_1 = !this.bac_1;
+                  this.progressBarvalue = 20;
                   
           break;
 
           case DiplomeType.DUT || DiplomeType.BTS || DiplomeType.DTS || DiplomeType.DEUG || DiplomeType.DEUST: 
                    this.bac_2 = !this.bac_2;
+                   this.progressBarvalue = 40;
 
           break;
 
           case DiplomeType.CI || DiplomeType.MASTER || DiplomeType.MASTER_SPECIALISE || DiplomeType.MASTER_EN_SCIENCE_TECHNIQUE : 
                    this.bac_5 = !this.bac_5;
+                   this.progressBarvalue = 70;
 
           break;
 
           case DiplomeType.LICENCE || DiplomeType.LICENCE_PROFESSIONNELLE : 
                    this.bac_3 = !this.bac_3;
+                   this.progressBarvalue = 60;
 
           break;
 
           case DiplomeType.DOCTORATE_EN_MEDICINE : 
                    this.bac_6 = !this.bac_6;
+                   this.progressBarvalue = 80;
           break;
 
           default : 
@@ -86,6 +91,8 @@ export class ParcoursComponent implements OnInit {
       }
     
       )
+
+     
       if(this.bac_1 && this.bac_6){
         this.SuccessParcours = ! this.SuccessParcours;
         this.progressBarvalue = 100;
@@ -126,15 +133,7 @@ export class ParcoursComponent implements OnInit {
         });
       }
     
-      if(this.bac_1) {
-        this.progressBarvalue = 20;
-      }
-      if(this.bac_1 && this.bac_2){
-        this.progressBarvalue = 40;
-      }
-      if(this.bac_1 && this.bac_2 && this.bac_3){
-        this.progressBarvalue = 70;
-      }
+    
 
 
     })

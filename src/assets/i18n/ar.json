@@ -1,9 +1,19 @@
 {
   "home": {
-    "Pole_doctorat": "مركز دراسات الدكتوراه",
+      "Pole_doctorat": "مركز دراسات الدكتوراه",
+      "pole_doctrales" : {
+                  "description" : "وصف",
+                  "ced" : "مركز دراسة الدكتوراه"
+            },
     "laboratoire_recherche": "مختبر أبحاث",
     "formation_doctorale": "دراسات الدكتوراه",
     "Reglement_candidature": "القواعد والترشيح",
+    "reg_candidature" : {
+      "Charte_de_doctorat": "ميثاق الدكتوراه",
+      "Comment candidater": "كيفية التقديم",
+      "Candidater":"ترشح",
+      "guide":"دليل" 
+    },
     "connecter": "تسجيل الدخول"
   },
   "connexion": {
