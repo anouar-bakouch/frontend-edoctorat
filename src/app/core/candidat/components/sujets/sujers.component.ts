@@ -3,6 +3,8 @@ import { Postuler } from 'src/app/models/Postuler';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { CandidatPostulerService } from '../../services/candidat-postuler.service';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
+
 
 @Component({
   selector: '[app-sujers]',
@@ -13,6 +15,7 @@ import { CandidatPostulerService } from '../../services/candidat-postuler.servic
 export class SujersComponent implements OnInit {
 
   public sujets:Postuler[] = [];
+  public alert: AlertData | undefined = undefined;
 
   constructor(public candidat:CandidatPostulerService) {}
 
@@ -22,11 +25,23 @@ export class SujersComponent implements OnInit {
       
     this.sujets = res.results;
 
-
-    this.sujets.forEach(x=>{
-    console.log(x)
     })
 
+  }
+
+  public delete(s){
+
+    this.candidat.deletePostule(s.id).then(x=>{
+      if(x){
+        const index = this.sujets.indexOf(s);
+        this.sujets.splice(index,1);
+      } 
+      else {
+        this.alert = {
+          type: 'loading',
+          message: "error lors de la suppression",
+        };
+      }
     })
 
   }
