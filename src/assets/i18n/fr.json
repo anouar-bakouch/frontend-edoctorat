@@ -73,7 +73,12 @@
         "ced" : "ced",
         "formation doctorale" : "formation doctorale"
     },
-    "postuler" : "Postuler",
+    "postuler" : "Postuler", 
+    "postuler_details" : {
+      "conseil_1" : "Rechercher l'axe de recherche ou le titre du sujet",
+      "conseil_2" : "En bas de la page cliquer sur postuler pour confirmer votre choix / POSTULER",
+      "conseil_3" : "En bas de la page va apparaitre votre choix. Attention,certains axes de recherches ou sujets demandent de charger votre projet de recherche correspondant. Si c'est le cas charger votre projet de recherche en format pdf/"
+    },
     "notifications" : "Notifications"
 
   }

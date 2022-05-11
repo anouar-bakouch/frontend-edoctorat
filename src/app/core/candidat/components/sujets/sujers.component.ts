@@ -35,6 +35,10 @@ export class SujersComponent implements OnInit {
       if(x){
         const index = this.sujets.indexOf(s);
         this.sujets.splice(index,1);
+        this.alert = {
+          type: 'loading',
+          message: "supprimé avec succés",
+        };
       } 
       else {
         this.alert = {
