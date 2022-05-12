@@ -141,7 +141,6 @@ export class ChoisirSujetsComponent implements OnInit {
       })
       .then(() => {
         setTimeout(() => (this.alert = undefined), 3000);
-        console.log(this.postules);
       });
   }
 

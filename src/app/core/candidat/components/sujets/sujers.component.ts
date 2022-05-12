@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Postuler } from 'src/app/models/Postuler';
-import Result from 'src/app/models/Result';
-import { Sujet } from 'src/app/models/Sujet';
 import { CandidatPostulerService } from '../../services/candidat-postuler.service';
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
 
@@ -16,6 +14,8 @@ export class SujersComponent implements OnInit {
 
   public sujets:Postuler[] = [];
   public alert: AlertData | undefined = undefined;
+  public message:string = 'aucun sujet n\'est choisi pour le moment,les sujets choisies vont apparaitre ici';
+  public NoSujets:boolean = false; 
 
   constructor(public candidat:CandidatPostulerService) {}
 
@@ -24,6 +24,8 @@ export class SujersComponent implements OnInit {
     this.candidat.getSelectedSubjects().subscribe(res=>{
       
     this.sujets = res.results;
+
+    if(this.sujets.length <= 0) this.NoSujets = ! this.NoSujets;
 
     })
 
@@ -35,22 +37,23 @@ export class SujersComponent implements OnInit {
       if(x){
         const index = this.sujets.indexOf(s);
         this.sujets.splice(index,1);
-        setTimeout(()=>{
           this.alert = {
             type: 'loading',
             message: "supprimé avec succès",
-          };
-        },1000)
+          }
+  
       } 
-      else {
-      
-        setTimeout(()=>{
+      else{
+       
           this.alert = {
             type: 'loading',
             message: "error lors de la suppression",
           };
-        },1000)
+          
       }
+    
+    }).then(()=>{
+      setTimeout(() => (this.alert = undefined), 3000);
     })
   }
 
