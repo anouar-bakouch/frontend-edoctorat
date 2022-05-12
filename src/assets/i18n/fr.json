@@ -34,7 +34,14 @@
               "cite":"la cite l'innovation de fès",
               "president":"services Presidences",
               "cooperation":"Coopération internationale"
+            },
+            "welcome":{
+              "doctorat":"E-doctorat - USMBA",
+              "candidater":"Candidater",
+              "connecter":"Se Connecter",
+              "cycle":"Cycle Doctorale - USMBA"
             }
+
   },
 
   "connexion" : {
