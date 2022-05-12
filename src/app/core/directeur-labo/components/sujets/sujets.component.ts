@@ -112,7 +112,7 @@ export class SujetsComponent implements OnInit {
 
   public form = new FormGroup({
     titre: new FormControl("", [Validators.required, Validators.minLength(2)]),
-    description: new FormControl("", [Validators.required, Validators.minLength(2)]),
+    directeur: new FormControl("", [Validators.required, Validators.minLength(2)]),
     coDirecteur: new FormControl(""),
     formationDoctorale: new FormControl("", [Validators.required])
   })

@@ -106,13 +106,13 @@
           </div>
 
           <div class="form-group mb-3">
-            <label for="my-select" class="mb-3">co-directeur</label>
+            <label for="my-select" class="mb-3">directeur</label>
 
             <select
               id="my-select"
               class="form-select"
               name=""
-              formControlName="coDirecteur"
+              formControlName="directeur"
             >
               <option *ngFor="let p of professeurs" value="{{ p.id }}">
                 {{ p.nom }} {{ p.prenom }}
@@ -203,16 +203,18 @@
           </div>
 
           <div class="form-group mb-3">
-            <label for="my-textarea" class="mb-3">Directeur</label>
-            <textarea
-              maxlength="512"
-              placeholder="Max. 2048 caractères"
-              id="my-textarea"
-              class="form-control"
+            <label for="my-select" class="mb-3">directeur</label>
+
+            <select
+              id="my-select"
+              class="form-select"
               name=""
-              rows="3"
-              formControlName="description"
-            ></textarea>
+              formControlName="directeur"
+            >
+              <option *ngFor="let p of professeurs" value="{{ p.id }}">
+                {{ p.nom }} {{ p.prenom }}
+              </option>
+            </select>
           </div>
 
           <div class="form-group mb-3">
