@@ -144,11 +144,13 @@ export class ChoisirSujetsComponent implements OnInit {
       });
   }
 
+
+
   private handleDeletePostule(index: number, subjet_id: number) {
     this.selectedSubjectsId.splice(index, 1);
     this.alert = {
       type: 'loading',
-      message: "Entrain d'enlever le postule",
+      message: "Entrain d'enlever le sujet choisi",
     };
     let postule: Postuler, pindex: number;
     this.postules.every((p, index) => {
@@ -166,7 +168,7 @@ export class ChoisirSujetsComponent implements OnInit {
             this.postules.splice(pindex, 1);
             this.alert = {
               type: 'success',
-              message: 'Postule enlever avec success',
+              message: 'Sujet choisi enlever avec success',
             };
             this.nbrSujets--;
           } else {

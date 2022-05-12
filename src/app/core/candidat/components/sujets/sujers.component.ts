@@ -34,9 +34,11 @@ export class SujersComponent implements OnInit {
   public delete(s:Postuler){
 
     this.candidat.deletePostule(s.id).then(x=>{
+
       if(x){
         const index = this.sujets.indexOf(s);
         this.sujets.splice(index,1);
+
           this.alert = {
             type: 'loading',
             message: "supprimé avec succès",
@@ -44,12 +46,14 @@ export class SujersComponent implements OnInit {
   
       } 
       else{
+
+        alert('yes')
        
           this.alert = {
             type: 'loading',
             message: "error lors de la suppression",
           };
-          
+
       }
     
     }).then(()=>{

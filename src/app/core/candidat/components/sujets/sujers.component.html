@@ -6,7 +6,9 @@
       <li class="list-group-item my-1  border border-primary" *ngFor="let s of sujets" >
         <p><span class="fs-6 fw-bold text-primary">Sujet | Axe : </span> {{s.sujet.titre}}</p>
         <p> <span class="fs-6 fw-bold text-primary">Description : </span> {{s.sujet.description}}</p>
-        <button class="btn btn-primary"><i (click)="delete(s)" class="bi bi-trash3-fill fs-23 text-white text-primary"></i> supprimer</button>
+        <p> <span class="fs-6 fw-bold text-primary">Professeur : </span> {{s.sujet.professeur}}</p>
+        <p> <span class="fs-6 fw-bold text-primary">Co-directeur : </span> {{s.sujet.coDirecteur}}</p>
+        <button class="btn btn-primary" (click)="delete(s)"><i class="bi bi-trash3-fill fs-23 text-white text-primary"></i> supprimer de mes choix </button>
       </li>
       
     </ul>
