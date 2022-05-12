@@ -85,7 +85,8 @@
       "liste_principale" : "Liste principale",
       "liste_d'attente" : "Liste d'attente (dêpot de dossier de 14h à 16h au CED Dhar Mahraz)",
       "aide_infos" : "Aide et compléments d'information",
-      "conseil_2" : "Cliquer sur Résultats pour voir les sujets dans lesquels vous êtes accepté en liste principale. Dans le cas où vous recevez une notification de résultats portant le sujet et la mention (Liste Principale ), imprimer la demande d'inscription correspondante à votre choix pour inscription et compléter votre dossier par les pièces définies dans document à fournir ci-dessous."
+      "conseil_2" : "Cliquer sur Résultats pour voir les sujets dans lesquels vous êtes accepté en liste principale. Dans le cas où vous recevez une notification de résultats portant le sujet et la mention (Liste Principale ), imprimer la demande d'inscription correspondante à votre choix pour inscription et compléter votre dossier par les pièces définies dans document à fournir ci-dessous.",
+      "piece_fournir" : "pièces a fournir"
     }
 
   }
