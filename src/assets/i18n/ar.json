@@ -1,9 +1,19 @@
 {
   "home": {
-    "Pole_doctorat": "مركز دراسات الدكتوراه",
+      "Pole_doctorat": "مركز دراسات الدكتوراه",
+      "pole_doctrales" : {
+                  "description" : "وصف",
+                  "ced" : "مركز دراسة الدكتوراه"
+            },
     "laboratoire_recherche": "مختبر أبحاث",
     "formation_doctorale": "دراسات الدكتوراه",
     "Reglement_candidature": "القواعد والترشيح",
+    "reg_candidature" : {
+      "Charte_de_doctorat": "ميثاق الدكتوراه",
+      "Comment candidater": "كيفية التقديم",
+      "Candidater":"ترشح",
+      "guide":"دليل" 
+    },
     "connecter": "تسجيل الدخول"
   },
   "connexion": {
@@ -53,7 +63,20 @@
     },
     "parcours": "التحصيل التعليمي",
     "postuler": "تقديم طلبات",
+    "postuler_details" : {
+      "conseil_1" : " ابحث عن محور البحث او عنوان الموضوع",
+      "conseil_2" : "لاختيار انقر فوق المحور أو  الموضوع المطلوب",
+      "conseil_3" : "في الجزء السفلي من الصفحة انقر فوق  سيظهر اختيارك في الجزء السفلي من الصفحة. يرجى ملاحظة أن بعض محاور البحثأو الموضوعات تتطلب منك تحميل مشروعك البحثي المقابل. إذا كان الأمر كذلك ، قمبتحميل مشروعك البحثي بتنسيق pdf"
+  
+    },
     "notifications": "الإشعارات",
+    "notifications_details" : {
+      "conseil_1" : "Nous vous invitons à participer à l'entretien de notre commission qui se tiendra le",
+      "liste_principale" : "Liste principale",
+      "liste_d'attente" : "Liste d'attente (dêpot de dossier de 14h à 16h au CED Dhar Mahraz)",
+      "aide_infos" : "مساعدة ومعلومات إضافية",
+      "conseil_2" : "، اطبع طلب التسجيل في الموضوع الذي ترغب في التسجيل فيه وأكمل ملفك بالمستندات المحددة في وثائق لتقديم ملف.       انقر فوق النتيجة لرؤية الموضوعات التي تم قبولك فيها في القائمة الرئيسية. في حالة تلقيك إخطارًا بنتائج تحمل الموضوع مع ذكر (Liste Principale)"
+    },
     "deconnexion" :"تسجيل خروج"
   },
   "footer":{

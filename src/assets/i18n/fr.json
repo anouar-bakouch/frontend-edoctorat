@@ -2,9 +2,19 @@
 
   "home" : {  
             "Pole_doctorat" : "POLE D'ETUDES DOCTORALES",
-            "laboratoire_recherche" : "LABORATOIRE DE RECHERCHE",
-            "formation_doctorale" : "FORMATION DOCTORALE",
-            "Reglement_candidature" : "REGLEMENT ET CANDIDATURE",
+            "pole_doctrales" : {
+                  "description" : "Description",
+                  "ced" : "Centre D'études Doctorales"
+            },
+              "laboratoire_recherche" : "LABORATOIRE DE RECHERCHE",
+              "formation_doctorale" : "FORMATION DOCTORALE",
+              "Reglement_candidature" : "REGLEMENT ET CANDIDATURE",
+              "reg_candidature" : {
+              "Charte_de_doctorat": "Charte de doctorat",
+              "Comment candidater": "Comment candidater ?",
+              "Candidater":"Candidater",
+              "guide":"guide" 
+            },
             "connecter" : "SE CONNECTER" 
   },
 
@@ -63,8 +73,20 @@
         "ced" : "ced",
         "formation doctorale" : "formation doctorale"
     },
-    "postuler" : "Postuler",
-    "notifications" : "Notifications"
+    "postuler" : "Postuler", 
+    "postuler_details" : {
+      "conseil_1" : "Rechercher l'axe de recherche ou le titre du sujet",
+      "conseil_2" : "En bas de la page cliquer sur postuler pour confirmer votre choix / POSTULER",
+      "conseil_3" : "En bas de la page va apparaitre votre choix. Attention,certains axes de recherches ou sujets demandent de charger votre projet de recherche correspondant. Si c'est le cas charger votre projet de recherche en format pdf/"
+    },
+    "notifications" : "Notifications",
+    "notifications_details" : {
+      "conseil_1" : "Nous vous invitons à participer à l'entretien de notre commission qui se tiendra le",
+      "liste_principale" : "Liste principale",
+      "liste_d'attente" : "Liste d'attente (dêpot de dossier de 14h à 16h au CED Dhar Mahraz)",
+      "aide_infos" : "Aide et compléments d'information",
+      "conseil_2" : "Cliquer sur Résultats pour voir les sujets dans lesquels vous êtes accepté en liste principale. Dans le cas où vous recevez une notification de résultats portant le sujet et la mention (Liste Principale ), imprimer la demande d'inscription correspondante à votre choix pour inscription et compléter votre dossier par les pièces définies dans document à fournir ci-dessous."
+    }
 
   }
 

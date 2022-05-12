@@ -26,6 +26,7 @@ export class ChoisirSujetsComponent implements OnInit {
   selectedSubjectsId: number[] = [];
   alert: AlertData | undefined = undefined;
   postules: Postuler[] = [];
+  public nbrSujets:number = 0;
 
   constructor(
     public candidatPostuler: CandidatPostulerService,
@@ -44,6 +45,10 @@ export class ChoisirSujetsComponent implements OnInit {
     });
     this.getPublishedSujets();
     this.getConfigInfo();
+
+    this.candidatPostuler.getSelectedSubjects().subscribe(res=>{
+      this.nbrSujets = res.results.length;
+    })
   }
 
   getPublishedSujets() {
@@ -126,10 +131,11 @@ export class ChoisirSujetsComponent implements OnInit {
             type: 'success',
             message: 'Sujet postuler avec success',
           };
+          this.nbrSujets++;
         } else {
           this.alert = {
             type: 'error',
-            message: 'Error lors de postuler pour le sujet',
+            message: 'Error',
           };
         }
       })
@@ -163,6 +169,7 @@ export class ChoisirSujetsComponent implements OnInit {
               type: 'success',
               message: 'Postule enlever avec success',
             };
+            this.nbrSujets--;
           } else {
             this.alert = {
               type: 'error',
