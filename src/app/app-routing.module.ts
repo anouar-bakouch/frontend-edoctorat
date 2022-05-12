@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CandidatComponent } from './core/candidat/components/candidat.component';
 import { MainCedComponent } from './core/directeur-ced/components/main-ced/main-ced.component';
+import { MainLaboComponent } from './core/directeur-labo/components/main-labo/main-labo.component';
 import { DirecteurPoleComponent } from './core/directeur-pole/components/directeur-pole.component';
 import { MainProfComponent } from './core/professeur/components/main-prof/main-prof.component';
 import { IsCandidatGuard } from './guards/is-candidat.guard';
@@ -27,6 +28,12 @@ const routes: Routes = [
     loadChildren: () => import('./core/directeur-pole/directeur-pole.module').then(x => x.DirecteurPoleModule),
     component: DirecteurPoleComponent,
     canActivate: [IsProfessorGuard, IsDPoleGuard],
+  },
+  {
+    path: 'labo',
+    loadChildren: () => import('./core/directeur-labo/directeur-labo.module').then(x => x.DirecteurLaboModule),
+    component: MainLaboComponent,
+    // canActivate: [IsProfessorGuard, IsDPoleGuard],
   },
   {
     path: 'ced',
