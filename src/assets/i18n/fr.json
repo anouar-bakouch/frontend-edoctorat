@@ -15,7 +15,26 @@
               "Candidater":"Candidater",
               "guide":"guide" 
             },
-            "connecter" : "SE CONNECTER" 
+            "connecter" : "SE CONNECTER" ,
+            "footer":{
+              "email_footer":"En Entrant Votre Email Vous Allez Recevoir Des Nouveautes" ,
+              "abonnement":"Suivre",
+              "description":"L’Université Sidi Mohamed Ben Abdellah de Fès aspire à être parmi les trois premières universités multidisciplinaires marocaines et l’une des vingt plus grandes universités d’Afrique, reconnue pour son engagement vers l’excellence, par la qualité de sa formation centrée sur l’étudiant et une recherche scientifique et technologique de classe internationale.",
+              "doctorat":"Edoctorat",
+              "prof":"Professeurs",
+              "plus":"Plus",
+              "a_propos":"A Propos",
+              "faq":"FAQ",
+              "contact":"Contact",
+              "formation":"Formations",
+              "mobilite":"Mobilite",
+              "Pole_recherche":"Pole de recherches",
+              "proc":"Formulaire et procedures",
+              "Appel":"Appel d'offres",
+              "cite":"la cite l'innovation de fès",
+              "president":"services Presidences",
+              "cooperation":"Coopération internationale"
+            }
   },
 
   "connexion" : {
@@ -90,6 +109,7 @@
     }
 
   }
+
 
 
 }
