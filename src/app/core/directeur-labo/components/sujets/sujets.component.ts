@@ -6,6 +6,7 @@ import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import UserProf from 'src/app/models/UserProf';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { OperationsService } from '../../services/operations.service';
 
 @Component({
@@ -14,7 +15,6 @@ import { OperationsService } from '../../services/operations.service';
   styleUrls: ['./sujets.component.css']
 })
 export class SujetsComponent implements OnInit {
-
   public sujets: Sujet[] = [];
   public professeurs: Professeur[] = [];
   public formationDoctorales: FormationDoctorale[] = [];
