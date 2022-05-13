@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Inscription } from 'src/app/models/Inscription';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { OperationsService } from '../../services/operations.service';
 
 @Component({
@@ -14,6 +15,10 @@ import { OperationsService } from '../../services/operations.service';
 
 
 export class ProfInscritsComponent implements OnInit {
+  public alert: AlertData | undefined = undefined;
+  public loading: boolean = false;
+  public message: string =
+    "aucun sujet n'est choisi pour le moment,les sujets choisies vont apparaitre ici";
   public inscriptions: Inscription[] = [];
   public sujet: Sujet = {
     id: 0,
@@ -98,25 +103,61 @@ export class ProfInscritsComponent implements OnInit {
   }
 
   onClickSubmit() {
-    // this.sujet = this.form.value
+    // const sujet: JSON = <JSON><unknown>{
+    //   "coDirecteurId": this.sujet.coDirecteur.id,
+    //   "formationDoctoraleId": this.sujet.formationDoctorale.id,
+    //   "titre": this.form.get('titre').value,
+    //   "description": this.sujet.description
+    // }
+    // this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
+    //   // this.sujets.push(this.sujet)
+    //   console.log(data)
+    // },
+    //   (err) => {
+    //     console.log(err)
+    //   }, () => {
+    //     this.form.reset()
+    //   })
 
-    const sujet: JSON = <JSON><unknown>{
-      "coDirecteurId": this.sujet.coDirecteur.id,
-      "formationDoctoraleId": this.sujet.formationDoctorale.id,
-      "titre": this.form.get('titre').value,
-      "description": this.sujet.description
+    // console.log(this.form.get('titre').value)
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    const sujet = {
+      formationDoctoraleId: this.sujet.formationDoctorale,
+      titre: this.sujet.titre,
+      description: this.sujet.description,
+    };
+    if (this.sujet.coDirecteur !== null) {
+      sujet['coDirecteurId'] = this.sujet.coDirecteur;
     }
-    this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
-      // this.sujets.push(this.sujet)
-      console.log(data)
-    },
-      (err) => {
-        console.log(err)
-      }, () => {
-        this.form.reset()
-      })
+    this.operationsService
+      .updateSujet(sujet, this.sujet.id)
+      .then((data) => {
+        this.loading = false;
 
-    console.log(this.form.get('titre').value)
-    // console.log("this.sujet")
+        // for (var i = 0; i < this.sujets.length; i++) {
+        //   if (this.sujets[i].id === this.sujet.id) {
+        //     this.sujets[i] = data as Sujet;
+        //   }
+        // }
+        this.alert = {
+          type: 'success',
+          message: 'modifier avec succès',
+        };
+      })
+      .catch((err) => {
+        console.log(err);
+        this.alert = {
+          type: 'faild',
+          message: 'error lors de la modification',
+        };
+      })
+      .finally(() => {
+        this.form.reset();
+        setTimeout(() => (this.alert = undefined), 3000);
+      });
   }
 }
