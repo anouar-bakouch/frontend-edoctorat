@@ -39,8 +39,36 @@
               "doctorat":"E-doctorat - USMBA",
               "candidater":"Candidater",
               "connecter":"Se Connecter",
-              "cycle":"Cycle Doctorale - USMBA"
+              "cycle":"Cycle Doctorale - USMBA",
+              "candidat":"Candidat",
+              "projet":"Projets réalisés",
+              "formation":"Formations doctorales"
+
+            },
+            "conseils":{
+              "conseils":"Conseils",
+              "titre1":"Aie confiance",
+              "text1":"  Des milliers de personnes avant toi ont fait leurs études doctorales Bien que cela soit quelque peu intimidant, aie confiance en tes  capacités à compléter ta thèse",
+              "titre2":"Évite les sujets trop actuels",
+              "text2":"Comme une thèse prend plusieurs années, choisis un sujet qui sera  toujours intéressant. Les universitaires ne sont pas des journalistes. Leur travail doit rester pertinent sur le long-terme.",
+              "titre3":"Demande de l’aide",
+              "text3":"  Trouve une opportunité d’obtenir de l’aide de tes collègues ou de chercheurs pour compléter tes recherches. Si tu es face à une difficulté ne la dissimule . Parles-en à ton superviseur de recherche.Il n’y a pas de honte de demander de l’aide. C’est en se taisant que le problème prendra plus de proportions.",
+              "titre4":"Comprends le but de ta soutenance",
+              "text4":"  Les examinateurs voudront savoir si tu as fait tes propres recherches, si tu as écrit ta thèse, si tu la comprends bien, si tu as bien traité tes questions de recherches et si elles sont bien formulées.",
+              "titre5":"Familiarise-toi avec ton public",
+              "text5":"Regarde les recherches menées par tes examinateurs, cela t’aidera à cerner le genre de questions qu’ils pourraient te poser.",
+              "titre6":"Ne vous éparpillez pas",
+              "text6":"La recherche du sujet comporte un grand risque de t’éparpiller, ce qui est contreproductif. Plus vite tu mettras le doigt sur le sujet que tu souhaites traiter et le mieux ce sera. Identifie les catégories que tu souhaites traiter, jusqu’à ce que tu trouves ton sujet. Sois précis."
+              
+
+            },
+            "calendrier":{
+              "calendrier":"calendrier",
+              "calendrier-prof":"Calendrier Professeur",
+              "calendrier-doctorant":"Calendrier Doctorant et Candidat"
             }
+
+            
 
   },
 
