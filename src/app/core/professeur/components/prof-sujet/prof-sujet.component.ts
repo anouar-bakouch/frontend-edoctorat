@@ -7,15 +7,17 @@ import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import UserProf from 'src/app/models/UserProf';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { OperationsService } from '../../services/operations.service';
 
 @Component({
   selector: '[app-prof-sujet]',
   templateUrl: './prof-sujet.component.html',
-  styleUrls: ['./prof-sujet.component.css']
+  styleUrls: ['./prof-sujet.component.css'],
 })
-
 export class ProfSujetComponent implements OnInit {
+  public alert: AlertData | undefined = undefined;
+  public loading: boolean = false;
   public sujets: Sujet[] = [];
   public professeurs: Professeur[] = [];
   public formationDoctorales: FormationDoctorale[] = [];
@@ -28,41 +30,41 @@ export class ProfSujetComponent implements OnInit {
     pathImage: '',
     titre: '',
     initiale: '',
-    dateAccreditation: ''
+    dateAccreditation: '',
   };
 
   user: UserProf = {
     username: '',
     first_name: '',
-    last_name: ''
+    last_name: '',
   };
 
   public prof: Professeur = {
     id: 0,
     nom: '',
-    prenom: ''
-  }
+    prenom: '',
+  };
   public coDirecteur: Professeur = {
     id: 0,
     nom: '',
-    prenom: ''
-  }
+    prenom: '',
+  };
   public currentProfesseur: Professeur = {
     id: 0,
     nom: '',
-    prenom: ''
-  }
+    prenom: '',
+  };
   public sujet: Sujet = {
     id: 0,
     professeur: {
       id: 0,
       nom: '',
-      prenom: ''
+      prenom: '',
     },
     coDirecteur: {
       id: 0,
       nom: '',
-      prenom: ''
+      prenom: '',
     },
     titre: '',
     description: '',
@@ -74,21 +76,21 @@ export class ProfSujetComponent implements OnInit {
       pathImage: '',
       titre: '',
       initiale: '',
-      dateAccreditation: ''
+      dateAccreditation: '',
     },
-    publier: false
+    publier: false,
   };
   public sujet2: Sujet = {
     id: 0,
     professeur: {
       id: 0,
       nom: '',
-      prenom: ''
+      prenom: '',
     },
     coDirecteur: {
       id: 0,
       nom: '',
-      prenom: ''
+      prenom: '',
     },
     titre: '',
     description: '',
@@ -100,57 +102,105 @@ export class ProfSujetComponent implements OnInit {
       pathImage: '',
       titre: '',
       initiale: '',
-      dateAccreditation: ''
+      dateAccreditation: '',
     },
-    publier: false
+    publier: false,
   };
   public result: Result<any> = {
     count: 0,
     next: null,
     previous: null,
-    results: []
-  }
+    results: [],
+  };
 
   public form = new FormGroup({
-    titre: new FormControl("", [Validators.required, Validators.minLength(2)]),
-    description: new FormControl("", [Validators.required, Validators.minLength(2)]),
-    coDirecteur: new FormControl(""),
-    formationDoctorale: new FormControl("", [Validators.required])
-  })
+    titre: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    coDirecteur: new FormControl(''),
+    formationDoctorale: new FormControl('', [Validators.required]),
+  });
 
   arrayRemove = (arr: Professeur[]) => {
     return arr.filter((ele) => {
       return ele.id !== this.currentProfesseur.id;
     });
-  }
+  };
 
   ngOnInit(): void {
-    this.getAllSujets()
-    this.getAllProfesseurs()
-    this.getAllFormationDoctorales()
+    // this.getAllSujets();
+    // this.getAllProfesseurs();
+    // this.getAllFormationDoctorales();
+    this.loading = true
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.operationsService.getSujets().then((data) => {
+      this.result = data as Result<Sujet>;
+      this.sujets = this.result.results;
+      // this.currentProfesseur = this.sujets[1].professeur
+      // console.log(this.sujets);
+    }).then((data)=>{
+      this.operationsService.getProfesseurs().then((data) => {
+        this.result = data as Result<Professeur>;
+        this.professeurs = this.result.results;
+        // console.log(this.professeurs);
+        // var result = this.arrayRemove(this.professeurs);
+        // console.log(result)
+        // this.professeurs = result;
+      });
+    }).then((data)=>{
+      this.operationsService.getFormationDoctorales().then((data) => {
+        this.result = data as Result<FormationDoctorale>;
+        this.formationDoctorales = this.result.results;
+      });
+    }).catch((error)=>{
+      console.log(error)
+      this.alert = {
+        type: 'error',
+        message: 'error',
+      };
+    }).finally(()=>{
+      this.loading = false
+      this.alert = {
+        type: 'success',
+        message: 'Bienvenue',
+      };
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
   }
 
   closeResult: string = '';
 
-  constructor(private modalService: NgbModal, private operationsService: OperationsService) { }
-
+  constructor(
+    private modalService: NgbModal,
+    private operationsService: OperationsService
+  ) {}
 
   fun = (content: any, s: Sujet) => {
-    this.sujet2 = s
+    this.sujet2 = s;
     this.form.setValue({
       titre: s.titre,
       description: s.description,
       coDirecteur: null,
-      formationDoctorale: null
+      formationDoctorale: null,
     });
-    this.open(content)
-  }
+    this.open(content);
+  };
   open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -162,128 +212,138 @@ export class ProfSujetComponent implements OnInit {
     }
   }
 
-  getAllSujets() {
-    this.operationsService.getSujets().subscribe(data => {
-      this.result = data;
-      this.sujets = this.result.results;
-      // this.currentProfesseur = this.sujets[1].professeur
-      console.log(this.sujets)
-    })
-  }
-  getAllFormationDoctorales() {
-    this.operationsService.getFormationDoctorales().subscribe(data => {
-      this.result = data;
-      this.formationDoctorales = this.result.results;
-    })
-  }
-  getAllProfesseurs() {
-    this.operationsService.getProfesseurs().subscribe(data => {
-      this.result = data;
-      this.professeurs = this.result.results;
-      console.log(this.professeurs)
-      var result = this.arrayRemove(this.professeurs);
-      this.professeurs = result
-    })
-  }
+  // getAllSujets() {
+  //   this.operationsService.getSujets().then((data) => {
+  //     this.result = data as Result<Sujet>;
+  //     this.sujets = this.result.results;
+  //     // this.currentProfesseur = this.sujets[1].professeur
+  //     console.log(this.sujets);
+  //   });
+  // }
+  // getAllFormationDoctorales() {
+  //   this.operationsService.getFormationDoctorales().then((data) => {
+  //     this.result = data as Result<FormationDoctorale>;
+  //     this.formationDoctorales = this.result.results;
+  //   });
+  // }
+  // getAllProfesseurs() {
+  //   this.operationsService.getProfesseurs().then((data) => {
+  //     this.result = data as Result<Professeur>;
+  //     this.professeurs = this.result.results;
+  //     console.log(this.professeurs);
+  //     var result = this.arrayRemove(this.professeurs);
+  //     this.professeurs = result;
+  //   });
+  // }
 
   onClickSubmit() {
-    this.sujet = this.form.value
-    if (this.sujet.coDirecteur === null) {
-      // console.log('hii')
-      const sujet: JSON = <JSON><unknown>{
-        // "coDirecteurId": this.sujet.coDirecteur,
-        "formationDoctoraleId": this.sujet.formationDoctorale,
-        "titre": this.sujet.titre,
-        "description": this.sujet.description
-      }
-      this.operationsService.addSujet(sujet).subscribe((data) => {
-        this.sujets.push(this.sujet)
-      },
-        (err) => {
-          console.log(err)
-        }, () => {
-          this.form.reset()
-        })
-    } else {
-      const sujet: JSON = <JSON><unknown>{
-        "coDirecteurId": this.sujet.coDirecteur,
-        "formationDoctoraleId": this.sujet.formationDoctorale,
-        "titre": this.sujet.titre,
-        "description": this.sujet.description
-      }
-      this.operationsService.addSujet(sujet).subscribe((data) => {
-        this.sujets.push(this.sujet)
-      },
-        (err) => {
-          console.log(err)
-        }, () => {
-          this.form.reset()
-        })
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.sujet = this.form.value;
+    const sujet = {
+      formationDoctoraleId: this.sujet.formationDoctorale,
+      titre: this.sujet.titre,
+      description: this.sujet.description,
+    };
+
+    if (this.sujet.coDirecteur !== null) {
+      sujet['coDirecteurId'] = this.sujet.coDirecteur;
     }
+    this.operationsService.addSujet(sujet).then(
+      (data) => {
+        this.loading = false;
+        this.alert = {
+          type: 'success',
+          message: 'ajouter avec succès',
+        };
+        this.sujets.push(data as Sujet);
+    }).catch ((err) => {
+      console.log(err);
+      this.alert = {
+        type: 'error',
+        message: "error lors de l'ajout",
+      };
+    }).finally(() => {
+      this.form.reset();
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
+    
   }
 
   onClickDelete(s: Sujet) {
-    this.operationsService.deleteSujet(s).subscribe((data) => {
-
-      for (var i = 0; i < this.sujets.length; i++) {
-
-        if (this.sujets[i].id === s.id) {
-
-          this.sujets.splice(i, 1);
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.operationsService
+      .deleteSujet(s)
+      .then((data) => {
+        this.loading = false;
+        for (var i = 0; i < this.sujets.length; i++) {
+          if (this.sujets[i].id === s.id) {
+            this.sujets.splice(i, 1);
+          }
         }
-
-      }
-    },
-      (err) => {
-        console.log(err)
+        this.alert = {
+          type: 'success',
+          message: 'supprimer avec succès',
+        };
       })
+      .catch((error) => {
+        console.log(`${error}`);
+        this.alert = {
+          type: 'error',
+          message: 'error lors de la suppression',
+        };
+      })
+      .finally(() => {
+        setTimeout(() => (this.alert = undefined), 3000);
+      });
   }
   onClickUpdate() {
-    this.sujet = this.form.value
-    if (this.sujet.coDirecteur === null) {
-      const sujet: JSON = <JSON><unknown>{
-        "formationDoctoraleId": this.sujet.formationDoctorale,
-        "titre": this.sujet.titre,
-        "description": this.sujet.description
-      }
-      this.operationsService.updateSujet(sujet, this.sujet2.id).subscribe((data) => {
-        for (var i = 0; i < this.sujets.length; i++) {
-
-          if (this.sujets[i].id === this.sujet2.id) {
-
-            this.sujets[i] = this.sujet;
-          }
-
-        }
-      },
-        (err) => {
-          console.log(err)
-        }, () => {
-          this.form.reset()
-        })
-    } else {
-      const sujet: JSON = <JSON><unknown>{
-        "coDirecteurId": this.sujet.coDirecteur,
-        "formationDoctoraleId": this.sujet.formationDoctorale,
-        "titre": this.sujet.titre,
-        "description": this.sujet.description
-      }
-      console.log(sujet)
-      this.operationsService.updateSujet(sujet, this.sujet2.id).subscribe((data) => {
-        for (var i = 0; i < this.sujets.length; i++) {
-
-          if (this.sujets[i].id === this.sujet2.id) {
-
-            this.sujets[i] = this.sujet;
-          }
-
-        }
-      },
-        (err) => {
-          console.log(err)
-        }, () => {
-          this.form.reset()
-        })
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.sujet = this.form.value;
+    const sujet = {
+      formationDoctoraleId: this.sujet.formationDoctorale,
+      titre: this.sujet.titre,
+      description: this.sujet.description,
+    };
+    if (this.sujet.coDirecteur !== null) {
+      sujet['coDirecteurId'] = this.sujet.coDirecteur;
     }
+    this.operationsService
+      .updateSujet(sujet, this.sujet2.id)
+      .then((data) => {
+        this.loading = false;
+
+        for (var i = 0; i < this.sujets.length; i++) {
+          if (this.sujets[i].id === this.sujet2.id) {
+            this.sujets[i] = data as Sujet;
+          }
+        }
+        this.alert = {
+          type: 'success',
+          message: 'modifier avec succès',
+        };
+      })
+      .catch((err) => {
+        console.log(err);
+        this.alert = {
+          type: 'error',
+          message: 'error lors de la modification',
+        };
+      })
+      .finally(() => {
+        this.form.reset();
+        setTimeout(() => (this.alert = undefined), 3000);
+      });
   }
 }
