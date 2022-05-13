@@ -1,35 +1,16 @@
+<app-alert *ngIf="alert" [data]="alert"></app-alert>
+<app-alert *ngIf="loading" [data]="alert"></app-alert>
+
 <div class="container-fluid mt-3">
   <div class="table-responsive">
-    <table
-      id="table"
-      class="table table-align-middle"
-      data-toggle="table"
-      data-search="true"
-      data-filter-control="true"
-      data-show-export="true"
-      data-click-to-select="true"
-      data-toolbar="#toolbar"
-    >
+    <table class="table table-align-middle">
       <thead>
-        <tr>
-          <th data-field="prenom" data-sortable="true">Date</th>
-          <th data-field="sujet" data-sortable="true" scope="col" class="w-7">
-            Lieu
-          </th>
-          <th data-field="examen" data-sortable="true" scope="col" class="w-7">
-            heure
-          </th>
-          <th
-            data-field="entretie"
-            data-sortable="true"
-            scope="col"
-            class="w-7"
-          >
-            membres
-          </th>
-          <th data-field="note" data-sortable="true" scope="col" class="w-7">
-            examiner
-          </th>
+        <tr class="table-primary">
+          <th scope="col" class="w-7">Date</th>
+          <th scope="col" class="w-23">Lieu</th>
+          <th scope="col" class="w-7">heure</th>
+          <th scope="col" class="w-23">membres</th>
+          <th scope="col" class="23">examiner</th>
         </tr>
       </thead>
       <tbody>
