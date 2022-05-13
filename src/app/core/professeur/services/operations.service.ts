@@ -14,43 +14,34 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class OperationsService {
-
   constructor(private http: HttpClient) {}
 
   public getFormationDoctorales() {
     return new Promise((resolve, reject) => {
-      this.http.get(
-        environment.API_URL + '/api/formation-doctorale/'
-      ).subscribe(
-        {
+      this.http
+        .get(environment.API_URL + '/api/formation-doctorale/')
+        .subscribe({
           next: (data) => {
             resolve(data);
           },
           error: (err) => {
             reject(err);
           },
-        }
-      )
-    })
-    
+        });
+    });
   }
 
-  public getProfesseurs(){
+  public getProfesseurs() {
     return new Promise((resolve, reject) => {
-      this.http.get(
-        environment.API_URL + '/api/get-professeurs/'
-      ).subscribe(
-        {
-          next: (data) => {
-            resolve(data);
-          },
-          error: (err) => {
-            reject(err);
-          },
-        }
-      )
-    })
-    
+      this.http.get(environment.API_URL + '/api/get-professeurs/').subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
   }
   // public getProfesseur(id: Professeur): Observable<Professeur> {
   //   return this.http.get<Professeur>(
@@ -62,20 +53,17 @@ export class OperationsService {
   //     environment.API_URL + `/api/formation-doctorale/${id}/`
   //   );
   // }
-  public getSujets(){
+  public getSujets() {
     return new Promise((resolve, reject) => {
-      this.http.get(environment.API_URL + '/api/sujets/').subscribe(
-        {
-          next: (data) => {
-            resolve(data);
-          },
-          error: (err) => {
-            reject(err);
-          },
-        }
-      )
-    })
-    
+      this.http.get(environment.API_URL + '/api/sujets/').subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
   }
   public getSujet(id: number): Observable<Sujet> {
     return this.http.get<Sujet>(
@@ -83,29 +71,18 @@ export class OperationsService {
     );
   }
 
-  // public addSujet(sujet: object): Observable<Sujet> {
-  //   return this.http.post<Sujet>(environment.API_URL + '/api/sujets/', sujet);
-  // }
   public addSujet(sujet: object) {
     return new Promise((resolve, reject) => {
-      this.http.post(environment.API_URL + '/api/sujets/', sujet).subscribe(
-        {
-          next: (data) => {
-            resolve(data);
-          },
-          error: (err) => {
-            reject(err);
-          },
-        }
-      )
-    })
+      this.http.post(environment.API_URL + '/api/sujets/', sujet).subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
   }
-
-  // public deleteSujet(sujet: Sujet): Observable<Sujet> {
-  //   console.log(sujet)
-  //   return this.http.delete<Sujet>(environment.API_URL + '/api/sujets/' + sujet.id + '/');
-
-  // }
 
   public deleteSujet(sujet: Sujet) {
     return new Promise((resolve, reject) => {
@@ -136,42 +113,33 @@ export class OperationsService {
     });
   }
 
-  // public getCommissions(): Observable<Result<Commission>> {
-  //   return this.http.get<Result<Commission>>(
-  //     environment.API_URL + '/api/commission/'
-  //   );
-  // }
-  public getCommissions(){
+  public getCommissions() {
     return new Promise((resolve, reject) => {
-      this.http.get(
-        environment.API_URL + '/api/commission/'
-      ).subscribe({
-          next: (data) => {
-            resolve(data);
-          },
-          error: (err) => {
-            reject(err);
-          },
-        });
+      this.http.get(environment.API_URL + '/api/commission/').subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
     });
   }
-  // public getResultats(): Observable<Result<Examiner>> {
-  //   return this.http.get<Result<Examiner>>(
-  //     environment.API_URL + '/api/examiner/'
-  //   );
-  // }
-  public getResultats(){
+
+  public getResultats(offset: number | undefined = undefined) {
+    let url = `${environment.API_URL}/api/examiner/`;
+    if (offset) {
+      url = `${url}?limit=50&offset=${offset}`;
+    }
     return new Promise((resolve, reject) => {
-      this.http.get(
-        environment.API_URL + '/api/examiner/'
-      ).subscribe({
-          next: (data) => {
-            resolve(data);
-          },
-          error: (err) => {
-            reject(err);
-          },
-        });
+      this.http.get(url).subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
     });
   }
 
