@@ -13,6 +13,11 @@ import { HeaderProfComponent } from './components/header/header-prof.component';
 import { ContainerComponent } from './components/container/container.component';
 import { ProfSujetComponent } from './components/prof-sujet/prof-sujet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfesseurRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    
+    RxReactiveFormsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    SharedModule,
+    TranslateModule
   ],
   exports: [
     MainProfComponent
