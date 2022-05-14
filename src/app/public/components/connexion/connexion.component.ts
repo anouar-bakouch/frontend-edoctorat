@@ -39,4 +39,25 @@ export class ConnexionComponent {
       })
       .finally(() => (this.showLoading = false));
   }
+
+  public loginLabo() {
+    this.showLoading = true;
+    this.showProfAuthError = false;
+    this.socialAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((authUser: AuthUser) => {
+        if (authUser) {
+          this.authService
+            .loginLabo(authUser.idToken)
+            .then((_) => {
+              this.router.navigateByUrl('/labo');
+            })
+            .catch((_) => {
+              this.showProfAuthError = true;
+            });
+        }
+      })
+      .finally(() => (this.showLoading = false));
+  }
+
 }
