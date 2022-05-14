@@ -4,6 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import AuthProf from '../models/AuthProf';
@@ -18,7 +19,8 @@ import { TokenStorageService } from './token-storage.service';
 export class AuthService {
   constructor(
     private httpClient: HttpClient,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    public router : Router
   ) {}
 
   currentUserSubjet: BehaviorSubject<UserInfo | undefined> =
@@ -149,6 +151,7 @@ export class AuthService {
   public logOut() {
     this.tokenStorage.clearTokens();
     window.localStorage.removeItem(USER_INFO);
+    this.router.navigateByUrl("/home");
   }
 
   public userLoggedInAndInGroup(group: string): boolean {
@@ -174,4 +177,35 @@ export class AuthService {
     }
     return true;
   }
+
+  loginLabo(idToken: string) {
+    this.logOut();
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .post<AuthProf>(`${environment.API_URL}/api/verify-is-dLabo/`, { // to change after that
+          token: idToken,
+        })
+        .subscribe({
+          next: (authData: AuthProf) => {
+            this.tokenStorage.storeTokens(authData.access, authData.refresh);
+            const userInfo: UserInfo = {
+              email: authData.email,
+              groups: authData.groups,
+              nom: authData.nom,
+              prenom: authData.prenom,
+              pathPhoto: authData.pathPhoto,
+              misc: {
+                grade: authData.grade,
+                nombreProposer: authData.nombreProposer,
+                nombreEncadrer: authData.nombreEncadrer,
+              },
+            };
+            this.saveUserInfo(userInfo);
+            resolve(true);
+          },
+          error: (_) => reject(false),
+        });
+    });
+  }
+
 }
