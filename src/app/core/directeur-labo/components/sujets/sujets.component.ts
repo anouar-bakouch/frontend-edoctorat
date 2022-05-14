@@ -6,144 +6,105 @@ import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import UserProf from 'src/app/models/UserProf';
-import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { OperationsService } from '../../services/operations.service';
+
 
 @Component({
   selector: 'app-sujets',
   templateUrl: './sujets.component.html',
   styleUrls: ['./sujets.component.css']
 })
+
 export class SujetsComponent implements OnInit {
-  public sujets: Sujet[] = [];
-  public professeurs: Professeur[] = [];
-  public formationDoctorales: FormationDoctorale[] = [];
 
-  public formationDoctorale: FormationDoctorale = {
-    id: 0,
-    ced: 0,
-    etablissement: 0,
-    axeDeRecherche: '',
-    pathImage: '',
-    titre: '',
-    initiale: '',
-    dateAccreditation: ''
-  };
+  public closeResult: string = '';
 
-  user: UserProf = {
-    username: '',
-    first_name: '',
-    last_name: ''
-  };
+  public isFetchingItems = true;
+  public sujet_:string = '';
+  public formationDoctorale_:string = '';
+  public sujets_:Sujet[] = [];
+  public page: number = 1;
+  public itemsCount: number | undefined;
 
-  public prof: Professeur = {
-    id: 0,
-    nom: '',
-    prenom: ''
-  }
-  public coDirecteur: Professeur = {
-    id: 0,
-    nom: '',
-    prenom: ''
-  }
-  public currentProfesseur: Professeur = {
-    id: 0,
-    nom: '',
-    prenom: ''
-  }
-  public sujet: Sujet = {
-    id: 0,
-    professeur: {
-      id: 0,
-      nom: '',
-      prenom: ''
-    },
-    coDirecteur: {
-      id: 0,
-      nom: '',
-      prenom: ''
-    },
-    titre: '',
-    description: '',
-    formationDoctorale: {
-      id: 0,
-      ced: 0,
-      etablissement: 0,
-      axeDeRecherche: '',
-      pathImage: '',
-      titre: '',
-      initiale: '',
-      dateAccreditation: ''
-    },
-    publier: false
-  };
-  public sujet2: Sujet = {
-    id: 0,
-    professeur: {
-      id: 0,
-      nom: '',
-      prenom: ''
-    },
-    coDirecteur: {
-      id: 0,
-      nom: '',
-      prenom: ''
-    },
-    titre: '',
-    description: '',
-    formationDoctorale: {
-      id: 0,
-      ced: 0,
-      etablissement: 0,
-      axeDeRecherche: '',
-      pathImage: '',
-      titre: '',
-      initiale: '',
-      dateAccreditation: ''
-    },
-    publier: false
-  };
-  public result: Result<any> = {
-    count: 0,
-    next: null,
-    previous: null,
-    results: []
-  }
-
+  constructor(private modalService: NgbModal, private operationsService: OperationsService) { }
+  
   public form = new FormGroup({
-    titre: new FormControl("", [Validators.required, Validators.minLength(2)]),
-    directeur: new FormControl("", [Validators.required, Validators.minLength(2)]),
+    titre: new FormControl("", [Validators.required, Validators.minLength(3)]),
+    description: new FormControl("", [Validators.required, Validators.minLength(3)]),
     coDirecteur: new FormControl(""),
     formationDoctorale: new FormControl("", [Validators.required])
   })
 
-  arrayRemove = (arr: Professeur[]) => {
-    return arr.filter((ele) => {
-      return ele.id !== this.currentProfesseur.id;
-    });
-  }
-
   ngOnInit(): void {
-    this.getAllSujets()
-    this.getAllProfesseurs()
-    this.getAllFormationDoctorales()
+     this.getAllSujets();
   }
 
-  closeResult: string = '';
-
-  constructor(private modalService: NgbModal, private operationsService: OperationsService) { }
-
-
-  fun = (content: any, s: Sujet) => {
-    this.sujet2 = s
-    this.form.setValue({
-      titre: s.titre,
-      description: s.description,
-      coDirecteur: null,
-      formationDoctorale: null
-    });
-    this.open(content)
+  getAllSujets() {
+  
+  this.operationsService.getSubjects().then(x=>{
+    this.sujets_ = x.results;    
+    this.isFetchingItems = false;
+  })
+    
   }
+
+  onClickDelete(s: Sujet) {
+    
+  }
+  onClickUpdate() {
+    
+  }
+
+  // search partie
+
+  searchFormation() {
+    if (this.formationDoctorale_ === '') {
+      this.ngOnInit();
+    } else {
+      this.sujets_ = this.sujets_.filter((res) => {
+        return res.formationDoctorale.titre
+          .toLocaleLowerCase()
+          .match(this.formationDoctorale_.toLocaleLowerCase());
+      });
+    }
+  }
+
+  searchSujet() {
+    if (this.sujet_ === '') {
+      this.ngOnInit();
+    } else {
+      this.sujets_ = this.sujets_.filter((res) => {
+        return res.titre
+          .toLocaleLowerCase()
+          .match(this.sujet_.toLocaleLowerCase());
+      });
+    }
+  }
+
+  onIndexChange(offset: number) {
+    if (this.isFetchingItems) return;
+    this.isFetchingItems = true;
+    this.operationsService
+      .getSubjects(offset)
+      .then((d) => {
+        this.sujets_ = d.results;
+      })
+      .finally(() => (this.isFetchingItems = false));
+  }
+
+
+// modals partie 
+
+  // fun = (content: any, s: Sujet) => {
+  //   this.sujet2 = s
+  //   this.form.setValue({
+  //     titre: s.titre,
+  //     description: s.description,
+  //     coDirecteur: null,
+  //     formationDoctorale: null
+  //   });
+  //   this.open(content)
+  // }
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -159,27 +120,6 @@ export class SujetsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
-  }
-
-  getAllSujets() {
-    
-  }
-  getAllFormationDoctorales() {
-    
-  }
-  getAllProfesseurs() {
-    
-  }
-
-  onClickSubmit() {
-   
-  }
-
-  onClickDelete(s: Sujet) {
-    
-  }
-  onClickUpdate() {
-    
   }
 
 }

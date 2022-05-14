@@ -1,4 +1,3 @@
-
 <div class="container-fluid mt-3">
   <div class="row mb-3">
     <div class="col-6 m-start">
@@ -12,7 +11,34 @@
       </button>
     </div>
   </div>
+  <div class="d-flex justify-content-between align-items-center my-3">
 
+    <div class="col-3">
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        [(ngModel)]="sujet_"
+        (ngModelChange)="searchSujet()"
+        [ngModelOptions]="{ standalone: true }"
+        pattern="[0-9]*(\.[0-9]+)?"
+        placeholder="par sujet"
+      />
+    </div>
+
+    <div class="col-3">
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        [(ngModel)]="formationDoctorale_"
+        (ngModelChange)="searchFormation()"
+        [ngModelOptions]="{ standalone: true }"
+        pattern="[0-9]*(\.[0-9]+)?"
+        placeholder="par formation doctorale"
+      />
+    </div>
+  </div>
   <div class="table-responsive">
     <table class="table table-align-middle">
       <thead>
@@ -21,32 +47,16 @@
           <th scope="col" class="w-23">Directeur</th>
           <th scope="col" class="w-7">co-directeur</th>
           <th scope="col" class="w-23">Formation Doctorale</th>
-          <th scope="col" class="23">action</th>
+          <th scope="col" class="w-23">action</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>jjj</td>
-          <td>hhhn</td>
-          <td>jjjjjjjjjj</td>
-          <td>kkkkkk</td>
-
-          <td
-            class="d-flex flex-wrap justify-content-between align-items-center"
-          >
-            <button class="btn btn-primary btn-sm my-1" type="button">
-              <i class="bi bi-pencil-square"></i>
-              modifier
-            </button>
-            <button class="btn btn-primary btn-sm my-1" type="button">
-              <i class="bi bi-x-lg"></i>
-              supprimer
-            </button>
-          </td>
+         
         </tr>
-        <tr *ngFor="let s of sujets">
+        <tr *ngFor="let s of sujets_">
           <td>{{ s.titre }}</td>
-          <td>s?.description</td>
+          <td>{{ s?.description}}</td>
           <td>{{ s.coDirecteur?.nom }} {{ s.coDirecteur?.prenom }}</td>
           <td>{{ s.formationDoctorale?.titre }}</td>
 
@@ -56,7 +66,7 @@
             <button
               class="btn btn-primary btn-sm my-1"
               type="button"
-              (click)="fun(mymodal1, s)"
+
             >
               <i class="bi bi-pencil-square"></i>
               modifier
@@ -72,7 +82,22 @@
           </td>
         </tr>
       </tbody>
+       <div *ngIf="isFetchingItems">
+      <h4>
+        <img
+          src="/assets/images/connexion/loading.webp"
+          width="300"
+          height="100"
+        />
+      </h4>
+    </div>
     </table>
+    <app-offsetpagination
+    [itemsCount]="itemsCount"
+    [itemsPerPage]="50"
+    (indexChange)="onIndexChange($event)"
+    *ngIf="sujets_.length > 0"
+  ></app-offsetpagination>
   </div>
 </div>
 
@@ -92,7 +117,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">l'ajout du sujet</h5>
       </div>
       <div class="modal-body">
-        <form [formGroup]="form" (ngSubmit)="onClickSubmit()">
+        <form [formGroup]="form">
           <div class="form-group mb-3">
             <label for="my-textarea" class="mb-3">Titre</label>
             <textarea
@@ -107,16 +132,16 @@
           </div>
 
           <div class="form-group mb-3">
-            <label for="my-select" class="mb-3">directeur</label>
+            <label for="my-select" class="mb-3">co-directeur</label>
 
             <select
               id="my-select"
               class="form-select"
               name=""
-              formControlName="directeur"
+              formControlName="coDirecteur"
             >
-              <option *ngFor="let p of professeurs" value="{{ p.id }}">
-                {{ p.nom }} {{ p.prenom }}
+              <option > <!---*ngFor="let p of professeurs"  value="{{ p.id }}"-->
+              <!--  {{ p.nom }} {{ p.prenom }}--->
               </option>
             </select>
           </div>
@@ -130,8 +155,8 @@
               name=""
               formControlName="coDirecteur"
             >
-              <option *ngFor="let p of professeurs" value="{{ p.id }}">
-                {{ p.nom }} {{ p.prenom }}
+            <option > <!---*ngFor="let p of professeurs"  value="{{ p.id }}"-->
+              <!--  {{ p.nom }} {{ p.prenom }}--->
               </option>
             </select>
           </div>
@@ -145,8 +170,8 @@
               name=""
               formControlName="formationDoctorale"
             >
-              <option *ngFor="let f of formationDoctorales" value="{{ f.id }}">
-                {{ f.titre }}
+            <option > <!---*ngFor="let p of formationDoctorales"  value="{{ f.id }}"-->
+              <!--  --->
               </option>
             </select>
           </div>
@@ -204,18 +229,16 @@
           </div>
 
           <div class="form-group mb-3">
-            <label for="my-select" class="mb-3">directeur</label>
-
-            <select
-              id="my-select"
-              class="form-select"
+            <label for="my-textarea" class="mb-3">Directeur</label>
+            <textarea
+              maxlength="512"
+              placeholder="Max. 2048 caractères"
+              id="my-textarea"
+              class="form-control"
               name=""
-              formControlName="directeur"
-            >
-              <option *ngFor="let p of professeurs" value="{{ p.id }}">
-                {{ p.nom }} {{ p.prenom }}
-              </option>
-            </select>
+              rows="3"
+              formControlName="description"
+            ></textarea>
           </div>
 
           <div class="form-group mb-3">
@@ -227,8 +250,8 @@
               name=""
               formControlName="coDirecteur"
             >
-              <option *ngFor="let p of professeurs" value="{{ p.id }}">
-                {{ p.nom }} {{ p.prenom }}
+            <option > <!---*ngFor="let p of professeurs"  value="{{ p.id }}"-->
+              <!--  {{ p.nom }} {{ p.prenom }}--->
               </option>
             </select>
           </div>
@@ -242,8 +265,8 @@
               name=""
               formControlName="formationDoctorale"
             >
-              <option *ngFor="let f of formationDoctorales" value="{{ f.id }}">
-                {{ f.titre }}
+            <option > <!---*ngFor="let p of formationDoctorales"  value="{{ p.id }}"-->
+              <!--  {{f.titre}}--->
               </option>
             </select>
           </div>
@@ -269,4 +292,5 @@
       </div>
     </div>
   </div>
+  
 </ng-template>
