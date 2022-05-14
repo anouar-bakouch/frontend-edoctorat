@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/auth/auth.service';
 import { CandidatPostulerService } from '../../services/candidat-postuler.service';
 
 @Component({
@@ -12,19 +13,23 @@ export class HeaderItemComponent implements OnInit {
   public nbrSujets:number = 0;
 
   constructor(
-    public translate: TranslateService
+    public translate: TranslateService,
+    public authService : AuthService
   ) {
     translate.addLangs(['fr', 'ar']);
     translate.setDefaultLang('fr');
   }
 
   ngOnInit(): void {
-
-  
-
   }
 
   switchLang(lang: string) {
     this.translate.use(lang);
   }
+
+  logout(){
+       this.authService.logOut();
+  }
+
+
 }
