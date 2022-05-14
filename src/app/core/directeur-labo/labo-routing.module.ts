@@ -13,7 +13,7 @@ const routes: Routes = [
 
     {
         path: 'labo',
-        // canActivateChild: [IsDPoleGuard],
+        canActivateChild: [IsDPoleGuard],
         component: MainLaboComponent,
         children: [
             { path: 'sujets', component: SujetsComponent },
