@@ -7,13 +7,12 @@ import { ResultatsComponent } from './components/resultats/resultats.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ProfesseurRoutingModule } from '../professeur/professeur.routing.module';
 import { MainLaboComponent } from './components/main-labo/main-labo.component';
 import { CandidatsComponent } from './components/candidats/candidats.component';
 import { OptionsComponent } from './components/options/options.component';
 import { DirecteurLaboComponent } from './components/directeur-labo.component';
 import { LaboRoutingModule } from './labo-routing.module';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -25,7 +24,7 @@ import { LaboRoutingModule } from './labo-routing.module';
     MainLaboComponent,
     CandidatsComponent,
     OptionsComponent,
-    DirecteurLaboComponent
+    DirecteurLaboComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +33,7 @@ import { LaboRoutingModule } from './labo-routing.module';
     LaboRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule
   ],
   exports: [
     DirecteurLaboComponent
