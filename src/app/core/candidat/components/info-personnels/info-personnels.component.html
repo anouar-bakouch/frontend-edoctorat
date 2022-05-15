@@ -204,7 +204,8 @@
             type="text"
             name="lieu_naissance_ar"
             formControlName="villeDeNaissanceAr"
-            class="form-control form-control-sm"
+            class="form-control form-control-sm keyboardInput"
+            dir="rtl"
             maxlength="200"
             id="id_lieu_naissance_ar"
           />
@@ -292,8 +293,7 @@
             >{{'candidat.info_perso.Pays' | translate }}</label
           >
           <select
-            data-live-search="true"
-            id="pays_s"
+          id="select-state"
             formControlName="pays"
             class="form-control form-control-sm"
             required=""
