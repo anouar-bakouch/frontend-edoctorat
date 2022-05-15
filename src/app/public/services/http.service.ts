@@ -15,12 +15,6 @@ export class HttpService {
 
   constructor(private http:HttpClient) { }
 
-  public getFormationsDoctorale():Observable<Array<FormationDoctorale>>{
-      
-    return this.http.get<Array<FormationDoctorale>>(`${environment.API_URL}/formationDoctorale`);
-
-  }
-
   getFormationsDoctorales(): Promise<Array<FormationDoctorale>> {
     return new Promise((resolve, reject) => {
       this.http

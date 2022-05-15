@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
+import { HttpService } from '../../services/http.service';
 
 
 @Component({
@@ -11,11 +12,16 @@ import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 
 export class FormationsComponent implements OnInit {
 
- @Input() formation!:FormationDoctorale;
+  public formations:Array<FormationDoctorale> [] = [];
 
-  constructor() { }
+
+
+  constructor(public httpService:HttpService) { }
 
   ngOnInit(): void {
+    this.httpService.getFormationsDoctorales().then(res=>{
+      console.log(res);
+    })
   }
 
 
