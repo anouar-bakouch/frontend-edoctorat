@@ -1,5 +1,6 @@
 
-        <app-alert *ngIf="alert" [data]="alert"></app-alert>
+      
+      <app-alert *ngIf="alert" [data]="alert"></app-alert>
         <div class="text-center" *ngIf="isFetchingItems">
           <h4>
             <img
@@ -10,7 +11,8 @@
           </h4>
         </div>
         <p class="p-3 text-primary text-center border border-primary" *ngIf="NoSujets"><i class="bi bi-card-checklist"></i> {{message}}</p>
-<div class="card" style="width: 100%">
+
+    <div class="card" style="width: 100%">
     <ul class="list-group list-group-flush">
       <li class="list-group-item my-1  border border-primary" *ngFor="let s of sujets" >
         <p><span class="fs-6 fw-bold text-primary">Sujet | Axe : </span> {{s.sujet.titre}}</p>
