@@ -57,7 +57,8 @@ export class SujersComponent implements OnInit {
             type: 'loading',
             message: "supprimé avec succès",
           }
-  
+          if(this.sujets.length <= 0) this.NoSujets = ! this.NoSujets;
+          
     }).then(()=>{
       if(this.sujets.length <= 0) this.NoSujets = ! this.NoSujets;
     }).catch((_)=>{
