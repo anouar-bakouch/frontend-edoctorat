@@ -19,7 +19,7 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http
         .get<Array<FormationDoctorale>>(
-          `${environment.API_URL}api/formation-doctorale/` 
+          `${environment.API_URL}/api/formation-doctorale/` 
         )
         .subscribe({
           next: (data) => {

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
+import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { environment } from 'src/environments/environment';
@@ -36,10 +37,10 @@ export class LaboSujet {
 
   // fetch formation doctorale
 
-  getFormationsDoctorales(): Promise<Array<FormationDoctorale>> {
+  getFormationsDoctorales(): Promise<Result<FormationDoctorale>> {
     return new Promise((resolve, reject) => {
       this.http
-        .get<Array<FormationDoctorale>>(
+        .get<Result<FormationDoctorale>>(
           `${environment.API_URL}/api/formation-doctorale/` 
         )
         .subscribe({
@@ -50,6 +51,22 @@ export class LaboSujet {
             reject(err);
           },
         });
+    });
+  }
+
+  // fetch professors 
+
+
+  public getProfesseurs():Promise<Result<Professeur>> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<Professeur>>(environment.API_URL + '/api/get-professeurs/').subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
     });
   }
 

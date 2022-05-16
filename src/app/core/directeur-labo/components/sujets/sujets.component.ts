@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
+import { Professeur } from 'src/app/models/Professeur';
+import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import swal from 'sweetalert';
@@ -17,7 +19,6 @@ import { LaboSujet } from '../../services/labo-sujet.service';
 export class SujetsComponent implements OnInit {
 
   public closeResult: string = '';
-
   public isFetchingItems = true;
   public sujet_:string = '';
   public formationDoctorale_:string = '';
@@ -26,7 +27,8 @@ export class SujetsComponent implements OnInit {
   public itemsCount: number | undefined;
   public errorText:string = '';
   public alert: AlertData | undefined = undefined;
-  public formations: Array<FormationDoctorale> = [];
+  public formations !: Result<FormationDoctorale>;
+  public professors !: Result<Professeur>;
 
   constructor(private modalService: NgbModal, private operationsService: LaboSujet) { }
   
@@ -53,8 +55,16 @@ export class SujetsComponent implements OnInit {
 
   getFormationsDoctorales(){
 
-  this.operationsService.getFormationsDoctorales().then(x=>{
-    console.log(x);
+  this.operationsService.getFormationsDoctorales().then(res=>{
+     this.formations = res;
+  })
+
+  }
+
+  getProfessors(){
+
+  this.operationsService.getProfesseurs().then(res=>{
+    this.professors = res;
   })
 
   }
