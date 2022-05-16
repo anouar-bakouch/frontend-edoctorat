@@ -48,12 +48,6 @@ export class SujetsComponent implements OnInit {
     
   }
 
-  onClickDelete(s: Sujet) {
-    
-  }
-  onClickUpdate() {
-    
-  }
 
   // search partie
 
@@ -67,6 +61,18 @@ export class SujetsComponent implements OnInit {
           .match(this.formationDoctorale_.toLocaleLowerCase());
       });
     }
+  }
+
+  // delete sujet
+
+  deleteSujet(sujet:Sujet){
+
+    alert('hello')
+    this.operationsService.deleteSujet(sujet.id).then(res=>{
+      console.log(res);
+      alert(res);
+    })
+
   }
 
   searchSujet() {

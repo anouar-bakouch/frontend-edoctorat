@@ -6,7 +6,6 @@ import { DirecteurLaboModule } from "./directeur-labo/directeur-labo.module";
 import { DirecteurPoleModule } from "./directeur-pole/directeur-pole.module";
 import { ProfesseurModule } from "./professeur/profeseur.module";
 
-
 @NgModule({
   declarations: [],
   imports: [

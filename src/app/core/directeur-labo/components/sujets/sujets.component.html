@@ -74,7 +74,7 @@
             <button
               class="btn btn-primary btn-sm my-1"
               type="button"
-              (click)="onClickDelete(s)"
+              (click)="deleteSujet(s)"
             >
               <i class="bi bi-x-lg"></i>
               supprimer
@@ -212,7 +212,7 @@
         </h5>
       </div>
       <div class="modal-body">
-        <form [formGroup]="form" (ngSubmit)="onClickUpdate()">
+        <form [formGroup]="form">
           <div class="form-group mb-3">
             <label for="my-textarea" class="mb-3">Titre</label>
             <textarea

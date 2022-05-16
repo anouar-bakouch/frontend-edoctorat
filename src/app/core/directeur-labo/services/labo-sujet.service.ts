@@ -38,7 +38,7 @@ export class LaboSujet {
 
   public addSujet(sujet: object) {
     return new Promise((resolve, reject) => {
-      this.http.post(environment.API_URL + '/api/sujetsLabo/', sujet).subscribe({
+      this.http.post(environment.API_URL + '/api/sujetslabo/', sujet).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -51,10 +51,10 @@ export class LaboSujet {
 
   // delete 
 
-  public deleteSujet(sujet: Sujet) {
+  public deleteSujet(id:number) {
     return new Promise((resolve, reject) => {
       this.http
-        .delete(environment.API_URL + '/api/sujets/' + sujet.id + '/')
+        .delete(environment.API_URL + '/api/sujetslabo/' +id + '/')
         .subscribe({
           next: (data) => {
             resolve(data);
@@ -71,7 +71,7 @@ export class LaboSujet {
   public updateSujet(sujet: object, id: number) {
     return new Promise((resolve, reject) => {
       this.http
-        .put(environment.API_URL + '/api/sujets/' + id + '/', sujet)
+        .put(environment.API_URL + '/api/sujetslabo/' + id + '/', sujet)
         .subscribe({
           next: (data) => {
             resolve(data);
