@@ -24,7 +24,6 @@ export class SujetsComponent implements OnInit {
   public page: number = 1;
   public itemsCount: number | undefined;
   public errorText:string = '';
-  public isDeleting:boolean = false;
   public alert: AlertData | undefined = undefined;
 
   constructor(private modalService: NgbModal, private operationsService: LaboSujet) { }
@@ -34,7 +33,7 @@ export class SujetsComponent implements OnInit {
     description: new FormControl("", [Validators.required, Validators.minLength(3)]),
     coDirecteur: new FormControl(""),
     formationDoctorale: new FormControl("", [Validators.required])
-    
+
   })
 
   ngOnInit(): void {
@@ -77,10 +76,16 @@ export class SujetsComponent implements OnInit {
       })
       
     }).catch((_) => {
-      this.errorText =
-        "Une erreur s'est produite de notre côté, réessayez plus tard.";
+      this.alert = {
+        type: 'loading',
+        message: "error lors de la suppression",
+      };
     })
-    .finally(() => (this.isDeleting = false));
+    .finally(() => {
+      setTimeout(() => (this.alert = undefined), 3000);
+    }
+
+    );
 
   }
 

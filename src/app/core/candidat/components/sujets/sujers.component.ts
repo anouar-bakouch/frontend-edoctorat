@@ -59,7 +59,6 @@ export class SujersComponent implements OnInit {
           }
   
     }).then(()=>{
-      setTimeout(() => (this.alert = undefined), 3000);
       if(this.sujets.length <= 0) this.NoSujets = ! this.NoSujets;
     }).catch((_)=>{
       this.alert = {
@@ -69,6 +68,7 @@ export class SujersComponent implements OnInit {
     })
     .finally(()=>{
       if(this.sujets.length <= 0) this.NoSujets = ! this.NoSujets;
+      setTimeout(() => (this.alert = undefined), 3000);
     })
   }
 
