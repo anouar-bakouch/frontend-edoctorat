@@ -178,34 +178,6 @@ export class AuthService {
     return true;
   }
 
-  loginLabo(idToken: string) {
-    this.logOut();
-    return new Promise((resolve, reject) => {
-      this.httpClient
-        .post<AuthProf>(`${environment.API_URL}/api/verify-is-dLabo/`, { // to change after that
-          token: idToken,
-        })
-        .subscribe({
-          next: (authData: AuthProf) => {
-            this.tokenStorage.storeTokens(authData.access, authData.refresh);
-            const userInfo: UserInfo = {
-              email: authData.email,
-              groups: authData.groups,
-              nom: authData.nom,
-              prenom: authData.prenom,
-              pathPhoto: authData.pathPhoto,
-              misc: {
-                grade: authData.grade,
-                nombreProposer: authData.nombreProposer,
-                nombreEncadrer: authData.nombreEncadrer,
-              },
-            };
-            this.saveUserInfo(userInfo);
-            resolve(true);
-          },
-          error: (_) => reject(false),
-        });
-    });
-  }
+
 
 }
