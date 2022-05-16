@@ -118,12 +118,14 @@
       "masculine": "Masculine",
       "feminine": "Feminine"
     },
-    "parcours_" : "parcours scolaire",
+    
     "parcours": {
       "nom_bac":"BACCALAUREAT",
       "nom_dut":"Diplome Universitaire de technologie",
-      "nom_deug":"diplome universitaire scientifiques et techniques général",
-      "description-deug":"la disposition du deug est non obligatoire pour passer au autres diplomes",
+      "nom_deug":"Diplome universitaire général",
+      "nom_deust":"Diplome universitaire scientifiques et techniques",
+      "description-deust":"la disposition du Deust est non obligatoire pour passer au autres diplomes",
+      "description-deug":"la disposition du Deug est non obligatoire pour passer au autres diplomes",
       "decription-dut":"ne remplissez ce formulaire si vous seulement disposez dut sinon veuillez l'ignorer",
       "decription-bac":"la disposition du diplome bac est obligatoire pour passer au autres diplomes",
       "parcours" : "Parcours",
@@ -142,6 +144,14 @@
       "releves":"Relevés de notes",
       "fichier_courant":"Fichier Courant",
       "choix_fichier":"Choisir un fichier"
+    },
+    "parcours_" : {
+        "professeur" : "Professeur",
+        "sujet" : "Sujet",
+        "action" : "Action",
+        "laboratoire" : "Laboratoire",
+        "ced" : "ced",
+        "formation doctorale" : "formation doctorale"
     },
     "postuler" : "Postuler", 
     "postuler_details" : {
