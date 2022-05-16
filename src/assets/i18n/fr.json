@@ -118,7 +118,7 @@
       "masculine": "Masculine",
       "feminine": "Feminine"
     },
-    
+    "parcours_" : "parcours scolaire",
     "parcours": {
       "nom_bac":"BACCALAUREAT",
       "nom_dut":"Diplome Universitaire de technologie",
@@ -142,14 +142,6 @@
       "releves":"Relevés de notes",
       "fichier_courant":"Fichier Courant",
       "choix_fichier":"Choisir un fichier"
-    },
-    "parcours_" : {
-        "professeur" : "Professeur",
-        "sujet" : "Sujet",
-        "action" : "Action",
-        "laboratoire" : "Laboratoire",
-        "ced" : "ced",
-        "formation doctorale" : "formation doctorale"
     },
     "postuler" : "Postuler", 
     "postuler_details" : {
