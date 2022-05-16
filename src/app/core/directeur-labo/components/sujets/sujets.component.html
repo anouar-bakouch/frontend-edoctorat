@@ -55,10 +55,10 @@
          
         </tr>
         <tr *ngFor="let s of sujets_">
-          <td>{{ s.titre }}</td>
-          <td>{{ s?.description}}</td>
-          <td>{{ s.coDirecteur?.nom }} {{ s.coDirecteur?.prenom }}</td>
-          <td>{{ s.formationDoctorale?.titre }}</td>
+          <td>{{ s?.titre }}</td>
+          <td>{{ s?.professeur.nom}} {{ s?.professeur.prenom}}</td>
+          <td>{{ s?.coDirecteur?.nom }} {{ s.coDirecteur?.prenom }}</td>
+          <td>{{ s?.formationDoctorale?.titre }}</td>
 
           <td
             class="d-flex flex-wrap justify-content-between align-items-center"
