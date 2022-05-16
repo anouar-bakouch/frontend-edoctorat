@@ -9,10 +9,11 @@
         {{ errorText }}
     </h5>
     <div class="form-card my-3">
-        <h3 class="text-primary mt-3 border border-primary text-center p-3">Diplome Universitaire de technologie</h3>
+        <h3 class="text-primary mt-3 border border-primary text-center p-3"> {{'candidat.parcours.nom_dut' | translate
+            }}</h3>
         <p class="text-primary mt-3 border border-primary text-center p-3">
-            <i class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"></i> ne remplissez ce formulaire si
-            vous seulement disposez dut sinon veuillez l'ignorer
+            <i class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"></i>
+            {{'candidat.parcours.decription-dut' | translate }}
         </p>
 
         <form [formGroup]="candidatDutForm" (ngSubmit)="onSubmit()">
@@ -20,7 +21,8 @@
 
                 <div class="col-sm-9 col-lg-4">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label" for="intitule">Intitulé</label>
+                        <label class="col-form-label-sm control-label" for="intitule">{{'candidat.parcours.intitulé' |
+                            translate }}</label>
 
                         <input type="text" class="form-control form-control-sm dateBac" required="" id="intitule"
                             formControlName="intitule" />
@@ -29,7 +31,8 @@
 
                 <div class="col-sm-9 col-lg-4">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label" for="id_date_diplome_bac">Type</label>
+                        <label class="col-form-label-sm control-label"
+                            for="id_date_diplome_bac">{{'candidat.parcours.type' | translate }}</label>
                         <input class="form-control form-control-sm" type="text" formControlName="type">
 
                     </div>
@@ -38,7 +41,8 @@
                 <div class="col-sm-3 col-lg-4 mb-3">
                     <div class="form-group required ">
 
-                        <label class="col-form-label-sm control-label" for="id_bac">Specialité</label>
+                        <label class="col-form-label-sm control-label" for="id_bac">{{'candidat.parcours.spécialité' |
+                            translate }}</label>
                         <select formControlName="specialite" class="form-control  form-control-sm">
                             <option [selected]="candidatDut?.intitule === t.value ? 'true' : 'false' " [value]="t.value"
                                 *ngFor="let t of TypesDut">{{t.value}}
@@ -56,7 +60,8 @@
 
                 <div class="col-lg-3">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label" for="id_date_diplome_bac">Date D'obtention Du
+                        <label class="col-form-label-sm control-label"
+                            for="id_date_diplome_bac">{{'candidat.parcours.date' | translate }}
                             Dut</label>
 
                         <input type="date" value="" class="form-control form-control-sm dateBac" required=""
@@ -66,7 +71,8 @@
 
                 <div class="col-3">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label" for="id_Province_bac">Pays</label>
+                        <label class="col-form-label-sm control-label" for="id_Province_bac">{{'candidat.parcours.pays'
+                            | translate }}</label>
                         <select formControlName="pays" class="form-control form-control-sm" required=""
                             id="id_Province_bac">
 
@@ -80,7 +86,8 @@
 
                 <div class="col-3">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label" for="id_ville_bac">Ville</label>
+                        <label class="col-form-label-sm control-label" for="id_ville_bac">{{'candidat.parcours.ville' |
+                            translate }}</label>
 
                         <input class="form-control form-control-sm" type="text" formControlName="ville" />
 
@@ -90,7 +97,8 @@
 
                 <div class="col-3">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label">Province</label>
+                        <label class="col-form-label-sm control-label">{{'candidat.parcours.province' | translate
+                            }}</label>
                         <input type="text" name="province" value="" class="form-control form-control-sm" maxlength="50"
                             required="" id="id_ville_bac" formControlName="province" />
                     </div>
@@ -103,7 +111,8 @@
 
                 <div class="col-md-4 col-lg-4 col-sm-6">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label" for="id_mentionbac">Mention:</label>
+                        <label class="col-form-label-sm control-label" for="id_mentionbac">{{'candidat.parcours.mention'
+                            | translate }}</label>
                         <select formControlName="mention" class="form-control form-control-sm" id="id_mentionbac">
                             <option [selected]="candidatDut?.mention === m.value ? 'true' : 'false' " [value]="m.value"
                                 *ngFor="let m of mentions">{{m.value}}
@@ -114,7 +123,9 @@
 
                 <div class="col-md-4 col-lg-4 col-sm-6">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label" for="id_nom_bac">etablissement / université
+                        <label class="col-form-label-sm control-label"
+                            for="id_nom_bac">{{'candidat.parcours.etablissement' | translate }} /
+                            {{'candidat.parcours.université' | translate }}
                         </label>
                         <input type="text" formControlName="etablissement" class="
 form-control form-control-sm
@@ -125,8 +136,8 @@ etablissementBac
 
                 <div class="col-md-4 col-lg-4 col-sm-12">
                     <div class="form-group required">
-                        <label class="col-form-label-sm control-label" for="id_moyenne_bac">Moyenne Générale des
-                            4 semestres:</label>
+                        <label class="col-form-label-sm control-label" for="id_moyenne_bac">{{'candidat.parcours.moyenne' | translate }}
+                             semestres 4:</label>
                         <input type="number" step=".01" max="20.0" formControlName="moyen_generale"
                             class="form-control form-control-sm" maxlength="50" required="" id="id_moyenne_bac" />
                     </div>
@@ -136,47 +147,32 @@ etablissementBac
 
             <div class="row mt-5">
                 <div class="mb-3">
-                  <label for="dut_dip" class="form-label"
-                    >Diplôme Universitaire de technologie pdf
-                    <span class="text-danger h6"> < 4MO </span></label
-                  >
-                  <h6 class="text-primary" *ngIf="diplomeFileLink">
-                    Fichier Courant : {{ diplomeFileLink }}
-                  </h6>
-                  <input
-                    class="form-control diplomeBac"
-                    type="file"
-                    accept="application/pdf"
-                    formControlName="diplomeFile"
-                    [writeFile]="true"
-                    (change)="onFileSelected($event, 'dfile')"
-                  />
+                    <label for="dut_dip" class="form-label">{{'candidat.parcours.diplome' | translate }} DUT pdf
+                        <span class="text-danger h6">
+                            < 4MO </span></label>
+                    <h6 class="text-primary" *ngIf="diplomeFileLink">
+                        {{'candidat.parcours.fichier_courant' | translate }} : {{ diplomeFileLink }}
+                    </h6>
+                    <input class="form-control diplomeBac" type="file" accept="application/pdf"
+                        formControlName="diplomeFile" [writeFile]="true" (change)="onFileSelected($event, 'dfile')" />
                 </div>
-        
+
                 <div class="mb-3">
-                  <label for="relBac" class="form-label"
-                    >Relevés de notes pdf
-                    <span class="text-danger h6"> < 4MO </span></label
-                  >
-                  <h6 class="text-primary" *ngIf="releveFileLink">
-                    Fichier Courant : {{ releveFileLink }}
-                  </h6>
-                  <input
-                    class="form-control"
-                    type="file"
-                    id="relBac"
-                    accept="application/pdf"
-                    formControlName="relevefile"
-                    [writeFile]="true"
-                    (change)="onFileSelected($event, 'rfile')"
-                  />
+                    <label for="relBac" class="form-label">{{'candidat.parcours.releves' | translate }} pdf
+                        <span class="text-danger h6">
+                            < 4MO </span></label>
+                    <h6 class="text-primary" *ngIf="releveFileLink">
+                        {{'candidat.parcours.fichier_courant' | translate }} : {{ releveFileLink }}
+                    </h6>
+                    <input class="form-control" type="file" id="relBac" accept="application/pdf"
+                        formControlName="relevefile" [writeFile]="true" (change)="onFileSelected($event, 'rfile')" />
                 </div>
-              </div>
+            </div>
 
             <div class="col col-sm-12 col-lg-6 d-flex justify-content-between align-items-center">
 
                 <button class="btn btn-primary btn-sm" type="submit" [disabled]="!candidatDutForm.valid"
-                    *ngIf="!isUpdating"><i class="bi bi-check-circle"></i> confirmer</button>
+                    *ngIf="!isUpdating"><i class="bi bi-check-circle"></i> {{'candidat.info_perso.confirmer' | translate }}</button>
 
                 <span *ngIf="isUpdating" class="spinner-grow text-primary spinner-grow-lg" role="status"
                     aria-hidden="true"></span>
