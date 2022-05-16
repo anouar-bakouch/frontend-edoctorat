@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
-import { Professeur } from 'src/app/models/Professeur';
-import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
-import UserProf from 'src/app/models/UserProf';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
+import swal from 'sweetalert';
 import { LaboSujet } from '../../services/labo-sujet.service';
 
 
@@ -25,6 +23,9 @@ export class SujetsComponent implements OnInit {
   public sujets_:Sujet[] = [];
   public page: number = 1;
   public itemsCount: number | undefined;
+  public errorText:string = '';
+  public isDeleting:boolean = false;
+  public alert: AlertData | undefined = undefined;
 
   constructor(private modalService: NgbModal, private operationsService: LaboSujet) { }
   
@@ -33,6 +34,7 @@ export class SujetsComponent implements OnInit {
     description: new FormControl("", [Validators.required, Validators.minLength(3)]),
     coDirecteur: new FormControl(""),
     formationDoctorale: new FormControl("", [Validators.required])
+    
   })
 
   ngOnInit(): void {
@@ -67,11 +69,18 @@ export class SujetsComponent implements OnInit {
 
   deleteSujet(sujet:Sujet){
 
-    alert('hello')
     this.operationsService.deleteSujet(sujet.id).then(res=>{
-      console.log(res);
-      alert(res);
+      const index = this.sujets_.indexOf(sujet);
+      this.sujets_.splice(index,1);
+      swal({
+        icon: 'success',
+      })
+      
+    }).catch((_) => {
+      this.errorText =
+        "Une erreur s'est produite de notre côté, réessayez plus tard.";
     })
+    .finally(() => (this.isDeleting = false));
 
   }
 

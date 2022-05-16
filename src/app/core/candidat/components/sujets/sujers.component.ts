@@ -50,7 +50,6 @@ export class SujersComponent implements OnInit {
   public delete(s:Postuler){
 
     this.candidat.deletePostule(s.id).then(x=>{
-      if(x){
         const index = this.sujets.indexOf(s);
         this.sujets.splice(index,1);
 
@@ -59,18 +58,16 @@ export class SujersComponent implements OnInit {
             message: "supprimé avec succès",
           }
   
-      } 
-      else{
-       
-          this.alert = {
-            type: 'loading',
-            message: "error lors de la suppression",
-          };
-
-      }
-    
     }).then(()=>{
       setTimeout(() => (this.alert = undefined), 3000);
+      if(this.sujets.length <= 0) this.NoSujets = ! this.NoSujets;
+    }).catch((_)=>{
+      this.alert = {
+        type: 'loading',
+        message: "error lors de la suppression",
+      };
+    })
+    .finally(()=>{
       if(this.sujets.length <= 0) this.NoSujets = ! this.NoSujets;
     })
   }
