@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Sujet } from 'src/app/models/Sujet';
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import swal from 'sweetalert';
@@ -25,19 +26,20 @@ export class SujetsComponent implements OnInit {
   public itemsCount: number | undefined;
   public errorText:string = '';
   public alert: AlertData | undefined = undefined;
+  public formations: Array<FormationDoctorale> = [];
 
   constructor(private modalService: NgbModal, private operationsService: LaboSujet) { }
   
-  public form = new FormGroup({
+  public dLaboform = new FormGroup({
     titre: new FormControl("", [Validators.required, Validators.minLength(3)]),
-    description: new FormControl("", [Validators.required, Validators.minLength(3)]),
+    directeur: new FormControl("", [Validators.required, Validators.minLength(3)]),
     coDirecteur: new FormControl(""),
     formationDoctorale: new FormControl("", [Validators.required])
-
   })
 
   ngOnInit(): void {
      this.getAllSujets();
+     this.getFormationsDoctorales();
   }
 
   getAllSujets() {
@@ -47,6 +49,14 @@ export class SujetsComponent implements OnInit {
     this.isFetchingItems = false;
   })
     
+  }
+
+  getFormationsDoctorales(){
+
+  this.operationsService.getFormationsDoctorales().then(x=>{
+    console.log(x);
+  })
+
   }
 
 
@@ -63,6 +73,17 @@ export class SujetsComponent implements OnInit {
       });
     }
   }
+
+  // add sujet 
+
+  addSujet(){
+
+    // this.operationsService.addSujet()
+    // .then()
+    // .catch()
+
+  }
+  
 
   // delete sujet
 

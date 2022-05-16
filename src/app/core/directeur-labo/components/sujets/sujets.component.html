@@ -44,7 +44,7 @@
     <table class="table table-align-middle">
       <thead>
         <tr class="table-primary">
-          <th scope="col" class="w-7">Titre Sujet</th>
+          <th scope="col" class="w-7">Titre</th>
           <th scope="col" class="w-23">Directeur</th>
           <th scope="col" class="w-7">co-directeur</th>
           <th scope="col" class="w-23">Formation Doctorale</th>
@@ -116,31 +116,31 @@
     <div class="modal-content">
 
       <div class="modal-body">
-        <form [formGroup]="form">
+        <form [formGroup]="dLaboform">
           <div class="form-group mb-3">
-            <label for="my-textarea" class="mb-3">Titre</label>
+            <label for="my-textarea" class="mb-3">Titre | Axe</label>
             <textarea
               maxlength="512"
               placeholder="Max. 512 caractères"
               id="my-textarea"
               class="form-control"
               name=""
-              rows="3"
+              rows="7"
               formControlName="titre"
             ></textarea>
           </div>
 
           <div class="form-group mb-3">
-            <label for="my-select" class="mb-3">co-directeur</label>
+            <label for="my-select" class="mb-3">Directeur</label>
 
             <select
               id="my-select"
               class="form-select"
               name=""
-              formControlName="coDirecteur"
+              formControlName="directeur"
             >
-              <option > <!---*ngFor="let p of professeurs"  value="{{ p.id }}"-->
-              <!--  {{ p.nom }} {{ p.prenom }}--->
+              <option > 
+
               </option>
             </select>
           </div>
@@ -154,8 +154,7 @@
               name=""
               formControlName="coDirecteur"
             >
-            <option > <!---*ngFor="let p of professeurs"  value="{{ p.id }}"-->
-              <!--  {{ p.nom }} {{ p.prenom }}--->
+            <option >
               </option>
             </select>
           </div>
@@ -169,8 +168,7 @@
               name=""
               formControlName="formationDoctorale"
             >
-            <option > <!---*ngFor="let p of formationDoctorales"  value="{{ f.id }}"-->
-              <!--  --->
+            <option > 
               </option>
             </select>
           </div>
@@ -187,7 +185,7 @@
               class="btn btn-primary btn-confirmer"
               type="submit"
               (click)="modal.close('Save click')"
-              [disabled]="form.invalid"
+              [disabled]="dLaboform.invalid"
             >
               confirmer
             </button>
@@ -197,99 +195,4 @@
     </div>
   </div>
 </ng-template>
-<ng-template
-  class="modal fade"
-  tabindex="-1"
-  role="dialog"
-  #mymodal1
-  let-modal
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered w-100" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Modifier du sujet
-        </h5>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="form">
-          <div class="form-group mb-3">
-            <label for="my-textarea" class="mb-3">Titre</label>
-            <textarea
-              maxlength="512"
-              placeholder="Max. 512 caractères"
-              id="my-textarea"
-              class="form-control"
-              name=""
-              rows="3"
-              formControlName="titre"
-            ></textarea>
-          </div>
 
-          <div class="form-group mb-3">
-            <label for="my-textarea" class="mb-3">Directeur</label>
-            <textarea
-              maxlength="512"
-              placeholder="Max. 2048 caractères"
-              id="my-textarea"
-              class="form-control"
-              name=""
-              rows="3"
-              formControlName="description"
-            ></textarea>
-          </div>
-
-          <div class="form-group mb-3">
-            <label for="my-select" class="mb-3">co-directeur</label>
-
-            <select
-              id="my-select"
-              class="form-select"
-              name=""
-              formControlName="coDirecteur"
-            >
-            <option > <!---*ngFor="let p of professeurs"  value="{{ p.id }}"-->
-              <!--  {{ p.nom }} {{ p.prenom }}--->
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="my-select" class="mb-3">Formation Doctorale</label>
-
-            <select
-              id="my-select"
-              class="form-select"
-              name=""
-              formControlName="formationDoctorale"
-            >
-            <option > <!---*ngFor="let p of formationDoctorales"  value="{{ p.id }}"-->
-              <!--  {{f.titre}}--->
-              </option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              data-dismiss="modal"
-              (click)="modal.dismiss('Cross click')"
-              type="button"
-            >
-              annuler
-            </button>
-            <button
-              class="btn btn-primary btn-confirmer"
-              type="submit"
-              (click)="modal.close('Save click')"
-              [disabled]="form.invalid"
-            >
-              confirmer
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  
-</ng-template>
