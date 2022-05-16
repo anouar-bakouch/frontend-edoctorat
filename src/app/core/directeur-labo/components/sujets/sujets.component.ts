@@ -6,7 +6,7 @@ import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import UserProf from 'src/app/models/UserProf';
-import { OperationsService } from '../../services/operations.service';
+import { LaboSujet } from '../../services/labo-sujet.service';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class SujetsComponent implements OnInit {
   public page: number = 1;
   public itemsCount: number | undefined;
 
-  constructor(private modalService: NgbModal, private operationsService: OperationsService) { }
+  constructor(private modalService: NgbModal, private operationsService: LaboSujet) { }
   
   public form = new FormGroup({
     titre: new FormControl("", [Validators.required, Validators.minLength(3)]),

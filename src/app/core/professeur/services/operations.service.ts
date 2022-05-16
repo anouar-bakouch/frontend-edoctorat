@@ -43,16 +43,7 @@ export class OperationsService {
       });
     });
   }
-  // public getProfesseur(id: Professeur): Observable<Professeur> {
-  //   return this.http.get<Professeur>(
-  //     environment.API_URL + `/api/get-professeurs/${id}/`
-  //   );
-  // }
-  // public getformDoct(id: FormationDoctorale): Observable<FormationDoctorale> {
-  //   return this.http.get<FormationDoctorale>(
-  //     environment.API_URL + `/api/formation-doctorale/${id}/`
-  //   );
-  // }
+
   public getSujets() {
     return new Promise((resolve, reject) => {
       this.http.get(environment.API_URL + '/api/sujets/').subscribe({
@@ -98,6 +89,7 @@ export class OperationsService {
         });
     });
   }
+  
   public updateSujet(sujet: object, id: number) {
     return new Promise((resolve, reject) => {
       this.http
