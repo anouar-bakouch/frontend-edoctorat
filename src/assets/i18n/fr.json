@@ -118,7 +118,31 @@
       "masculine": "Masculine",
       "feminine": "Feminine"
     },
-    "parcours" : "Parcours", 
+    
+    "parcours": {
+      "nom_bac":"BACCALAUREAT",
+      "nom_dut":"Diplome Universitaire de technologie",
+      "nom_deug":"diplome universitaire scientifiques et techniques général",
+      "description-deug":"la disposition du deug est non obligatoire pour passer au autres diplomes",
+      "decription-dut":"ne remplissez ce formulaire si vous seulement disposez dut sinon veuillez l'ignorer",
+      "decription-bac":"la disposition du diplome bac est obligatoire pour passer au autres diplomes",
+      "parcours" : "Parcours",
+      "intitulé":"Intitulé",
+      "type":"Type" ,
+      "spécialité":"Spécialité",
+      "date":"date d'obtention",
+      "ville":"Ville",
+      "pays":"Pays",
+      "province":"Province",
+      "mention":"Mention",
+      "université":"Université",
+      "etablissement":"Etablissement",
+      "moyenne":"Moyenne génerale",
+      "diplome":"Diplôme",
+      "releves":"Relevés de notes",
+      "fichier_courant":"Fichier Courant",
+      "choix_fichier":"Choisir un fichier"
+    },
     "parcours_" : {
         "professeur" : "Professeur",
         "sujet" : "Sujet",
