@@ -191,6 +191,7 @@ export class ProfSujetComponent implements OnInit {
     });
     this.open(content);
   };
+
   open(content: any) {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
@@ -203,6 +204,7 @@ export class ProfSujetComponent implements OnInit {
         }
       );
   }
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -302,7 +304,6 @@ export class ProfSujetComponent implements OnInit {
       .updateSujet(sujet, this.sujet2.id)
       .then((data) => {
         this.loading = false;
-
         for (var i = 0; i < this.sujets.length; i++) {
           if (this.sujets[i].id === this.sujet2.id) {
             this.sujets[i] = data as Sujet;

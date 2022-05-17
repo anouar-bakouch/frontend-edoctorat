@@ -112,6 +112,11 @@ export class SujetsComponent implements OnInit {
 
   }
   
+  updateSujet(){
+
+   
+
+  }
 
   // delete sujet
 
@@ -164,16 +169,21 @@ export class SujetsComponent implements OnInit {
 
 // modals partie 
 
-  // fun = (content: any, s: Sujet) => {
-  //   this.sujet2 = s
-  //   this.form.setValue({
-  //     titre: s.titre,
-  //     description: s.description,
-  //     coDirecteur: null,
-  //     formationDoctorale: null
-  //   });
-  //   this.open(content)
-  // }
+fun (content: any, s: Sujet) {
+
+  this.dLaboform.setValue({
+    titre: s.titre,
+    description: s.description,
+    coDirecteur: null,
+    formationDoctorale: null,
+  });
+
+  this.open(content);
+
+  alert('hi')
+  
+};
+
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -181,6 +191,7 @@ export class SujetsComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -190,5 +201,6 @@ export class SujetsComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
 
 }
