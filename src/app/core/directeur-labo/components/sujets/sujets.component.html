@@ -47,8 +47,8 @@
           <th scope="col" class="w-7">Titre</th>
           <th scope="col" class="w-23">Directeur</th>
           <th scope="col" class="w-7">co-directeur</th>
-          <th scope="col" class="w-23">Formation Doctorale</th>
-          <th scope="col" class="w-23">action</th>
+          <th scope="col" class="w-29">Formation Doctorale</th>
+          <th scope="col" class="w-17">action</th>
         </tr>
       </thead>
       <tbody>
@@ -139,8 +139,8 @@
               name=""
               formControlName="directeur"
             >
-              <option > 
-
+            <option *ngFor="let p of professors.results">
+              {{p.prenom}} {{p.nom}} 
               </option>
             </select>
           </div>

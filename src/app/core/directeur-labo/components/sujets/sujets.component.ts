@@ -42,6 +42,7 @@ export class SujetsComponent implements OnInit {
   ngOnInit(): void {
      this.getAllSujets();
      this.getFormationsDoctorales();
+     this.getProfessors();
   }
 
   getAllSujets() {
@@ -65,6 +66,8 @@ export class SujetsComponent implements OnInit {
 
   this.operationsService.getProfesseurs().then(res=>{
     this.professors = res;
+    alert(res)
+    console.log(res);
   })
 
   }
