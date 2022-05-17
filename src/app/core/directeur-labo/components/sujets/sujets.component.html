@@ -126,7 +126,7 @@
               class="form-control"
               name=""
               rows="7"
-              formControlName="titre"
+              formControlName="axe"
             ></textarea>
           </div>
 
@@ -152,7 +152,7 @@
               id="my-select"
               class="form-select"
               name=""
-              formControlName="coDirecteur"
+              formControlName="co_directeur"
             >
             <option *ngFor="let p of professors.results">
               {{p.prenom}} {{p.nom}} 
@@ -167,7 +167,7 @@
               id="my-select"
               class="form-select"
               name=""
-              formControlName="formationDoctorale"
+              formControlName="formation_doctorale"
             >
             <option  *ngFor="let f of formations.results">
              

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { RxFormGroup } from '@rxweb/reactive-form-validators';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
@@ -30,14 +31,20 @@ export class SujetsComponent implements OnInit {
   public formations !: Result<FormationDoctorale>;
   public professors !: Result<Professeur>;
 
-  constructor(private modalService: NgbModal, private operationsService: LaboSujet) { }
+  constructor (
+    private modalService: NgbModal,
+    private fservice: FormBuilder,
+    private operationsService: LaboSujet
+    ) { }
   
-  public dLaboform = new FormGroup({
-    titre: new FormControl("", [Validators.required, Validators.minLength(3)]),
-    directeur: new FormControl("", [Validators.required, Validators.minLength(3)]),
-    coDirecteur: new FormControl(""),
-    formationDoctorale: new FormControl("", [Validators.required])
-  })
+  public dLaboform = <RxFormGroup>this.fservice.group({
+
+    axe  :['',Validators.required],
+    directeur : ['',Validators.required],
+    co_directeur : ['',Validators.required],
+    formation_doctorale : ['',Validators.required]
+
+   })
 
   ngOnInit(): void {
      this.getAllSujets();
@@ -66,8 +73,6 @@ export class SujetsComponent implements OnInit {
 
   this.operationsService.getProfesseurs().then(res=>{
     this.professors = res;
-    alert(res)
-    console.log(res);
   })
 
   }
