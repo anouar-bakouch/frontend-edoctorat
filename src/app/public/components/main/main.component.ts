@@ -13,7 +13,6 @@ import { HttpService } from 'src/app/public/services/http.service';
 export class MainComponent implements OnInit {
 
   public laboratoires:Array<Laboratoire> = [];
-  public formations:Array<FormationDoctorale> = [];
   constructor(private http:HttpService) { }
 
   ngOnInit(): void {
@@ -23,11 +22,6 @@ export class MainComponent implements OnInit {
       }
     )
 
-    this.http.getFormationsDoctorale().subscribe(
-      res =>{
-        this.formations = res;
-      }
-    )
 
   }
 

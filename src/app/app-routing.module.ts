@@ -33,7 +33,7 @@ const routes: Routes = [
     path: 'labo',
     loadChildren: () => import('./core/directeur-labo/directeur-labo.module').then(x => x.DirecteurLaboModule),
     component: MainLaboComponent,
-    // canActivate: [IsProfessorGuard, IsDPoleGuard],
+    canActivate: [IsProfessorGuard, IsDPoleGuard],
   },
   {
     path: 'ced',

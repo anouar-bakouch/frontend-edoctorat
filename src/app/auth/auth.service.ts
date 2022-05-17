@@ -4,6 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import AuthProf from '../models/AuthProf';
@@ -18,7 +19,8 @@ import { TokenStorageService } from './token-storage.service';
 export class AuthService {
   constructor(
     private httpClient: HttpClient,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    public router : Router
   ) {}
 
   currentUserSubjet: BehaviorSubject<UserInfo | undefined> =
@@ -149,6 +151,7 @@ export class AuthService {
   public logOut() {
     this.tokenStorage.clearTokens();
     window.localStorage.removeItem(USER_INFO);
+    this.router.navigateByUrl("/home");
   }
 
   public userLoggedInAndInGroup(group: string): boolean {
@@ -174,4 +177,7 @@ export class AuthService {
     }
     return true;
   }
+
+
+
 }

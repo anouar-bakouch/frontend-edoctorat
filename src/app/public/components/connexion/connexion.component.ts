@@ -39,4 +39,7 @@ export class ConnexionComponent {
       })
       .finally(() => (this.showLoading = false));
   }
+
+
+
 }

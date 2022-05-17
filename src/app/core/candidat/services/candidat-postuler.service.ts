@@ -62,4 +62,23 @@ export class CandidatPostulerService {
         });
     });
   }
+
+  updatePostuler( PThese: any, sujet: number): Promise<Postuler> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .patch<Postuler>(
+          `${environment.API_URL}/api/candidat-postules/${sujet}/`,
+          PThese
+        )
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
+    });
+  }
+
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Calendrier } from 'src/app/models/Calendrier';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Laboratoire } from 'src/app/models/Laboratoire';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
@@ -14,10 +15,21 @@ export class HttpService {
 
   constructor(private http:HttpClient) { }
 
-  public getFormationsDoctorale():Observable<Array<FormationDoctorale>>{
-      
-    return this.http.get<Array<FormationDoctorale>>(`${this._url}/formationDoctorale`);
-
+  getFormationsDoctorales(): Promise<Array<FormationDoctorale>> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<Array<FormationDoctorale>>(
+          `${environment.API_URL}/api/formation-doctorale/` 
+        )
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
+    });
   }
    
   public getLaboratoires():Observable<Array<Laboratoire>>{

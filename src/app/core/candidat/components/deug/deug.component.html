@@ -14,14 +14,14 @@
   
     <div class="form-card my-3">
       <h3 class="text-primary mt-3 border border-primary text-center p-3">
-       diplome universitaire scientifiques et techniques général
+        {{'candidat.parcours.nom_deug' | translate}}
       </h3>
       <p class="text-primary mt-3 border border-primary text-center p-3">
         <i
           class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"
         ></i>
-        la disposition du deug est non obligatoire pour passer au autres
-        diplomes
+        {{'candidat.parcours.description-deug' | translate
+      }}
       </p>
   
       <form [formGroup]="candidatDeugForm" (ngSubmit)="onSubmit()">
@@ -29,7 +29,7 @@
           <div class="col-sm-9 col-lg-4">
             <div class="form-group required">
               <label class="col-form-label-sm control-label" for="intitule"
-                >Intitulé</label
+                >{{'candidat.parcours.intitulé' | translate }}</label
               >
   
               <input
@@ -48,7 +48,8 @@
               <label
                 class="col-form-label-sm control-label"
                 for="id_date_diplome_bac"
-                >Type</label
+                >{{'candidat.parcours.type' |
+                translate }}</label
               >
               <input
                 class="form-control form-control-sm"
@@ -62,7 +63,8 @@
           <div class="col-sm-3 col-lg-4 mb-3">
             <div class="form-group required">
               <label class="col-form-label-sm control-label" for="id_bac"
-                >Specialité</label
+                >{{'candidat.parcours.spécialité' |
+                translate }}</label
               >
               <select
                 formControlName="specialite"
@@ -88,7 +90,8 @@
               <label
                 class="col-form-label-sm control-label"
                 for="id_date_diplome_bac"
-                >Date D'obtention Du Deug</label
+                >{{'candidat.parcours.date' |
+                translate }} Deug</label
               >
   
               <input
@@ -105,7 +108,8 @@
           <div class="col-3">
             <div class="form-group required">
               <label class="col-form-label-sm control-label" for="id_Province_bac"
-                >Pays</label
+                >{{'candidat.parcours.pays' |
+                translate }}</label
               >
               <select
                 formControlName="pays"
@@ -126,7 +130,8 @@
           <div class="col-3">
             <div class="form-group required">
               <label class="col-form-label-sm control-label" for="id_ville_bac"
-                >Ville</label
+                >{{'candidat.parcours.ville' |
+                translate }}</label
               >
   
               <input
@@ -139,7 +144,8 @@
   
           <div class="col-3">
             <div class="form-group required">
-              <label class="col-form-label-sm control-label">Province</label>
+              <label class="col-form-label-sm control-label">{{'candidat.parcours.province' |
+                translate }}</label>
               <input
                 type="text"
                 name="province"
@@ -158,7 +164,8 @@
           <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
               <label class="col-form-label-sm control-label" for="id_mentionbac"
-                >Mention:</label
+                >{{'candidat.parcours.mention' |
+                translate }}</label
               >
               <select
                 formControlName="mention"
@@ -179,7 +186,9 @@
           <div class="col-md-4 col-lg-4 col-sm-6">
             <div class="form-group required">
               <label class="col-form-label-sm control-label" for="id_nom_bac"
-                >etablissement
+                >{{'candidat.parcours.etablissement' |
+                translate }} / {{'candidat.parcours.université' |
+                translate }}
               </label>
               <input
                 type="text"
@@ -195,7 +204,8 @@
           <div class="col-md-4 col-lg-4 col-sm-12">
             <div class="form-group required">
               <label class="col-form-label-sm control-label" for="id_moyenne_bac"
-                >Moyenne Générale des 4 semestres</label
+                >{{'candidat.parcours.moyenne' |
+                translate }} semestres 4</label
               >
               <input
                 type="number"
@@ -214,11 +224,12 @@
         <div class="row mt-5">
           <div class="mb-3">
             <label for="bac_dip" class="form-label"
-              >Diplôme universitaire pdf
+              >{{'candidat.parcours.diplome' |
+              translate }} pdf
               <span class="text-danger h6"> < 4MO </span></label
             >
             <h6 class="text-primary" *ngIf="diplomeFileLink">
-              Fichier Courant : {{ diplomeFileLink }}
+              {{'candidat.parcours.fichier_courant' | translate }}: {{ diplomeFileLink }}
             </h6>
             <input
               class="form-control diplomeBac"
@@ -232,11 +243,11 @@
   
           <div class="mb-3">
             <label for="relBac" class="form-label"
-              >Relevés de notes pdf
+              >{{'candidat.parcours.releves' | translate }} pdf
               <span class="text-danger h6"> < 4MO </span></label
             >
             <h6 class="text-primary" *ngIf="releveFileLink">
-              Fichier Courant : {{ releveFileLink }}
+              {{'candidat.parcours.fichier_courant' | translate }} : {{ releveFileLink }}
             </h6>
             <input
               class="form-control releveBac"
@@ -259,7 +270,7 @@
             [disabled]="!candidatDeugForm.valid"
             *ngIf="!isUpdating"
           >
-            <i class="bi bi-check-circle"></i> confirmer
+            <i class="bi bi-check-circle"></i> {{'candidat.info_perso.confirmer' | translate }}
   
           </button>
           <span *ngIf="isUpdating" class="spinner-grow text-primary spinner-grow-lg" role="status" aria-hidden="true"></span>

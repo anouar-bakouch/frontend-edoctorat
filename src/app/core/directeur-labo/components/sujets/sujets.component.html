@@ -1,4 +1,3 @@
-
 <div class="container-fluid mt-3">
   <div class="row mb-3">
     <div class="col-6 m-start">
@@ -12,43 +11,55 @@
       </button>
     </div>
   </div>
+  <div class="d-flex justify-content-between align-items-center my-3">
 
+    <div class="col-3">
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        [(ngModel)]="sujet_"
+        (ngModelChange)="searchSujet()"
+        [ngModelOptions]="{ standalone: true }"
+        pattern="[0-9]*(\.[0-9]+)?"
+        placeholder="par sujet"
+      />
+    </div>
+
+    <div class="col-3">
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        [(ngModel)]="formationDoctorale_"
+        (ngModelChange)="searchFormation()"
+        [ngModelOptions]="{ standalone: true }"
+        pattern="[0-9]*(\.[0-9]+)?"
+        placeholder="par formation doctorale"
+      />
+    </div>
+  </div>
+  <app-alert *ngIf="alert" [data]="alert"></app-alert>
   <div class="table-responsive">
     <table class="table table-align-middle">
       <thead>
         <tr class="table-primary">
-          <th scope="col" class="w-7">Titre Sujet</th>
+          <th scope="col" class="w-7">Titre</th>
           <th scope="col" class="w-23">Directeur</th>
           <th scope="col" class="w-7">co-directeur</th>
           <th scope="col" class="w-23">Formation Doctorale</th>
-          <th scope="col" class="23">action</th>
+          <th scope="col" class="w-23">action</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>jjj</td>
-          <td>hhhn</td>
-          <td>jjjjjjjjjj</td>
-          <td>kkkkkk</td>
-
-          <td
-            class="d-flex flex-wrap justify-content-between align-items-center"
-          >
-            <button class="btn btn-primary btn-sm my-1" type="button">
-              <i class="bi bi-pencil-square"></i>
-              modifier
-            </button>
-            <button class="btn btn-primary btn-sm my-1" type="button">
-              <i class="bi bi-x-lg"></i>
-              supprimer
-            </button>
-          </td>
+         
         </tr>
-        <tr *ngFor="let s of sujets">
-          <td>{{ s.titre }}</td>
-          <td>s?.description</td>
-          <td>{{ s.coDirecteur?.nom }} {{ s.coDirecteur?.prenom }}</td>
-          <td>{{ s.formationDoctorale?.titre }}</td>
+        <tr *ngFor="let s of sujets_">
+          <td>{{ s?.titre }}</td>
+          <td>{{ s?.professeur.prenom}} {{ s?.professeur.nom}}</td>
+          <td>{{ s?.coDirecteur?.nom }} {{ s.coDirecteur?.prenom }}</td>
+          <td>{{ s?.formationDoctorale?.titre }}</td>
 
           <td
             class="d-flex flex-wrap justify-content-between align-items-center"
@@ -56,7 +67,7 @@
             <button
               class="btn btn-primary btn-sm my-1"
               type="button"
-              (click)="fun(mymodal1, s)"
+
             >
               <i class="bi bi-pencil-square"></i>
               modifier
@@ -64,7 +75,7 @@
             <button
               class="btn btn-primary btn-sm my-1"
               type="button"
-              (click)="onClickDelete(s)"
+              (click)="deleteSujet(s)"
             >
               <i class="bi bi-x-lg"></i>
               supprimer
@@ -72,7 +83,22 @@
           </td>
         </tr>
       </tbody>
+       <div *ngIf="isFetchingItems">
+      <h4>
+        <img
+          src="/assets/images/connexion/loading.webp"
+          width="300"
+          height="100"
+        />
+      </h4>
+    </div>
     </table>
+    <app-offsetpagination
+    [itemsCount]="itemsCount"
+    [itemsPerPage]="50"
+    (indexChange)="onIndexChange($event)"
+    *ngIf="sujets_.length > 0"
+  ></app-offsetpagination>
   </div>
 </div>
 
@@ -88,26 +114,24 @@
 >
   <div class="modal-dialog modal-dialog-centered w-100" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">l'ajout du sujet</h5>
-      </div>
+
       <div class="modal-body">
-        <form [formGroup]="form" (ngSubmit)="onClickSubmit()">
+        <form [formGroup]="dLaboform">
           <div class="form-group mb-3">
-            <label for="my-textarea" class="mb-3">Titre</label>
+            <label for="my-textarea" class="mb-3">Titre | Axe</label>
             <textarea
               maxlength="512"
               placeholder="Max. 512 caractères"
               id="my-textarea"
               class="form-control"
               name=""
-              rows="3"
+              rows="7"
               formControlName="titre"
             ></textarea>
           </div>
 
           <div class="form-group mb-3">
-            <label for="my-select" class="mb-3">directeur</label>
+            <label for="my-select" class="mb-3">Directeur</label>
 
             <select
               id="my-select"
@@ -115,8 +139,8 @@
               name=""
               formControlName="directeur"
             >
-              <option *ngFor="let p of professeurs" value="{{ p.id }}">
-                {{ p.nom }} {{ p.prenom }}
+              <option > 
+
               </option>
             </select>
           </div>
@@ -130,14 +154,14 @@
               name=""
               formControlName="coDirecteur"
             >
-              <option *ngFor="let p of professeurs" value="{{ p.id }}">
-                {{ p.nom }} {{ p.prenom }}
+            <option *ngFor="let p of professors.results">
+              {{p.prenom}} {{p.nom}} 
               </option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="my-select" class="mb-3">Formation Doctorale</label>
+            <label for="my-select" class="mb-3">Formations Doctorale</label>
 
             <select
               id="my-select"
@@ -145,10 +169,14 @@
               name=""
               formControlName="formationDoctorale"
             >
-              <option *ngFor="let f of formationDoctorales" value="{{ f.id }}">
-                {{ f.titre }}
+            <option  *ngFor="let f of formations.results">
+             
+              <ul class="list-group">
+                <li class="list-group-item">{{f.titre}}</li>
+              </ul>
               </option>
             </select>
+
           </div>
           <div class="modal-footer">
             <button
@@ -163,7 +191,7 @@
               class="btn btn-primary btn-confirmer"
               type="submit"
               (click)="modal.close('Save click')"
-              [disabled]="form.invalid"
+              [disabled]="dLaboform.invalid"
             >
               confirmer
             </button>
@@ -173,100 +201,4 @@
     </div>
   </div>
 </ng-template>
-<ng-template
-  class="modal fade"
-  tabindex="-1"
-  role="dialog"
-  #mymodal1
-  let-modal
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered w-100" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Modifier du sujet
-        </h5>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="form" (ngSubmit)="onClickUpdate()">
-          <div class="form-group mb-3">
-            <label for="my-textarea" class="mb-3">Titre</label>
-            <textarea
-              maxlength="512"
-              placeholder="Max. 512 caractères"
-              id="my-textarea"
-              class="form-control"
-              name=""
-              rows="3"
-              formControlName="titre"
-            ></textarea>
-          </div>
 
-          <div class="form-group mb-3">
-            <label for="my-select" class="mb-3">directeur</label>
-
-            <select
-              id="my-select"
-              class="form-select"
-              name=""
-              formControlName="directeur"
-            >
-              <option *ngFor="let p of professeurs" value="{{ p.id }}">
-                {{ p.nom }} {{ p.prenom }}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group mb-3">
-            <label for="my-select" class="mb-3">co-directeur</label>
-
-            <select
-              id="my-select"
-              class="form-select"
-              name=""
-              formControlName="coDirecteur"
-            >
-              <option *ngFor="let p of professeurs" value="{{ p.id }}">
-                {{ p.nom }} {{ p.prenom }}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="my-select" class="mb-3">Formation Doctorale</label>
-
-            <select
-              id="my-select"
-              class="form-select"
-              name=""
-              formControlName="formationDoctorale"
-            >
-              <option *ngFor="let f of formationDoctorales" value="{{ f.id }}">
-                {{ f.titre }}
-              </option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              data-dismiss="modal"
-              (click)="modal.dismiss('Cross click')"
-              type="button"
-            >
-              annuler
-            </button>
-            <button
-              class="btn btn-primary btn-confirmer"
-              type="submit"
-              (click)="modal.close('Save click')"
-              [disabled]="form.invalid"
-            >
-              confirmer
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</ng-template>

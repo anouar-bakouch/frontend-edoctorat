@@ -10,14 +10,42 @@
       srcset=""
     /></a>
     <div class="d-flex justify-content-around align-items-center w-70">
-      <img
-      class="img-thumbnail mx-3"
-      [src]=" prof?.pathPhoto ? prof?.pathPhoto : '/assets/images/unknown_pic.jpg' " alt="image prof"
-      width="50"
-      height="50"
-      alt=""
-      srcset=""
-    />
+      <div class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle text-primary fs-bold"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+        <img
+        class="img-thumbnail mx-3"
+        [src]=" prof?.pathPhoto ? prof?.pathPhoto : '/assets/images/unknown_pic.jpg' " alt="image prof"
+        width="50"
+        height="50"
+        alt=""
+        srcset=""
+      />
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="poles_doctorales">
+          <li>
+            <a class="dropdown-item text-darkblue"
+              >directeur pole</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item text-darkblue" 
+            routerLink="/labo"
+              >directeur laboratoire</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item text-darkblue" 
+              >directeur centre d'études doctorales </a
+            >
+          </li>
+        </ul>
+      </div>
+     
     <div class="d-flex justify-content-center align-items-center ">
     <span class="text-start">{{ prof.prenom }} {{ prof.nom }}</span>
   </div> 

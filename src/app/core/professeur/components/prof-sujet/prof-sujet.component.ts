@@ -16,6 +16,7 @@ import { OperationsService } from '../../services/operations.service';
   styleUrls: ['./prof-sujet.component.css'],
 })
 export class ProfSujetComponent implements OnInit {
+  
   public alert: AlertData | undefined = undefined;
   public loading: boolean = false;
   public sujets: Sujet[] = [];

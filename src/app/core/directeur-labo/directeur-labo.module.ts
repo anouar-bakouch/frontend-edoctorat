@@ -7,7 +7,6 @@ import { ResultatsComponent } from './components/resultats/resultats.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ProfesseurRoutingModule } from '../professeur/professeur.routing.module';
 import { MainLaboComponent } from './components/main-labo/main-labo.component';
 import { CandidatsComponent } from './components/candidats/candidats.component';
 import { OptionsComponent } from './components/options/options.component';
@@ -20,6 +19,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -29,7 +29,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MainLaboComponent,
     CandidatsComponent,
     OptionsComponent,
-    DirecteurLaboComponent
+    DirecteurLaboComponent,
   ],
   imports: [
     CommonModule,
