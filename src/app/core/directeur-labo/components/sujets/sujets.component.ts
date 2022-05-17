@@ -40,8 +40,8 @@ export class SujetsComponent implements OnInit {
   public dLaboform = <RxFormGroup>this.fservice.group({
 
     titre  :['',Validators.required],
-    professeur : ['',Validators.required],
-    coDirecteur : [''],
+    professeurId : ['',Validators.required],
+    coDirecteurId : ['',Validators.required],
     formationDoctoraleId : ['',Validators.required]
 
    })
@@ -57,7 +57,7 @@ export class SujetsComponent implements OnInit {
   this.operationsService.getSubjects().then(x=>{
     this.sujets_ = x.results;    
     this.isFetchingItems = false;
-    
+    this.itemsCount=x.count;
   })
     
   }
@@ -66,6 +66,7 @@ export class SujetsComponent implements OnInit {
 
   this.operationsService.getFormationsDoctorales().then(res=>{
      this.formations = res;
+
   })
 
   }
@@ -98,10 +99,11 @@ export class SujetsComponent implements OnInit {
   addSujet(){
 
     const sujetLabo = this.dLaboform.toFormData();
-    console.log(sujetLabo);
+    console.log(this.dLaboform.value);
     this.operationsService.addSujet(sujetLabo)
     .then(res=>{
         this.sujets_.push(res as Sujet);
+        console.log(res);
     })
     .catch((_)=>{
       console.log(_);
