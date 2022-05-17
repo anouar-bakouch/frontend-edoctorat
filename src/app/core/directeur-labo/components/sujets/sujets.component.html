@@ -126,7 +126,7 @@
               class="form-control"
               name=""
               rows="7"
-              formControlName="axe"
+              formControlName="titre"
             ></textarea>
           </div>
 
@@ -136,10 +136,9 @@
             <select
               id="my-select"
               class="form-select"
-              name=""
-              formControlName="directeur"
+              formControlName="professeur"
             >
-            <option *ngFor="let p of professors.results">
+            <option *ngFor="let p of professors.results" [value]="p.id">
               {{p.prenom}} {{p.nom}} 
               </option>
             </select>
@@ -151,9 +150,9 @@
             <select
               id="my-select"
               class="form-select"
-              formControlName="co_directeur"
+              formControlName="coDirecteur"
             >
-            <option *ngFor="let p of professors.results">
+            <option *ngFor="let p of professors.results" [value]="p.id">
               {{p.prenom}} {{p.nom}} 
               </option>
             </select>
@@ -164,9 +163,9 @@
             <select
               id="my-select"
               class="form-select"
-              formControlName="formation_doctorale"
+              formControlName="formationDoctoraleId"
             >
-            <option  *ngFor="let f of formations.results">
+            <option  *ngFor="let f of formations.results" [value]="f.id">
             {{f.titre}}
             </option>
             </select>
@@ -177,15 +176,15 @@
               class="btn btn-secondary"
               data-dismiss="modal"
               (click)="modal.dismiss('Cross click')"
-              type="button"
+              type="reset"
             >
               annuler
             </button>
             <button
               class="btn btn-primary btn-confirmer"
               type="submit"
-              (click)="modal.close('Save click')"
               [disabled]="!dLaboform.valid"
+              (click)="modal.close('Save click')"
             >
               confirmer
             </button>

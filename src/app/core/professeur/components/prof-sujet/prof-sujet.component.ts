@@ -213,29 +213,7 @@ export class ProfSujetComponent implements OnInit {
     }
   }
 
-  // getAllSujets() {
-  //   this.operationsService.getSujets().then((data) => {
-  //     this.result = data as Result<Sujet>;
-  //     this.sujets = this.result.results;
-  //     // this.currentProfesseur = this.sujets[1].professeur
-  //     console.log(this.sujets);
-  //   });
-  // }
-  // getAllFormationDoctorales() {
-  //   this.operationsService.getFormationDoctorales().then((data) => {
-  //     this.result = data as Result<FormationDoctorale>;
-  //     this.formationDoctorales = this.result.results;
-  //   });
-  // }
-  // getAllProfesseurs() {
-  //   this.operationsService.getProfesseurs().then((data) => {
-  //     this.result = data as Result<Professeur>;
-  //     this.professeurs = this.result.results;
-  //     console.log(this.professeurs);
-  //     var result = this.arrayRemove(this.professeurs);
-  //     this.professeurs = result;
-  //   });
-  // }
+
 
   onClickSubmit() {
     this.loading = true;
