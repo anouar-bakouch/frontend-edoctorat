@@ -1,4 +1,5 @@
 import { Professeur } from "./Professeur";
+import { Sujet } from "./Sujet";
 
 
 export interface Commission {
@@ -10,4 +11,5 @@ export interface Commission {
    lieu:string;
    labo:number; 
    participants:Professeur[];
+   sujets: Sujet[];
 }
