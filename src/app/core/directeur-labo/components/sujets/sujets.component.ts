@@ -96,9 +96,15 @@ export class SujetsComponent implements OnInit {
 
   addSujet(){
 
-    // this.operationsService.addSujet()
-    // .then()
-    // .catch()
+    const sujetLabo = this.dLaboform.toFormData();
+
+    this.operationsService.addSujet(sujetLabo)
+    .then(res=>{
+      console.log(res);
+    })
+    .catch((_)=>{
+      console.log(_);
+    })
 
   }
   

@@ -116,7 +116,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-        <form [formGroup]="dLaboform">
+        <form [formGroup]="dLaboform" (ngSubmit)="addSujet()">
           <div class="form-group mb-3">
             <label for="my-textarea" class="mb-3">Titre | Axe</label>
             <textarea
@@ -151,7 +151,6 @@
             <select
               id="my-select"
               class="form-select"
-              name=""
               formControlName="co_directeur"
             >
             <option *ngFor="let p of professors.results">
@@ -162,19 +161,14 @@
 
           <div class="form-group">
             <label for="my-select" class="mb-3">Formations Doctorale</label>
-
             <select
               id="my-select"
               class="form-select"
-              name=""
               formControlName="formation_doctorale"
             >
             <option  *ngFor="let f of formations.results">
-             
-              <ul class="list-group">
-                <li class="list-group-item">{{f.titre}}</li>
-              </ul>
-              </option>
+            {{f.titre}}
+            </option>
             </select>
 
           </div>
@@ -191,7 +185,7 @@
               class="btn btn-primary btn-confirmer"
               type="submit"
               (click)="modal.close('Save click')"
-              [disabled]="dLaboform.invalid"
+              [disabled]="!dLaboform.valid"
             >
               confirmer
             </button>
