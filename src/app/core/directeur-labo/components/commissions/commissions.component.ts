@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder, NumberValueAccessor } from '@angular/forms';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Commission } from 'src/app/models/Commission';
+import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
+import { Participe } from 'src/app/models/Participe';
+import { Professeur } from 'src/app/models/Professeur';
+import Result from 'src/app/models/Result';
+import { Sujet } from 'src/app/models/Sujet';
+import UserProf from 'src/app/models/UserProf';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
+import { OperationsService } from '../../services/operations.service';
 
 @Component({
   selector: 'app-commissions',
@@ -6,10 +17,340 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./commissions.component.css']
 })
 export class CommissionsComponent implements OnInit {
+  public alert: AlertData | undefined = undefined;
+  public loading: boolean = false;
+  public commissions: Commission[] = [];
+  public commission: Commission= {
+    id: 0,
+    dateCommission: '',
+    heure: '',
+    valider: false,
+    lieu: '',
+    labo: 0,
+    participants: [],
+    sujets: []
+  }
+  public sujets: Sujet[] = [];
+  public professeurs: Professeur[] = [];
+  closeResult: string = '';
+  // dropdownList: any = [];
+  selectedSujets: Sujet[] = [];
+  selectedProfs: Professeur[] = [];
+  sujets_ids: number[] = [];
+  professeurs_ids: number[] = [];
+  labo_id: number;
+  public result: Result<any> = {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
+  };
 
-  constructor() { }
+  constructor(private modalService: NgbModal, private operationsService: OperationsService, private fb: FormBuilder) { }
+
+  public form = new FormGroup({
+    date: new FormControl("", [Validators.required]),
+    heure: new FormControl("", [Validators.required]),
+    lieu: new FormControl("", [Validators.required, Validators.minLength(2)]),
+    sujets: new FormControl(""),
+    professeurs: new FormControl(""),
+
+  })
+
 
   ngOnInit(): void {
+
+    this.loading = true
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+
+    Promise.all([this.getSujetsLabo(), this.getCommissions(), this.getProfesseurs()]).then(() => {
+      this.alert = {
+        type: 'success',
+        message: 'success',
+      };
+    }).catch((error) => {
+      console.log(error)
+      this.alert = {
+        type: 'error',
+        message: 'error',
+      };
+    }).finally(() => {
+      this.loading = false
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
+  }
+
+  getSujetsLabo = () => {
+    return new Promise((resolve, _) => {
+      this.operationsService.getSujetsLabo().then((data) => {
+        this.result = data as Result<Sujet>;
+        this.sujets = this.result.results;
+        this.labo_id = this.result.results[0].laboratoire.id
+        resolve(data);
+      })
+    })
+  }
+
+  getCommissions = () => {
+    return new Promise((resolve, _) => {
+      this.operationsService.getCommissions().then(data => {
+        this.loading = false
+        this.result = data as Result<Commission>;
+        this.commissions = this.result.results;
+        resolve(data);
+      })
+    })
+  }
+  getProfesseurs = () => {
+    return new Promise((resolve, _) => {
+      this.operationsService.getProfesseurs().then(data => {
+        this.loading = false
+        this.result = data as Result<Professeur>;
+        this.professeurs = this.result.results;
+        resolve(data);
+      })
+    })
+  }
+
+  fun = (content: any, c: Commission) => {
+
+    this.form.setValue({
+      date: c.dateCommission,
+      heure: c.heure,
+      lieu: c.lieu,
+      sujets: '',
+      professeurs: ''
+    });
+    this.commission = c
+    c.sujets.forEach(element => {
+      this.selectedSujets.push(element);
+      for (var i = 0; i < this.sujets.length; i++) {
+        if (this.sujets[i].id === element.id) {
+          this.sujets.splice(i, 1);
+        }
+      }
+    });
+    this.open(content)
+  }
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  onSujetSelect(item: any) {
+    this.selectedSujets.push(item)
+    // console.log(!this.selectedProfs.includes(item.professeur.id))
+    // if (!this.selectedProfs.includes(item.professeur)) {
+    //   this.selectedProfs.push(item.professeur)
+    // }
+    // if (!this.selectedProfs.includes(item.coDirecteur)) {
+    //   this.selectedProfs.push(item.coDirecteur)
+    // }
+    this.selectedSujets.sort()
+    for (var i = 0; i < this.sujets.length; i++) {
+      if (this.sujets[i] === item) {
+        this.sujets.splice(i, 1);
+      }
+    }
+  }
+
+  onSujetDeSelect(item: any) {
+    this.sujets.push(item)
+    for (var i = 0; i < this.selectedSujets.length; i++) {
+      if (this.selectedSujets[i] === item) {
+        this.selectedSujets.splice(i, 1);
+      }
+    }
+  }
+  onProfesseurSelect(item: any) {
+
+    this.selectedProfs.push(item)
+
+    for (var i = 0; i < this.professeurs.length; i++) {
+      if (this.professeurs[i] === item) {
+        this.professeurs.splice(i, 1);
+      }
+    }
+  }
+
+  onProfesseurDeSelect(item: any) {
+    this.professeurs.push(item)
+
+    for (var i = 0; i < this.selectedProfs.length; i++) {
+      if (this.selectedProfs[i] === item) {
+        this.selectedProfs.splice(i, 1);
+      }
+    }
+  }
+  onClickSubmit() {
+    this.selectedSujets.forEach(e => {
+      this.sujets_ids.push(e.id)
+    });
+
+    this.selectedProfs.forEach(e => {
+      this.professeurs_ids.push(e.id)
+    });
+
+    const comm = {
+      dateCommission: this.form.get('date').value,
+      heure: this.form.get('heure').value,
+      lieu: this.form.get('lieu').value,
+      professeurs: this.professeurs_ids,
+      sujets_ids: this.sujets_ids,
+      labo: this.labo_id
+    };
+
+    console.log(comm)
+
+    this.operationsService.addCommission(comm).then(
+      (data) => {
+        this.loading = false;
+        this.alert = {
+          type: 'success',
+          message: 'ajouter avec succès',
+        };
+        this.commissions.push(data as Commission);
+        // this.selectedSujets.forEach((e, i) => {
+        // this.sujets.push(e)
+
+        //   if (this.selectedSujets[i].id === e.id) {
+        //     this.selectedSujets.splice(i, 1);
+        //   }
+        // });
+        this.selectedSujets = []
+        this.sujets = []
+        this.selectedProfs = []
+        this.professeurs = []
+        this.professeurs_ids = []
+        this.getProfesseurs()
+        this.getSujetsLabo()
+      }).catch((err) => {
+        console.log(err);
+        this.alert = {
+          type: 'error',
+          message: "error lors de l'ajout",
+        };
+      }).finally(() => {
+        this.form.reset();
+        setTimeout(() => (this.alert = undefined), 3000);
+      });
+  }
+
+  onClickDelete(c: Commission) {
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.operationsService
+      .deleteCommission(c)
+      .then((data) => {
+        this.loading = false;
+        for (var i = 0; i < this.commissions.length; i++) {
+          if (this.commissions[i].id === c.id) {
+            this.commissions.splice(i, 1);
+          }
+        }
+        this.alert = {
+          type: 'success',
+          message: 'supprimer avec succès',
+        };
+
+        this.selectedSujets = []
+        this.sujets = []
+        this.selectedProfs = []
+        this.professeurs = []
+        this.professeurs_ids = []
+        this.getProfesseurs()
+        this.getSujetsLabo()
+      })
+      .catch((error) => {
+        console.log(`${error}`);
+        this.alert = {
+          type: 'error',
+          message: 'error lors de la suppression',
+        };
+      })
+      .finally(() => {
+        setTimeout(() => (this.alert = undefined), 3000);
+      });
+  }
+  onClickUpdate() {
+    this.selectedSujets.forEach(e => {
+      this.sujets_ids.push(e.id)
+    });
+
+    this.selectedProfs.forEach(e => {
+      this.professeurs_ids.push(e.id)
+    });
+
+    const comm = {
+      dateCommission: this.form.get('date').value,
+      heure: this.form.get('heure').value,
+      lieu: this.form.get('lieu').value,
+      professeurs: this.professeurs_ids,
+      sujets_ids: this.sujets_ids,
+      labo: this.labo_id
+    };
+
+    console.log(comm)
+    console.log(this.commission)
+
+    this.operationsService.updateSujet(comm, this.commission.id).then(
+      (data) => {
+        this.loading = false;
+        this.alert = {
+          type: 'success',
+          message: 'modifier avec succès',
+        };
+
+        for (var i = 0; i < this.commissions.length; i++) {
+          if (this.commissions[i].id === this.commission.id) {
+            this.commissions[i] = data as Commission;
+          }
+        }
+
+        // this.commissions.push(data as Commission);
+        // this.selectedSujets.forEach((e, i) => {
+        // this.sujets.push(e)
+
+        //   if (this.selectedSujets[i].id === e.id) {
+        //     this.selectedSujets.splice(i, 1);
+        //   }
+        // });
+        this.selectedSujets = []
+        this.sujets = []
+        this.selectedProfs = []
+        this.professeurs = []
+        this.professeurs_ids = []
+        this.getProfesseurs()
+        this.getSujetsLabo()
+
+      }).catch((err) => {
+        console.log(err);
+        this.alert = {
+          type: 'error',
+          message: "error lors du modification",
+        };
+      }).finally(() => {
+        this.form.reset();
+        setTimeout(() => (this.alert = undefined), 3000);
+      });
   }
 
 }

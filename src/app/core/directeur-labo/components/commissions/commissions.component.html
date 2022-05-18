@@ -1,1 +1,481 @@
-<p>commissions works!</p>
+<app-alert *ngIf="alert" [data]="alert"></app-alert>
+<app-alert *ngIf="loading" [data]="alert"></app-alert>
+
+<div class="container-fluid mt-3">
+  <div class="row mb-3">
+    <div class="col-6 m-start">
+      <button
+        class="btn btn-primary btn-sm"
+        type="button"
+        (click)="open(mymodal)"
+      >
+        <i class="bi bi-plus-square-dotted"></i>
+        ajouter une commission
+      </button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-align-middle">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="w-7">Date</th>
+          <th scope="col" class="w-23">Lieu</th>
+          <th scope="col" class="w-7">Heure</th>
+          <th scope="col" class="w-23">Membres</th>
+          <th scope="col" class="w-23">Sujets</th>
+          <th scope="col" class="w-23">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of commissions">
+          <td>{{ c.dateCommission }}</td>
+          <td>{{ c.heure }}</td>
+          <td>{{ c.lieu }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let p of c.participants">
+                {{ p.nom }} {{ p.prenom }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let s of c.sujets">
+                {{ s.titre }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <button
+              class="btn btn-primary btn-sm my-1"
+              type="button"
+              (click)="fun(mymodal1, c)"
+            >
+              <i class="bi bi-pencil-square"></i>
+              modifier
+            </button>
+            <button
+              class="btn btn-primary btn-sm my-1"
+              type="button"
+              (click)="onClickDelete(c)"
+            >
+              <i class="bi bi-x-lg"></i>
+              supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<ng-template
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  #mymodal
+  let-modal
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered w-100 modal-xl"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          l'ajout du commission
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onClickSubmit()">
+          <div class="form-group mb-3">
+            <label for="date" class="mb-3">Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="date"
+              formControlName="date"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="lieu" class="mb-3">Lieu</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lieu"
+              formControlName="lieu"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="heure" class="mb-3">Heure</label>
+            <input
+              type="time"
+              class="form-control"
+              id="heure"
+              formControlName="heure"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="sujets" class="mb-3">Sujets</label>
+            <!-- <div class="row">
+              <div class="w-100">
+                <div class="row">
+                  <div class="col-8 col-sm-6">
+                    <select
+                      class="form-select w-100"
+                      multiple
+                      size="10"
+                      aria-label="multiple select example"
+                    >
+                        <option (click)="onSujetSelect(s)" *ngFor="let s of sujets">
+                          
+                            {{ s.titre }}
+                          
+                        </option>
+                    </select>
+                  </div>
+                  <div class="col-8 col-sm-6">
+                    <select
+                      class="form-select w-100"
+                      multiple
+                      size="10"
+                      aria-label="multiple select example"
+                      id="sujets"
+                      formControlName="sujets"
+                    >
+                      <option
+                        *ngFor="let o of selectedSujets"
+                        (click)="onSujetDeSelect(o)"
+                      >
+                        {{ o.titre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="sujet">
+              <div class="col-4 border border-primary rounded p-2">
+                <div class="ex3">
+                  <p
+                    (click)="onSujetSelect(s)"
+                    *ngFor="let s of sujets"
+                    class="op"
+                  >
+                    - {{ s.titre }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-4 border border-primary rounded p-2">
+                <div class="ex3">
+                  <p
+                    *ngFor="let o of selectedSujets"
+                    (click)="onSujetDeSelect(o)"
+                    class="op"
+                  >
+                    - {{ o.titre }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="sujets" class="mb-3">Professeurs</label>
+            <!-- <div class="row">
+              <div class="w-100">
+                <div class="row">
+                  <div class="col-8 col-sm-6">
+                    <select
+                      class="form-select w-100"
+                      multiple
+                      size="10"
+                      aria-label="multiple select example"
+                    >
+                    
+                      <option
+                        (click)="onProfesseurSelect(s)"
+                        *ngFor="let s of professeurs"
+                      >
+                        {{ s.nom }} {{ s.prenom }}
+                      </option>
+                     
+                    </select>
+                  </div>
+                  <div class="col-8 col-sm-6">
+                    <select
+                      class="form-select w-100"
+                      multiple
+                      size="10"
+                      aria-label="multiple select example"
+                      id="professeurs"
+                      formControlName="professeurs"
+                    >
+                      <option
+                        *ngFor="let o of selectedProfs"
+                        (click)="onProfesseurDeSelect(o)"
+                      >
+                        {{ o.nom }} {{ o.prenom }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div class="sujet">
+              <div class="col-4 border border-primary rounded p-2">
+                <div class="ex3">
+                  <p
+                    (click)="onProfesseurSelect(s)"
+                    *ngFor="let s of professeurs"
+                    class="op"
+                  >
+                    {{ s.nom }} {{ s.prenom }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-4 border border-primary rounded p-2">
+                <div class="ex3">
+                  <p
+                    *ngFor="let o of selectedProfs"
+                    (click)="onProfesseurDeSelect(o)"
+                    class="op"
+                  >
+                    {{ o.nom }} {{ o.prenom }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              (click)="modal.dismiss('Cross click')"
+              type="button"
+            >
+              annuler
+            </button>
+            <button
+              class="btn btn-primary btn-confirmer"
+              type="submit"
+              (click)="modal.close('Save click')"
+              [disabled]="
+                form.invalid ||
+                selectedSujets.length == 0 ||
+                selectedProfs.length == 0
+              "
+            >
+              confirmer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  #mymodal1
+  let-modal
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered w-100 modal-xl"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Modifier commission
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onClickUpdate()">
+          <div class="form-group mb-3">
+            <label for="date" class="mb-3">Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="date"
+              formControlName="date"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="lieu" class="mb-3">Lieu</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lieu"
+              formControlName="lieu"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="heure" class="mb-3">Heure</label>
+            <input
+              type="time"
+              class="form-control"
+              id="heure"
+              formControlName="heure"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="sujets" class="mb-3">Sujets</label>
+            <!-- <div class="row">
+              <div class="w-100">
+                <div class="row">
+                  <div class="col-8 col-sm-6">
+                    <select
+                      class="form-select w-100"
+                      multiple
+                      size="10"
+                      aria-label="multiple select example"
+                    >
+                     
+                      <option
+                        (click)="onSujetSelect(s)"
+                        *ngFor="let s of sujets"
+                      >
+                        {{ s.titre }}
+                      </option>
+                      
+                    </select>
+                  </div>
+                  <div class="col-8 col-sm-6">
+                    <select
+                      class="form-select w-100"
+                      multiple
+                      size="10"
+                      aria-label="multiple select example"
+                      id="sujets"
+                      formControlName="sujets"
+                    >
+                      <option
+                        *ngFor="let o of selectedSujets"
+                        (click)="onSujetDeSelect(o)"
+                      >
+                        {{ o.titre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div class="sujet">
+              <div class="col-4 border border-primary rounded p-2">
+                <div class="ex3">
+                  <p
+                    (click)="onSujetSelect(s)"
+                        *ngFor="let s of sujets"
+                    class="op"
+                  >
+                    {{ s.titre }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-4 border border-primary rounded p-2">
+                <div class="ex3">
+                  <p
+                    *ngFor="let o of selectedSujets"
+                        (click)="onSujetDeSelect(o)"
+                    class="op"
+                  >
+                    {{ o.titre }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+<div class="form-group mb-3">
+            <label for="sujets" class="mb-3">Professeurs</label>
+            <!-- <div class="row">
+              <div class="w-100">
+                <div class="row">
+                  <div class="col-8 col-sm-6">
+                    <select
+                      class="form-select w-100"
+                      multiple
+                      size="10"
+                      aria-label="multiple select example"
+                    >
+                    
+                      <option
+                        (click)="onProfesseurSelect(s)"
+                        *ngFor="let s of professeurs"
+                      >
+                        {{ s.nom }} {{ s.prenom }}
+                      </option>
+                     
+                    </select>
+                  </div>
+                  <div class="col-8 col-sm-6">
+                    <select
+                      class="form-select w-100"
+                      multiple
+                      size="10"
+                      aria-label="multiple select example"
+                      id="professeurs"
+                      formControlName="professeurs"
+                    >
+                      <option
+                        *ngFor="let o of selectedProfs"
+                        (click)="onProfesseurDeSelect(o)"
+                      >
+                        {{ o.nom }} {{ o.prenom }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div class="sujet">
+              <div class="col-4 border border-primary rounded p-2">
+                <div class="ex3">
+                  <p
+                    (click)="onProfesseurSelect(s)"
+                    *ngFor="let s of professeurs"
+                    class="op"
+                  >
+                    {{ s.nom }} {{ s.prenom }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-4 border border-primary rounded p-2">
+                <div class="ex3">
+                  <p
+                    *ngFor="let o of selectedProfs"
+                    (click)="onProfesseurDeSelect(o)"
+                    class="op"
+                  >
+                    {{ o.nom }} {{ o.prenom }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              (click)="modal.dismiss('Cross click')"
+              type="button"
+            >
+              annuler
+            </button>
+            <button
+              class="btn btn-primary btn-confirmer"
+              type="submit"
+              (click)="modal.close('Save click')"
+              [disabled]="form.invalid || selectedSujets.length == 0"
+            >
+              confirmer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>

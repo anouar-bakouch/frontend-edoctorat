@@ -107,7 +107,7 @@ export class OperationsService {
 
   public getCommissions() {
     return new Promise((resolve, reject) => {
-      this.http.get(environment.API_URL + '/api/commission/').subscribe({
+      this.http.get(environment.API_URL + '/api/participant/').subscribe({
         next: (data) => {
           resolve(data);
         },

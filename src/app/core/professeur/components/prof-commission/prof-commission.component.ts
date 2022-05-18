@@ -23,7 +23,8 @@ export class ProfCommissionComponent implements OnInit {
     valider: false,
     lieu: '',
     labo: 0,
-    participants: []
+    participants: [],
+    sujets: []
   }
   public result: Result<any> = {
     count: 0,
@@ -51,19 +52,9 @@ export class ProfCommissionComponent implements OnInit {
     this.operationsService.getCommissions().then(data => {
       this.loading = false
       console.log(data)
-      this.result = data as Result<Commission>;
-      this.commissions = this.result.results;
-      // this.commissions = data;
+      this.commissions = data as Commission[];
       console.log(this.commissions)
-      // for (var i = 0; i < this.commissions.participants.length; i++) {
 
-      //   if (this.commissions.participants[i].id === this.currentProfesseur.id) {
-
-      //     this.commissions.participants.splice(i, 1);
-      //   }
-
-      // }
-      // this.commissions.push(this.commission)
     }).catch((error) => {
       console.log(error)
       this.alert = {
