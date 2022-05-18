@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LaboSujet } from '../../services/labo-sujet.service';
+
 
 @Component({
   selector: 'app-candidats',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CandidatsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public candidatLabo : LaboSujet ) { }
 
   ngOnInit(): void {
   }
+
+  // public getCandidats(){
+  //    const id = 0;
+  //   this.candidatLabo.fetchCandidat(id)
+  //   .then()
+  //   .catch()
+  //   .finally()
+  // }
+
+  
 
 }

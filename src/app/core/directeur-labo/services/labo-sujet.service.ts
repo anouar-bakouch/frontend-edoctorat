@@ -121,19 +121,38 @@ export class LaboSujet {
   }
 
   public fetchCandidat(id:number){
-    return new Promise((resolve, reject) => {
-      this.http
-        .get(environment.API_URL + '/api/examiner/?labo_id='+id+'/')
-        .subscribe({
-          next: (data) => {
-            resolve(data);
-          },
-          error: (err) => {
-            reject(err);
-          },
-        });
-    });
+    // return new Promise((resolve, reject) => {
+    //   this.http
+    //     .get(environment.API_URL + '/api/examiner/?labo_id='+id+'/')
+    //     .subscribe({
+    //       next: (data) => {
+    //         resolve(data);
+    //       },
+    //       error: (err) => {
+    //         reject(err);
+    //       },
+    //     });
+    // });
   }
+
+  fetchResultats(){
+
+  return new Promise((resolve, reject) => {
+        this.http
+          .get(environment.API_URL + '/api/examiner/')
+          .subscribe({
+            next: (data) => {
+              resolve(data);
+            },
+            error: (err) => {
+              reject(err);
+            },
+          });
+      });
+
+  }
+
+
 
 
 }
