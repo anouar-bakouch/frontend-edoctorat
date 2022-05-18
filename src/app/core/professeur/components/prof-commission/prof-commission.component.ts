@@ -11,10 +11,13 @@ import { OperationsService } from '../../services/operations.service';
   templateUrl: './prof-commission.component.html',
   styleUrls: ['./prof-commission.component.css']
 })
+
 export class ProfCommissionComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
   public loading: boolean = false;
+  public itemsCount: number | undefined
   public participes: Participe[] = [];
+  public isFetchingItems = true;
   public commissions: Commission[] = [];
   public commission: Commission = {
     id: 0,
@@ -43,7 +46,7 @@ export class ProfCommissionComponent implements OnInit {
     this.getCommissions()
   }
 
-  getCommissions(){
+  getCommissions() {
     this.loading = true
     this.alert = {
       type: 'loading',
@@ -51,9 +54,11 @@ export class ProfCommissionComponent implements OnInit {
     };
     this.operationsService.getCommissions().then(data => {
       this.loading = false
-      console.log(data)
+      // console.log(data)
+      // this.itemsCount = data.count;
       this.commissions = data as Commission[];
-      console.log(this.commissions)
+      
+      // console.log(this.commissions)
 
     }).catch((error) => {
       console.log(error)
@@ -70,4 +75,6 @@ export class ProfCommissionComponent implements OnInit {
       setTimeout(() => (this.alert = undefined), 3000);
     });
   }
+
+  
 }

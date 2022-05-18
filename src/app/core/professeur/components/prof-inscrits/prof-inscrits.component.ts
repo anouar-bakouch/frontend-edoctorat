@@ -77,6 +77,7 @@ export class ProfInscritsComponent implements OnInit {
     });
     this.open(content)
   }
+
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -94,6 +95,7 @@ export class ProfInscritsComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   getMesInscrits() {
     this.operationsService.getMesInscrits().subscribe(data => {
       console.log(data)
@@ -103,28 +105,13 @@ export class ProfInscritsComponent implements OnInit {
   }
 
   onClickSubmit() {
-    // const sujet: JSON = <JSON><unknown>{
-    //   "coDirecteurId": this.sujet.coDirecteur.id,
-    //   "formationDoctoraleId": this.sujet.formationDoctorale.id,
-    //   "titre": this.form.get('titre').value,
-    //   "description": this.sujet.description
-    // }
-    // this.operationsService.updateSujet(sujet, this.sujet.id).subscribe((data) => {
-    //   // this.sujets.push(this.sujet)
-    //   console.log(data)
-    // },
-    //   (err) => {
-    //     console.log(err)
-    //   }, () => {
-    //     this.form.reset()
-    //   })
-
-    // console.log(this.form.get('titre').value)
+    
     this.loading = true;
     this.alert = {
       type: 'loading',
       message: 'loading',
     };
+
     const sujet = {
       formationDoctoraleId: this.sujet.formationDoctorale,
       titre: this.sujet.titre,
