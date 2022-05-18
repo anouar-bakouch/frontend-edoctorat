@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Commission } from 'src/app/models/Commission';
+import Result from 'src/app/models/Result';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -51,9 +52,15 @@ export class OperationsService {
     });
   }
 
-  public getCommissions() {
-    return new Promise((resolve, reject) => {
-      this.http.get(environment.API_URL + '/api/commission/').subscribe({
+  public getCommissions(offset: number | undefined = undefined){
+   
+    let url = `${environment.API_URL}/api/commission/`;
+    if (offset) {
+      url = `${url}?limit=50&offset=${offset}`;
+    }
+    return new Promise<Result<Commission>>((resolve, reject) => {
+      
+      this.http.get<Result<Commission>>(url).subscribe({
         next: (data) => {
           resolve(data);
         },
