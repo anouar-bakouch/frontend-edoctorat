@@ -101,16 +101,30 @@ export class SujetsComponent implements OnInit {
   // add sujet 
 
   addSujet(){
-
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
     const sujetLabo = this.dLaboform.toFormData();
     this.operationsService.addSujet(sujetLabo)
     .then(res=>{
         this.sujets_.push(res as Sujet);
+        this.loading = false;
+        this.alert = {
+        type: 'success',
+        message: 'modifié avec succès',
+      };
     })
-    .catch((_)=>{
-      console.log(_);
-    })
-    .finally()
+    .catch(res=>{
+      this.alert = {
+        type: 'error',
+        message: "error lors de l'ajout",
+      }
+     }).finally(() => {
+      this.dLaboform.reset();
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
 
   }
   
@@ -134,8 +148,11 @@ export class SujetsComponent implements OnInit {
       this.alert = {
         type: 'error',
         message: "error lors de l'ajout",
-      };
-     })
+      }
+     }).finally(() => {
+      this.dLaboform.reset();
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
 
   }
 
