@@ -19,8 +19,11 @@ import { OperationsService } from '../../services/operations.service';
 export class CommissionsComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
   public loading: boolean = false;
+  public page: number = 1;
+  public itemsCount: number | undefined;
   public commissions: Commission[] = [];
-  public commission: Commission= {
+  public isFetchingItems = false;
+  public commission: Commission = {
     id: 0,
     dateCommission: '',
     heure: '',
@@ -83,6 +86,17 @@ export class CommissionsComponent implements OnInit {
     });
   }
 
+  onIndexChange(offset: number) {
+    if (this.isFetchingItems) return;
+    this.isFetchingItems = true;
+    this.operationsService
+      .getCommissions(offset)
+      .then((d) => {
+        this.commissions = d.results;
+      })
+      .finally(() => (this.isFetchingItems = false));
+  }
+
   getSujetsLabo = () => {
     return new Promise((resolve, _) => {
       this.operationsService.getSujetsLabo().then((data) => {
@@ -100,6 +114,7 @@ export class CommissionsComponent implements OnInit {
         this.loading = false
         this.result = data as Result<Commission>;
         this.commissions = this.result.results;
+        this.itemsCount = data.count;
         resolve(data);
       })
     })
@@ -136,11 +151,33 @@ export class CommissionsComponent implements OnInit {
     this.open(content)
   }
   open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    this.loading = true
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.selectedSujets = []
+    this.sujets = []
+    this.selectedProfs = []
+    this.professeurs = []
+    this.professeurs_ids = []
+    Promise.all([this.getSujetsLabo(), this.getProfesseurs()]).then(() => {
+      this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }).catch((error) => {
+      console.log(error)
+      this.alert = {
+        type: 'error',
+        message: 'error',
+      };
+    }).finally(() => {
+      this.loading = false
+      setTimeout(() => (this.alert = undefined), 3000);
     });
+
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -232,13 +269,7 @@ export class CommissionsComponent implements OnInit {
         //     this.selectedSujets.splice(i, 1);
         //   }
         // });
-        this.selectedSujets = []
-        this.sujets = []
-        this.selectedProfs = []
-        this.professeurs = []
-        this.professeurs_ids = []
-        this.getProfesseurs()
-        this.getSujetsLabo()
+
       }).catch((err) => {
         console.log(err);
         this.alert = {
@@ -271,13 +302,13 @@ export class CommissionsComponent implements OnInit {
           message: 'supprimer avec succès',
         };
 
-        this.selectedSujets = []
-        this.sujets = []
-        this.selectedProfs = []
-        this.professeurs = []
-        this.professeurs_ids = []
-        this.getProfesseurs()
-        this.getSujetsLabo()
+        // this.selectedSujets = []
+        // this.sujets = []
+        // this.selectedProfs = []
+        // this.professeurs = []
+        // this.professeurs_ids = []
+        // this.getProfesseurs()
+        // this.getSujetsLabo()
       })
       .catch((error) => {
         console.log(`${error}`);
@@ -308,8 +339,6 @@ export class CommissionsComponent implements OnInit {
       labo: this.labo_id
     };
 
-    console.log(comm)
-    console.log(this.commission)
 
     this.operationsService.updateSujet(comm, this.commission.id).then(
       (data) => {
@@ -324,22 +353,6 @@ export class CommissionsComponent implements OnInit {
             this.commissions[i] = data as Commission;
           }
         }
-
-        // this.commissions.push(data as Commission);
-        // this.selectedSujets.forEach((e, i) => {
-        // this.sujets.push(e)
-
-        //   if (this.selectedSujets[i].id === e.id) {
-        //     this.selectedSujets.splice(i, 1);
-        //   }
-        // });
-        this.selectedSujets = []
-        this.sujets = []
-        this.selectedProfs = []
-        this.professeurs = []
-        this.professeurs_ids = []
-        this.getProfesseurs()
-        this.getSujetsLabo()
 
       }).catch((err) => {
         console.log(err);
