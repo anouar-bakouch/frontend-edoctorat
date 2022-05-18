@@ -45,6 +45,7 @@ export class ProfSujetComponent implements OnInit {
     nom: '',
     prenom: '',
   };
+
   public coDirecteur: Professeur = {
     id: 0,
     nom: '',

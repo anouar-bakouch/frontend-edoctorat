@@ -45,7 +45,7 @@ export class SujetsComponent implements OnInit {
 
     titre  :['',Validators.required],
     professeurId : ['',Validators.required],
-    coDirecteurId : ['',Validators.required],
+    coDirecteurId : [''],
     formationDoctoraleId : ['',Validators.required]
 
    })
@@ -113,7 +113,7 @@ export class SujetsComponent implements OnInit {
         this.loading = false;
         this.alert = {
         type: 'success',
-        message: 'modifié avec succès',
+        message: 'ajouté avec succès',
       };
     })
     .catch(res=>{
