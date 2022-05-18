@@ -243,7 +243,7 @@ export class ProfSujetComponent implements OnInit {
         };
         this.sujets.push(data as Sujet);
     }).catch ((err) => {
-      console.log(err);
+    
       this.alert = {
         type: 'error',
         message: "error lors de l'ajout",
@@ -286,7 +286,7 @@ export class ProfSujetComponent implements OnInit {
         setTimeout(() => (this.alert = undefined), 3000);
       });
   }
-  
+
   onClickUpdate() {
     this.loading = true;
     this.alert = {

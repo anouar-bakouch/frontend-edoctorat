@@ -28,10 +28,12 @@ export class SujetsComponent implements OnInit {
   public itemsCount: number | undefined;
   public errorText:string = '';
   public dLaboSujet : Sujet | undefined ; 
+  public dLaboSujetId : number | undefined;
   public dLaboProfesseur : Professeur | undefined;
   public alert: AlertData | undefined = undefined;
   public formations !: Result<FormationDoctorale>;
   public professors !: Result<Professeur>;
+  public loading:boolean = false;
 
   constructor (
     private modalService: NgbModal,
@@ -60,7 +62,6 @@ export class SujetsComponent implements OnInit {
     this.sujets_ = x.results;    
     this.isFetchingItems = false;
     this.itemsCount= x.count;
-    this.dLaboSujet.formationDoctorale
   })
 
   }
@@ -102,11 +103,9 @@ export class SujetsComponent implements OnInit {
   addSujet(){
 
     const sujetLabo = this.dLaboform.toFormData();
-    console.log(this.dLaboform.value);
     this.operationsService.addSujet(sujetLabo)
     .then(res=>{
         this.sujets_.push(res as Sujet);
-        console.log(res);
     })
     .catch((_)=>{
       console.log(_);
@@ -116,16 +115,26 @@ export class SujetsComponent implements OnInit {
   }
   
   update (){
-
-
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
     this.dLaboSujet = this.dLaboform.value; 
 
-     this.operationsService.updateSujet(this.dLaboSujet,this.dLaboSujet.id)
+     this.operationsService.updateSujet(this.dLaboSujet,this.dLaboSujetId)
      .then(res=>{
-                   console.log(res);
+      this.loading = false;
+      this.alert = {
+        type: 'success',
+        message: 'modifié avec succès',
+      };
      })
      .catch(res=>{
-                    console.log(res);
+      this.alert = {
+        type: 'error',
+        message: "error lors de l'ajout",
+      };
      })
 
   }
@@ -183,17 +192,15 @@ export class SujetsComponent implements OnInit {
 
 fun (content: any, s: Sujet) {
 
-  
-
-   this.dLaboform.setValue({
+    this.dLaboform.setValue({
     titre: s.titre,
     professeurId : s.professeur.prenom,
     coDirecteurId: s.coDirecteur,
     formationDoctoraleId: s.formationDoctorale
+  
   });
+  this.dLaboSujetId = s.id;
 
-  
-  
   this.open(content);
 
 };
