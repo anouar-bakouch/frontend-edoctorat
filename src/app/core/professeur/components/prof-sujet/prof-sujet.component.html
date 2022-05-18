@@ -126,7 +126,7 @@
               name=""
               formControlName="formationDoctorale"
             >
-              <option *ngFor="let f of formationDoctorales" value="{{ f.id }}">
+              <option *ngFor="let f of formationDoctorales" [value]="f.id">
                 {{ f.titre }}
               </option>
             </select>

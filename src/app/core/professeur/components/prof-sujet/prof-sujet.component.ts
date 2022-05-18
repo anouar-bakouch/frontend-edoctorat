@@ -45,6 +45,7 @@ export class ProfSujetComponent implements OnInit {
     nom: '',
     prenom: '',
   };
+
   public coDirecteur: Professeur = {
     id: 0,
     nom: '',
@@ -189,8 +190,10 @@ export class ProfSujetComponent implements OnInit {
       coDirecteur: null,
       formationDoctorale: null,
     });
+    
     this.open(content);
   };
+
   open(content: any) {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
@@ -203,6 +206,7 @@ export class ProfSujetComponent implements OnInit {
         }
       );
   }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -213,29 +217,7 @@ export class ProfSujetComponent implements OnInit {
     }
   }
 
-  // getAllSujets() {
-  //   this.operationsService.getSujets().then((data) => {
-  //     this.result = data as Result<Sujet>;
-  //     this.sujets = this.result.results;
-  //     // this.currentProfesseur = this.sujets[1].professeur
-  //     console.log(this.sujets);
-  //   });
-  // }
-  // getAllFormationDoctorales() {
-  //   this.operationsService.getFormationDoctorales().then((data) => {
-  //     this.result = data as Result<FormationDoctorale>;
-  //     this.formationDoctorales = this.result.results;
-  //   });
-  // }
-  // getAllProfesseurs() {
-  //   this.operationsService.getProfesseurs().then((data) => {
-  //     this.result = data as Result<Professeur>;
-  //     this.professeurs = this.result.results;
-  //     console.log(this.professeurs);
-  //     var result = this.arrayRemove(this.professeurs);
-  //     this.professeurs = result;
-  //   });
-  // }
+
 
   onClickSubmit() {
     this.loading = true;
@@ -262,7 +244,7 @@ export class ProfSujetComponent implements OnInit {
         };
         this.sujets.push(data as Sujet);
     }).catch ((err) => {
-      console.log(err);
+    
       this.alert = {
         type: 'error',
         message: "error lors de l'ajout",
@@ -305,6 +287,7 @@ export class ProfSujetComponent implements OnInit {
         setTimeout(() => (this.alert = undefined), 3000);
       });
   }
+
   onClickUpdate() {
     this.loading = true;
     this.alert = {
@@ -324,7 +307,6 @@ export class ProfSujetComponent implements OnInit {
       .updateSujet(sujet, this.sujet2.id)
       .then((data) => {
         this.loading = false;
-
         for (var i = 0; i < this.sujets.length; i++) {
           if (this.sujets[i].id === this.sujet2.id) {
             this.sujets[i] = data as Sujet;

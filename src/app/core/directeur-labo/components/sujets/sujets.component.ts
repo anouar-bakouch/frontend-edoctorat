@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
@@ -26,22 +27,33 @@ export class SujetsComponent implements OnInit {
   public page: number = 1;
   public itemsCount: number | undefined;
   public errorText:string = '';
+  public dLaboSujet : Sujet | undefined ; 
+  public dLaboSujetId : number | undefined;
+  public dLaboProfesseur : Professeur | undefined;
   public alert: AlertData | undefined = undefined;
   public formations !: Result<FormationDoctorale>;
   public professors !: Result<Professeur>;
+  public loading:boolean = false;
 
-  constructor(private modalService: NgbModal, private operationsService: LaboSujet) { }
+  constructor (
+    private modalService: NgbModal,
+    private fservice: RxFormBuilder,
+    private operationsService: LaboSujet
+    ) { }
   
-  public dLaboform = new FormGroup({
-    titre: new FormControl("", [Validators.required, Validators.minLength(3)]),
-    directeur: new FormControl("", [Validators.required, Validators.minLength(3)]),
-    coDirecteur: new FormControl(""),
-    formationDoctorale: new FormControl("", [Validators.required])
-  })
+  public dLaboform = <RxFormGroup>this.fservice.group({
+
+    titre  :['',Validators.required],
+    professeurId : ['',Validators.required],
+    coDirecteurId : [''],
+    formationDoctoraleId : ['',Validators.required]
+
+   })
 
   ngOnInit(): void {
      this.getAllSujets();
      this.getFormationsDoctorales();
+     this.getProfessors();
   }
 
   getAllSujets() {
@@ -49,14 +61,16 @@ export class SujetsComponent implements OnInit {
   this.operationsService.getSubjects().then(x=>{
     this.sujets_ = x.results;    
     this.isFetchingItems = false;
+    this.itemsCount= x.count;
   })
-    
+
   }
 
   getFormationsDoctorales(){
 
   this.operationsService.getFormationsDoctorales().then(res=>{
      this.formations = res;
+
   })
 
   }
@@ -87,13 +101,60 @@ export class SujetsComponent implements OnInit {
   // add sujet 
 
   addSujet(){
-
-    // this.operationsService.addSujet()
-    // .then()
-    // .catch()
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    const sujetLabo = this.dLaboform.toFormData();
+    this.operationsService.addSujet(sujetLabo)
+    .then(res=>{
+        this.sujets_.push(res as Sujet);
+        this.loading = false;
+        this.alert = {
+        type: 'success',
+        message: 'ajouté avec succès',
+      };
+    })
+    .catch(res=>{
+      this.alert = {
+        type: 'error',
+        message: "error lors de l'ajout",
+      }
+     }).finally(() => {
+      this.dLaboform.reset();
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
 
   }
   
+  update (){
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.dLaboSujet = this.dLaboform.value; 
+
+     this.operationsService.updateSujet(this.dLaboSujet,this.dLaboSujetId)
+     .then(res=>{
+      this.loading = false;
+      this.alert = {
+        type: 'success',
+        message: 'modifié avec succès',
+      };
+     })
+     .catch(res=>{
+      this.alert = {
+        type: 'error',
+        message: "error lors de l'ajout",
+      }
+     }).finally(() => {
+      this.dLaboform.reset();
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
+
+  }
 
   // delete sujet
 
@@ -146,16 +207,21 @@ export class SujetsComponent implements OnInit {
 
 // modals partie 
 
-  // fun = (content: any, s: Sujet) => {
-  //   this.sujet2 = s
-  //   this.form.setValue({
-  //     titre: s.titre,
-  //     description: s.description,
-  //     coDirecteur: null,
-  //     formationDoctorale: null
-  //   });
-  //   this.open(content)
-  // }
+fun (content: any, s: Sujet) {
+
+    this.dLaboform.setValue({
+    titre: s.titre,
+    professeurId : s.professeur.prenom,
+    coDirecteurId: s.coDirecteur,
+    formationDoctoraleId: s.formationDoctorale
+  
+  });
+  this.dLaboSujetId = s.id;
+
+  this.open(content);
+
+};
+
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -163,6 +229,7 @@ export class SujetsComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -172,5 +239,6 @@ export class SujetsComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
 
 }

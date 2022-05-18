@@ -62,6 +62,7 @@ export class InfoPersonnelsComponent implements OnInit {
     });
 
     this.getCandidatInfo();
+  
   }
 
   get _countries() {
@@ -149,7 +150,6 @@ export class InfoPersonnelsComponent implements OnInit {
       .catch((err) => {
         this.errorText =
           "Une erreur s'est produite lors de la mise à jour. Revérifiez vos données ou réessayez plus tard.";
-        console.log(err);
       })
       .finally(() => (this.isUpdating = false));
   }
