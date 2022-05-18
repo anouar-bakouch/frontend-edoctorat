@@ -189,6 +189,7 @@ export class ProfSujetComponent implements OnInit {
       coDirecteur: null,
       formationDoctorale: null,
     });
+    
     this.open(content);
   };
 
@@ -204,7 +205,7 @@ export class ProfSujetComponent implements OnInit {
         }
       );
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -285,6 +286,7 @@ export class ProfSujetComponent implements OnInit {
         setTimeout(() => (this.alert = undefined), 3000);
       });
   }
+  
   onClickUpdate() {
     this.loading = true;
     this.alert = {

@@ -27,6 +27,8 @@ export class SujetsComponent implements OnInit {
   public page: number = 1;
   public itemsCount: number | undefined;
   public errorText:string = '';
+  public dLaboSujet : Sujet | undefined ; 
+  public dLaboProfesseur : Professeur | undefined;
   public alert: AlertData | undefined = undefined;
   public formations !: Result<FormationDoctorale>;
   public professors !: Result<Professeur>;
@@ -57,9 +59,10 @@ export class SujetsComponent implements OnInit {
   this.operationsService.getSubjects().then(x=>{
     this.sujets_ = x.results;    
     this.isFetchingItems = false;
-    this.itemsCount=x.count;
+    this.itemsCount= x.count;
+    this.dLaboSujet.formationDoctorale
   })
-    
+
   }
 
   getFormationsDoctorales(){
@@ -112,9 +115,18 @@ export class SujetsComponent implements OnInit {
 
   }
   
-  updateSujet(){
+  update (){
 
-   
+
+    this.dLaboSujet = this.dLaboform.value; 
+
+     this.operationsService.updateSujet(this.dLaboSujet,this.dLaboSujet.id)
+     .then(res=>{
+                   console.log(res);
+     })
+     .catch(res=>{
+                    console.log(res);
+     })
 
   }
 
@@ -171,17 +183,19 @@ export class SujetsComponent implements OnInit {
 
 fun (content: any, s: Sujet) {
 
-  this.dLaboform.setValue({
+  
+
+   this.dLaboform.setValue({
     titre: s.titre,
-    description: s.description,
-    coDirecteur: null,
-    formationDoctorale: null,
+    professeurId : s.professeur.prenom,
+    coDirecteurId: s.coDirecteur,
+    formationDoctoraleId: s.formationDoctorale
   });
 
+  
+  
   this.open(content);
 
-  alert('hi')
-  
 };
 
   open(content: any) {
