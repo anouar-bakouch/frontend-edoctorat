@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Candidat } from 'src/app/models/Candidat';
+import { Examiner } from 'src/app/models/Examiner';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
@@ -135,11 +137,11 @@ export class LaboSujet {
     // });
   }
 
-  fetchResultats(){
+  fetchResultats():Promise<Result<Examiner>>{
 
   return new Promise((resolve, reject) => {
         this.http
-          .get(environment.API_URL + '/api/examiner/')
+          .get<Result<Examiner>>(environment.API_URL + '/api/examiner/')
           .subscribe({
             next: (data) => {
               resolve(data);

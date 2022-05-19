@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Examiner } from 'src/app/models/Examiner';
+import Result from 'src/app/models/Result';
 import { LaboSujet } from '../../services/labo-sujet.service';
 
 @Component({
@@ -9,6 +11,7 @@ import { LaboSujet } from '../../services/labo-sujet.service';
 
 export class ResultatsComponent implements OnInit {
 
+  public candidatInfos : Result<Examiner> | undefined;
   constructor(public candidatLabo : LaboSujet ) { }
 
   ngOnInit(): void {
@@ -19,7 +22,9 @@ export class ResultatsComponent implements OnInit {
 
     this.candidatLabo.fetchResultats()
     .then(res=>{
-          console.log(res);
+      
+          this.candidatInfos = res;
+        
     })
     .catch()
     .finally()
