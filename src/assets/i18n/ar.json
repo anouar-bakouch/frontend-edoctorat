@@ -131,6 +131,8 @@
       "LICENCE":"الإجازة",
       "MASTER_EN_SCIENCE_TECHNIQUE":"ماجستير في العلوم والتكنولوجيا",
       "DOCTORATE_EN_MEDICINE":"دكتوراه في الطب",
+      "description-master-st":"غير ضروري للمرور الى الشهادات الأخرى master st",
+      "description-medecine":"غير ضروري للمرور الى الشهادات الأخرى Doctorat en Médicine",
       "description-licence":"غير ضروري للمرور الى الشهادات الأخرى Licence",
       "description-dts":"غير ضروري للمرور الى الشهادات الأخرى DTS",
       "description-bts":"غير ضروري للمرور الى الشهادات الأخرى BTS",
