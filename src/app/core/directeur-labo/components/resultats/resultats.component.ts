@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Examiner } from 'src/app/models/Examiner';
 import Result from 'src/app/models/Result';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { LaboSujet } from '../../services/labo-sujet.service';
 
 @Component({
@@ -12,6 +13,12 @@ import { LaboSujet } from '../../services/labo-sujet.service';
 export class ResultatsComponent implements OnInit {
 
   public candidatInfos : Result<Examiner> | undefined;
+  public loading:boolean = false;
+  public alert: AlertData | undefined = undefined;
+  public page: number = 1;
+  public itemsCount: number | undefined;
+  public errorText:string = '';
+  public isFetchingItems = true;
   constructor(public candidatLabo : LaboSujet ) { }
 
   ngOnInit(): void {
@@ -21,13 +28,23 @@ export class ResultatsComponent implements OnInit {
   public fetchResultats(){
 
     this.candidatLabo.fetchResultats()
-    .then(res=>{
-      
+    .then( res =>{
           this.candidatInfos = res;
-        
-    })
-    .catch()
-    .finally()
+           this.isFetchingItems = false;
+           this.itemsCount= res.count;
+    }).catch((error)=>{
+      this.alert = {
+        type: 'error',
+        message: 'error',
+      };
+    }).finally(()=>{
+      this.loading = false
+      this.alert = {
+        type: 'success',
+        message: 'Bienvenue',
+      };
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
 
   }
 

@@ -1,13 +1,14 @@
 <div class="container-fluid mt-3">
 
     <div class="table-responsive">
-
-        <table class="table table-align-middle" id="table" data-toggle="table" data-toolbar="#toolbar">
+        
+        <table class="table">
+            
             <thead>
                 <tr class="table-primary">
-                    <th scope="col" class="w-15">
+                    <th scope="col" class="w-7">
                         CNE</th>
-                    <th scope="col" class="w-7" data-field="sujet" data-filter-control="input" >
+                    <th scope="col" class="w-15" data-field="sujet"  >
                         sujet</th>
                     <th scope="col" class="w-13">
                         Candidat</th>
@@ -22,18 +23,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="align-text-bottom" *ngFor="let cInfos of candidatInfos.results"> 
-                    <td>{{cInfos.candidat.cne}}</td>
+                <tr *ngFor="let cInfos of candidatInfos.results"> 
+                    <td class="text-primary fs-bold">{{cInfos.candidat.cne}}</td>
                     <td>{{cInfos.sujet.titre}}</td>
-                    <td>{{cInfos.candidat.nom}} {{cInfos.candidat.prenom}}</td>
+                    <td>{{cInfos.candidat.prenom}} {{cInfos.candidat.nom}}</td>
                     <td>{{cInfos.noteEntretien}}</td>
                     <td>{{cInfos.noteDossier}}</td>
-                    <td>{{cInfos.noteDossier + cInfos.noteEntretien /2}}</td>
+                    <td>{{ cInfos.noteDossier + cInfos.noteEntretien /2 }}</td>
                     <td>{{cInfos.decision}}</td>
                 </tr>
             </tbody>
         </table>
 
-
+        <div *ngIf="isFetchingItems">
+            <h4>
+              <img
+                src="/assets/images/connexion/loading.webp"
+                width="300"
+                height="100"
+              />
+            </h4>
+          </div>
     </div>
 </div>

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Candidat } from 'src/app/models/Candidat';
 import { Examiner } from 'src/app/models/Examiner';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Professeur } from 'src/app/models/Professeur';

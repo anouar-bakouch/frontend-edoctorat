@@ -132,9 +132,7 @@ export class ProfSujetComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // this.getAllSujets();
-    // this.getAllProfesseurs();
-    // this.getAllFormationDoctorales();
+
     this.loading = true
     this.alert = {
       type: 'loading',
