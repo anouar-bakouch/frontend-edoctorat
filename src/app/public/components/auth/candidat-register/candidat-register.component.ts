@@ -48,7 +48,7 @@ export class CandidatRegisterComponent implements OnInit {
     private httpCountries: CountriesService,
     authService: AuthService
   ) {
-    authService.logOut();
+    authService.clearCredentials();
     activeRoute.queryParams.subscribe({
       next: (params) => {
         const token: string | undefined | null = params['token'];
