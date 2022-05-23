@@ -98,8 +98,8 @@ export class CommissionsComponent implements OnInit {
         this.sujets = this.result.results;
         this.labo_id = this.result.results[0].laboratoire.id
         this.itemsCountSujets = data.count
-        
         resolve(data);
+        this.processSujets(data.results)
       })
     })
   }
@@ -110,8 +110,6 @@ export class CommissionsComponent implements OnInit {
         this.loading = false
         this.result = data as Result<Commission>;
         this.commissions = this.result.results;
-        console.log(this.commissions)
-        
         this.itemsCount = data.count;
         resolve(data);
       })
@@ -145,7 +143,7 @@ export class CommissionsComponent implements OnInit {
     })
     this.open(content)
   }
-  public items ;
+  public processedSujetData: Map<String, Sujet[]> = new Map();
   s: Sujet[] = []
   p: Professeur[] = []
   open(content: any) {
@@ -179,39 +177,21 @@ export class CommissionsComponent implements OnInit {
       };
     }).finally(() => {
       this.loading = false
-     
       setTimeout(() => (this.alert = undefined), 1000);
-      this.items = new Array(this.professeurs.length)
-      
-      for (var i = 0; i < this.items.length; i++) {
-        this.items[i] = [this.s,this.p];
-      }
-      for (var i = 0; i < this.items.length; i++) {
-        this.items[i][0] = this.professeurs[i]
-      }
-      for (var i = 0; i < this.items.length; i++) {
-        this.items[i][1] = []
-      }
-      this.sujets.forEach((s) => {
-        for (var i = 0; i < this.items.length; i++) {
-          if (this.items[i][0].id == s.professeur.id || this.items[i][0].id == s.coDirecteur.id) {
-            this.items[i][1].push(s)
-          }
-
-        }
-      })
-      // this.items.forEach(item => {
-      //   item.forEach((element, i) => {
-      //     console.log(element[0].count)
-      //     for(var j = 0; j<element.count;j++){
-
-      //     }
-      //   });
-      // });
-      // console.log(this.items)
     });
 
   }
+  private processSujets(sujets: Sujet[]) {
+    this.processedSujetData.clear()
+    sujets.forEach(sujet => {
+      if (!this.processedSujetData.has(`${sujet.professeur.nom} ${sujet.professeur.prenom}`)) {
+        this.processedSujetData.set(`${sujet.professeur.nom} ${sujet.professeur.prenom}`, []);
+      }
+      this.processedSujetData.get(`${sujet.professeur.nom} ${sujet.professeur.prenom}`).push(sujet);
+    });
+    console.log(this.processedSujetData)
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -241,9 +221,7 @@ export class CommissionsComponent implements OnInit {
     }
   }
   onProfesseurSelect(item: any) {
-
     this.selectedProfs.push(item)
-
     for (var i = 0; i < this.professeurs.length; i++) {
       if (this.professeurs[i] === item) {
         this.professeurs.splice(i, 1);
@@ -277,8 +255,6 @@ export class CommissionsComponent implements OnInit {
       sujets_ids: this.sujets_ids,
       labo: this.labo_id
     };
-
-    console.log(comm)
 
     this.operationsService.addCommission(comm).then(
       (data) => {
@@ -395,20 +371,9 @@ export class CommissionsComponent implements OnInit {
       .getSujetsLabo(offset)
       .then((d) => {
         this.sujets = d.results;
-        for (var i = 0; i < this.items.length; i++) {
-          this.items[i][1] = []
-        }
-        d.results.forEach((s) => {
-          for (var i = 0; i < this.items.length; i++) {
-            if (this.items[i][0].id == s.professeur.id || this.items[i][0].id == s.professeur.id) {
-              this.items[i][1].push(s)
-            }
-          }
-        })
-        // console.log(this.sujets)
+        this.processSujets(d.results)
       })
       .finally(() => (this.loading = false));
-    console.log(this.items)
   }
   onIndexChangeProfs(offset: number) {
     if (this.loading) return;
