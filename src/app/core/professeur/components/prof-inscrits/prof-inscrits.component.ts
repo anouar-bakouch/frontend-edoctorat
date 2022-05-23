@@ -55,9 +55,9 @@ export class ProfInscritsComponent implements OnInit {
     results: []
   }
 
-  public form = new FormGroup({
-    titre: new FormControl("", [Validators.required, Validators.minLength(2)]),
-  })
+  // public form = new FormGroup({
+  //   titre: new FormControl("", [Validators.required, Validators.minLength(2)]),
+  // })
 
 
   ngOnInit(): void {
@@ -92,74 +92,89 @@ export class ProfInscritsComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private operationsService: OperationsService) { }
 
-  fun = (content: any, s: Sujet) => {
-    this.operationsService.getSujet(s.id).subscribe(data => {
-      // console.log(data)
-      this.sujet = data
-    })
+  // fun = (content: any, s: Sujet) => {
+  //   this.loading = true
+  //   this.alert = {
+  //     type: 'loading',
+  //     message: 'loading',
+  //   };
+  //   this.operationsService.getSujet(s.id).then(data => {
+  //     this.sujet = data
+  //     console.log(this.sujet)
+  //     this.form.setValue({
+  //       titre: s.titre,
+  //     });
+  //     this.open(content)
+  //   }).catch((error) => {
+  //     console.log(error)
+  //     this.alert = {
+  //       type: 'error',
+  //       message: 'error',
+  //     };
+  //   }).finally(() => {
+  //     this.loading = false
+  //     setTimeout(() => (this.alert = undefined), 2000);
+  //   });
 
-    this.form.setValue({
-      titre: s.titre,
-    });
-    this.open(content)
-  }
-
-  open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-
-  onClickSubmit() {
     
-    this.loading = true;
-    this.alert = {
-      type: 'loading',
-      message: 'loading',
-    };
+  // }
 
-    const sujet = {
-      formationDoctoraleId: this.sujet.formationDoctorale,
-      titre: this.sujet.titre,
-      description: this.sujet.description,
-    };
-    if (this.sujet.coDirecteur !== null) {
-      sujet['coDirecteurId'] = this.sujet.coDirecteur;
-    }
-    this.operationsService
-      .updateSujet(sujet, this.sujet.id)
-      .then((data) => {
-        this.loading = false;
-        this.alert = {
-          type: 'success',
-          message: 'modifier avec succès',
-        };
-      })
-      .catch((err) => {
-        console.log(err);
-        this.alert = {
-          type: 'faild',
-          message: 'error lors de la modification',
-        };
-      })
-      .finally(() => {
-        this.form.reset();
-        setTimeout(() => (this.alert = undefined), 3000);
-      });
-  }
+  // open(content: any) {
+  //   this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
+  // }
+
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return `with: ${reason}`;
+  //   }
+  // }
+
+
+  // onClickSubmit() {
+    
+  //   this.loading = true;
+  //   this.alert = {
+  //     type: 'loading',
+  //     message: 'loading',
+  //   };
+
+  //   const sujet = {
+  //     formationDoctoraleId: this.sujet.formationDoctorale,
+  //     titre: this.sujet.titre,
+  //     description: this.sujet.description,
+  //   };
+  //   if (this.sujet.coDirecteur !== null) {
+  //     sujet['coDirecteurId'] = this.sujet.coDirecteur;
+  //   }
+  //   this.operationsService
+  //     .updateSujet(sujet, this.sujet.id)
+  //     .then((data) => {
+  //       this.loading = false;
+  //       this.alert = {
+  //         type: 'success',
+  //         message: 'modifier avec succès',
+  //       };
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       this.alert = {
+  //         type: 'faild',
+  //         message: 'error lors de la modification',
+  //       };
+  //     })
+  //     .finally(() => {
+  //       this.form.reset();
+  //       setTimeout(() => (this.alert = undefined), 3000);
+  //     });
+  // }
 
   onIndexChange(offset: number) {
     if (this.loading) return;
