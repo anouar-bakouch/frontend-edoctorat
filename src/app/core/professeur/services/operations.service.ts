@@ -104,10 +104,10 @@ export class OperationsService {
         });
     });
   }
-
   public getCommissions() {
+
     return new Promise((resolve, reject) => {
-      this.http.get(environment.API_URL + '/api/participant/').subscribe({
+      this.http.get(`${environment.API_URL}/api/participant/`).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -117,6 +117,25 @@ export class OperationsService {
       });
     });
   }
+  // public getCommissions(offset: number | undefined = undefined) {
+
+  //   let url = `${environment.API_URL}/api/participant/`;
+    
+  //   if (offset) {
+  //     url = `${url}?limit=50&offset=${offset}`;
+  //   }
+
+  //   return new Promise<Result<Commission>>((resolve, reject) => {
+  //     this.http.get<Result<Commission>>(url).subscribe({
+  //       next: (data) => {
+  //         resolve(data);
+  //       },
+  //       error: (err) => {
+  //         reject(err);
+  //       },
+  //     });
+  //   });
+  // }
 
   public getResultats(offset: number | undefined = undefined) {
     let url = `${environment.API_URL}/api/examiner/`;
@@ -135,23 +154,30 @@ export class OperationsService {
     });
   }
 
-  public getMesInscrits(): Observable<Result<Inscription>> {
-    return this.http.get<Result<Inscription>>(
-      environment.API_URL + '/api/inscrits/'
-    );
-  }
-  // public getMesInscrits(){
-  //   return new Promise((resolve, reject) => {
-  //     this.http.get(
-  //       environment.API_URL + '/api/inscrits/'
-  //     ).subscribe({
-  //         next: (data) => {
-  //           resolve(data);
-  //         },
-  //         error: (err) => {
-  //           reject(err);
-  //         },
-  //       });
-  //   });
+  // public getMesInscrits(): Observable<Result<Inscription>> {
+  //   return this.http.get<Result<Inscription>>(
+  //     environment.API_URL + '/api/inscrits/'
+  //   );
   // }
+  ///////////////////////////////////
+
+  //// mes inscrit on doit ajouter au backend un model inscripation et d'autre choses
+
+  ////////////////////////
+  public getMesInscrits(offset: number | undefined = undefined){
+    let url = `${environment.API_URL}/api/inscrits/`;
+    if (offset) {
+      url = `${url}?limit=50&offset=${offset}`;
+    }
+    return new Promise<Result<Inscription>>((resolve, reject) => {
+      this.http.get<Result<Inscription>>(url).subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
+    });
+  }
 }
