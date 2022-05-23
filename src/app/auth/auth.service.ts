@@ -151,7 +151,7 @@ export class AuthService {
   public logOut() {
     this.tokenStorage.clearTokens();
     window.localStorage.removeItem(USER_INFO);
-    this.router.navigateByUrl("/home");
+    //this.router.navigateByUrl("/home");
   }
 
   public userLoggedInAndInGroup(group: string): boolean {
