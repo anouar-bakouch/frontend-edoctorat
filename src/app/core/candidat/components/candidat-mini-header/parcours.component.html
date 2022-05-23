@@ -21,7 +21,7 @@
 
           <li>
             
-            <a class="dropdown-item" [routerLink]="p.value" routerLinkActive="active" *ngFor="let p of parcours">{{p.value}}</a>
+            <a class="dropdown-item" [routerLink]="p.value" routerLinkActive="active" *ngFor="let p of parcours"> {{'candidat.parcours.'+p.name | translate }}</a>
             
           
           </li>

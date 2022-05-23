@@ -1,45 +1,48 @@
 <div class="container-fluid mt-3">
 
     <div class="table-responsive">
-
-        <table class="table table-align-middle" id="table" data-toggle="table" data-toolbar="#toolbar">
+        
+        <table class="table">
+            
             <thead>
                 <tr class="table-primary">
-                    <th scope="col" class="w-7" data-field="sujet" data-filter-control="input" data-sortable="true">
-                        sujet</th>
-                    <th scope="col" class="w-15" data-field="cne" data-filter-control="select" data-sortable="true">
+                    <th scope="col" class="w-7">
                         CNE</th>
-                    <th scope="col" class="w-13" data-field="Nom" data-filter-control="input" data-sortable="true">
+                    <th scope="col" class="w-15" data-field="sujet"  >
+                        sujet</th>
+                    <th scope="col" class="w-13">
                         Candidat</th>
-                    <th scope="col" class="w-13" data-field="note dpssier" data-filter-control="input"
-                        data-sortable="true">Note dossier</th>
-                    <th scope="col" class="w-43" data-field="note entretien" data-filter-control="input"
-                        data-sortable="true">Note entretien</th>
-                    <th scope="col" class="w-13" data-field="moyenne_generale" data-sortable="true"
-                        data-filter-control="input">Moyenne generale </th>
-                    <th scope="col" class="w-13" data-field="decision" data-sortable="true"
-                        data-filter-control="select">Decision </th>
-
-
-
+                    <th scope="col" class="w-13"
+                        >Note dossier</th>
+                    <th scope="col" class="w-43"
+                        >Note entretien</th>
+                    <th scope="col" class="w-13" 
+                        >Moyenne generale </th>
+                    <th scope="col" class="w-13" 
+                        >Decision </th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="align-text-bottom">
-
-                    <td>titre sujet</td>
-                    <td>cne</td>
-                    <td>nom prenom</td>
-                    <td>note entretien</td>
-                    <td>note dossier</td>
-                    <td>moyennne generale</td>
-                    <td>decisison</td>
-
+                <tr *ngFor="let cInfos of candidatInfos.results"> 
+                    <td class="text-primary fs-bold">{{cInfos.candidat.cne}}</td>
+                    <td>{{cInfos.sujet.titre}}</td>
+                    <td>{{cInfos.candidat.prenom}} {{cInfos.candidat.nom}}</td>
+                    <td>{{cInfos.noteEntretien}}</td>
+                    <td>{{cInfos.noteDossier}}</td>
+                    <td>{{ cInfos.noteDossier + cInfos.noteEntretien /2 }}</td>
+                    <td>{{cInfos.decision}}</td>
                 </tr>
-
             </tbody>
         </table>
 
-
+        <div *ngIf="isFetchingItems">
+            <h4>
+              <img
+                src="/assets/images/connexion/loading.webp"
+                width="300"
+                height="100"
+              />
+            </h4>
+          </div>
     </div>
 </div>

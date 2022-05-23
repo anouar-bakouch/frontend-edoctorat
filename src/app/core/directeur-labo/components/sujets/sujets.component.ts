@@ -62,7 +62,19 @@ export class SujetsComponent implements OnInit {
     this.sujets_ = x.results;    
     this.isFetchingItems = false;
     this.itemsCount= x.count;
-  })
+  }).catch((error)=>{
+    this.alert = {
+      type: 'error',
+      message: 'error',
+    };
+  }).finally(()=>{
+    this.loading = false
+    this.alert = {
+      type: 'success',
+      message: 'Bienvenue',
+    };
+    setTimeout(() => (this.alert = undefined), 3000);
+  });
 
   }
 
@@ -70,7 +82,6 @@ export class SujetsComponent implements OnInit {
 
   this.operationsService.getFormationsDoctorales().then(res=>{
      this.formations = res;
-
   })
 
   }

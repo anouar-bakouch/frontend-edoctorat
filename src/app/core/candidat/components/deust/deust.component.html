@@ -14,7 +14,7 @@
   
     <div class="form-card my-3">
       <h3 class="text-primary mt-3 border border-primary text-center p-3">
-        {{'candidat.parcours.nom_deust' | translate}}
+        {{'candidat.parcours.DEUST' | translate}}
       </h3>
       <p class="text-primary mt-3 border border-primary text-center p-3">
         <i
@@ -87,7 +87,7 @@
               <label
                 class="col-form-label-sm control-label"
                 for="id_date_diplome_bac"
-                >{{'candidat.parcours.date' | translate}}</label
+                >{{'candidat.parcours.date' | translate}} {{'candidat.parcours.DEUST' | translate}}</label
               >
   
               <input
@@ -213,7 +213,7 @@
         <div class="row mt-5">
           <div class="mb-3">
             <label for="bac_dip" class="form-label"
-              >{{'candidat.parcours.diplome' | translate}} pdf
+              >{{'candidat.parcours.diplome' | translate}} {{'candidat.parcours.DEUST' | translate}} pdf
               <span class="text-danger h6"> < 4MO </span></label
             >
             <h6 class="text-primary" *ngIf="diplomeFileLink">

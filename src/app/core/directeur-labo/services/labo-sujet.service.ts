@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Examiner } from 'src/app/models/Examiner';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
@@ -121,19 +122,38 @@ export class LaboSujet {
   }
 
   public fetchCandidat(id:number){
-    return new Promise((resolve, reject) => {
-      this.http
-        .get(environment.API_URL + '/api/examiner/?labo_id='+id+'/')
-        .subscribe({
-          next: (data) => {
-            resolve(data);
-          },
-          error: (err) => {
-            reject(err);
-          },
-        });
-    });
+    // return new Promise((resolve, reject) => {
+    //   this.http
+    //     .get(environment.API_URL + '/api/examiner/?labo_id='+id+'/')
+    //     .subscribe({
+    //       next: (data) => {
+    //         resolve(data);
+    //       },
+    //       error: (err) => {
+    //         reject(err);
+    //       },
+    //     });
+    // });
   }
+
+  fetchResultats():Promise<Result<Examiner>>{
+
+  return new Promise((resolve, reject) => {
+        this.http
+          .get<Result<Examiner>>(environment.API_URL + '/api/examiner/')
+          .subscribe({
+            next: (data) => {
+              resolve(data);
+            },
+            error: (err) => {
+              reject(err);
+            },
+          });
+      });
+
+  }
+
+
 
 
 }

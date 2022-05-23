@@ -9,8 +9,7 @@
         {{ errorText }}
     </h5>
     <div class="form-card my-3">
-        <h3 class="text-primary mt-3 border border-primary text-center p-3"> {{'candidat.parcours.nom_dut' | translate
-            }}</h3>
+        <h3 class="text-primary mt-3 border border-primary text-center p-3"> {{'candidat.parcours.DUT' | translate }}</h3>
         <p class="text-primary mt-3 border border-primary text-center p-3">
             <i class="bi bi-exclamation-triangle fs-3 text-danger font-weight-bold"></i>
             {{'candidat.parcours.decription-dut' | translate }}
@@ -62,7 +61,7 @@
                     <div class="form-group required">
                         <label class="col-form-label-sm control-label"
                             for="id_date_diplome_bac">{{'candidat.parcours.date' | translate }}
-                            Dut</label>
+                            {{'candidat.parcours.DUT' | translate }}</label>
 
                         <input type="date" value="" class="form-control form-control-sm dateBac" required=""
                             id="id_date_diplome_bac" formControlName="dateCommission" />
@@ -147,7 +146,7 @@ etablissementBac
 
             <div class="row mt-5">
                 <div class="mb-3">
-                    <label for="dut_dip" class="form-label">{{'candidat.parcours.diplome' | translate }} DUT pdf
+                    <label for="dut_dip" class="form-label">{{'candidat.parcours.diplome' | translate }} {{'candidat.parcours.DUT' | translate }} pdf
                         <span class="text-danger h6">
                             < 4MO </span></label>
                     <h6 class="text-primary" *ngIf="diplomeFileLink">

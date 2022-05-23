@@ -1,20 +1,20 @@
 {
   "home": {
-      "Pole_doctorat": "مركز دراسات الدكتوراه",
+      "Pole_doctorat": "قطب دراسات الدكتوراه",
       "pole_doctrales" : {
                   "description" : "وصف",
-                  "ced" : "مركز دراسة الدكتوراه"
+                  "ced" : "مركز دراسات الدكتوراه"
             },
-    "laboratoire_recherche": "مختبر أبحاث",
-    "formation_doctorale": "دراسات الدكتوراه",
+    "laboratoire_recherche": "مختبر   الأبحاث",
+    "formation_doctorale": "تكوينات الدكتوراه",
     "Reglement_candidature": "القواعد والترشيح",
     "reg_candidature" : {
-      "Charte_de_doctorat": "ميثاق الدكتوراه",
-      "Comment candidater": "كيفية التقديم",
+      "Charte_de_doctorat": "ميثاق الاطروحة",
+      "Comment candidater": "كيفية الترشيح",
       "Candidater":"ترشح",
       "guide":"دليل" 
     },
-    "connecter": "تسجيل الدخول",
+    "connecter": "سجل الدخول",
     "footer":{
       "email_footer":"بإدخال بريدك الإلكتروني سوف تتلقى الأخبار" ,
       "abonnement":"لمتابعة",
@@ -22,16 +22,16 @@
       "doctorat":"الدكتوراه",
       "prof":"اساتذة",
       "plus":"أكثر",
-      "a_propos":"في ما يخص الدكتوراه",
+      "a_propos":"بخصوص ",
       "faq":"FAQ",
       "contact":"اتصال",
-      "formation":"دراسات",
-      "mobilite":"إمكانية التنقل",
-      "Pole_recherche":"مركز البحث",
-      "proc":"الشكل والإجراءات",
-      "Appel":"مناقصة",
+      "formation":"تكونات ",
+      "mobilite":"الحركية",
+      "Pole_recherche":"قطب الأبحاث ",
+      "proc":" الإستمارات والإجراءات",
+      "Appel":"...",
       "cite":"مركزالابتكار في فاس",
-      "president":"خدمات الرئاسة",
+      "president":"خدمات رئاسة الجامعة",
       "cooperation":"التعاون الدولي"
     },
     
@@ -39,10 +39,10 @@
               "doctorat":"الدكتوراه - جامعة سيدي محمد بن عبد الله فاس",
               "candidater":"ترشح",
               "connecter":"تسجيل الدخول",              
-              "cycle":" دورة الدكتوراه - جامعة سيدي محمد بن عبد الله فاس",
+              "cycle":" مستوى  الدكتوراه  - جامعة سيدي محمد بن عبد الله فاس",
               "candidat":"مُرَشَّح",
               "projet":"المشاريع المنفذة",
-              "formation":"دراسات الدكتوراه"
+              "formation":"تكوينات الدكتوراه"
             },
             "conseils":{
               "conseils":"نصائح",
@@ -62,9 +62,9 @@
 
             },
             "calendrier":{
-              "calendrier":"جداول",
-              "calendrier-prof":"جدول الاساتذة",
-              "calendrier-doctorant":"جدول طلاب دكتوراه و المرشحين"
+              "calendrier":"روزنامة",
+              "calendrier-prof":"روزنامة الاساتذة",
+              "calendrier-doctorant":"روزنامة طلاب دكتوراه و المرشحين"
             }
 
 
@@ -72,7 +72,7 @@
   "connexion": {
     "candidat": "مُرَشَّح",
     "professeur": "أستاذ جامعي",
-    "directeur_ced": "مدير مركز دراسة الدكتوراه",
+    "directeur_ced": "مدير مركز دراسات الدكتوراه",
     "directeur_pole": "مدير القطب",
     "directeur_labo": "مدير المختبر",
     "scolarite": "مصلحة الشؤون الطلابية"
@@ -80,11 +80,11 @@
   "auth": {
     "login" :{
 
-      "email":"بريد الالكتروني" ,
+      "email":"البريد الالكتروني" ,
       "mot_de_passe":"كلمة السر",
       "pas_de_compte" : "لا يوجد لديك حساب ؟",
-      "inscription":"إفتح حساب",
-      "login" : "تسجيل الدخول"
+      "inscription":"سجل هنا",
+      "login" : "سجل الخروج"
 
     }
   },
@@ -93,42 +93,46 @@
     "informations_personnels" : "معلومات شخصية",
     "info_perso":{
       "photo_courant" : "الصورة الحالية",
-      "importer_photo_profil":"استيراد صورة ملف التعريف الخاص بك",
+      "importer_photo_profil":"تحميل صورة  لملف التعريف الخاص بك",
       "Nom": "اللقب بالفرنسية",
       "Prenom":"الاسم بالفرنسية",
-      "CIN" : "رمز الهوية الوطنية أو الدولية",
+      "CIN" : "رقم بطاقة التعريف الوطنية",
       "CNE":"رقم الطالب الوطني",
       "Prenom_ar":"الاسم باللغة العربية",
       "Nom_ar":"اللقب باللغة العربية",
-      "date_naissance" : "تاريخ الميلاد",
-      "lieu_naissance_ar" : "مكان الولادة باللغة العربية",
-      "lieu_naissance" : "مكان الولادة بالفرنسية",
+      "date_naissance" : "تاريخ الازدياد",
+      "lieu_naissance_ar" : "مكان الازدياد باللغة العربية",
+      "lieu_naissance" : " مكان الازدياد بالفرنسية",
       "sexe" : "الجنس",
       "adresse_residence": "عنوان السكن بالفرنسية",
-      "ville_naissance": "مدينة المولد بالفرنسية",
-      "ville_naissance_ar": "مدينة المولد باللغة العربية",
+      "ville_naissance": "مدينة الازدياد بالفرنسية",
+      "ville_naissance_ar": "مدينة الازدياد باللغة العربية",
       "fonctionnaire" : "مُوَظَّف",
       "telephone" : "الهاتف",
       "Pays" : "بلد",
-      "confirmer":"أكّد",
+      "confirmer":"تأكيد",
       "masculine": " مذكر",
       "feminine": "مؤنث"
     },
 
     
     "parcours": {
-      "nom_bac":"البكالوريا",
-      "nom_dut":"شهادة جامعية في التكنولوجيا",
-      "nom_deug":" شهادة جامعية عامة",
-      "nom_deust":"شهادة جامعية في العلوم والتكنولوجيا",
-      "nom_bts":"شهادة التقني العالي",
-      "nom_licence_pro":"شهادة الإجازة المهنية",
-      "nom_master":"ماجستير",
-      "nom_master_pro":"ماجستير متخصص",
+      "BAC":"البكالوريا",
+      "DUT":"الدبلوم الجامعي التقني",
+      "DEUG":"دبلوم الدراسات الجامعية العامة",
+      "DEUST":"دبلوم الدراسات الجامعية للعلوم و التقنيات",
+      "BTS":"شهادة التقني العالي",
+      "LICENCE_PROFESSIONNELLE":" الإجازة المهنية",
+      "MASTER":"الماجستر",
+      "MASTER_SPECIALISE":"الماجستر  المتخصص",
       "description-master-pro":"لا يعتبر التوفر على  ماجستير متخصص إلزامياً للانتقال إلى الشهادات الأخرى",
-      "nom_dts":"شهادة التقني متخصص",
-      "nom_ci":"شهادة مهندس",
-      "nom_licence":"شهادة الإجازة",
+      "DTS":"دبلوم التقني المتخصص",
+      "CI":"سلك المهندس ",
+      "LICENCE":"الإجازة",
+      "MASTER_EN_SCIENCE_TECHNIQUE":"ماجستير في العلوم والتكنولوجيا",
+      "DOCTORATE_EN_MEDICINE":"دكتوراه في الطب",
+      "description-master-st":"غير ضروري للمرور الى الشهادات الأخرى master st",
+      "description-medecine":"غير ضروري للمرور الى الشهادات الأخرى Doctorat en Médicine",
       "description-licence":"غير ضروري للمرور الى الشهادات الأخرى Licence",
       "description-dts":"غير ضروري للمرور الى الشهادات الأخرى DTS",
       "description-bts":"غير ضروري للمرور الى الشهادات الأخرى BTS",
@@ -136,40 +140,40 @@
       "description-deug":"غير ضروري للمرور الى الشهادات الأخرى DEUG",
       "decription-dut":"املأ هذا النموذج فقط إذا كان عليك ذلك ، وإلا يرجى تجاهله",
       "decription-bac":"امتلاك  شهادة البكالوريا إلزامي للمرورالى كل الشهادات الأخرى",
-      "parcours": "التحصيل التعليمي",
-      "intitulé":" نوعية الشهادة",
+      "parcours": "المسارات",
+      "intitulé":"عنوان",
       "type":"نوع" ,
       "spécialité":" تخصص",
       "date":"تاريخ الحصول",
       "ville":"المدينة",
-      "pays":" البلد",
-      "province":"المحافظة",
-      "mention":"تقدير",
+      "pays":"البلد",
+      "province":"الإقليم",
+      "mention":"الميزة",
       "université":"جامعة",
       "etablissement":"مؤسسة",
-      "moyenne":"المعدل العام",
+      "moyenne":"المتوسط ​​العام",
       "diplome":"الشهادة",
-      "releves":"ملف النقاط",
+      "releves":"كشف النقاط",
       "fichier_courant":"الملف الحالي",
-      "choix_fichier":"اختر ملفا"
+      "choix_fichier":"اختيار ملف"
     },
-    "postuler": "تقديم طلبات",
+    "postuler": "تقديم الطلب",
     "postuler_details" : {
       "conseil_1" : " ابحث عن محور البحث او عنوان الموضوع",
       "conseil_2" : "لاختيار انقر فوق المحور أو  الموضوع المطلوب",
       "conseil_3" : "في الجزء السفلي من الصفحة انقر فوق  سيظهر اختيارك في الجزء السفلي من الصفحة. يرجى ملاحظة أن بعض محاور البحثأو الموضوعات تتطلب منك تحميل مشروعك البحثي المقابل. إذا كان الأمر كذلك ، قمبتحميل مشروعك البحثي بتنسيق pdf"
   
     },
-    "notifications": "الإشعارات",
+    "notifications": "إشعارات",
     "notifications_details" : {
       "conseil_1" : "Nous vous invitons à participer à l'entretien de notre commission qui se tiendra le",
-      "liste_principale" : "Liste principale",
-      "liste_d'attente" : "Liste d'attente (dêpot de dossier de 14h à 16h au CED Dhar Mahraz)",
+      "liste_principale" : "الائحة الرئيسية",
+      "liste_d'attente" : "لائحة الإنتظار",
       "aide_infos" : "مساعدة ومعلومات إضافية",
       "conseil_2" : "، اطبع طلب التسجيل في الموضوع الذي ترغب في التسجيل فيه وأكمل ملفك بالمستندات المحددة في وثائق لتقديم ملف.       انقر فوق النتيجة لرؤية الموضوعات التي تم قبولك فيها في القائمة الرئيسية. في حالة تلقيك إخطارًا بنتائج تحمل الموضوع مع ذكر (Liste Principale)",
-      "piece_fournir" : "وثائق لتقديم ملف التسجيل"
+      "piece_fournir" : "الوثائق المطلوبة"
     },
-    "deconnexion" :"تسجيل خروج"
+    "deconnexion" :"سجل الخروج"
   }
   
 

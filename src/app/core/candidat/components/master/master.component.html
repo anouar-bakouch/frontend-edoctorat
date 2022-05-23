@@ -14,7 +14,7 @@
   
     <div class="form-card my-3">
       <h3 class="text-primary mt-3 border border-primary text-center p-3">
-        {{'candidat.parcours.nom_master' | translate}}
+        {{'candidat.parcours.MASTER' | translate}}
       </h3>
    
       <form [formGroup]="candidatMasterForm" (ngSubmit)="onSubmit()">
@@ -200,7 +200,7 @@
         <div class="row mt-5">
           <div class="mb-3">
             <label for="licence" class="form-label"
-              > {{'candidat.parcours.diplome' | translate}}  {{'candidat.parcours.nom_master' | translate}} pdf
+              > {{'candidat.parcours.diplome' | translate}}  {{'candidat.parcours.MASTER' | translate}} pdf
               <span class="text-danger h6"> < 4MO </span></label
             >
             <h6 class="text-primary" *ngIf="diplomeFileLink">
