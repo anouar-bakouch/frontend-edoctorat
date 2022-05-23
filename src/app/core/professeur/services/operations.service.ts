@@ -56,10 +56,17 @@ export class OperationsService {
       });
     });
   }
-  public getSujet(id: number): Observable<Sujet> {
-    return this.http.get<Sujet>(
-      environment.API_URL + '/api/sujets/' + id + '/'
-    );
+  public getSujet(id: number)  {
+    return new Promise<Sujet>((resolve, reject) => {
+      this.http.get<Sujet>(environment.API_URL + '/api/sujets/' + id + '/').subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
   }
 
   public addSujet(sujet: object) {
