@@ -17,6 +17,8 @@ import { OperationsService } from '../../services/operations.service';
 export class ProfInscritsComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
   public loading: boolean = false;
+  public page: number = 1;
+  public itemsCount: number | undefined
   public message: string =
     "aucun sujet n'est choisi pour le moment,les sujets choisies vont apparaitre ici";
   public inscriptions: Inscription[] = [];
@@ -59,7 +61,31 @@ export class ProfInscritsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getMesInscrits()
+    this.loading = true
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+
+
+    this.operationsService.getMesInscrits().then(x => {
+      this.loading = false
+      this.inscriptions = x.results
+      this.itemsCount = x.count;
+    }).catch((error) => {
+      console.log(error)
+      this.alert = {
+        type: 'error',
+        message: 'error',
+      };
+    }).finally(() => {
+      this.loading = false
+      this.alert = {
+        type: 'success',
+        message: 'success',
+      };
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
   }
 
   closeResult: string = '';
@@ -96,13 +122,6 @@ export class ProfInscritsComponent implements OnInit {
     }
   }
 
-  getMesInscrits() {
-    this.operationsService.getMesInscrits().subscribe(data => {
-      console.log(data)
-      this.resultat = data;
-      this.inscriptions = this.resultat.results
-    })
-  }
 
   onClickSubmit() {
     
@@ -124,12 +143,6 @@ export class ProfInscritsComponent implements OnInit {
       .updateSujet(sujet, this.sujet.id)
       .then((data) => {
         this.loading = false;
-
-        // for (var i = 0; i < this.sujets.length; i++) {
-        //   if (this.sujets[i].id === this.sujet.id) {
-        //     this.sujets[i] = data as Sujet;
-        //   }
-        // }
         this.alert = {
           type: 'success',
           message: 'modifier avec succès',
@@ -146,5 +159,16 @@ export class ProfInscritsComponent implements OnInit {
         this.form.reset();
         setTimeout(() => (this.alert = undefined), 3000);
       });
+  }
+
+  onIndexChange(offset: number) {
+    if (this.loading) return;
+    this.loading = true;
+    this.operationsService
+      .getMesInscrits(offset)
+      .then((d) => {
+        this.inscriptions = d.results;
+      })
+      .finally(() => (this.loading = false));
   }
 }
