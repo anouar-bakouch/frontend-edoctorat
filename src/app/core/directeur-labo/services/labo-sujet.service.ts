@@ -121,26 +121,16 @@ export class LaboSujet {
 
   }
 
-  public fetchCandidat(id:number){
-    // return new Promise((resolve, reject) => {
-    //   this.http
-    //     .get(environment.API_URL + '/api/examiner/?labo_id='+id+'/')
-    //     .subscribe({
-    //       next: (data) => {
-    //         resolve(data);
-    //       },
-    //       error: (err) => {
-    //         reject(err);
-    //       },
-    //     });
-    // });
-  }
 
-  fetchResultats():Promise<Result<Examiner>>{
 
+  fetchResultats( offset: number | undefined = undefined):Promise<Result<Examiner>>{
+    let url = `${environment.API_URL}/api/examiner/`;
+    if (offset) {
+      url = `${url}?limit=50&offset=${offset}`;
+    }
   return new Promise((resolve, reject) => {
         this.http
-          .get<Result<Examiner>>(environment.API_URL + '/api/examiner/')
+          .get<Result<Examiner>>(url)
           .subscribe({
             next: (data) => {
               resolve(data);

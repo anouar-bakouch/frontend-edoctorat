@@ -39,14 +39,22 @@ export class ResultatsComponent implements OnInit {
       };
     }).finally(()=>{
       this.loading = false
-      this.alert = {
-        type: 'success',
-        message: 'Bienvenue',
-      };
       setTimeout(() => (this.alert = undefined), 3000);
     });
 
   }
+
+  onIndexChange(offset: number) {
+    if (this.isFetchingItems) return;
+    this.isFetchingItems = true;
+    this.candidatLabo
+      .fetchResultats(offset)
+      .then((d) => {
+        this.candidatInfos.results = d.results;
+      })
+      .finally(() => (this.isFetchingItems = false));
+  }
+
 
 
 }

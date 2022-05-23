@@ -1,12 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Commission } from 'src/app/models/Commission';
-import { Examiner } from 'src/app/models/Examiner';
-import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Inscription } from 'src/app/models/Inscription';
-import { Participe } from 'src/app/models/Participe';
-import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { environment } from 'src/environments/environment';
