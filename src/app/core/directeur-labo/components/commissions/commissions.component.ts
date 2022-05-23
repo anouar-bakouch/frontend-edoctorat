@@ -189,7 +189,6 @@ export class CommissionsComponent implements OnInit {
       }
       this.processedSujetData.get(`${sujet.professeur.nom} ${sujet.professeur.prenom}`).push(sujet);
     });
-    console.log(this.processedSujetData)
   }
 
   private getDismissReason(reason: any): string {

@@ -16,6 +16,7 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SujetTreeComponent } from './components/sujet-tree/sujet-tree.component';
 
 
 
@@ -30,6 +31,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CandidatsComponent,
     OptionsComponent,
     DirecteurLaboComponent,
+    SujetTreeComponent,
   ],
   imports: [
     CommonModule,
