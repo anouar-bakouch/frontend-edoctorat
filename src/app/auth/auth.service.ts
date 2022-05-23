@@ -27,7 +27,7 @@ export class AuthService {
     new BehaviorSubject(this.getCurrentUser());
 
   loginCandidat(email: string, password: string): Promise<any> {
-    this.logOut();
+    this.clearCredentials();
     let errorsOccured = false;
     let data_: Token;
     return new Promise((reslove_, reject) => {
@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   loginProfessor(idToken: string) {
-    this.logOut();
+    this.clearCredentials();
     return new Promise((resolve, reject) => {
       this.httpClient
         .post<AuthProf>(`${environment.API_URL}/api/verify-is-prof/`, {
@@ -148,31 +148,30 @@ export class AuthService {
     this.currentUserSubjet.next(info);
   }
 
-  public logOut() {
+  public clearCredentials() {
     this.tokenStorage.clearTokens();
     window.localStorage.removeItem(USER_INFO);
-    this.router.navigateByUrl("/home");
   }
 
   public userLoggedInAndInGroup(group: string): boolean {
     const isTokenOld = this.tokenStorage.checkIfTokenIsOld();
     if (isTokenOld) {
-      this.logOut();
+      this.clearCredentials();
       return false;
     }
     const user: object | UserInfo = JSON.parse(
       window.localStorage.getItem(USER_INFO) ?? '{}'
     );
     if (Object.keys(user).length === 0) {
-      this.logOut();
+      this.clearCredentials();
       return false;
     }
     if (!(user as UserInfo).groups) {
-      this.logOut();
+      this.clearCredentials();
       return false;
     }
     if ((user as UserInfo).groups.indexOf(group) <= -1) {
-      this.logOut();
+      this.clearCredentials();
       return false;
     }
     return true;

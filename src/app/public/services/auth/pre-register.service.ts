@@ -10,7 +10,7 @@ export class PreRegisterService {
   constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
   makeConfirmationEmailRequest(email: string, nom: string, prenom: string) {
-    this.authService.logOut()
+    this.authService.clearCredentials()
     return this.httpClient.post(`${environment.API_URL}/api/confirm-email/`, {
       email,
       nom,
