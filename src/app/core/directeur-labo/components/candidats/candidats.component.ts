@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Examiner } from 'src/app/models/Examiner';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
+import { OperationsService } from '../../services/operations.service';
 
 @Component({
   selector: 'app-candidats',
@@ -6,10 +9,54 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./candidats.component.css']
 })
 export class CandidatsComponent implements OnInit {
-
-  constructor() { }
+  public alert: AlertData | undefined = undefined;
+  public loading: boolean = false;
+  public page: number = 1;
+  public itemsCount: number | undefined;
+  public candidats: Examiner[] = []
+  constructor(private operationsService: OperationsService) { }
 
   ngOnInit(): void {
+    this.getCandidats()
   }
 
+  getCandidats() {
+    this.loading = true
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.operationsService.getCandidats().then(data => {
+      this.loading = false
+      console.log(data.results)
+      this.itemsCount = data.count;
+      this.candidats = data.results
+      // this.commissions = data as Commission[];
+      // console.log(this.commissions)
+
+    }).catch((error) => {
+      console.log(error)
+      this.alert = {
+        type: 'error',
+        message: 'error',
+      };
+    }).finally(() => {
+      this.loading = false
+      this.alert = {
+        type: 'success',
+        message: 'success',
+      };
+      setTimeout(() => (this.alert = undefined), 3000);
+    });
+  }
+  onIndexChange(offset: number) {
+    if (this.loading) return;
+    this.loading = true;
+    this.operationsService
+      .getCandidats(offset)
+      .then((d) => {
+        this.candidats = d.results;
+      })
+      .finally(() => (this.loading = false));
+  }
 }
