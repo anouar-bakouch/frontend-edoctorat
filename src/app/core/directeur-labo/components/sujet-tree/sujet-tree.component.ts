@@ -10,7 +10,8 @@ export class SujetTreeComponent implements OnInit {
 
   @Input() profNom: String
   @Input() sujets: Sujet[]
-  @Output() sujetClicked: EventEmitter<number> = new EventEmitter()
+  @Input() selectedSujetsIds: number[]
+  @Output() sujetClicked: EventEmitter<Sujet> = new EventEmitter()
   expand = false
 
   constructor() { }
@@ -20,6 +21,10 @@ export class SujetTreeComponent implements OnInit {
 
   onExpandToggle() {
     this.expand = !this.expand
+  }
+
+  onSujetClick(s: Sujet) {
+    this.sujetClicked.emit(s)
   }
 
 }

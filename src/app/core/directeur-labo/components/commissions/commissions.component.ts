@@ -41,6 +41,7 @@ export class CommissionsComponent implements OnInit {
   // dropdownList: any = [];
   
   selectedSujets: Sujet[] = [];
+  selectedSujetsIds: number[] = [];
   selectedProfs: Professeur[] = [];
   sujets_ids: number[] = [];
   professeurs_ids: number[] = [];
@@ -201,20 +202,19 @@ export class CommissionsComponent implements OnInit {
     }
   }
 
-  onSujetSelect(item: any) {
-    this.selectedSujets.push(item)
-    this.selectedSujets.sort()
-    for (var i = 0; i < this.sujets.length; i++) {
-      if (this.sujets[i] === item) {
-        this.sujets.splice(i, 1);
-      }
-    }
+  onSujetSelect(sujet: Sujet) {
+    this.selectedSujets.push(sujet)
+    this.selectedSujetsIds.push(sujet.id)
   }
 
-  onSujetDeSelect(item: any) {
-    this.sujets.push(item)
+  onSujetDeSelect(sujet: Sujet) {
+    for (let i = 0; i < this.selectedSujetsIds.length; i++) {
+      if (this.selectedSujetsIds[i] === sujet.id) {
+        this.selectedSujetsIds.splice(i, 1)
+      }
+    }
     for (var i = 0; i < this.selectedSujets.length; i++) {
-      if (this.selectedSujets[i] === item) {
+      if (this.selectedSujets[i].id === sujet.id) {
         this.selectedSujets.splice(i, 1);
       }
     }

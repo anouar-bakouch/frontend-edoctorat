@@ -126,7 +126,7 @@
             <div class="sujet">
               <div class="col-5 border rounded p-2">
                 <div class="ex3 mb-2 position-relative">
-                  <app-sujet-tree *ngFor="let key of processedSujetData.keys()" [profNom]="key" [sujets]="processedSujetData.get(key)"></app-sujet-tree>
+                  <app-sujet-tree *ngFor="let key of processedSujetData.keys()" [profNom]="key" [sujets]="processedSujetData.get(key)" [selectedSujetsIds]="selectedSujetsIds" (sujetClicked)="onSujetSelect($event)"></app-sujet-tree>
                 </div>
                 <app-offsetpagination
                   [itemsCount]="itemsCountSujets"
