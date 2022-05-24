@@ -12,39 +12,42 @@ import { LaboSujet } from '../../services/labo-sujet.service';
 
 export class ResultatsComponent implements OnInit {
 
-  public candidatInfos : Result<Examiner> | undefined;
-  public loading:boolean = false;
+  public candidatInfos: Result<Examiner> | undefined;
+  public loading: boolean = false;
   public alert: AlertData | undefined = undefined;
   public page: number = 1;
   public itemsCount: number | undefined;
-  public errorText:string = '';
+  public errorText: string = '';
   public isFetchingItems = true;
-  constructor(public candidatLabo : LaboSujet ) { }
+  constructor(public candidatLabo: LaboSujet) { }
 
   ngOnInit(): void {
     this.fetchResultats();
   }
-  
-  public fetchResultats(){
 
+  public fetchResultats() {
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
     this.candidatLabo.fetchResultats()
-    .then( res =>{
-          this.candidatInfos = res;
-           this.isFetchingItems = false;
-           this.itemsCount= res.count;
-    }).catch((error)=>{
-      this.alert = {
-        type: 'error',
-        message: 'error',
-      };
-    }).finally(()=>{
-      this.loading = false
-      this.alert = {
-        type: 'success',
-        message: 'Bienvenue',
-      };
-      setTimeout(() => (this.alert = undefined), 3000);
-    });
+      .then(res => {
+        this.candidatInfos = res;
+        this.isFetchingItems = false;
+        this.itemsCount = res.count;
+        this.alert = {
+          type: 'success',
+          message: 'Bienvenue',
+        };
+      }).catch((error) => {
+        this.alert = {
+          type: 'error',
+          message: 'error',
+        };
+      }).finally(() => {
+        this.loading = false
+        setTimeout(() => (this.alert = undefined), 3000);
+      });
 
   }
 
