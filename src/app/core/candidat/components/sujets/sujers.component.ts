@@ -3,10 +3,8 @@ import { Postuler } from 'src/app/models/Postuler';
 import { CandidatPostulerService } from '../../services/candidat-postuler.service';
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { Diplome } from 'src/app/models/Diplome';
-import { FormBuilder } from '@angular/forms';
-import { RxFormGroup } from '@rxweb/reactive-form-validators';
+import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import swal from 'sweetalert';
-
 
 
 @Component({
@@ -29,11 +27,11 @@ export class SujersComponent implements OnInit {
   public postuler!:Postuler;
   public isUpdating:boolean = false;
  
-  public Sujetform = <RxFormGroup>this.fservice.group({ 
-   projet_these_file : ['']
+  public Sujetform = <RxFormGroup>this.fservice.group({  
+   pathFile : ['']
   })
 
-  constructor(public candidat:CandidatPostulerService,public fservice: FormBuilder) {}
+  constructor(public candidat:CandidatPostulerService,private fservice: RxFormBuilder,) {}
 
   ngOnInit(): void {
 
