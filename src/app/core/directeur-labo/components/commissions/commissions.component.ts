@@ -21,6 +21,8 @@ export class CommissionsComponent implements OnInit {
   public loading: boolean = false;
   public page: number = 1;
   public itemsCount: number | undefined;
+  public itemsCountSujets: number | undefined;
+  public itemsCountProfs: number | undefined;
   public commissions: Commission[] = [];
   public isFetchingItems = false;
   public commission: Commission = {
@@ -37,7 +39,9 @@ export class CommissionsComponent implements OnInit {
   public professeurs: Professeur[] = [];
   closeResult: string = '';
   // dropdownList: any = [];
+  
   selectedSujets: Sujet[] = [];
+  selectedSujetsIds: number[] = [];
   selectedProfs: Professeur[] = [];
   sujets_ids: number[] = [];
   professeurs_ids: number[] = [];
@@ -69,7 +73,7 @@ export class CommissionsComponent implements OnInit {
       message: 'loading',
     };
 
-    Promise.all([this.getSujetsLabo(), this.getCommissions(), this.getProfesseurs()]).then(() => {
+    Promise.all([this.getCommissions()]).then(() => {
       this.alert = {
         type: 'success',
         message: 'success',
@@ -86,16 +90,7 @@ export class CommissionsComponent implements OnInit {
     });
   }
 
-  onIndexChange(offset: number) {
-    if (this.isFetchingItems) return;
-    this.isFetchingItems = true;
-    this.operationsService
-      .getCommissions(offset)
-      .then((d) => {
-        this.commissions = d.results;
-      })
-      .finally(() => (this.isFetchingItems = false));
-  }
+ 
 
   getSujetsLabo = () => {
     return new Promise((resolve, _) => {
@@ -103,7 +98,9 @@ export class CommissionsComponent implements OnInit {
         this.result = data as Result<Sujet>;
         this.sujets = this.result.results;
         this.labo_id = this.result.results[0].laboratoire.id
+        this.itemsCountSujets = data.count
         resolve(data);
+        this.processSujets(data.results)
       })
     })
   }
@@ -125,13 +122,15 @@ export class CommissionsComponent implements OnInit {
         this.loading = false
         this.result = data as Result<Professeur>;
         this.professeurs = this.result.results;
+        this.itemsCountProfs = data.count
         resolve(data);
       })
     })
   }
 
   fun = (content: any, c: Commission) => {
-
+    this.selectedSujets = []
+    this.form.reset()
     this.form.setValue({
       date: c.dateCommission,
       heure: c.heure,
@@ -140,27 +139,31 @@ export class CommissionsComponent implements OnInit {
       professeurs: ''
     });
     this.commission = c
-    c.sujets.forEach(element => {
-      this.selectedSujets.push(element);
-      for (var i = 0; i < this.sujets.length; i++) {
-        if (this.sujets[i].id === element.id) {
-          this.sujets.splice(i, 1);
-        }
-      }
-    });
+    this.commission.sujets.forEach((element)=>{
+      this.selectedSujets.push(element)
+    })
     this.open(content)
   }
+  public processedSujetData: Map<String, Sujet[]> = new Map();
+  s: Sujet[] = []
+  p: Professeur[] = []
   open(content: any) {
+    this.sujets = []
+    this.selectedProfs = []
+    this.professeurs = []
+    this.professeurs_ids = []
+
     this.loading = true
     this.alert = {
       type: 'loading',
       message: 'loading',
     };
-    this.selectedSujets = []
-    this.sujets = []
-    this.selectedProfs = []
-    this.professeurs = []
-    this.professeurs_ids = []
+   
+    if (content._declarationTContainer.localNames[0] == 'mymodal'){
+      this.selectedSujets = []
+      this.form.reset()
+    }
+    
     Promise.all([this.getSujetsLabo(), this.getProfesseurs()]).then(() => {
       this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
@@ -175,10 +178,20 @@ export class CommissionsComponent implements OnInit {
       };
     }).finally(() => {
       this.loading = false
-      setTimeout(() => (this.alert = undefined), 3000);
+      setTimeout(() => (this.alert = undefined), 1000);
     });
 
   }
+  private processSujets(sujets: Sujet[]) {
+    this.processedSujetData.clear()
+    sujets.forEach(sujet => {
+      if (!this.processedSujetData.has(`${sujet.professeur.nom} ${sujet.professeur.prenom}`)) {
+        this.processedSujetData.set(`${sujet.professeur.nom} ${sujet.professeur.prenom}`, []);
+      }
+      this.processedSujetData.get(`${sujet.professeur.nom} ${sujet.professeur.prenom}`).push(sujet);
+    });
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -189,35 +202,25 @@ export class CommissionsComponent implements OnInit {
     }
   }
 
-  onSujetSelect(item: any) {
-    this.selectedSujets.push(item)
-    // console.log(!this.selectedProfs.includes(item.professeur.id))
-    // if (!this.selectedProfs.includes(item.professeur)) {
-    //   this.selectedProfs.push(item.professeur)
-    // }
-    // if (!this.selectedProfs.includes(item.coDirecteur)) {
-    //   this.selectedProfs.push(item.coDirecteur)
-    // }
-    this.selectedSujets.sort()
-    for (var i = 0; i < this.sujets.length; i++) {
-      if (this.sujets[i] === item) {
-        this.sujets.splice(i, 1);
-      }
-    }
+  onSujetSelect(sujet: Sujet) {
+    this.selectedSujets.push(sujet)
+    this.selectedSujetsIds.push(sujet.id)
   }
 
-  onSujetDeSelect(item: any) {
-    this.sujets.push(item)
+  onSujetDeSelect(sujet: Sujet) {
+    for (let i = 0; i < this.selectedSujetsIds.length; i++) {
+      if (this.selectedSujetsIds[i] === sujet.id) {
+        this.selectedSujetsIds.splice(i, 1)
+      }
+    }
     for (var i = 0; i < this.selectedSujets.length; i++) {
-      if (this.selectedSujets[i] === item) {
+      if (this.selectedSujets[i].id === sujet.id) {
         this.selectedSujets.splice(i, 1);
       }
     }
   }
   onProfesseurSelect(item: any) {
-
     this.selectedProfs.push(item)
-
     for (var i = 0; i < this.professeurs.length; i++) {
       if (this.professeurs[i] === item) {
         this.professeurs.splice(i, 1);
@@ -252,8 +255,6 @@ export class CommissionsComponent implements OnInit {
       labo: this.labo_id
     };
 
-    console.log(comm)
-
     this.operationsService.addCommission(comm).then(
       (data) => {
         this.loading = false;
@@ -262,13 +263,6 @@ export class CommissionsComponent implements OnInit {
           message: 'ajouter avec succès',
         };
         this.commissions.push(data as Commission);
-        // this.selectedSujets.forEach((e, i) => {
-        // this.sujets.push(e)
-
-        //   if (this.selectedSujets[i].id === e.id) {
-        //     this.selectedSujets.splice(i, 1);
-        //   }
-        // });
 
       }).catch((err) => {
         console.log(err);
@@ -302,13 +296,6 @@ export class CommissionsComponent implements OnInit {
           message: 'supprimer avec succès',
         };
 
-        // this.selectedSujets = []
-        // this.sujets = []
-        // this.selectedProfs = []
-        // this.professeurs = []
-        // this.professeurs_ids = []
-        // this.getProfesseurs()
-        // this.getSujetsLabo()
       })
       .catch((error) => {
         console.log(`${error}`);
@@ -366,4 +353,35 @@ export class CommissionsComponent implements OnInit {
       });
   }
 
+  onIndexChange(offset: number) {
+    if (this.loading) return;
+    this.loading = true;
+    this.operationsService
+      .getCommissions(offset)
+      .then((d) => {
+        this.commissions = d.results;
+      })
+      .finally(() => (this.loading = false));
+  }
+  onIndexChangeSujets(offset: number) {
+    if (this.loading) return;
+    this.loading = true;
+    this.operationsService
+      .getSujetsLabo(offset)
+      .then((d) => {
+        this.sujets = d.results;
+        this.processSujets(d.results)
+      })
+      .finally(() => (this.loading = false));
+  }
+  onIndexChangeProfs(offset: number) {
+    if (this.loading) return;
+    this.loading = true;
+    this.operationsService
+      .getProfesseurs(offset)
+      .then((d) => {
+        this.professeurs = d.results;
+      })
+      .finally(() => (this.loading = false));
+  }
 }

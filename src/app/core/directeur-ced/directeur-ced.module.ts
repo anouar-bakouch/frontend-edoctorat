@@ -9,6 +9,9 @@ import { MainCedComponent } from './components/main-ced/main-ced.component';
 import { PrincipaleCedComponent } from './components/principale-ced/principale-ced.component';
 import { CedRoutingModule } from './directeur.routing.module';
 import { DirecteurCedOptionsComponent } from './components/directeur-ced-options/directeur-ced-options.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { DirecteurCedOptionsComponent } from './components/directeur-ced-options
   ],
   imports: [
     CommonModule,
-    CedRoutingModule
+    CedRoutingModule,
+    NgxPaginationModule,
+    SharedModule,
+    TranslateModule
   ]
 })
 export class DirecteurCedModule { }

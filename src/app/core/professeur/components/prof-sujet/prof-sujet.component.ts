@@ -16,7 +16,7 @@ import { OperationsService } from '../../services/operations.service';
   styleUrls: ['./prof-sujet.component.css'],
 })
 export class ProfSujetComponent implements OnInit {
-  
+
   public alert: AlertData | undefined = undefined;
   public loading: boolean = false;
   public sujets: Sujet[] = [];
@@ -115,6 +115,8 @@ export class ProfSujetComponent implements OnInit {
     results: [],
   };
 
+  closeResult: string = '';
+
   public form = new FormGroup({
     titre: new FormControl('', [Validators.required, Validators.minLength(2)]),
     description: new FormControl('', [
@@ -138,47 +140,55 @@ export class ProfSujetComponent implements OnInit {
       type: 'loading',
       message: 'loading',
     };
-    this.operationsService.getSujets().then((data) => {
-      this.result = data as Result<Sujet>;
-      this.sujets = this.result.results;
-      // this.currentProfesseur = this.sujets[1].professeur
-      // console.log(this.sujets);
-    }).then((data)=>{
-      this.operationsService.getProfesseurs().then((data) => {
-        this.result = data as Result<Professeur>;
-        this.professeurs = this.result.results;
-        // console.log(this.professeurs);
-        // var result = this.arrayRemove(this.professeurs);
-        // console.log(result)
-        // this.professeurs = result;
-      });
-    }).then((data)=>{
-      this.operationsService.getFormationDoctorales().then((data) => {
-        this.result = data as Result<FormationDoctorale>;
-        this.formationDoctorales = this.result.results;
-      });
-    }).catch((error)=>{
+    Promise.all([this.getFormationDoctorales(), this.getProfesseurs(), this.getSujets()]).then(() => {
+      this.alert = {
+        type: 'success',
+        message: 'success',
+      };
+    }).catch((error) => {
       console.log(error)
       this.alert = {
         type: 'error',
         message: 'error',
       };
-    }).finally(()=>{
+    }).finally(() => {
       this.loading = false
-      this.alert = {
-        type: 'success',
-        message: 'Bienvenue',
-      };
       setTimeout(() => (this.alert = undefined), 3000);
     });
   }
-
-  closeResult: string = '';
+  getFormationDoctorales = () => {
+    return new Promise((resolve, _) => {
+      this.operationsService.getFormationDoctorales().then((data) => {
+        this.result = data as Result<FormationDoctorale>;
+        this.formationDoctorales = this.result.results;
+        resolve(data);
+      })
+    })
+  }
+  getProfesseurs = () => {
+    return new Promise((resolve, _) => {
+      this.operationsService.getProfesseurs().then((data) => {
+        this.result = data as Result<Professeur>;
+        this.professeurs = this.result.results;
+        resolve(data);
+      })
+    })
+  }
+  getSujets = () => {
+    return new Promise((resolve, _) => {
+      this.operationsService.getSujets().then((data) => {
+        this.result = data as Result<Sujet>;
+        this.sujets = this.result.results;
+        resolve(data);
+      })
+    })
+  }
+  
 
   constructor(
     private modalService: NgbModal,
     private operationsService: OperationsService
-  ) {}
+  ) { }
 
   fun = (content: any, s: Sujet) => {
     this.sujet2 = s;
@@ -188,11 +198,14 @@ export class ProfSujetComponent implements OnInit {
       coDirecteur: null,
       formationDoctorale: null,
     });
-    
+
     this.open(content);
   };
 
   open(content: any) {
+    if (content._declarationTContainer.localNames[0] == 'mymodal') {
+      this.form.reset()
+    }
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
@@ -241,17 +254,17 @@ export class ProfSujetComponent implements OnInit {
           message: 'ajouter avec succès',
         };
         this.sujets.push(data as Sujet);
-    }).catch ((err) => {
-    
-      this.alert = {
-        type: 'error',
-        message: "error lors de l'ajout",
-      };
-    }).finally(() => {
-      this.form.reset();
-      setTimeout(() => (this.alert = undefined), 3000);
-    });
-    
+      }).catch((err) => {
+
+        this.alert = {
+          type: 'error',
+          message: "error lors de l'ajout",
+        };
+      }).finally(() => {
+        this.form.reset();
+        setTimeout(() => (this.alert = undefined), 3000);
+      });
+
   }
 
   onClickDelete(s: Sujet) {

@@ -55,7 +55,7 @@
               modifier
             </button>
             <button
-              class="btn btn-danger  btn-sm my-1"
+              class="btn btn-danger btn-sm my-1"
               type="button"
               (click)="onClickDelete(c)"
             >
@@ -67,7 +67,7 @@
       </tbody>
     </table>
   </div>
-   <app-offsetpagination
+  <app-offsetpagination
     [itemsCount]="itemsCount"
     [itemsPerPage]="50"
     (indexChange)="onIndexChange($event)"
@@ -124,19 +124,19 @@
           <div class="form-group mb-3">
             <label for="sujets" class="mb-3">Sujets</label>
             <div class="sujet">
-              <div class="col-4 border rounded p-2">
-                <div class="ex3">
-                  <p
-                    (click)="onSujetSelect(s)"
-                    *ngFor="let s of sujets"
-                    class="op"
-                  >
-                    {{ s.titre }}
-                  </p>
+              <div class="col-5 border rounded p-2">
+                <div class="ex3 mb-2 position-relative">
+                  <app-sujet-tree *ngFor="let key of processedSujetData.keys()" [profNom]="key" [sujets]="processedSujetData.get(key)" [selectedSujetsIds]="selectedSujetsIds" (sujetClicked)="onSujetSelect($event)"></app-sujet-tree>
                 </div>
+                <app-offsetpagination
+                  [itemsCount]="itemsCountSujets"
+                  [itemsPerPage]="50"
+                  (indexChange)="onIndexChangeSujets($event)"
+                  *ngIf="sujets.length > 0"
+                ></app-offsetpagination>
               </div>
               <div
-                class="col-4 d-flex flex-column justify-content-center align-items-center"
+                class="col-2 d-flex flex-column justify-content-center align-items-center"
               >
                 <h6 class="m-3">
                   ajouter <i class="bi bi-arrow-right-circle-fill"></i>
@@ -145,7 +145,7 @@
                   <i class="bi bi-arrow-left-circle-fill"></i> supprimer
                 </h6>
               </div>
-              <div class="col-4 border rounded p-2">
+              <div class="col-5 border rounded p-2">
                 <div class="ex3">
                   <p
                     *ngFor="let o of selectedSujets"
@@ -162,8 +162,8 @@
             <label for="sujets" class="mb-3">Professeurs</label>
 
             <div class="sujet">
-              <div class="col-4 border rounded p-2">
-                <div class="ex3">
+              <div class="col-5 border rounded p-2">
+                <div class="ex3 mb-2">
                   <p
                     (click)="onProfesseurSelect(s)"
                     *ngFor="let s of professeurs"
@@ -172,9 +172,15 @@
                     {{ s.nom }} {{ s.prenom }}
                   </p>
                 </div>
+                <app-offsetpagination
+                  [itemsCount]="itemsCountProfs"
+                  [itemsPerPage]="50"
+                  (indexChange)="onIndexChangeProfs($event)"
+                  *ngIf="professeurs.length > 0"
+                ></app-offsetpagination>
               </div>
               <div
-                class="col-4 d-flex flex-column justify-content-center align-items-center"
+                class="col-2 d-flex flex-column justify-content-center align-items-center"
               >
                 <h6 class="m-3">
                   ajouter <i class="bi bi-arrow-right-circle-fill"></i>
@@ -183,7 +189,7 @@
                   <i class="bi bi-arrow-left-circle-fill"></i> supprimer
                 </h6>
               </div>
-              <div class="col-4 border rounded p-2">
+              <div class="col-5 border rounded p-2">
                 <div class="ex3">
                   <p
                     *ngFor="let o of selectedProfs"
@@ -314,8 +320,8 @@
               </div>
             </div> -->
             <div class="sujet">
-              <div class="col-4 border rounded p-2">
-                <div class="ex3">
+              <div class="col-5 border rounded p-2">
+                <div class="ex3 mb-2">
                   <p
                     (click)="onSujetSelect(s)"
                     *ngFor="let s of sujets"
@@ -324,9 +330,15 @@
                     {{ s.titre }}
                   </p>
                 </div>
+                <app-offsetpagination
+                  [itemsCount]="itemsCountSujets"
+                  [itemsPerPage]="50"
+                  (indexChange)="onIndexChangeSujets($event)"
+                  *ngIf="sujets.length > 0"
+                ></app-offsetpagination>
               </div>
               <div
-                class="col-4 d-flex flex-column justify-content-center align-items-center"
+                class="col-2 d-flex flex-column justify-content-center align-items-center"
               >
                 <h6 class="m-3">
                   ajouter <i class="bi bi-arrow-right-circle-fill"></i>
@@ -335,7 +347,7 @@
                   <i class="bi bi-arrow-left-circle-fill"></i> supprimer
                 </h6>
               </div>
-              <div class="col-4 border rounded p-2">
+              <div class="col-5 border rounded p-2">
                 <div class="ex3">
                   <p
                     *ngFor="let o of selectedSujets"
@@ -352,8 +364,8 @@
             <label for="sujets" class="mb-3">Professeurs</label>
 
             <div class="sujet">
-              <div class="col-4 border rounded p-2">
-                <div class="ex3">
+              <div class="col-5 border rounded p-2">
+                <div class="ex3 mb-2">
                   <p
                     (click)="onProfesseurSelect(s)"
                     *ngFor="let s of professeurs"
@@ -362,9 +374,15 @@
                     {{ s.nom }} {{ s.prenom }}
                   </p>
                 </div>
+                <app-offsetpagination
+                  [itemsCount]="itemsCountProfs"
+                  [itemsPerPage]="50"
+                  (indexChange)="onIndexChangeProfs($event)"
+                  *ngIf="professeurs.length > 0"
+                ></app-offsetpagination>
               </div>
               <div
-                class="col-4 d-flex flex-column justify-content-center align-items-center"
+                class="col-2 d-flex flex-column justify-content-center align-items-center"
               >
                 <h6 class="m-3">
                   ajouter <i class="bi bi-arrow-right-circle-fill"></i>
@@ -373,7 +391,7 @@
                   <i class="bi bi-arrow-left-circle-fill"></i> supprimer
                 </h6>
               </div>
-              <div class="col-4 border rounded p-2">
+              <div class="col-5 border rounded p-2">
                 <div class="ex3">
                   <p
                     *ngFor="let o of selectedProfs"
@@ -399,7 +417,11 @@
               class="btn btn-primary btn-confirmer"
               type="submit"
               (click)="modal.close('Save click')"
-              [disabled]="form.invalid || selectedSujets.length == 0"
+              [disabled]="
+                form.invalid ||
+                selectedSujets.length == 0 ||
+                selectedProfs.length == 0
+              "
             >
               confirmer
             </button>

@@ -28,7 +28,7 @@ export class HeaderItemComponent implements OnInit {
   }
 
   logout(){
-       this.authService.logOut();
+       this.authService.clearCredentials();
   }
 
 

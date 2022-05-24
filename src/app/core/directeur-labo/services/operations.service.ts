@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Commission } from 'src/app/models/Commission';
+import { Examiner } from 'src/app/models/Examiner';
+import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
+import { Sujet } from 'src/app/models/Sujet';
 import { environment } from 'src/environments/environment';
+import { ProfesseurModule } from '../../professeur/profeseur.module';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +15,13 @@ export class OperationsService {
 
   constructor(private http: HttpClient) { }
 
-  public getSujetsLabo() {
-    return new Promise((resolve, reject) => {
-      this.http.get(environment.API_URL + '/api/sujetslabo/').subscribe({
+  public getSujetsLabo(offset: number | undefined = undefined) {
+    let url = `${environment.API_URL}/api/sujetslabo/`;
+    if (offset) {
+      url = `${url}?limit=50&offset=${offset}`;
+    }
+    return new Promise<Result<Sujet>>((resolve, reject) => {
+      this.http.get<Result<Sujet>>(url).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -70,7 +78,23 @@ export class OperationsService {
       });
     });
   }
-
+  public getProfesseurs(offset: number | undefined = undefined) {
+    let url = `${environment.API_URL}/api/labo_professeur/`;
+    if (offset) {
+      url = `${url}?limit=50&offset=${offset}`;
+    }
+    return new Promise<Result<Professeur>>((resolve, reject) => {
+      this.http.get<Result<Professeur>>(url).subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
+  }
+  
   public deleteCommission(c: Commission) {
     return new Promise((resolve, reject) => {
       this.http
@@ -86,9 +110,13 @@ export class OperationsService {
     });
   }
 
-  public getProfesseurs() {
-    return new Promise((resolve, reject) => {
-      this.http.get(environment.API_URL + '/api/labo_professeur/').subscribe({
+  public getCandidats(offset: number | undefined = undefined) {
+    let url = `${environment.API_URL}/api/labo_candidat/`;
+    if (offset) {
+      url = `${url}?limit=50&offset=${offset}`;
+    }
+    return new Promise<Result<Examiner>>((resolve, reject) => {
+      this.http.get<Result<Examiner>>(url).subscribe({
         next: (data) => {
           resolve(data);
         },
