@@ -14,6 +14,7 @@ export class ProfCandidatComponent implements OnInit {
   public candidats_ : Postuler [] = [];
   public alert: AlertData | undefined = undefined;
   public loading:boolean = false;
+  public pathFileExists:boolean = false;
 
   constructor(public candidatS : CandidastProfService) { }
 
@@ -26,6 +27,7 @@ export class ProfCandidatComponent implements OnInit {
         type: 'success',
         message: 'success',
       };
+    
     })
     .catch(error=>{
       this.alert = {
