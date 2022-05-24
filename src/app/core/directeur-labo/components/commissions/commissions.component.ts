@@ -93,7 +93,7 @@ export class CommissionsComponent implements OnInit {
 
 
   getSujetsLabo = () => {
-    return new Promise((resolve, _) => {
+    return new Promise((resolve, reject) => {
       this.operationsService.getSujetsLabo().then((data) => {
         this.result = data as Result<Sujet>;
         this.sujets = this.result.results;
@@ -101,29 +101,35 @@ export class CommissionsComponent implements OnInit {
         this.itemsCountSujets = data.count
         resolve(data);
         this.processSujets(data.results)
+      }).catch((err) => {
+        reject(err)
       })
     })
   }
 
   getCommissions = () => {
-    return new Promise((resolve, _) => {
+    return new Promise((resolve, reject) => {
       this.operationsService.getCommissions().then(data => {
         this.loading = false
         this.result = data as Result<Commission>;
         this.commissions = this.result.results;
         this.itemsCount = data.count;
         resolve(data);
+      }).catch((err)=>{
+          reject(err)
       })
     })
   }
   getProfesseurs = () => {
-    return new Promise((resolve, _) => {
+    return new Promise((resolve, reject) => {
       this.operationsService.getProfesseurs().then(data => {
         this.loading = false
         this.result = data as Result<Professeur>;
         this.professeurs = this.result.results;
         this.itemsCountProfs = data.count
         resolve(data);
+      }).catch((err) => {
+        reject(err)
       })
     })
   }
