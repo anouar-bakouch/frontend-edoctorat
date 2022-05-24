@@ -125,6 +125,7 @@
             <label for="sujets" class="mb-3">Sujets</label>
             <div class="sujet">
               <div class="col-5 border rounded p-2">
+                <h6>Sujets</h6>
                 <div class="ex3 mb-2 position-relative">
                   <app-sujet-tree *ngFor="let key of processedSujetData.keys()" [profNom]="key" [sujets]="processedSujetData.get(key)" [selectedSujetsIds]="selectedSujetsIds" (sujetClicked)="onSujetSelect($event)"></app-sujet-tree>
                 </div>
@@ -146,6 +147,7 @@
                 </h6>
               </div>
               <div class="col-5 border rounded p-2">
+                <h6>Sujets sélectionnés</h6>
                 <div class="ex3">
                   <p
                     *ngFor="let o of selectedSujets"
@@ -163,6 +165,7 @@
 
             <div class="sujet">
               <div class="col-5 border rounded p-2">
+                <h6>Professeurs</h6>
                 <div class="ex3 mb-2">
                   <p
                     (click)="onProfesseurSelect(s)"
@@ -190,6 +193,8 @@
                 </h6>
               </div>
               <div class="col-5 border rounded p-2">
+                <h6>Membres</h6>
+
                 <div class="ex3">
                   <p
                     *ngFor="let o of selectedProfs"
@@ -321,6 +326,7 @@
             </div> -->
             <div class="sujet">
               <div class="col-5 border rounded p-2">
+                <h6>Sujets</h6>
                 <!-- <div class="ex3 mb-2">
                   <p
                     (click)="onSujetSelect(s)"
@@ -351,6 +357,7 @@
                 </h6>
               </div>
               <div class="col-5 border rounded p-2">
+                <h6>Sujets sélectionnés</h6>
                 <div class="ex3">
                   <p
                     *ngFor="let o of selectedSujets"
@@ -368,6 +375,7 @@
 
             <div class="sujet">
               <div class="col-5 border rounded p-2">
+                <h6>Professeurs</h6>
                 <div class="ex3 mb-2">
                   <p
                     (click)="onProfesseurSelect(s)"
@@ -395,6 +403,7 @@
                 </h6>
               </div>
               <div class="col-5 border rounded p-2">
+                <h6>Membres</h6>
                 <div class="ex3">
                   <p
                     *ngFor="let o of selectedProfs"
