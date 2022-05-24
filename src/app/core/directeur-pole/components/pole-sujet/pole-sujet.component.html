@@ -1,84 +1,35 @@
-<div class="container col-lg-12" style="margin-top: 30px"></div>
-      <div class="row container-fluid mt-3">
-        <div class="col-12 table-responsive">
-          <table
-            id="table"
-            data-toggle="table"
-            data-search="true"
-            data-filter-control="true"
-            data-show-export="true"
-            data-click-to-select="true"
-            data-toolbar="#toolbar"
-            class="table table-align-middle"
-          >
-            <thead>
-              <tr>
-                <th
-                  data-field="sujet"
-                  data-filter-control="input"
-                  data-sortable="true"
-                  scope="col"
-                  class="w-43"
-                >
-                  sujet
-                </th>
-                <th
-                  data-field="Directeur"
-                  data-filter-control="input"
-                  data-sortable="true"
-                  scope="col"
-                  class="w-15"
-                >
-                  Directeur
-                </th>
-                <th
-                  data-field="Co-Directeur"
-                  data-filter-control="input"
-                  data-sortable="true"
-                  scope="col"
-                  class="w-15"
-                >
-                  Co-Directeur
-                </th>
-                <th
-                  data-field="labo"
-                  data-filter-control="input"
-                  data-sortable="true"
-                  scope="col"
-                  class="w-15"
-                >
-                  Labo
-                </th>
-                <th
-                  data-field="Formation doctorale"
-                  data-filter-control="input"
-                  data-sortable="true"
-                  scope="col"
-                  class="w-43"
-                >
-                  Formation doctorale
-                </th>
-                <th
-                  data-field="ced"
-                  data-filter-control="input"
-                  data-sortable="true"
-                  scope="col"
-                  class="w-15"
-                >
-                  CED
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr >
-                  <td>$sujet.titreSujet</td>
-                  <td>$sujet.directeur</td>
-                  <td>$sujet.codirecteur</td>
-                  <td>$sujet.lab</td>
-                  <td>$sujet.formation_doctorale</td>
-                  <td>$sujet.ced</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<!-- <app-alert *ngIf="alert" [data]="alert"></app-alert>
+<app-alert *ngIf="loading" [data]="alert"></app-alert> -->
+
+<div class="container-fluid mt-3">
+  <div class="table-responsive">
+    <table class="table table-align-middle">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="w-7">Titre Sujet</th>
+          <th scope="col" class="w-23">Directeur</th>
+          <th scope="col" class="w-7">Co-Directeur</th>
+          <th scope="col" class="w-23">Labo</th>
+          <th scope="col" class="w-23">Formation Doctorale</th>
+          <th scope="col" class="23">CED</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$sujet.titreSujet</td>
+          <td>$sujet.directeur</td>
+          <td>$sujet.codirecteur</td>
+          <td>$sujet.lab</td>
+          <td>$sujet.formation_doctorale</td>
+          <td>$sujet.ced</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <app-offsetpagination
+    [itemsCount]="itemsCount"
+    [itemsPerPage]="50"
+    (indexChange)="onIndexChange($event)"
+    *ngIf="commissions.length > 0"
+  ></app-offsetpagination> -->
+</div>
