@@ -57,7 +57,6 @@ export class SujetsComponent implements OnInit {
   }
 
   getAllSujets() {
-  
   this.operationsService.getSubjects().then(x=>{
     this.sujets_ = x.results;    
     this.isFetchingItems = false;

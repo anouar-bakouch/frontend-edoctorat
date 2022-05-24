@@ -35,5 +35,12 @@
         />
       </h4>
     </div>
+
+    <app-offsetpagination
+      [itemsCount]="itemsCount"
+      [itemsPerPage]="50"
+      (indexChange)="onIndexChange($event)"
+      *ngIf="candidatInfos['length'] > 0"
+    ></app-offsetpagination>
   </div>
 </div>

@@ -51,5 +51,17 @@ export class ResultatsComponent implements OnInit {
 
   }
 
+  onIndexChange(offset: number) {
+    if (this.isFetchingItems) return;
+    this.isFetchingItems = true;
+    this.candidatLabo
+      .fetchResultats(offset)
+      .then((d) => {
+        this.candidatInfos.results = d.results;
+      })
+      .finally(() => (this.isFetchingItems = false));
+  }
+
+
 
 }

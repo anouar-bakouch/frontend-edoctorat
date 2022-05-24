@@ -1,12 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { Commission } from 'src/app/models/Commission';
-import { Examiner } from 'src/app/models/Examiner';
-import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
+import { Observable } from 'rxjs';
 import { Inscription } from 'src/app/models/Inscription';
-import { Participe } from 'src/app/models/Participe';
-import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { environment } from 'src/environments/environment';
@@ -124,25 +119,6 @@ export class OperationsService {
       });
     });
   }
-  // public getCommissions(offset: number | undefined = undefined) {
-
-  //   let url = `${environment.API_URL}/api/participant/`;
-    
-  //   if (offset) {
-  //     url = `${url}?limit=50&offset=${offset}`;
-  //   }
-
-  //   return new Promise<Result<Commission>>((resolve, reject) => {
-  //     this.http.get<Result<Commission>>(url).subscribe({
-  //       next: (data) => {
-  //         resolve(data);
-  //       },
-  //       error: (err) => {
-  //         reject(err);
-  //       },
-  //     });
-  //   });
-  // }
 
   public getResultats(offset: number | undefined = undefined) {
     let url = `${environment.API_URL}/api/examiner/`;
@@ -161,16 +137,7 @@ export class OperationsService {
     });
   }
 
-  // public getMesInscrits(): Observable<Result<Inscription>> {
-  //   return this.http.get<Result<Inscription>>(
-  //     environment.API_URL + '/api/inscrits/'
-  //   );
-  // }
-  ///////////////////////////////////
 
-  //// mes inscrit on doit ajouter au backend un model inscripation et d'autre choses
-
-  ////////////////////////
   public getMesInscrits(offset: number | undefined = undefined){
     let url = `${environment.API_URL}/api/inscrits/`;
     if (offset) {
