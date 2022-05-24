@@ -10,32 +10,35 @@
                     <td scope="col" class="w-7" data-field="heure" data-sortable="true">heure</td>
                     <td scope="col" class="w-7" data-field="sujets" data-sortable="true">Sujets</td>
                     <td scope="col" class="w-7" data-field="membres" data-sortable="true">membres</td>
-                    <td scope="col" class="w-13" data-field="laboratoire" data-sortable="true">Laboratoires</td>
+                    <td scope="col" class="w-13" data-field="laboratoire" data-sortable="true">Laboratoire</td>
 
-                    <td scope="col" class="w-7" data-field="valider" data-sortable="true">valider</td>
+
                 </tr>
             </thead>
             <tbody>
 
 
-                <tr >
-                    <td>date commission</td>
-                    <td>lieu</td>
-                    <td>heure</td>
+
+                <tr *ngFor="let c of commissions">
+                    <td>{{ c.dateCommission }}</td>
+                    <td>{{ c.heure }}</td>
+                    <td>{{ c.lieu }}</td>
                     <td>
                         <ul>
-                            <li >sujet</li>
+                            <li *ngFor="let s of c.sujets">
+                                {{ s.titre }}
+                            </li>
                         </ul>
                     </td>
                     <td>
                         <ul>
-                            <li >prof</li>
+                            <li *ngFor="let p of c.participants">
+                                {{ p.nom }} {{ p.prenom }}
+                            </li>
                         </ul>
                     </td>
-                    <td>comisionlabo</td>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
+                    
+                    <td>{{ c.labo }}</td>
 
                 </tr>
             </tbody>

@@ -6,43 +6,36 @@
             <thead>
                 <tr>
                     <th scope="col" class="w-7">Titre Sujet</th>
-                    <th scope="col" class="w-15">Description</th>
-                    <th scope="col" class="w-13">co-directeur</th>
-                    <th scope="col" class="w-43">Formation Doctorale</th>
-                   
+                    <th scope="col" class="w-23">Description</th>
+                    <th scope="col" class="w-7">co-directeur</th>
+                    <th scope="col" class="w-23">Formation Doctorale</th>
+
 
                 </tr>
             </thead>
-            <tbody>
-                <tr class="align-text-bottom">
-                    <td>cd61213</td>
-                    <td>bakouch</td>
-                    <td>anouar</td>
-                    <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis dolorem debitis
-                        voluptates quidem accusamus, aut in reprehenderit, sint a minus expedita? Ipsa sunt
-                        laboriosam neque quaerat. Fugiat odio similique ex?</td>
-                  
+            <tbody *ngIf="!isFetchingItems">
+                <tr class="align-text-bottom" *ngFor="let s of sujets">
+                    <td>{{ s.titre }}</td>
+                    <td>{{ s?.description }}</td>
+                    <td>{{ s.coDirecteur?.nom }} {{ s.coDirecteur?.prenom }}</td>
+                    <td>{{ s.formationDoctorale?.titre }}</td>
+
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quae deleniti quibusdam
-                        minus laborum doloremque assumenda voluptatem eos quos eveniet alias blanditiis non nostrum
-                        dolorem, reprehenderit facere aliquid illo ea.</td>
-                    <td>Thornton</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quae deleniti quibusdam
-                        minus laborum doloremque assumenda voluptatem eos quos eveniet alias blanditiis non nostrum
-                        dolorem, reprehenderit facere aliquid illo ea.</td>
-                  
-                </tr>
-                <tr>
-                    <td>3hhhhhhhhhhhhhhhhh</td>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    
-                </tr>
+
+
             </tbody>
+            <div *ngIf="isFetchingItems">
+                <h4>
+                    <img src="/assets/images/connexion/loading.webp" width="300" height="100" />
+                </h4>
+            </div>
         </table>
+        <app-offsetpagination
+        [itemsCount]="itemsCount"
+        [itemsPerPage]="50"
+        (indexChange)="onIndexChange($event)"
+        *ngIf="sujets.length > 0"
+      ></app-offsetpagination>
 
     </div>
 </div>
