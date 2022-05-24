@@ -72,18 +72,19 @@ export class ProfInscritsComponent implements OnInit {
       this.loading = false
       this.inscriptions = x.results
       this.itemsCount = x.count;
+      this.alert = {
+        type: 'success',
+        message: 'success',
+      };
     }).catch((error) => {
-      console.log(error)
+      // console.log(error)
       this.alert = {
         type: 'error',
         message: 'error',
       };
     }).finally(() => {
       this.loading = false
-      this.alert = {
-        type: 'success',
-        message: 'success',
-      };
+
       setTimeout(() => (this.alert = undefined), 3000);
     });
   }
