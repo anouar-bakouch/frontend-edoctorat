@@ -54,12 +54,11 @@ export class ProfCommissionComponent implements OnInit {
     };
     this.operationsService.getCommissions().then(data => {
       this.loading = false
-      // console.log(data)
-      // this.itemsCount = data.count;
       this.commissions = data as Commission[];
-      
-      // console.log(this.commissions)
-
+      this.alert = {
+        type: 'success',
+        message: 'success',
+      };
     }).catch((error) => {
       console.log(error)
       this.alert = {
@@ -68,10 +67,6 @@ export class ProfCommissionComponent implements OnInit {
       };
     }).finally(() => {
       this.loading = false
-      this.alert = {
-        type: 'success',
-        message: 'success',
-      };
       setTimeout(() => (this.alert = undefined), 3000);
     });
   }
