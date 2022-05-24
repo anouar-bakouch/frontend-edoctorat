@@ -5,6 +5,7 @@ import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { Diplome } from 'src/app/models/Diplome';
 import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import swal from 'sweetalert';
+import { Sujet } from 'src/app/models/Sujet';
 
 
 @Component({
@@ -71,7 +72,8 @@ export class SujersComponent implements OnInit {
     })
   }
 
-  updatePostuler(){
+  updatePostuler(s){
+
     this.isUpdating = true;
     const formData = this.Sujetform.toFormData();
     formData.set('pathFile', formData.get('pathFile[0]'));
@@ -79,7 +81,9 @@ export class SujersComponent implements OnInit {
     if (formData.get('pathFile') === 'null') {
       formData.delete('pathFile');
     }
-   this.candidat.updatePostuler(formData,this.postuler.id)
+
+    this.candidat.updatePostuler(formData,s.id)
+
    .then((_) =>
    swal({
      icon: 'success',
