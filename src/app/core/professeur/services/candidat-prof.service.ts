@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Postuler } from 'src/app/models/Postuler';
+import Result from 'src/app/models/Result';
 import { environment } from 'src/environments/environment';
 
 
@@ -12,9 +14,9 @@ export class CandidastProfService {
   constructor(private http: HttpClient) {}
 
   public getCandidats() {
-    return new Promise((resolve, reject) => {
+    return new Promise<Result<Postuler>>((resolve, reject) => {
       this.http
-        .get(environment.API_URL +  '/api/get-professeur-candidats/')
+        .get <Result<Postuler>>(environment.API_URL +  '/api/get-professeur-candidats/')
         .subscribe({
           next: (data) => {
             resolve(data);
