@@ -9,11 +9,11 @@
 </tr>
 </thead>
 <tbody>
-<tr >
- <td></td>
- <td></td>
- <td></td>
- <td></td>
+<tr *ngFor = "let c of candidats_">
+ <td class="fs-bold text-primary">{{c.candidat.cne}}</td>
+ <td>{{c.candidat.prenom}} {{c.candidat.nom}}</td>
+ <td>{{c.sujet.titre}}</td>
+ <td>{{c.pathFile}}</td>
 </tr>
 </tbody>
 </table>

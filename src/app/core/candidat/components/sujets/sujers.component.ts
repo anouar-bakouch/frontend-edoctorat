@@ -76,10 +76,10 @@ export class SujersComponent implements OnInit {
   updatePostuler(){
     this.isUpdating = true;
     const formData = this.Sujetform.toFormData();
-    formData.set('TheseFile', formData.get('TheseFile[0]'));
-    formData.delete('TheseFile[0]');
-    if (formData.get('TheseFile') === 'null') {
-      formData.delete('TheseFile');
+    formData.set('pathFile', formData.get('pathFile[0]'));
+    formData.delete('pathFile[0]');
+    if (formData.get('pathFile') === 'null') {
+      formData.delete('pathFile');
     }
    this.candidat.updatePostuler(formData,this.postuler.id)
    .then((_) =>

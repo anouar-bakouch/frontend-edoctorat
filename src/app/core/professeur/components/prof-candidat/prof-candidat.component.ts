@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Postuler } from 'src/app/models/Postuler';
+import Result from 'src/app/models/Result';
 import { CandidastProfService } from '../../services/candidat-prof.service';
+
 
 @Component({
   selector: 'app-prof-candidat',
@@ -9,12 +12,15 @@ import { CandidastProfService } from '../../services/candidat-prof.service';
 
 export class ProfCandidatComponent implements OnInit {
 
+  public candidats_ : Postuler [] = [];
+
   constructor(public candidatS : CandidastProfService) { }
 
   ngOnInit(): void {
     this.candidatS.getCandidats()
     .then(x=>{
-      console.log(x);
+      this.candidats_ = x.results;
+   
     })
     .catch()
   }
