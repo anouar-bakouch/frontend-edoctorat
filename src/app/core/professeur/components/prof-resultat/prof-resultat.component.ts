@@ -46,7 +46,7 @@ export class ProfResultatComponent implements OnInit {
       console.log(err);
       this.alert = {
         type: 'error',
-        message: "error lors de l'ajout",
+        message: "error",
       };
     }).finally(() => {
       setTimeout(() => (this.alert = undefined), 3000);
