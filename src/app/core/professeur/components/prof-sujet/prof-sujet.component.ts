@@ -156,29 +156,35 @@ export class ProfSujetComponent implements OnInit {
     });
   }
   getFormationDoctorales = () => {
-    return new Promise((resolve, _) => {
+    return new Promise((resolve, reject) => {
       this.operationsService.getFormationDoctorales().then((data) => {
         this.result = data as Result<FormationDoctorale>;
         this.formationDoctorales = this.result.results;
         resolve(data);
+      }).catch((err) => {
+        reject(err)
       })
     })
   }
   getProfesseurs = () => {
-    return new Promise((resolve, _) => {
+    return new Promise((resolve, reject) => {
       this.operationsService.getProfesseurs().then((data) => {
         this.result = data as Result<Professeur>;
         this.professeurs = this.result.results;
         resolve(data);
+      }).catch((err) => {
+        reject(err)
       })
     })
   }
   getSujets = () => {
-    return new Promise((resolve, _) => {
+    return new Promise((resolve, reject) => {
       this.operationsService.getSujets().then((data) => {
         this.result = data as Result<Sujet>;
         this.sujets = this.result.results;
         resolve(data);
+      }).catch((err) => {
+        reject(err)
       })
     })
   }
