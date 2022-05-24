@@ -1,46 +1,13 @@
-
-<div class="row container-fluid mt-3">
-  <div class="col-12 table-responsive">
-    <table
-      id="table"
-      data-toggle="table"
-      data-search="true"
-      data-filter-control="true"
-      data-show-export="true"
-      data-click-to-select="true"
-      data-toolbar="#toolbar"
-      class="table table-align-middle"
-    >
+<!-- <app-alert *ngIf="alert" [data]="alert"></app-alert>
+<app-alert *ngIf="loading" [data]="alert"></app-alert> -->
+<div class="container-fluid mt-3">
+  <div class="table-responsive">
+    <table class="table table-align-middle">
       <thead>
-        <tr>
-          <th
-            data-field="sujet"
-            data-filter-control="input"
-            data-sortable="true"
-            scope="col"
-            class="w-43"
-          >
-            sujet
-          </th>
-
-          <th
-            data-field="Directeur"
-            data-filter-control="input"
-            data-sortable="true"
-            scope="col"
-            class="w-15"
-          >
-            Directeur
-          </th>
-          <th
-            data-field="Co-Directeur"
-            data-filter-control="input"
-            data-sortable="true"
-            scope="col"
-            class="w-15"
-          >
-            Co-Directeur
-          </th>
+        <tr class="table-primary">
+          <th scope="col" class="w-7">Titre Sujet</th>
+          <th scope="col" class="w-23">Directeur</th>
+          <th scope="col" class="w-7">Co-Directeur</th>
           <th
             data-field="CNE"
             data-filter-control="input"
@@ -50,66 +17,32 @@
           >
             CNE
           </th>
-          <th
-            data-field="Nom"
-            data-filter-control="input"
-            data-sortable="true"
-            scope="col"
-            class="w-15"
-          >
-            Nom
-          </th>
-          <th
-            data-field="Prenom"
-            data-filter-control="input"
-            data-sortable="true"
-            scope="col"
-            class="w-15"
-          >
-            Prenom
-          </th>
-          <th
-            data-field="Formation doctorale"
-            data-filter-control="input"
-            data-sortable="true"
-            scope="col"
-            class="w-43"
-          >
-            Formation doctorale
-          </th>
-          <th
-            data-field="labo"
-            data-filter-control="input"
-            data-sortable="true"
-            scope="col"
-            class="w-43"
-          >
-            Labo
-          </th>
-          <th
-            data-field="ced"
-            data-filter-control="input"
-            data-sortable="true"
-            scope="col"
-            class="w-43"
-          >
-            CED
-          </th>
+          <th scope="col" class="w-15">Nom</th>
+          <th scope="col" class="w-15">Prenom</th>
+          <th scope="col" class="w-23">Labo</th>
+          <th scope="col" class="w-23">Formation Doctorale</th>
+          <th scope="col" class="23">CED</th>
         </tr>
       </thead>
       <tbody>
-        <tr >
-          <td>$ candidat.sujet_titre </td>
-          <td>$ candidat.directeur </td>
-          <td>$ candidat.codirecteur </td>
-          <td>$ candidat.cne </td>
-          <td>$ candidat.nomCandidat </td>
-          <td>$ candidat.prenomCandidat </td>
-          <td>$ candidat.formation </td>
-          <td>$ candidat.lab </td>
-          <td>$ candidat.ced </td>
+        <tr>
+          <td>$ candidat.sujet_titre</td>
+          <td>$ candidat.directeur</td>
+          <td>$ candidat.codirecteur</td>
+          <td>$ candidat.cne</td>
+          <td>$ candidat.nomCandidat</td>
+          <td>$ candidat.prenomCandidat</td>
+          <td>$ candidat.formation</td>
+          <td>$ candidat.lab</td>
+          <td>$ candidat.ced</td>
         </tr>
       </tbody>
     </table>
   </div>
+  <!-- <app-offsetpagination
+    [itemsCount]="itemsCount"
+    [itemsPerPage]="50"
+    (indexChange)="onIndexChange($event)"
+    *ngIf="commissions.length > 0"
+  ></app-offsetpagination> -->
 </div>
