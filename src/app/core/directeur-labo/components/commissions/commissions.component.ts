@@ -39,7 +39,7 @@ export class CommissionsComponent implements OnInit {
   public professeurs: Professeur[] = [];
   closeResult: string = '';
   // dropdownList: any = [];
-  
+
   selectedSujets: Sujet[] = [];
   selectedSujetsIds: number[] = [];
   selectedProfs: Professeur[] = [];
@@ -90,7 +90,7 @@ export class CommissionsComponent implements OnInit {
     });
   }
 
- 
+
 
   getSujetsLabo = () => {
     return new Promise((resolve, _) => {
@@ -139,7 +139,7 @@ export class CommissionsComponent implements OnInit {
       professeurs: ''
     });
     this.commission = c
-    this.commission.sujets.forEach((element)=>{
+    this.commission.sujets.forEach((element) => {
       this.selectedSujets.push(element)
     })
     this.open(content)
@@ -158,12 +158,12 @@ export class CommissionsComponent implements OnInit {
       type: 'loading',
       message: 'loading',
     };
-   
-    if (content._declarationTContainer.localNames[0] == 'mymodal'){
+
+    if (content._declarationTContainer.localNames[0] == 'mymodal') {
       this.selectedSujets = []
       this.form.reset()
     }
-    
+
     Promise.all([this.getSujetsLabo(), this.getProfesseurs()]).then(() => {
       this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
@@ -193,6 +193,7 @@ export class CommissionsComponent implements OnInit {
   }
 
   private getDismissReason(reason: any): string {
+    this.selectedSujetsIds.splice(0, this.selectedSujetsIds.length)
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -238,6 +239,7 @@ export class CommissionsComponent implements OnInit {
     }
   }
   onClickSubmit() {
+    this.selectedSujetsIds.splice(0, this.selectedSujetsIds.length)
     this.selectedSujets.forEach(e => {
       this.sujets_ids.push(e.id)
     });
