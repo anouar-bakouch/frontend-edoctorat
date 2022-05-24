@@ -31,8 +31,6 @@ export class CandidatsComponent implements OnInit {
       console.log(data.results)
       this.itemsCount = data.count;
       this.candidats = data.results
-      // this.commissions = data as Commission[];
-      // console.log(this.commissions)
 
     }).catch((error) => {
       console.log(error)

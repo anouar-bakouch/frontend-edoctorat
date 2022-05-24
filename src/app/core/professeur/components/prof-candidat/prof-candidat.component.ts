@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CandidastProfService } from '../../services/candidast-prof.service';
+import { CandidastProfService } from '../../services/candidat-prof.service';
 
 @Component({
   selector: 'app-prof-candidat',
