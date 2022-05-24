@@ -62,6 +62,10 @@ export class SujetsComponent implements OnInit {
     this.sujets_ = x.results;    
     this.isFetchingItems = false;
     this.itemsCount= x.count;
+    this.alert = {
+      type: 'success',
+      message: 'Bienvenue',
+    };
   }).catch((error)=>{
     this.alert = {
       type: 'error',
@@ -69,10 +73,7 @@ export class SujetsComponent implements OnInit {
     };
   }).finally(()=>{
     this.loading = false
-    this.alert = {
-      type: 'success',
-      message: 'Bienvenue',
-    };
+    
     setTimeout(() => (this.alert = undefined), 3000);
   });
 
