@@ -1,50 +1,37 @@
 
 
 
-
-    <div class="container-fluid mt-3">
-
-        <div class="table-responsive">
-
-            <table class="table table-align-middle" id="table" data-toggle="table" data-toolbar="#toolbar">
-                <thead>
-                    <tr>
-                        <th scope="col" class="w-7" data-field="sujet" data-filter-control="input" data-sortable="true">
-                            sujet</th>
-                        <th scope="col" class="w-15" data-field="cne" data-filter-control="select" data-sortable="true">
-                            CNE</th>
-                        <th scope="col" class="w-13" data-field="Nom" data-filter-control="input" data-sortable="true">
-                            Candidat</th>
-                        <th scope="col" class="w-13" data-field="note dpssier" data-filter-control="input"
-                            data-sortable="true">Note dossier</th>
-                        <th scope="col" class="w-43" data-field="note entretien" data-filter-control="input"
-                            data-sortable="true">Note entretien</th>
-                        <th scope="col" class="w-13" data-field="moyenne_generale" data-sortable="true"
-                            data-filter-control="input">Moyenne generale </th>
-                        <th scope="col" class="w-13" data-field="decision" data-sortable="true"
-                            data-filter-control="select">Decision </th>
-
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="align-text-bottom" >
-
-                        <td>titre sujet</td>
-                        <td>cne</td>
-                        <td>nom prenom</td>
-                        <td>note entretien</td>
-                        <td>note dossier</td>
-                        <td>moyennne generale</td>
-                        <td>decisison</td>
-
-                    </tr>
-   
-                </tbody>
-            </table>
-
-
-        </div>
+<div class="container-fluid mt-3">
+    <div class="table-responsive">
+      <table class="table table-align-middle">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col" class="w-7">Sujet</th>
+            <th scope="col" class="w-7">cne</th>
+            <th scope="col" class="w-7">Candidat</th>
+            <th scope="col" class="w-7">Note dossier</th>
+            <th scope="col" class="w-7">Note Entretien</th>
+            <th scope="col" class="w-7">Moyenne generale</th>
+            <th scope="col" class="w-7">Decision</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of resultats">
+            <td>{{ r.sujet.titre }}</td>
+            <td>{{ r.candidat.cne }}</td>
+            <td>{{ r.candidat.nom }} {{ r.candidat.prenom }}</td>
+            <td>{{ r.noteDossier }}</td>
+            <td>{{ r.noteEntretien }}</td>
+            <td>18</td>
+            <td>{{ r.decision }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <app-offsetpagination
+        [itemsCount]="itemsCount"
+        [itemsPerPage]="50"
+        (indexChange)="onIndexChange($event)"
+        *ngIf="resultats.length > 0"
+      ></app-offsetpagination>
     </div>
-
+  </div>
