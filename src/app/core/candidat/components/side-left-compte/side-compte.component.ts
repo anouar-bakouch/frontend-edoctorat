@@ -5,6 +5,7 @@ import Config from 'src/app/models/Config';
 import UserInfo from 'src/app/models/UserInfo';
 import { environment } from 'src/environments/environment';
 import swal from 'sweetalert';
+import { CandidatNotificationsService } from '../../services/candidat-notifications.service';
 import { CandidatService } from '../../services/candidat.service';
 
 @Component({
@@ -20,8 +21,14 @@ export class SideCompteComponent implements OnInit {
   public date_fin:any;
   public actual_date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
   public disablePostuler:boolean = false;
+  public notifications: Notification [] = [];
+  public nbrNotifications:number = 0;
 
-  constructor(public authService: AuthService,public candidatConfig:CandidatService) {}
+  constructor(
+              public authService: AuthService,
+              public candidatConfig:CandidatService,
+              public candidatNotifications : CandidatNotificationsService
+              ) {}
 
   getConfigInfo() {
     this.candidatConfig.getConfigInfo().then((res) => {
@@ -58,5 +65,13 @@ export class SideCompteComponent implements OnInit {
           this.candidatInfo.pathPhoto = `${environment.API_URL}${this.candidatInfo.pathPhoto}`;
         }
       });
+
+     this.candidatNotifications.getNotifications()
+     .then(res=>{
+       this.nbrNotifications = res.results.length;
+     })
+     .catch()
+     .finally()
+
   }
 }
