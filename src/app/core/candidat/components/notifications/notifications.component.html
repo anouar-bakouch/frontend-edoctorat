@@ -6,11 +6,11 @@
 
    <p class="h5">{{'candidat.notifications_details.conseil_1' | translate }}</p>
 
-    <ul class="list-group mt-3">
-        <li class="list-group-item">commission.dateCommission</li>
-        <li class="list-group-item">commission.sujet</li>
-        <li class="list-group-item">commission.heure</li>
-        <li class="list-group-item">commission.lieu</li>
+    <ul class="list-group mt-3" *ngFor="let n of notifications">
+        <li class="list-group-item"><span class="text-primary">date de commission : </span>{{n.commission.dateCommission}}</li>
+        <li class="list-group-item"><span class="text-primary fs-bold">sujet : </span> {{n.sujet.titre}}</li>
+        <li class="list-group-item"><span class="text-primary">heure : </span>{{n.commission.heure}}</li>
+        <li class="list-group-item"><span class="text-primary">lieu de commission : </span> {{n.commission.lieu}}</li>
     </ul>
 
 
