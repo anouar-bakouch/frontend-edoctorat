@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import Result from 'src/app/models/Result';
 import { CandidatNotificationsService } from '../../services/candidat-notifications.service';
 import { Notification } from 'src/app/models/Notification';
 
@@ -12,6 +11,7 @@ import { Notification } from 'src/app/models/Notification';
 export class NotificationsComponent implements OnInit {
 
   public notifications: Notification [] = [];
+  public isFetchingItems:boolean = true;
 
   constructor(private candidatNotifications : CandidatNotificationsService) { }
 
@@ -22,8 +22,14 @@ export class NotificationsComponent implements OnInit {
   getNotifications(){
     this.candidatNotifications.getNotifications()
     .then(res=>{
-      console.log(res);
+      this.isFetchingItems = false;
       this.notifications = res.results;
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+    .finally(()=>{
+     
     })
   }
 
