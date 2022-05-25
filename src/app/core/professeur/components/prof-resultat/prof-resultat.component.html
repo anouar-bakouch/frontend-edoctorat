@@ -22,7 +22,7 @@
           <td>{{ r.candidat.nom }} {{ r.candidat.prenom }}</td>
           <td>{{ r.noteDossier }}</td>
           <td>{{ r.noteEntretien }}</td>
-          <td>18</td>
+          <td>{{ (r.noteDossier + r.noteEntretien) / 2 }}</td>
           <td>{{ r.decision }}</td>
         </tr>
       </tbody>
