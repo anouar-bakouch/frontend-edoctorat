@@ -63,7 +63,7 @@ export class SujersComponent implements OnInit {
     }).catch((_)=>{
       this.alert = {
         type: 'loading',
-        message: "error lors de la suppression",
+        message: "erreur lors de la suppression",
       };
     })
     .finally(()=>{
@@ -83,15 +83,17 @@ export class SujersComponent implements OnInit {
     }
 
     this.candidat.updatePostuler(formData,s.id)
-
    .then((_) =>
-   swal({
-     icon: 'success',
-   })
+      this.alert = {
+        type: 'loading',
+        message: "entrain d'importer",
+      }
  )
  .catch((_) => {
-   this.errorText =
-     "Une erreur s'est produite de notre côté, réessayez plus tard.";
+     this.alert = {
+      type: 'loading',
+      message: "Une erreur s'est produite de notre côté, réessayez plus tard",
+    }
  })
  .finally(() => (this.isUpdating = false));
 
@@ -104,15 +106,11 @@ export class SujersComponent implements OnInit {
     if (files && files.length > 0) {
       const file = files[0];
       if (file.size > 4194304) {
-        if (type === this.PROJET_THESE) {
-          this.Sujetform.controls['diplomeFile'].setValue('');
+    
+          this.Sujetform.controls['pathFile'].setValue('');
           this.errorText =
             'La taille du fichier du diplome ne peut pas être supérieure à 4 Mo';
-        } else if (type === this.PROJET_THESE) {
-          this.Sujetform.controls['relevefile'].setValue('');
-          this.errorText =
-            'La taille du fichier du releve ne peut pas être supérieure à 4 Mo';
-        }
+       
         return;
       }
     }

@@ -11,13 +11,19 @@
           </h4>
         </div>
         <p class="p-3 text-primary text-center border border-primary" *ngIf="NoSujets"><i class="bi bi-card-checklist"></i> {{message}}</p>
-
-    <div class="card shadow" style="width: 100%">
+        <h5
+        *ngIf="errorText"
+        class="col-sm-12 col-lg-5 text-light text-center bg-danger m-auto p-3"
+      >
+        {{ errorText }}
+      </h5>
+    <div class="" style="width: 100%">
     <ul class="list-group list-group-flush">
 
-      <li class="list-group-item my-1  border border-primary" *ngFor="let s of sujets" >
-        <p><span class="fs-6 fw-bold text-primary">Sujet | Axe : </span> {{s.sujet.titre}}</p>
+      <li class="card list-group-item my-3 shadow border border-primary" *ngFor="let s of sujets" >
+        <p><span class="fs-6 fw-bold text-primary">Sujet | Axe | Thème : </span> {{s.sujet.titre}}</p>
         <p> <span class="fs-6 fw-bold text-primary">Professeur : </span> {{s.sujet.professeur.prenom}} {{s.sujet.professeur.nom}}</p>
+        <p *ngIf="s.pathFile" class="fs-bold"> <span class="fs-6 fw-bold text-primary">projet de thèse importé : </span> {{s.pathFile.substring(s.pathFile.lastIndexOf('/') + 1)}}</p>
         <form [formGroup]="Sujetform" (ngSubmit)="updatePostuler(s)">
         <div class="border p-1 d-flex justify-content-between align-items-center">
           <p class="fs-bold text-danger">importer votre projet de thèse :</p>
