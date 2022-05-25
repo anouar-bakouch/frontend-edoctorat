@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CandidatPostulerService {
   constructor(public http: HttpClient) {}
 
