@@ -126,4 +126,33 @@ export class OperationsService {
       });
     });
   }
+
+  
+  public getCandidatsSujet(id:number) {
+    let url = `${environment.API_URL}/api/get-sujet-candidat/${id}/`;
+    return new Promise((resolve, reject) => {
+      this.http.get(url).subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
+  }
+
+  public validerCandidat(id:number, item:any) {
+    let url = `${environment.API_URL}/api/labo_valider_examiner/${id}/`;
+    return new Promise((resolve, reject) => {
+      this.http.put(url, item).subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
+  }
 }

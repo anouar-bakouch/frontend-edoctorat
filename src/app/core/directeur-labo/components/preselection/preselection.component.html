@@ -1,0 +1,135 @@
+<app-alert *ngIf="alert" [data]="alert"></app-alert>
+<app-alert *ngIf="loading" [data]="alert"></app-alert>
+
+<div class="container-fluid mt-3">
+  <div class="table-responsive">
+    <table class="table table-align-middle">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="w-7">Date</th>
+          <th scope="col" class="w-23">Lieu</th>
+          <th scope="col" class="w-7">Heure</th>
+          <!-- <th scope="col" class="w-23">Membres</th> -->
+          <th scope="col" class="w-23">Sujets</th>
+          <th scope="col" class="w-23">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of commissions">
+          <td>{{ c.dateCommission }}</td>
+          <td>{{ c.heure }}</td>
+          <td>{{ c.lieu }}</td>
+          <td>
+            <ul>
+              <li
+                *ngFor="let s of c.sujets"
+                class="sujet-clicked"
+                (click)="onClickSujet(mymodal, s)"
+              >
+                {{ s.titre }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <button class="btn btn-primary me-2 btn-sm my-1" type="button">
+              <i class="bi bi-bell"></i>
+              Envoyer Notification
+            </button>
+            <button class="btn btn-danger btn-sm my-1" type="button">
+              <i class="bi bi-x-lg"></i>
+              Annuler
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-offsetpagination
+    [itemsCount]="itemsCount"
+    [itemsPerPage]="50"
+    (indexChange)="onIndexChange($event)"
+    *ngIf="commissions.length > 0"
+  ></app-offsetpagination>
+</div>
+<ng-template
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  #mymodal
+  let-modal
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered w-100 modal-xl"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          l'ajout des candidats
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-3">
+          <div class="sujet">
+            <div class="col-5 border rounded p-2">
+              <h6>Candidats</h6>
+              <div class="ex3 mb-2">
+                <p
+                  (click)="onCandidatSelect(s)"
+                  *ngFor="let s of candidatsSujet"
+                  class="op"
+                  [style]="{
+                    display:
+                      selectedCandidats.indexOf(s) > -1 ? 'none' : 'block'
+                  }"
+                >
+                  {{ s.candidat.nom }} {{ s.candidat.prenom }}
+                </p>
+              </div>
+              <!-- <app-offsetpagination
+                  [itemsCount]="itemsCountProfs"
+                  [itemsPerPage]="50"
+                  (indexChange)="onIndexChangeProfs($event)"
+                  *ngIf="professeurs.length > 0"
+                ></app-offsetpagination> -->
+            </div>
+            <div
+              class="col-2 d-flex flex-column justify-content-center align-items-center"
+            >
+              <h6 class="m-3">
+                ajouter <i class="bi bi-arrow-right-circle-fill"></i>
+              </h6>
+              <h6 class="m-3">
+                <i class="bi bi-arrow-left-circle-fill"></i> supprimer
+              </h6>
+            </div>
+            <div class="col-5 border rounded p-2">
+              <h6>Membres</h6>
+              <div class="ex3">
+                <p
+                  *ngFor="let o of selectedCandidats"
+                  (click)="onCandidatDeSelect(o)"
+                  class="op"
+                >
+                  {{ o.candidat.nom }} {{ o.candidat.prenom }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            (click)="modal.dismiss('Cross click')"
+            type="button"
+          >
+            annuler
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
