@@ -5,57 +5,26 @@
     <h3 class="text-success mt-3 border border-bottom border-primary text-center p-3">{{'candidat.notifications' | translate }}</h3>
 
    <p class="h5">{{'candidat.notifications_details.conseil_1' | translate }}</p>
-
-    <ul class="list-group mt-3">
-        <li class="list-group-item">commission.dateCommission</li>
-        <li class="list-group-item">commission.sujet</li>
-        <li class="list-group-item">commission.heure</li>
-        <li class="list-group-item">commission.lieu</li>
+   <div *ngIf="isFetchingItems">
+    <h4>
+      <img
+        src="/assets/images/connexion/loading.webp"
+        width="300"
+        height="100"
+      />
+    </h4>
+  </div>
+  <div  *ngIf="!isFetchingItems" >
+    <ul class="list-group mt-3" *ngFor="let n of notifications">
+        <li class="list-group-item"><span class="text-primary">date de commission : </span>{{n.commission.dateCommission}}</li>
+        <li class="list-group-item"><span class="text-primary fs-bold">sujet : </span> {{n.sujet.titre}}</li>
+        <li class="list-group-item"><span class="text-primary">heure : </span>{{n.commission.heure}}</li>
+        <li class="list-group-item"><span class="text-primary">lieu de commission : </span> {{n.commission.lieu}}</li>
     </ul>
+</div>
 
-    <table class="table table-responsive mt-5 mb-5">
-        <thead>
-        <th scope="col" class="w-50"></th>
-        <th scope="col" class="w-50"></th>
-        </thead>
 
-        <tbody>
-        <tr>
-
-            <td>resultat.sujet</td>
-
-            <td>
-            <div class="col">
-
-                <div class="d-flex flex-colum flex-wrap justify-content-between align-items-center mb-3">
-                   
-                   <div> {{'candidat.notifications_details.liste_principale' | translate }}</div>
-                   
-                        <button data-id-sujet="resultat.sujet_id"
-                                data-cne="candidat.cne"
-                                type="button" class="btn btn-primary imprimer">Télécharger demande d'inscription
-                        </button>
-                  
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-                    
-                    <div>  Liste d'attente (dêpot de dossier de 14h à 16h au CED Dhar Mahraz) </div>
-
-                        <button data-id-sujet="resultat.sujet_id"
-                                data-cne="candidat.cne"
-                                type="button" class="btn btn-primary">Télécharger demande d'inscription
-                        </button>
-                
-                </div>
-
-            </div>
-        </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <div lang="ar">
+    <!-- <div lang="ar">
         <h5 class="text-success mb-5">{{'candidat.notifications_details.aide_infos' | translate }}</h5>
                   <p>
                     {{'candidat.notifications_details.conseil_2' | translate }}
@@ -67,5 +36,5 @@
         <li class="list-group-item"> <a href="https://edoctorat.usmba.ac.ma/static/demandebourse.pdf" target="_blank"> Demande de bourse / طلب منحة</a></li>
         <li class="list-group-item"> <a href="https://edoctorat.usmba.ac.ma/static/charte.pdf" target="_blank"> Charte de thèse /  ميثاق الاطروحة</a></li>
     </ul>
-    </div>
+    </div> -->
 

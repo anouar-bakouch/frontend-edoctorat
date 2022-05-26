@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Commission } from 'src/app/models/Commission';
+import { Examiner } from 'src/app/models/Examiner';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { environment } from 'src/environments/environment';
@@ -57,7 +58,22 @@ export class OperationCedService {
       });
     }
 
-  
+    public getCandidats(offset: number | undefined = undefined) {
+      let url = `${environment.API_URL}/api/get-ced-candidats/`;
+      if (offset) {
+        url = `${url}?limit=50&offset=${offset}`;
+      }
+      return new Promise<Result<Examiner>>((resolve, reject) => {
+        this.http.get<Result<Examiner>>(url).subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
+      });
+    }
 
     
   public getCommissions() {

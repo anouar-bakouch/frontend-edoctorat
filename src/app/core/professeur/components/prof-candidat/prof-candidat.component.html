@@ -17,8 +17,8 @@
     <td class="fs-bold text-primary">{{c.candidat.cne}}</td>
     <td>{{c.candidat.prenom}} {{c.candidat.nom}}</td>
     <td>{{c.sujet.titre}}</td>
-    <td *ngIf="c.pathFile">
-    <a class="btn btn-primary" [href]="c.pathFile"  download="pathFile">
+    <td>
+    <a *ngIf="c.pathFile" target="_blank" class="btn btn-primary" [href]="c.pathFile"  download="pathFile">
             <i class="bi bi-cloud-download text-light"></i>
         télécharger
     </a>

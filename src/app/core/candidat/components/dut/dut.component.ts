@@ -6,7 +6,6 @@ import { CandidatParcoursService } from '../../services/candidat-parcours.servic
 import { CountriesService } from '../../services/countries.service';
 import { DiplomeType } from 'src/app/enums/DiplomeType';
 import { CandidatService } from '../../services/candidat.service';
-import { Annexe } from 'src/app/models/Annexe';
 import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import swal from 'sweetalert';
 import { TypeAnnexeEnum } from 'src/app/enums/TypeAnnexeEnum';
@@ -32,7 +31,6 @@ export class DutComponent implements OnInit {
   public candidatDut: Diplome | undefined;
   public message!: string;
   public DutExist: boolean = false;
-
   public mentions = this.candidatService.mentions;
   public TypesDut = this.candidatService.TypeDut;
   isUpdating = false;

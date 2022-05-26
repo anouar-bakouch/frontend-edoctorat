@@ -6,8 +6,7 @@
 <div *ngIf="!isFetchingInfo" class="row">
   <h5
     *ngIf="errorText"
-    class="col-sm-12 col-lg-5 text-light text-center bg-danger m-auto p-3"
-  >
+    class="col-sm-12 col-lg-5 text-light text-center bg-danger m-auto p-3">
     {{ errorText }}
   </h5>
   <form [formGroup]="candidatInfoForm" (ngSubmit)="updateCandidatInfo()">
@@ -260,9 +259,9 @@
             type="text"
             name="ville_naissance"
             formControlName="villeDeNaissanceAr"
-            class="form-control form-control-sm"
+            class="form-control form-control-sm keyboardInput"
             maxlength="17"
-            required=""
+            dir="rtl"
             id="id_lieu_naissance"
           />
         </div>
@@ -326,7 +325,7 @@
       </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-3 my-3">
       <button
         *ngIf="!isUpdating"
         class="btn btn-primary m-auto"

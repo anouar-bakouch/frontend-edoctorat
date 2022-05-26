@@ -27,7 +27,7 @@
               </li>
               <li class="list-group-item">
                 <a routerLink="/candidat/notifications" routerLinkActive="_active" class="nav-link btn btn-primary text-light">
-                  <i class="bi bi-bell"></i> {{ 'candidat.notifications' | translate}}
+                  <i class="bi bi-bell"></i> {{ 'candidat.notifications' | translate}} <span *ngIf="nbrNotifications > 0" class="bg-danger text-light p-1 rounded"> {{nbrNotifications}} </span>
                 </a>
               </li>
               
