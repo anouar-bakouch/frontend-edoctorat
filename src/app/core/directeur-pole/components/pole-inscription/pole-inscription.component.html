@@ -48,13 +48,13 @@
             <tbody>
               <tr *ngFor="let i of PInscriptions">
                 <td>{{i.sujet.titre}}</td>
-                <td>{{i.sujet.professeur?.prenom}} {{i.sujet.professeur?.nom}} </td>
-                <td>{{i.sujet.coDirecteur?.prenom}} {{i.sujet.coDirecteur?.nom}}</td>
+                <td>{{i.sujet['directeur']}} </td>
+                <td>{{i.sujet['coDirecteur'] }}</td>
                 <td>
                  {{i.candidat?.prenom}} {{i.candidat?.nom}}
                 </td>
-                <td>{{i.sujet.formationDoctorale.titre}}</td>
-                <td>{{i.sujet.formationDoctorale.ced}}</td>
+                <td>{{i.sujet.formationDoctorale}}</td>
+                <td>{{i.sujet['ced'] }}</td>
               </tr>
             </tbody>
             <div *ngIf="isFetchingItems">
