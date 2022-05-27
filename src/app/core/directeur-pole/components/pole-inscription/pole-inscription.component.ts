@@ -19,7 +19,7 @@ export class PoleInscriptionComponent implements OnInit {
   public sujet_:string = '';
   public formationDoctorale_:string = '';
   public errorText:string = '';
-  public laboratoire_:string = '';
+  public candidat_:string = '';
   public itemsCount: number | undefined;
 
   constructor(public poleS:PoleInscriptionService) { }
@@ -75,14 +75,14 @@ export class PoleInscriptionComponent implements OnInit {
         }
       }
   
-      searchLaboratoire() {
-        if (this.laboratoire_ === '') {
+      searchCandidat() {
+        if (this.candidat_ === '') {
           this.ngOnInit();
         } else {
           this.PInscriptions = this.PInscriptions.filter((res) => {
-            return res['laboratoire'].nom
+            return res.candidat.nom
               .toLocaleLowerCase()
-              .match(this.laboratoire_.toLocaleLowerCase());
+              .match(this.candidat_.toLocaleLowerCase());
           });
         }
       }

@@ -1,6 +1,47 @@
 <div class="container col-lg-12" style="margin-top: 30px"></div>
-      <div class="row container-fluid mt-3">
+<div class="row container-fluid mt-3">
         <div class="col-12 table-responsive">
+          <div class="d-flex justify-content-between align-items-center my-3">
+
+            <div class="col-3">
+              <input
+                class="form-control"
+                type="text"
+                name=""
+                [(ngModel)]="sujet_"
+                (ngModelChange)="searchSujet()"
+                [ngModelOptions]="{ standalone: true }"
+                pattern="[0-9]*(\.[0-9]+)?"
+                placeholder="par sujet"
+              />
+            </div>
+          
+            <div class="col-3">
+              <input
+                class="form-control"
+                type="text"
+                name=""
+                [(ngModel)]="candidat_"
+                (ngModelChange)="searchCandidat()"
+                [ngModelOptions]="{ standalone: true }"
+                pattern="[0-9]*(\.[0-9]+)?"
+                placeholder="par candidat "
+              />
+            </div>
+          
+            <div class="col-3">
+              <input
+                class="form-control"
+                type="text"
+                name=""
+                [(ngModel)]="formationDoctorale_"
+                (ngModelChange)="searchFormation()"
+                [ngModelOptions]="{ standalone: true }"
+                pattern="[0-9]*(\.[0-9]+)?"
+                placeholder="par formation doctorale"
+              />
+            </div>
+          </div>
           <table
            *ngIf="!isFetchingItems"
             class="table table-align-middle"
