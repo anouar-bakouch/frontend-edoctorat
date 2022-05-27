@@ -67,7 +67,6 @@ export class OperationsService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise<Result<Commission>>((resolve, reject) => {
-      
       this.http.get<Result<Commission>>(url).subscribe({
         next: (data) => {
           resolve(data);
@@ -155,4 +154,19 @@ export class OperationsService {
       });
     });
   }
+
+  public envoyerNotification(id: number) {
+    let url = `${environment.API_URL}/api/convoque-candidat/${id}/`;
+    return new Promise((resolve, reject) => {
+      this.http.post(url, {}).subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
+  }
+
 }
