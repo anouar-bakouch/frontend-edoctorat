@@ -7,6 +7,7 @@ import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
+import swal from 'sweetalert';
 import { OperationsService } from '../../services/operations.service';
 
 @Component({
@@ -16,6 +17,7 @@ import { OperationsService } from '../../services/operations.service';
 })
 export class PreselectionComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
+  public alert2: AlertData | undefined = undefined;
   public loading: boolean = false;
   public page: number = 1;
   public itemsCount: number | undefined;
@@ -26,24 +28,14 @@ export class PreselectionComponent implements OnInit {
     candidat: Candidat,
     valider: boolean
   }[]
-  // public candidatsSujet:[]=[]
   closeResult: string = '';
-  selectedCandidatsIds: number[] = [];
-  selectedCandidats: {
-    examiner_id: number,
-    candidat: Candidat,
-    valider: boolean
-  }[] = [];
   candidats: Candidat[] = [];
-
   public result: Result<any> = {
     count: 0,
     next: null,
     previous: null,
     results: [],
   };
-
-
 
   constructor(private modalService: NgbModal, private operationsService: OperationsService) { }
 
@@ -53,7 +45,6 @@ export class PreselectionComponent implements OnInit {
       type: 'loading',
       message: 'loading',
     };
-
     Promise.all([this.getCommissions()]).then(() => {
       this.alert = {
         type: 'success',
@@ -72,7 +63,6 @@ export class PreselectionComponent implements OnInit {
   }
 
   onClickSujet(content: any, s: Sujet) {
-    this.selectedCandidats = []
     this.candidatsSujet = []
     this.loading = true
     this.alert = {
@@ -86,7 +76,6 @@ export class PreselectionComponent implements OnInit {
       };
       this.open(content)
     }).catch((error) => {
-      // console.log(error)
       this.alert = {
         type: 'error',
         message: 'error',
@@ -97,7 +86,6 @@ export class PreselectionComponent implements OnInit {
     });
   }
 
-
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -105,8 +93,14 @@ export class PreselectionComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
-
+  open2(content: any, c:Commission) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'l' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      this.envoyerNotification(c.id)
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -117,7 +111,6 @@ export class PreselectionComponent implements OnInit {
     }
   }
 
-
   getCandidatsSujet(id: number) {
     return new Promise((resolve, reject) => {
       this.operationsService.getCandidatsSujet(id).then(data => {
@@ -126,13 +119,7 @@ export class PreselectionComponent implements OnInit {
           candidat: Candidat,
           valider: boolean
         }[]
-        for (var i = 0; i < this.candidatsSujet.length; i++) {
-          if (this.candidatsSujet[i]['valider'] === true) {
-            this.selectedCandidats.push(this.candidatsSujet[i])
-          }
-        }
         console.log(this.candidatsSujet)
-        console.log(this.selectedCandidats)
         resolve(data);
       }).catch((err) => {
         reject(err)
@@ -140,13 +127,14 @@ export class PreselectionComponent implements OnInit {
     })
   }
 
-
   getCommissions = () => {
     return new Promise((resolve, reject) => {
       this.operationsService.getCommissions().then(data => {
         this.loading = false
+        console.log(data)
         this.result = data as Result<Commission>;
         this.commissions = this.result.results;
+        // console.log(this.commissions)
         this.itemsCount = data.count;
         resolve(data);
       }).catch((err) => {
@@ -154,7 +142,6 @@ export class PreselectionComponent implements OnInit {
       })
     })
   }
-
 
   onIndexChange(offset: number) {
     if (this.loading) return;
@@ -169,7 +156,7 @@ export class PreselectionComponent implements OnInit {
 
   onCandidatSelect(item: any) {
     this.loading = true
-    this.alert = {
+    this.alert2 = {
       type: 'loading',
       message: 'loading',
     };
@@ -178,22 +165,35 @@ export class PreselectionComponent implements OnInit {
     }
     this.operationsService.validerCandidat(item.examiner_id, valider).then((data) => {
       item.valider = !item.valider
-      this.selectedCandidats.push(item)
-      for (var i = 0; i < this.candidatsSujet.length; i++) {
-        if (this.candidatsSujet[i] === item) {
-          this.candidatsSujet.splice(i, 1);
-        }
-      }
-
       console.log(data)
-      console.log(this.candidatsSujet)
-      console.log(this.selectedCandidats)
+      this.alert2 = {
+        type: 'success',
+        message: 'success',
+      };
+    }).catch((error) => {
+      this.alert2 = {
+        type: 'error',
+        message: 'error',
+      };
+    }).finally(() => {
+      this.loading = false
+      setTimeout(() => (this.alert2 = undefined), 300);
+    });
+  }
 
+
+  envoyerNotification(id:number){
+    this.loading = true
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
+    this.operationsService.envoyerNotification(id).then((data) => {
+      console.log(data)
       this.alert = {
         type: 'success',
         message: 'success',
       };
-
     }).catch((error) => {
       this.alert = {
         type: 'error',
@@ -201,19 +201,9 @@ export class PreselectionComponent implements OnInit {
       };
     }).finally(() => {
       this.loading = false
-      setTimeout(() => (this.alert = undefined), 3000);
+      setTimeout(() => (this.alert = undefined), 300);
     });
-
   }
 
-
-  onCandidatDeSelect(item: any) {
-    // this.candidatsSujet.push(item)
-    for (var i = 0; i < this.selectedCandidats.length; i++) {
-      if (this.selectedCandidats[i] === item) {
-        this.selectedCandidats.splice(i, 1);
-      }
-    }
-  }
-
+  
 }
