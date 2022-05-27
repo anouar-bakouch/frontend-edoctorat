@@ -15,10 +15,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>$sujet.titreSujet</td>
-          <td>$sujet.directeur</td>
-          <td>$sujet.codirecteur</td>
+        <tr *ngFor="let ps of Psujets">
+          <td>{{ps.titre}}</td>
+          <td>{{ps.professeur.prenom}} {{ps.professeur.nom}}</td>
+          <td>{{ps.coDirecteur.prenom}} {{ps.coDirecteur.nom}}</td>
           <td>$sujet.lab</td>
           <td>$sujet.formation_doctorale</td>
           <td>$sujet.ced</td>

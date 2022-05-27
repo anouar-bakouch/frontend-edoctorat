@@ -7,11 +7,10 @@ import { Observable } from 'rxjs';
 export class CountriesService {
 
 
- private _url = 'https://countriesnow.space/api/v0.1/countries';
+ private _url = 'https://countriesnow.space/api/v0.1/countries'; // this url need a review
 
 
  constructor(private http:HttpClient){}
-
  
     public getCountries():Observable<any>{
 

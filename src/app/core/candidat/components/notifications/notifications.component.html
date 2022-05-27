@@ -4,7 +4,6 @@
 
     <h3 class="text-success mt-3 border border-bottom border-primary text-center p-3">{{'candidat.notifications' | translate }}</h3>
 
-   <p class="h5">{{'candidat.notifications_details.conseil_1' | translate }}</p>
    <div *ngIf="isFetchingItems">
     <h4>
       <img
@@ -16,10 +15,11 @@
   </div>
   <div  *ngIf="!isFetchingItems" >
     <ul class="list-group mt-3" *ngFor="let n of notifications">
-        <li class="list-group-item"><span class="text-primary">date de commission : </span>{{n.commission.dateCommission}}</li>
-        <li class="list-group-item"><span class="text-primary fs-bold">sujet : </span> {{n.sujet.titre}}</li>
-        <li class="list-group-item"><span class="text-primary">heure : </span>{{n.commission.heure}}</li>
-        <li class="list-group-item"><span class="text-primary">lieu de commission : </span> {{n.commission.lieu}}</li>
+      <p class="h5">{{'candidat.notifications_details.conseil_1' | translate }}</p>
+        <li class="list-group-item"><span class="text-primary fw-bold">date de commission : </span>{{n.commission.dateCommission}}</li>
+        <li class="list-group-item"><span class="text-primary fw-bold">sujet : </span> {{n.sujet.titre}}</li>
+        <li class="list-group-item"><span class="text-primary fw-bold">heure : </span>{{n.commission.heure}}</li>
+        <li class="list-group-item"><span class="text-primary fw-bold">lieu de commission : </span> {{n.commission.lieu}}</li>
     </ul>
 </div>
 
