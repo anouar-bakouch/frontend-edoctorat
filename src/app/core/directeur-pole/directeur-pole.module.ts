@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { DirecteurPoleComponent } from './components/directeur-pole.component';
 import { PoleCalendrierComponent } from './components/pole-calendrier/pole-calendrier.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,11 @@ import { PoleCalendrierComponent } from './components/pole-calendrier/pole-calen
     CommonModule,
     PoleRoutingModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RxReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     DirecteurPoleComponent
