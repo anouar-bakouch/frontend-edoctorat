@@ -14,6 +14,8 @@ export class PoleInscriptionComponent implements OnInit {
 
   public PInscriptions : Inscription [] = []; 
   public alert: AlertData | undefined = undefined;
+  public isFetchingItems = true;
+  public loading:boolean = false;
 
   constructor(public poleS:PoleInscriptionService) { }
 
@@ -25,6 +27,7 @@ export class PoleInscriptionComponent implements OnInit {
      this.poleS.fetchPoleInscriptions()
      .then(x=>{
       this.PInscriptions = x.results;
+      this.isFetchingItems = false;
      })
      .catch(error=>{
       this.alert = {
@@ -32,7 +35,10 @@ export class PoleInscriptionComponent implements OnInit {
         message: "error lors de la suppression",
       };
      })
-     .finally()
+     .finally(()=>{
+      this.loading = false
+      setTimeout(() => (this.alert = undefined), 3000);
+     })
   }
 
 }

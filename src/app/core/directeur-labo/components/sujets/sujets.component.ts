@@ -72,7 +72,6 @@ export class SujetsComponent implements OnInit {
     };
   }).finally(()=>{
     this.loading = false
-    
     setTimeout(() => (this.alert = undefined), 3000);
   });
 

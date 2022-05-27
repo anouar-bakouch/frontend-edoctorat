@@ -42,6 +42,10 @@ export class PoleSujetComponent implements OnInit {
         message: "error lors de la suppression",
       };
     })
+    .finally(()=>{
+      this.loading = false;
+      setTimeout(() => (this.alert = undefined), 3000);
+    })
   }
 
     // search partie
