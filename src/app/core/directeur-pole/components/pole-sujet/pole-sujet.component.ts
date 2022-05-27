@@ -20,6 +20,7 @@ export class PoleSujetComponent implements OnInit {
   public formationDoctorale_:string = '';
   public isFetchingItems = true;
   public errorText:string = '';
+  public laboratoire_:string = '';
 
   constructor(public poleS : PoleSujetService) { }
 
@@ -30,10 +31,9 @@ export class PoleSujetComponent implements OnInit {
   public getPoleSubjects(){
     this.poleS.fetchPoleSujets()
     .then(x=>{
-      
+      this.isFetchingItems = false;
       this.Psujets = x.results;
       this.itemsCount = x.count;
-
     }
       )
     .catch(error=>{
@@ -63,6 +63,18 @@ export class PoleSujetComponent implements OnInit {
           return res.titre
             .toLocaleLowerCase()
             .match(this.sujet_.toLocaleLowerCase());
+        });
+      }
+    }
+
+    searchLaboratoire() {
+      if (this.laboratoire_ === '') {
+        this.ngOnInit();
+      } else {
+        this.Psujets = this.Psujets.filter((res) => {
+          return res['laboratoire'].nom
+            .toLocaleLowerCase()
+            .match(this.laboratoire_.toLocaleLowerCase());
         });
       }
     }

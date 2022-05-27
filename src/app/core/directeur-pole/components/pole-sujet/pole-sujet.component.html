@@ -18,6 +18,19 @@
       class="form-control"
       type="text"
       name=""
+      [(ngModel)]="laboratoire_"
+      (ngModelChange)="searchLaboratoire()"
+      [ngModelOptions]="{ standalone: true }"
+      pattern="[0-9]*(\.[0-9]+)?"
+      placeholder="par laboratoire"
+    />
+  </div>
+
+  <div class="col-3">
+    <input
+      class="form-control"
+      type="text"
+      name=""
       [(ngModel)]="formationDoctorale_"
       (ngModelChange)="searchFormation()"
       [ngModelOptions]="{ standalone: true }"
@@ -29,15 +42,15 @@
 <div class="container-fluid mt-3">
   <div class="table-responsive">
       <app-alert *ngIf="alert" [data]="alert"></app-alert>
-    <table class="table table-align-middle">
+    <table *ngIf="!isFetchingItems" class="table table-align-middle">
       <thead>
         <tr class="table-primary">
-          <th scope="col" class="w-7">Titre Sujet</th>
+          <th scope="col" class="w-7">Titre | Sujet | thème</th>
           <th scope="col" class="w-23">Directeur</th>
           <th scope="col" class="w-7">Co-Directeur</th>
           <th scope="col" class="w-23">Labo</th>
           <th scope="col" class="w-23">Formation Doctorale</th>
-          <th scope="col" class="23">CED</th>
+          <th scope="col" class="w-23">CED</th>
         </tr>
       </thead>
       <tbody>
@@ -51,6 +64,15 @@
         </tr>
       </tbody>
     </table>
+    <div *ngIf="isFetchingItems">
+      <h4>
+        <img
+          src="/assets/images/connexion/loading.webp"
+          width="300"
+          height="100"
+        />
+      </h4>
+    </div>
   </div>
   <app-offsetpagination
     [itemsCount]="itemsCount"
