@@ -37,6 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'ced',
+    loadChildren: () => import('./core/directeur-pole/directeur-pole.module').then(x => x.DirecteurPoleModule),
     component: MainCedComponent,
     canActivate: [IsProfessorGuard, IsCEDGuard],
   },
