@@ -16,6 +16,11 @@ export class PoleInscriptionComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
   public isFetchingItems = true;
   public loading:boolean = false;
+  public sujet_:string = '';
+  public formationDoctorale_:string = '';
+  public errorText:string = '';
+  public laboratoire_:string = '';
+  public itemsCount: number | undefined;
 
   constructor(public poleS:PoleInscriptionService) { }
 
@@ -28,7 +33,7 @@ export class PoleInscriptionComponent implements OnInit {
      .then(x=>{
       this.PInscriptions = x.results;
       this.isFetchingItems = false;
-      console.log(x);
+      this.itemsCount = x.count;
      })
      .catch(error=>{
       this.alert = {
@@ -40,6 +45,57 @@ export class PoleInscriptionComponent implements OnInit {
       this.loading = false
       setTimeout(() => (this.alert = undefined), 3000);
      })
+
+    
   }
+
+      // search partie
+
+      searchFormation() {
+        if (this.formationDoctorale_ === '') {
+          this.ngOnInit();
+        } else {
+          this.PInscriptions = this.PInscriptions.filter((res) => {
+            return res['formationDoctorale']
+              .toLocaleLowerCase()
+              .match(this.formationDoctorale_.toLocaleLowerCase());
+          });
+        }
+      }
+  
+      searchSujet() {
+        if (this.sujet_ === '') {
+          this.ngOnInit();
+        } else {
+          this.PInscriptions = this.PInscriptions.filter((res) => {
+            return res.sujet.titre
+              .toLocaleLowerCase()
+              .match(this.sujet_.toLocaleLowerCase());
+          });
+        }
+      }
+  
+      searchLaboratoire() {
+        if (this.laboratoire_ === '') {
+          this.ngOnInit();
+        } else {
+          this.PInscriptions = this.PInscriptions.filter((res) => {
+            return res['laboratoire'].nom
+              .toLocaleLowerCase()
+              .match(this.laboratoire_.toLocaleLowerCase());
+          });
+        }
+      }
+  
+      onIndexChange(offset: number) {
+        if (this.isFetchingItems) return;
+        this.isFetchingItems = true;
+        this.poleS
+          .fetchPoleInscriptions(offset)
+          .then((d) => {
+            this.PInscriptions = d.results;
+          })
+          .finally(() => (this.isFetchingItems = false));
+      }
 
 }
