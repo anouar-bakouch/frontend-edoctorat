@@ -14,7 +14,6 @@ import { DirecteurLaboComponent } from './components/directeur-labo.component';
 import { LaboRoutingModule } from './labo-routing.module';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SujetTreeComponent } from './components/sujet-tree/sujet-tree.component';
 import { PreselectionComponent } from './components/preselection/preselection.component';
@@ -46,7 +45,6 @@ import { ConvocationComponent } from './components/convocation/convocation.compo
     FormsModule,
     RxReactiveFormsModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule,
     SharedModule,
   ],
   exports: [

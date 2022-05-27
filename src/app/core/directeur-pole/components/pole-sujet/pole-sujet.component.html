@@ -1,8 +1,34 @@
-<!-- <app-alert *ngIf="alert" [data]="alert"></app-alert>
-<app-alert *ngIf="loading" [data]="alert"></app-alert> -->
+<div class="d-flex justify-content-between align-items-center my-3">
 
+  <div class="col-3">
+    <input
+      class="form-control"
+      type="text"
+      name=""
+      [(ngModel)]="sujet_"
+      (ngModelChange)="searchSujet()"
+      [ngModelOptions]="{ standalone: true }"
+      pattern="[0-9]*(\.[0-9]+)?"
+      placeholder="par sujet"
+    />
+  </div>
+
+  <div class="col-3">
+    <input
+      class="form-control"
+      type="text"
+      name=""
+      [(ngModel)]="formationDoctorale_"
+      (ngModelChange)="searchFormation()"
+      [ngModelOptions]="{ standalone: true }"
+      pattern="[0-9]*(\.[0-9]+)?"
+      placeholder="par formation doctorale"
+    />
+  </div>
+</div>
 <div class="container-fluid mt-3">
   <div class="table-responsive">
+      <app-alert *ngIf="alert" [data]="alert"></app-alert>
     <table class="table table-align-middle">
       <thead>
         <tr class="table-primary">
@@ -16,20 +42,20 @@
       </thead>
       <tbody>
         <tr *ngFor="let ps of Psujets">
-          <td>{{ps.titre}}</td>
-          <td>{{ps.professeur.prenom}} {{ps.professeur.nom}}</td>
-          <td>{{ps.coDirecteur.prenom}} {{ps.coDirecteur.nom}}</td>
-          <td>$sujet.lab</td>
-          <td>$sujet.formation_doctorale</td>
-          <td>$sujet.ced</td>
+          <td>{{ps?.titre}}</td>
+          <td>{{ps?.professeur?.prenom}} {{ps.professeur?.nom}}</td>
+          <td>{{ps?.coDirecteur?.prenom}} {{ps.coDirecteur?.nom}}</td>
+          <td>{{ps['laboratoire'].nom}}</td>
+          <td>{{ps?.formationDoctorale?.titre}}</td>
+          <td>{{ps?.formationDoctorale?.ced['titre']}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <!-- <app-offsetpagination
+  <app-offsetpagination
     [itemsCount]="itemsCount"
     [itemsPerPage]="50"
     (indexChange)="onIndexChange($event)"
-    *ngIf="commissions.length > 0"
-  ></app-offsetpagination> -->
+    *ngIf="Psujets.length > 0"
+  ></app-offsetpagination>
 </div>

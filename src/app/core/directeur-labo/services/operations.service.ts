@@ -6,11 +6,12 @@ import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { environment } from 'src/environments/environment';
-import { ProfesseurModule } from '../../professeur/profeseur.module';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class OperationsService {
 
   constructor(private http: HttpClient) { }

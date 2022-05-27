@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Candidat } from 'src/app/models/Candidat';
 import { Commission } from 'src/app/models/Commission';
-import { Professeur } from 'src/app/models/Professeur';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
@@ -14,6 +12,7 @@ import { OperationsService } from '../../services/operations.service';
   templateUrl: './preselection.component.html',
   styleUrls: ['./preselection.component.css']
 })
+
 export class PreselectionComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
   public loading: boolean = false;
