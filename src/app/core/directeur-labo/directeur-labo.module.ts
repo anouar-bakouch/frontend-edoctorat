@@ -18,7 +18,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SujetTreeComponent } from './components/sujet-tree/sujet-tree.component';
 import { PreselectionComponent } from './components/preselection/preselection.component';
-import { ConvocationComponent } from './components/convocation/convocation.component';
+
 
 
 
@@ -35,7 +35,6 @@ import { ConvocationComponent } from './components/convocation/convocation.compo
     DirecteurLaboComponent,
     SujetTreeComponent,
     PreselectionComponent,
-    ConvocationComponent,
   ],
   imports: [
     CommonModule,
