@@ -22,5 +22,14 @@ div.sujet {
 .sujet-clicked{
     color: blue;
     cursor: pointer;
-    width: fit-content;
+    /* width: fit-content; */
+}
+.sujet-clicked:hover{
+    color: white;
+    background-color: rgb(0, 140, 255);
+    /* width: fit-content; */
+}
+span{
+    font-size: 12px;
+    color: black;
 }
