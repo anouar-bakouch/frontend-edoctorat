@@ -28,6 +28,7 @@ export class PoleInscriptionComponent implements OnInit {
      .then(x=>{
       this.PInscriptions = x.results;
       this.isFetchingItems = false;
+      console.log(x);
      })
      .catch(error=>{
       this.alert = {

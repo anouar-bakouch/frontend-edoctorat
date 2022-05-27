@@ -2,8 +2,7 @@
       <div class="row container-fluid mt-3">
         <div class="col-12 table-responsive">
           <table
-            id="table"
-
+           *ngIf="!isFetchingItems"
             class="table table-align-middle"
           >
             <thead>
@@ -49,15 +48,24 @@
             <tbody>
               <tr *ngFor="let i of PInscriptions">
                 <td>{{i.sujet.titre}}</td>
-                <td>{{i.sujet.professeur.prenom}} {{i.sujet.professeur.nom}} </td>
+                <td>{{i.sujet.professeur?.prenom}} {{i.sujet.professeur?.nom}} </td>
                 <td>{{i.sujet.coDirecteur?.prenom}} {{i.sujet.coDirecteur?.nom}}</td>
                 <td>
-                 {{i.candidat.prenom}} {{i.candidat.nom}}
+                 {{i.candidat?.prenom}} {{i.candidat?.nom}}
                 </td>
                 <td>{{i.sujet.formationDoctorale.titre}}</td>
                 <td>{{i.sujet.formationDoctorale.ced}}</td>
               </tr>
             </tbody>
+            <div *ngIf="isFetchingItems">
+              <h4>
+                <img
+                  src="/assets/images/connexion/loading.webp"
+                  width="300"
+                  height="100"
+                />
+              </h4>
+            </div>
           </table>
         </div>
       </div>
