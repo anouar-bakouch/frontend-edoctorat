@@ -1,17 +1,15 @@
 <app-alert *ngIf="alert" [data]="alert"></app-alert>
-<app-alert *ngIf="loading" [data]="alert"></app-alert>
 
 <div class="container-fluid mt-3">
   <div class="table-responsive">
     <table class="table table-align-middle">
       <thead>
         <tr class="table-primary">
-          <th scope="col" class="w-7">Date</th>
-          <th scope="col" class="w-23">Lieu</th>
-          <th scope="col" class="w-7">Heure</th>
-          <!-- <th scope="col" class="w-23">Membres</th> -->
-          <th scope="col" class="w-23">Sujets</th>
-          <th scope="col" class="w-23">Actions</th>
+          <th scope="col" class="w-20">Date</th>
+          <th scope="col" class="w-20">Lieu</th>
+          <th scope="col" class="w-20">Heure</th>
+          <th scope="col" class="w-20 text-center">Sujets</th>
+          <th scope="col" class="w-20">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -20,24 +18,25 @@
           <td>{{ c.heure }}</td>
           <td>{{ c.lieu }}</td>
           <td>
-            <ul>
+            <ul class="list-group list-group-flush">
               <li
                 *ngFor="let s of c.sujets"
-                class="sujet-clicked"
+                class="sujet-clicked list-group-item"
                 (click)="onClickSujet(mymodal, s)"
               >
-                {{ s.titre }}
+                <div class="row">
+                  <div class="col-8 text-wrap">{{ s.titre }}</div>
+                  <div class="col-4 text-wrap">
+                    <span class="fw-bold">( de: {{ s.professeur }} ) </span>
+                  </div>
+                </div>
               </li>
             </ul>
           </td>
-          <td>
-            <button class="btn btn-primary me-2 btn-sm my-1" type="button">
+          <td class="text-center">
+            <button  class="btn btn-danger me-2 btn-sm my-1" type="button" (click)="open2(mymodal1, c)">
               <i class="bi bi-bell"></i>
               Envoyer Notification
-            </button>
-            <button class="btn btn-danger btn-sm my-1" type="button">
-              <i class="bi bi-x-lg"></i>
-              Annuler
             </button>
           </td>
         </tr>
@@ -70,29 +69,23 @@
         </h5>
       </div>
       <div class="modal-body">
+        <app-alert [data]="alert2"></app-alert>
         <div class="form-group mb-3">
           <div class="sujet">
             <div class="col-5 border rounded p-2">
-              <h6>Candidats</h6>
+              <h6>Candidats postuler</h6>
               <div class="ex3 mb-2">
                 <p
                   (click)="onCandidatSelect(s)"
                   *ngFor="let s of candidatsSujet"
                   class="op"
                   [style]="{
-                    display:
-                      selectedCandidats.indexOf(s) > -1 ? 'none' : 'block'
+                    display: s.valider ? 'none' : 'block'
                   }"
                 >
                   {{ s.candidat.nom }} {{ s.candidat.prenom }}
                 </p>
               </div>
-              <!-- <app-offsetpagination
-                  [itemsCount]="itemsCountProfs"
-                  [itemsPerPage]="50"
-                  (indexChange)="onIndexChangeProfs($event)"
-                  *ngIf="professeurs.length > 0"
-                ></app-offsetpagination> -->
             </div>
             <div
               class="col-2 d-flex flex-column justify-content-center align-items-center"
@@ -105,14 +98,17 @@
               </h6>
             </div>
             <div class="col-5 border rounded p-2">
-              <h6>Membres</h6>
+              <h6>Candidats sélectionné</h6>
               <div class="ex3">
                 <p
-                  *ngFor="let o of selectedCandidats"
-                  (click)="onCandidatDeSelect(o)"
+                  *ngFor="let s of candidatsSujet"
+                  (click)="onCandidatSelect(s)"
                   class="op"
+                  [style]="{
+                    display: s.valider ? 'block' : 'none'
+                  }"
                 >
-                  {{ o.candidat.nom }} {{ o.candidat.prenom }}
+                  {{ s.candidat.nom }} {{ s.candidat.prenom }}
                 </p>
               </div>
             </div>
@@ -128,6 +124,50 @@
           >
             annuler
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  #mymodal1
+  let-modal
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered w-100 modal-l"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Envoie des notification
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-3">
+          <h4 class="text-danger">Est ce que vous voulez envoyer les notifications à tous les candidats sélectionnés ?</h4>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            (click)="modal.dismiss('Cross click')"
+            type="button"
+          >
+            annuler
+          </button>
+          <button
+              class="btn btn-primary btn-confirmer"
+              type="submit"
+              (click)="modal.close('Save click')"
+            >
+              confirmer
+            </button>
         </div>
       </div>
     </div>
