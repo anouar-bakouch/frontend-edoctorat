@@ -1,51 +1,61 @@
-<!-- <app-alert *ngIf="alert" [data]="alert"></app-alert>
-<app-alert *ngIf="loading" [data]="alert"></app-alert> -->
+<app-alert *ngIf="alert" [data]="alert"></app-alert>
+<app-alert *ngIf="loading" [data]="alert"></app-alert>
 <div class="container-fluid mt-3">
   <div class="table-responsive">
-    <!-- <table class="table table-bordered table-align-middle"
-                       data-search="true"
-                       data-filter-control="true"
-                       data-show-export="true"
-                       data-click-to-select="true"
-                       data-toolbar="#toolbar"
-                > -->
-    <table class="table table-align-middle">
+
+    <table *ngIf="!isFetchingItems" class="table table-align-middle">
       <thead>
         <tr class="table-primary">
-          <th scope="col" class="w-43">sujet</th>
+          
           <th scope="col" class="w-13">date</th>
           <th scope="col" class="w-13">heure</th>
           <th scope="col" class="w-15">lieu</th>
+          <th scope="col" class="w-43">sujet</th>
           <th scope="col" class="w-43">membres</th>
           <th scope="col" class="w-43">Labo</th>
           <th scope="col" class="w-43">CED</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let c of commissions">
+          <td>{{ c.dateCommission }}</td>
+          <td>{{ c.heure }}</td>
+          <td>{{ c.lieu }}</td>
           <td>
-            <ul>
-              <li>$ sujet</li>
-            </ul>
+              <ul>
+                  <li *ngFor="let s of c.sujets">
+                      {{ s.titre }}
+                  </li>
+              </ul>
           </td>
-          <td>$ commission.dateCommission</td>
-          <td>$ commission.heure</td>
-          <td>$ commission.lieu</td>
           <td>
-            <ul>
-              <li>$ membre</li>
-            </ul>
+              <ul>
+                  <li *ngFor="let p of c.participants">
+                      {{ p.nom }} {{ p.prenom }}
+                  </li>
+              </ul>
           </td>
-          <td>$ commission.lab</td>
-          <td>$ commission.ced</td>
-        </tr>
+          
+          <td>{{ c.labo }}</td>
+          <td>ced</td>
+
+      </tr>
       </tbody>
     </table>
+    <div *ngIf="isFetchingItems">
+      <h4>
+        <img
+          src="/assets/images/connexion/loading.webp"
+          width="300"
+          height="100"
+        />
+      </h4>
+    </div>
   </div>
-  <!-- <app-offsetpagination
+ <app-offsetpagination
     [itemsCount]="itemsCount"
     [itemsPerPage]="50"
     (indexChange)="onIndexChange($event)"
     *ngIf="commissions.length > 0"
-  ></app-offsetpagination> -->
+  ></app-offsetpagination> 
 </div>
