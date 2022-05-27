@@ -122,7 +122,6 @@ export class LaboSujet {
   }
 
 
-
   fetchResultats( offset: number | undefined = undefined):Promise<Result<Examiner>>{
     let url = `${environment.API_URL}/api/examiner/`;
     if (offset) {

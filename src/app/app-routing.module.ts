@@ -22,7 +22,8 @@ const routes: Routes = [
     component: MainProfComponent,
     canActivate: [IsCandidatGuard],
   },
-  { path: 'candidat', loadChildren: () => import('./core/candidat/candidat.module').then(x => x.CandidatModule) } ,
+  { path: 'candidat',
+   loadChildren: () => import('./core/candidat/candidat.module').then(x => x.CandidatModule) } ,
   {
     path: 'pole',
     loadChildren: () => import('./core/directeur-pole/directeur-pole.module').then(x => x.DirecteurPoleModule),
