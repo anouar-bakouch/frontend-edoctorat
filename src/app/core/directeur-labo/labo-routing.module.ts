@@ -8,7 +8,7 @@ import { CandidatsComponent } from './components/candidats/candidats.component';
 import { CommissionsComponent } from './components/commissions/commissions.component';
 import { ResultatsComponent } from './components/resultats/resultats.component';
 import { PreselectionComponent } from './components/preselection/preselection.component';
-import { ConvocationComponent } from './components/convocation/convocation.component';
+
 
 const routes: Routes = [
     { path: 'labo', redirectTo: '/labo/sujets', pathMatch: 'full' },
@@ -23,7 +23,6 @@ const routes: Routes = [
             { path: 'resultats', component: ResultatsComponent },
             { path: 'candidats', component: CandidatsComponent },
             { path: 'preselection', component: PreselectionComponent },
-            { path: 'convocation', component: ConvocationComponent },
         ],
     },
 ];

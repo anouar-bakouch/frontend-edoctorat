@@ -17,7 +17,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SujetTreeComponent } from './components/sujet-tree/sujet-tree.component';
 import { PreselectionComponent } from './components/preselection/preselection.component';
-import { ConvocationComponent } from './components/convocation/convocation.component';
+
 
 
 
@@ -34,7 +34,6 @@ import { ConvocationComponent } from './components/convocation/convocation.compo
     DirecteurLaboComponent,
     SujetTreeComponent,
     PreselectionComponent,
-    ConvocationComponent,
   ],
   imports: [
     CommonModule,
