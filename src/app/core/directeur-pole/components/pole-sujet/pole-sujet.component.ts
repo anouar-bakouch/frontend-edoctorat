@@ -37,7 +37,14 @@ export class PoleSujetComponent implements OnInit {
     }
       )
     .catch(error=>{
-      console.log(error);
+      this.alert = {
+        type: 'loading',
+        message: "error lors de la suppression",
+      };
+    })
+    .finally(()=>{
+      this.loading = false;
+      setTimeout(() => (this.alert = undefined), 3000);
     })
   }
 

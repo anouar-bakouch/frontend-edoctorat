@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Validators} from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
@@ -72,7 +72,6 @@ export class SujetsComponent implements OnInit {
     };
   }).finally(()=>{
     this.loading = false
-    
     setTimeout(() => (this.alert = undefined), 3000);
   });
 

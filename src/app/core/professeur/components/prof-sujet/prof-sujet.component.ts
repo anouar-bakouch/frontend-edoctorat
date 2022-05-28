@@ -145,7 +145,6 @@ export class ProfSujetComponent implements OnInit {
         message: 'success',
       };
     }).catch((error) => {
-      console.log(error)
       this.alert = {
         type: 'error',
         message: 'error',
