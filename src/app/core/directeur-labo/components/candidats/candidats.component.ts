@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Candidat } from 'src/app/models/Candidat';
 import { Examiner } from 'src/app/models/Examiner';
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { OperationsService } from '../../services/operations.service';
@@ -14,7 +16,7 @@ export class CandidatsComponent implements OnInit {
   public page: number = 1;
   public itemsCount: number | undefined;
   public candidats: Examiner[] = []
-  constructor(private operationsService: OperationsService) { }
+  constructor(private operationsService: OperationsService, private _router: Router) { }
 
   ngOnInit(): void {
     this.getCandidats()
@@ -59,5 +61,9 @@ export class CandidatsComponent implements OnInit {
         this.candidats = d.results;
       })
       .finally(() => (this.loading = false));
+  }
+  voirProfile(c:Examiner){
+    console.log(c)
+    this._router.navigate(['candidat/profil', { id: c.candidat.id}]);
   }
 }
