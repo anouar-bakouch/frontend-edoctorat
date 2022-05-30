@@ -38,7 +38,7 @@
                     <input
                       type="date"
                       name="dateDebut"
-                      id="date1"
+                      [id]="'date-debut-'+c.id"
                       class="form-control"
                       [value]="c.dateDebut"
                       required
@@ -57,14 +57,14 @@
                     <input
                       type="date"
                       name="dateFin"
-                      id="date2"
+                      [id]="'date-fin-'+c.id"
                       [value]="c.dateFin"
                       class="form-control"
                       required
                     />
                   </div>
                   <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">
+                    <button (click)="onConfirmerClicked(c.id)" class="btn btn-primary mb-3">
                       Confirmer
                     </button>
                   </div>

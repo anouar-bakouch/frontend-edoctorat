@@ -18,4 +18,13 @@ export class PoleCalendrierService {
       })
     });
   }
+
+  updateCalendrier(calendrierId: number, dateDebut: string, dateFin: string): Promise<Calendrier> {
+    return new Promise<Calendrier>((resolve, reject) => {
+      this.client.patch<Calendrier>(`${environment.API_URL}/api/update-canlendrier/${calendrierId}/`, { dateDebut, dateFin }).subscribe({
+        next: (d) => resolve(d),
+        error: (_) => reject()
+      })
+    }); 
+  }
 }
