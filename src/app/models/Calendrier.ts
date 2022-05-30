@@ -1,12 +1,10 @@
 
 
 export interface Calendrier {
-
-   idCalendrier:number;
+   id:number;
    action:string;
    dateDebut:string; 
    dateFin:string;
-   qui:string;  
-
+   pour:string;  
 }
 
