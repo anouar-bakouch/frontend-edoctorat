@@ -30,6 +30,18 @@ export class CandidatService {
         });
     });
   }
+  getCandidatProfile(id:number): Promise<Candidat> {
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .get<Candidat>(`${environment.API_URL}/api/get-candidat-profile/${id}`)
+        .subscribe({
+          next: (data) => {
+            resolve(data);
+          },
+          error: (err) => reject(err),
+        });
+    });
+  }
 
   updateCandidatInfo(candidat: any): Promise<Candidat> {
     return new Promise((resolve, reject) => {
