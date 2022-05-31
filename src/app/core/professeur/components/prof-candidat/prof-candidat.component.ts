@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Postuler } from 'src/app/models/Postuler';
 import { CandidastProfService } from '../../services/candidat-prof.service';
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
+import { Router } from '@angular/router';
+import { Examiner } from 'src/app/models/Examiner';
 
 @Component({
   selector: 'app-prof-candidat',
@@ -16,9 +18,13 @@ export class ProfCandidatComponent implements OnInit {
   public loading:boolean = false;
   public pathFileExists:boolean = false;
 
-  constructor(public candidatS : CandidastProfService) { }
+  constructor(public candidatS: CandidastProfService, private _router: Router) { }
 
   ngOnInit(): void {
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
     this.candidatS.getCandidats()
     .then(x=>{
       this.loading = true;
@@ -39,5 +45,8 @@ export class ProfCandidatComponent implements OnInit {
       setTimeout(() => (this.alert = undefined), 3000);
     });
   }
-
+  voirProfile(c: Postuler) {
+    // console.log(c.candidat.cne)
+    this._router.navigate(['candidat/profil', { id: c.candidat.id }]);
+  }
 }
