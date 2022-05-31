@@ -4,7 +4,7 @@
 <div class="table-responsive my-3">
 <table class="table table-responsive">
 <thead>
-<tr>
+<tr class="table-primary">
  <th class="w-10">Cne</th>
  <th class="w-20">Candidat</th>
  <th class="w-40">Sujet</th>
@@ -14,7 +14,7 @@
 <tbody>
 <tr *ngFor = "let c of candidats_">
 
-    <td class="fs-bold text-primary">{{c.candidat.cne}}</td>
+    <td class="fs-bold text-primary"><button class="btn btn-light text-primary" type="button" (click)="voirProfile(c)">{{ c.candidat.cne }}</button></td>
     <td>{{c.candidat.prenom}} {{c.candidat.nom}}</td>
     <td>{{c.sujet.titre}}</td>
     <td>
