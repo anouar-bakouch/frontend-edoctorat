@@ -52,7 +52,14 @@ export class NotificationsComponent implements OnInit {
   }
 
   choseSubject(x){
-   
+   this.candidatNotifications.sendSubjectChosen(x)
+   .then(x=>{
+    console.log(x);
+   })
+   .catch(error=>{
+    console.log(error)
+   })
+   .finally()
   }
 
 }
