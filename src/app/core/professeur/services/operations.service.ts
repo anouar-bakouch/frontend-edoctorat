@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { Inscription } from 'src/app/models/Inscription';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
@@ -126,7 +126,7 @@ export class OperationsService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise((resolve, reject) => {
-      this.http.get(url).subscribe({
+      this.http.get(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -144,7 +144,7 @@ export class OperationsService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise<Result<Inscription>>((resolve, reject) => {
-      this.http.get<Result<Inscription>>(url).subscribe({
+      this.http.get<Result<Inscription>>(url).pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },

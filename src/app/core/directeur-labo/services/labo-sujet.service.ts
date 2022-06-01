@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { first } from 'rxjs';
 import { Examiner } from 'src/app/models/Examiner';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Professeur } from 'src/app/models/Professeur';
@@ -27,7 +28,7 @@ export class LaboSujet {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise((resolve, reject) => {
-      this.http.get<Result<Sujet>>(url).subscribe({
+      this.http.get<Result<Sujet>>(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -43,7 +44,7 @@ export class LaboSujet {
       this.http
         .get<Result<FormationDoctorale>>(
           `${environment.API_URL}/api/formation-doctorale/` 
-        )
+      ).pipe(first())
         .subscribe({
           next: (data) => {
             resolve(data);
@@ -60,7 +61,7 @@ export class LaboSujet {
 
   public getProfesseurs():Promise<Result<Professeur>> {
     return new Promise((resolve, reject) => {
-      this.http.get<Result<Professeur>>(environment.API_URL + '/api/get-professeurs/').subscribe({
+      this.http.get<Result<Professeur>>(environment.API_URL + '/api/get-professeurs/').pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -75,7 +76,7 @@ export class LaboSujet {
 
   public addSujet(sujet: object) {
     return new Promise((resolve, reject) => {
-      this.http.post(environment.API_URL + '/api/sujetslabo/', sujet).subscribe({
+      this.http.post(environment.API_URL + '/api/sujetslabo/', sujet).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -92,6 +93,7 @@ export class LaboSujet {
     return new Promise((resolve, reject) => {
       this.http
         .delete(environment.API_URL + '/api/sujetslabo/' +id + '/')
+        .pipe(first())
         .subscribe({
           next: (data) => {
             resolve(data);
@@ -109,6 +111,7 @@ export class LaboSujet {
     return new Promise((resolve, reject) => {
       this.http
         .put(environment.API_URL + '/api/sujetslabo/' + id + '/', sujet)
+        .pipe(first())
         .subscribe({
           next: (data) => {
             resolve(data);
@@ -130,6 +133,7 @@ export class LaboSujet {
   return new Promise((resolve, reject) => {
         this.http
           .get<Result<Examiner>>(url)
+          .pipe(first())
           .subscribe({
             next: (data) => {
               resolve(data);

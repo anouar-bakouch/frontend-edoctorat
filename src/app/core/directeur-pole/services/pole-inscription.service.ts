@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { first } from 'rxjs';
 import { Inscription } from 'src/app/models/Inscription';
 import Result from 'src/app/models/Result';
 import { environment } from 'src/environments/environment';
@@ -21,6 +22,7 @@ export class PoleInscriptionService {
   return new Promise((resolve, reject) => {
         this.http
           .get<Result<Inscription>>(url)
+          .pipe(first())
           .subscribe({
             next: (data) => {
               resolve(data);

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { first, of } from 'rxjs';
 import { Postuler } from 'src/app/models/Postuler';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
@@ -21,7 +21,7 @@ export class CandidatPostulerService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise((resolve, reject) => {
-      this.http.get<Result<Sujet>>(url).subscribe({
+      this.http.get<Result<Sujet>>(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -42,7 +42,7 @@ export class CandidatPostulerService {
         .post<Postuler>(`${environment.API_URL}/api/candidat-postules/`, {
           sujet,
         })
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (d) =>
             resolve({
               ...d,
@@ -57,7 +57,7 @@ export class CandidatPostulerService {
     return new Promise<Boolean>((resolve, _) => {
       this.http
         .delete(`${environment.API_URL}/api/candidat-postules/${id}`)
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (d) => resolve(true),
           error: (e) => resolve(false),
         });
@@ -71,7 +71,7 @@ export class CandidatPostulerService {
           `${environment.API_URL}/api/candidat-postules/${sujet}/`,
           PThese
         )
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
