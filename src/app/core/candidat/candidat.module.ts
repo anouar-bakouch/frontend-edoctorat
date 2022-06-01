@@ -36,7 +36,6 @@ import { BtsComponent } from './components/bts/bts.component';
 import { DtsComponent } from './components/dts/dts.component';
 import { MasterStComponent } from './components/master-st/master-st.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { RecoveryComponent } from '../../public/components/auth/carecovery/recovery.component';
 @NgModule({
   declarations: [
     CandidatParcoursComponent,
@@ -65,8 +64,7 @@ import { RecoveryComponent } from '../../public/components/auth/carecovery/recov
     DeustComponent,
     BtsComponent,
     DtsComponent,
-    MasterStComponent,
-    RecoveryComponent,
+    MasterStComponent
   ],
   imports: [
     CommonModule,

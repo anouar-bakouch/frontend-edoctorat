@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CandidatAuthComponent } from './components/auth/candidat-auth/candidat-auth.component';
 import { CandidatLoginComponent } from './components/auth/candidat-login/candidat-login.component';
 import { CandidatPreRegisterComponent } from './components/auth/candidat-pre-register/candidat-pre-register.component';
+import { CandidatRecoveryComponent } from './components/auth/candidat-recovery/candidat-recovery.component';
 import { CandidatRegisterComponent } from './components/auth/candidat-register/candidat-register.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -27,6 +28,8 @@ const routes: Routes = [
           { path: 'pre-register', component: CandidatPreRegisterComponent },
 
           { path: 'register', component: CandidatRegisterComponent },
+          
+          { path: 'recover_password', component: CandidatRecoveryComponent }
         ],
       },
     ],
