@@ -1,17 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.css'],
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent implements OnInit, AfterViewInit {
   @Input() data: AlertData | undefined;
   tcolor: string = 'black';
 
-  constructor() {}
-
-  ngOnInit(): void {
+  constructor() { }
+  
+  ngAfterViewInit(): void {
     if (this.data) {
       switch (this.data.type.toLocaleLowerCase()) {
         case 'success':
@@ -26,6 +26,10 @@ export class AlertComponent implements OnInit {
           break;
       }
     }
+  }
+
+  ngOnInit(): void {
+    
   }
 }
 

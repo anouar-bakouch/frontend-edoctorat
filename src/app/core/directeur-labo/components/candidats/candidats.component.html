@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let c of candidats">
-          <td>{{ c.candidat.cne }}</td>
+          <td><button class="btn btn-light text-primary" type="button" (click)="voirProfile(c)">{{ c.candidat.cne }}</button></td>
           <td>{{ c.candidat.nom }} {{ c.candidat.prenom }}</td>
           <td>{{ c.sujet.titre }}</td>
           <td>{{ c.sujet.professeur.nom }} {{ c.sujet.professeur.prenom }}</td>
