@@ -32,9 +32,15 @@ export class NotificationsComponent implements OnInit {
     this.candidatNotifications.getNotifications()
     .then(res=>{
       this.isFetchingItems = false;
-      this.notifications = res.results;
-
-      console.log(res.results)
+      res.results.forEach(x=>{
+        if(x.type === NotificationType.res){
+             this.resultats.push(x);
+        }
+        if(x.type === NotificationType.com) {
+          this.notifications = res.results;
+        }
+      }
+      )
 
     })
     .catch(error=>{
