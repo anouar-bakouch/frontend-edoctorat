@@ -51,4 +51,8 @@ export class NotificationsComponent implements OnInit {
     })
   }
 
+  choseSubject(x:Sujet){
+
+  }
+
 }
