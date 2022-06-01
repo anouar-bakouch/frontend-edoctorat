@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CandidatNotificationsService } from '../../services/candidat-notifications.service';
 import { Notification } from 'src/app/models/Notification';
 import { Sujet } from 'src/app/models/Sujet';
+import { NotificationType } from 'src/app/enums/NotificationType';
+import { Commission } from 'src/app/models/Commission';
 
 @Component({
   selector: 'app-notifications',
@@ -14,7 +16,7 @@ export class NotificationsComponent implements OnInit {
   public notifications: Notification [] = [];
   public resultats : {
                         id:number,
-                        commission:null,
+                        commission:Commission,
                         sujet:Sujet,
                         type:string
                       }[] = [];
@@ -32,11 +34,7 @@ export class NotificationsComponent implements OnInit {
       this.isFetchingItems = false;
       this.notifications = res.results;
 
-      this.notifications.forEach(x=>{
-        if(x.type === 'RESULTAT'){
-          
-        }
-      })
+      console.log(res.results)
 
     })
     .catch(error=>{
