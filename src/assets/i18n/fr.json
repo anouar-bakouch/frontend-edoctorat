@@ -93,16 +93,16 @@
     }
   },
   "candidat" : {
-    "deconnexion" : "deconnexion",
+    "deconnexion" : "déconnexion",
     "informations_personnels" : "Informations Personnelles",
     "info_perso":{
       "photo_courant" : "photo courant",
       "importer_photo_profil":"Importer votre Photo du Profil",
       "Nom": "Nom",
-      "Prenom":"Prenom",
+      "Prenom":"Prénom",
       "CIN" : "CIN | Code d'identité National ",
       "CNE":"CNE | Code National d'étudiant",
-      "Prenom_ar":"Prenom en arabe",
+      "Prenom_ar":"Prénom en arabe",
       "Nom_ar":"Nom en arabe",
       "date_naissance" : "Date de naissance",
       "lieu_naissance" : "Lieu de naissance en Francais",
@@ -115,8 +115,8 @@
       "telephone" : "Téléphone",
       "Pays" : "Pays",
       "confirmer" : "Confirmer",
-      "masculine": "Masculine",
-      "feminine": "Feminine"
+      "masculine": "Masculin",
+      "feminine": "Féminin"
     },
     
     "parcours": {
