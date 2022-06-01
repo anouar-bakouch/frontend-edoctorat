@@ -31,7 +31,13 @@ export class NotificationsComponent implements OnInit {
     .then(res=>{
       this.isFetchingItems = false;
       this.notifications = res.results;
-      console.log(res);
+
+      this.notifications.forEach(x=>{
+        if(x.type === 'RESULTAT'){
+          
+        }
+      })
+
     })
     .catch(error=>{
       console.log(error)
