@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { Diplome } from 'src/app/models/Diplome';
 import Result from 'src/app/models/Result';
 import { environment } from 'src/environments/environment';
@@ -19,7 +19,7 @@ export class CandidatParcoursService {
         .get<Result<Diplome>>(
           `${environment.API_URL}/api/candidat-parcours/` 
         )
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
@@ -36,7 +36,7 @@ export class CandidatParcoursService {
     return new Promise((resolve, reject) => {
       this.http
         .get<Result<Diplome>>(`${environment.API_URL}/api/candidat-parcours/`)
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             if (type) {
               let res = undefined;
@@ -63,7 +63,7 @@ export class CandidatParcoursService {
           `${environment.API_URL}/api/candidat-parcours/`,
           diplome
         )
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
@@ -81,7 +81,7 @@ export class CandidatParcoursService {
           `${environment.API_URL}/api/candidat-parcours/${diplomeId}/`,
           diplome
         )
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },

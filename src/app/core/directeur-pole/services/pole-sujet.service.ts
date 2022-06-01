@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { first } from 'rxjs';
 import { Examiner } from 'src/app/models/Examiner';
 import Result from 'src/app/models/Result';
 import { Sujet } from 'src/app/models/Sujet';
@@ -21,6 +22,7 @@ export class PoleSujetService {
   return new Promise((resolve, reject) => {
         this.http
           .get<Result<Sujet>>(url)
+          .pipe(first())
           .subscribe({
             next: (data) => {
               resolve(data);

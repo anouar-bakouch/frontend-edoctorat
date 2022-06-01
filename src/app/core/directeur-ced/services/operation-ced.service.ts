@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { Commission } from 'src/app/models/Commission';
 import { Examiner } from 'src/app/models/Examiner';
 import Result from 'src/app/models/Result';
@@ -18,7 +18,7 @@ export class OperationCedService {
     return new Promise((resolve, reject) => {
       this.http
         .get(environment.API_URL + '/api/formation-doctorale/')
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
@@ -31,7 +31,7 @@ export class OperationCedService {
 
   public getProfesseurs() {
     return new Promise((resolve, reject) => {
-      this.http.get(environment.API_URL + '/api/get-professeurs/').subscribe({
+      this.http.get(environment.API_URL + '/api/get-professeurs/').pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -49,7 +49,7 @@ export class OperationCedService {
         url = `${url}?limit=50&offset=${offset}`;
       }
       return new Promise((resolve, reject) => {
-        this.http.get<Result<Sujet>>(url).subscribe({
+        this.http.get<Result<Sujet>>(url).pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
@@ -64,7 +64,7 @@ export class OperationCedService {
         url = `${url}?limit=50&offset=${offset}`;
       }
       return new Promise<Result<Examiner>>((resolve, reject) => {
-        this.http.get<Result<Examiner>>(url).subscribe({
+        this.http.get<Result<Examiner>>(url).pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
@@ -78,7 +78,7 @@ export class OperationCedService {
     
   public getCommissions() {
     return new Promise<Result<Commission>>((resolve, reject) => {
-      this.http.get<Result<Commission>>(environment.API_URL + '/api/get-ced-commissions/').subscribe({
+      this.http.get<Result<Commission>>(environment.API_URL + '/api/get-ced-commissions/').pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -95,7 +95,7 @@ export class OperationCedService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise((resolve, reject) => {
-      this.http.get(url).subscribe({
+      this.http.get(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },

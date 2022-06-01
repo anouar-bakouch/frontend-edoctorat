@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { first } from 'rxjs';
 import { BacOption } from 'src/app/enums/BacOption';
 import { CIOption } from 'src/app/enums/CIOption';
 import { DeugOption } from 'src/app/enums/DeugOption';
@@ -22,7 +23,7 @@ export class CandidatService {
     return new Promise((resolve, reject) => {
       this.httpClient
         .get<Candidat>(`${environment.API_URL}/api/candidat-info/`)
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
@@ -34,7 +35,7 @@ export class CandidatService {
     return new Promise((resolve, reject) => {
       this.httpClient
         .get<Candidat>(`${environment.API_URL}/api/get-candidat-profile/${id}`)
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
@@ -47,7 +48,7 @@ export class CandidatService {
     return new Promise((resolve, reject) => {
       this.httpClient
         .put<Candidat>(`${environment.API_URL}/api/candidat-info/`, candidat)
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },
@@ -63,7 +64,7 @@ export class CandidatService {
     return new Promise((resolve, reject) => {
       this.httpClient
         .get<Config>(`${environment.API_URL}/api/get-base-config/`)
-        .subscribe({
+        .pipe(first()).subscribe({
           next: (data) => {
             resolve(data);
           },

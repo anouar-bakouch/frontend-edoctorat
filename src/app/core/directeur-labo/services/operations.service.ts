@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { first } from 'rxjs';
 import { Commission } from 'src/app/models/Commission';
 import { Examiner } from 'src/app/models/Examiner';
 import { Professeur } from 'src/app/models/Professeur';
@@ -22,7 +23,7 @@ export class OperationsService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise<Result<Sujet>>((resolve, reject) => {
-      this.http.get<Result<Sujet>>(url).subscribe({
+      this.http.get<Result<Sujet>>(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -35,7 +36,7 @@ export class OperationsService {
 
   public addCommission(comm: object) {
     return new Promise((resolve, reject) => {
-      this.http.post(environment.API_URL + '/api/commission/', comm).subscribe({
+      this.http.post(environment.API_URL + '/api/commission/', comm).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -50,6 +51,7 @@ export class OperationsService {
     return new Promise((resolve, reject) => {
       this.http
         .put(environment.API_URL + '/api/commission/' + id + '/', comm)
+        .pipe(first())
         .subscribe({
           next: (data) => {
             resolve(data);
@@ -68,7 +70,7 @@ export class OperationsService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise<Result<Commission>>((resolve, reject) => {
-      this.http.get<Result<Commission>>(url).subscribe({
+      this.http.get<Result<Commission>>(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -84,7 +86,7 @@ export class OperationsService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise<Result<Professeur>>((resolve, reject) => {
-      this.http.get<Result<Professeur>>(url).subscribe({
+      this.http.get<Result<Professeur>>(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -99,6 +101,7 @@ export class OperationsService {
     return new Promise((resolve, reject) => {
       this.http
         .delete(environment.API_URL + '/api/commission/' + c.id + '/')
+        .pipe(first())
         .subscribe({
           next: (data) => {
             resolve(data);
@@ -116,7 +119,7 @@ export class OperationsService {
       url = `${url}?limit=50&offset=${offset}`;
     }
     return new Promise<Result<Examiner>>((resolve, reject) => {
-      this.http.get<Result<Examiner>>(url).subscribe({
+      this.http.get<Result<Examiner>>(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -131,7 +134,7 @@ export class OperationsService {
   public getCandidatsSujet(id:number) {
     let url = `${environment.API_URL}/api/get-sujet-candidat/${id}/`;
     return new Promise((resolve, reject) => {
-      this.http.get(url).subscribe({
+      this.http.get(url).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -145,7 +148,7 @@ export class OperationsService {
   public validerCandidat(id:number, item:any) {
     let url = `${environment.API_URL}/api/labo_valider_examiner/${id}/`;
     return new Promise((resolve, reject) => {
-      this.http.put(url, item).subscribe({
+      this.http.put(url, item).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
@@ -159,7 +162,7 @@ export class OperationsService {
   public envoyerNotification(id: number) {
     let url = `${environment.API_URL}/api/convoque-candidat/${id}/`;
     return new Promise((resolve, reject) => {
-      this.http.post(url, {}).subscribe({
+      this.http.post(url, {}).pipe(first()).subscribe({
         next: (data) => {
           resolve(data);
         },
