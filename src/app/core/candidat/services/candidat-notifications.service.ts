@@ -15,7 +15,9 @@ export class CandidatNotificationsService {
   getNotifications(): Promise<Result<Notification>> {
     let url = `${environment.API_URL}/api/get-candidat-notifications/`;
     return new Promise((resolve, reject) => {
-      this.http.get<Result<Notification>>(url).subscribe({
+      this.http.get<Result<Notification>>(url)
+      
+      .subscribe({
         next: (data) => {
           resolve(data);
         },
