@@ -23,8 +23,15 @@
     </ul>
 </div>
 
-<h3 class="text-success mt-3 border border-bottom border-primary text-center p-3">résultat</h3>
+<h3 class="text-success mt-3 border border-bottom border-primary text-center p-3">Résultat</h3>
 
+<div  *ngIf="!isFetchingItems" >
+  <ul class="list-group mt-3" *ngFor="let x of resultats">
+    <p class="h5">{{'candidat.notifications_details.conseil_1' | translate }}</p>
+      <li class="list-group-item"><span class="text-primary fw-bold">sujet : </span> {{x.sujet?.titre}}</li>
+
+  </ul>
+</div>
 
     <!-- <div lang="ar">
         <h5 class="text-success mb-5">{{'candidat.notifications_details.aide_infos' | translate }}</h5>

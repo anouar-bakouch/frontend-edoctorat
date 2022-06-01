@@ -33,15 +33,15 @@ export class NotificationsComponent implements OnInit {
     .then(res=>{
       this.isFetchingItems = false;
       res.results.forEach(x=>{
-        if(x.type === NotificationType.res){
+        if(x.type.toLocaleLowerCase() === NotificationType.res.toLocaleLowerCase()){
              this.resultats.push(x);
         }
-        if(x.type === NotificationType.com) {
-          this.notifications = res.results;
+        if(x.type.toLocaleLowerCase() === NotificationType.com.toLocaleLowerCase()) {
+          this.notifications.push(x);
         }
       }
+    
       )
-
     })
     .catch(error=>{
       console.log(error)
