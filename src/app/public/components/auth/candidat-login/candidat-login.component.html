@@ -46,13 +46,17 @@
 
   <div class="col-sm-12 col-lg-5 m-auto form-group mt-3">
   <h4 *ngIf="showLoading"><img src="/assets/images/connexion/loading.webp" width="300" height="100" /></h4>
-  <div class="d-flex flex-column justify-content-around align-items-center">
-  <p>
-    {{'auth.login.pas_de_compte' | translate }}
-  </p>
-  <a class="my-3" class="btn btn-primary" routerLink="/home/candidat/pre-register"
-      > {{'auth.login.inscription' | translate }}</a
-    >
+  <div class="my-3 d-flex justify-content-between align-items-center">
+  <div>
+        <a class="my-3" class="btn btn-primary" routerLink="/home/candidat/pre-register"
+            > {{'auth.login.inscription' | translate }}</a
+          >
+    </div>
+    <div>
+    <a class="my-3" class="btn btn-primary" routerLink="/home/candidat/recover_password"
+        >récuperer mon mot de passe</a
+      >
+</div>
 </div>
 </div>
 
