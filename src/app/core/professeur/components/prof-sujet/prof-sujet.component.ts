@@ -188,7 +188,6 @@ export class ProfSujetComponent implements OnInit {
     })
   }
   
-
   constructor(
     private modalService: NgbModal,
     private operationsService: OperationsService
@@ -231,7 +230,6 @@ export class ProfSujetComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
 
 
   onClickSubmit() {

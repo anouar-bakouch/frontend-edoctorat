@@ -4,6 +4,7 @@ import { Notification } from 'src/app/models/Notification';
 import { Sujet } from 'src/app/models/Sujet';
 import { NotificationType } from 'src/app/enums/NotificationType';
 import { Commission } from 'src/app/models/Commission';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-notifications',
@@ -13,6 +14,7 @@ import { Commission } from 'src/app/models/Commission';
 
 export class NotificationsComponent implements OnInit {
 
+  public mymodal:string = '';
   public notifications: Notification [] = [];
   public resultats : {
                         id:number,
@@ -21,8 +23,11 @@ export class NotificationsComponent implements OnInit {
                         type:string
                       }[] = [];
   public isFetchingItems:boolean = true;
+  closeResult: string;
 
-  constructor(private candidatNotifications : CandidatNotificationsService) { }
+  constructor(
+    private candidatNotifications : CandidatNotificationsService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
       this.getNotifications();
@@ -57,9 +62,39 @@ export class NotificationsComponent implements OnInit {
     console.log(x);
    })
    .catch(error=>{
-    console.log(error)
+    console.log(error);
+    this.open(this.mymodal);
+
    })
    .finally()
   }
+  open(content: any) {
+    if (content._declarationTContainer.localNames[0] == 'mymodal') {
+     
+    }
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+
+
 
 }
