@@ -140,25 +140,34 @@
           <div class="card mb-4">
             <div class="card-body">
               <h3 class="mb-2">Diplome</h3>
-              <hr>
+              <hr />
               <div class="row" *ngFor="let d of candidat['diplomes']">
                 <div class="col-sm-3">
-                  <p class="mb-0" >{{ d.intitule }}</p>
+                  <p class="mb-0">{{ d.intitule }}</p>
+                  <a
+                    class="btn btn-outline-info mt-2 me-2"
+                    type="button"
+                    *ngFor="let a of d.annexes"
+                    href="{{ a.pathFile }}"
+                    >Telecharger {{ a.typeAnnexe }}</a
+                  >
                 </div>
                 <div class="col-sm-9">
                   <div class="text-muted mb-0">
                     etablissement: "{{ d.etablissement }}"
                   </div>
-                  <hr>
+                  <hr />
                   <div class="text-muted mb-0">
                     specialite: "{{ d.specialite }}"
                   </div>
-                  <hr>
-                  <div class="text-muted mb-0">moyen generale: {{ d.moyen_generale }}</div>
-                  <hr>
+                  <hr />
+                  <div class="text-muted mb-0">
+                    moyen generale: {{ d.moyen_generale }}
+                  </div>
+                  <hr />
                   <div class="text-muted mb-4">mention: "{{ d.mention }}"</div>
-                </div> 
-                <hr>
+                </div>
+                <hr />
               </div>
             </div>
           </div>
