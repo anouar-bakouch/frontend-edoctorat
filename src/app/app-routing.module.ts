@@ -5,6 +5,7 @@ import { MainCedComponent } from './core/directeur-ced/components/main-ced/main-
 import { MainLaboComponent } from './core/directeur-labo/components/main-labo/main-labo.component';
 import { DirecteurPoleComponent } from './core/directeur-pole/components/directeur-pole.component';
 import { MainProfComponent } from './core/professeur/components/main-prof/main-prof.component';
+import { MainScolariteComponent } from './core/scolarite/components/main-scolarite/main-scolarite.component';
 import { IsCandidatGuard } from './guards/is-candidat.guard';
 import { IsCEDGuard } from './guards/is-ced.guard';
 import { IsDPoleGuard } from './guards/is-dpole.guard';
@@ -40,6 +41,12 @@ const routes: Routes = [
     path: 'ced',
     loadChildren: () => import('./core/directeur-pole/directeur-pole.module').then(x => x.DirecteurPoleModule),
     component: MainCedComponent,
+    canActivate: [IsProfessorGuard, IsCEDGuard],
+  },
+  {
+    path: 'scolarite',
+    loadChildren: () => import('./core/scolarite/scolarite.module').then(x => x.ScolariteModule),
+    component: MainScolariteComponent,
     canActivate: [IsProfessorGuard, IsCEDGuard],
   },
  { path: '**', component: PageNotFoundComponent },
