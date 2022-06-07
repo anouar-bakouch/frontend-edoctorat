@@ -21,6 +21,7 @@ import { ContainerComponent } from './components/container/container.component';
 import { CandidatAuthComponent } from './components/auth/candidat-auth/candidat-auth.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CandidatRecoveryComponent } from './components/auth/candidat-recovery/candidat-recovery.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CandidatRecoveryComponent } from './components/auth/candidat-recovery/c
     MainComponent,
     ContainerComponent,
     CandidatAuthComponent,
-    CandidatRecoveryComponent
+    CandidatRecoveryComponent,
+    ResetPasswordComponent
   ],
   imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule,TranslateModule],
   exports: [HomeComponent],

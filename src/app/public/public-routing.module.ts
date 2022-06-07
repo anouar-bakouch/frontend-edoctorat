@@ -5,6 +5,7 @@ import { CandidatLoginComponent } from './components/auth/candidat-login/candida
 import { CandidatPreRegisterComponent } from './components/auth/candidat-pre-register/candidat-pre-register.component';
 import { CandidatRecoveryComponent } from './components/auth/candidat-recovery/candidat-recovery.component';
 import { CandidatRegisterComponent } from './components/auth/candidat-register/candidat-register.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
 import { ContainerComponent } from './components/container/container.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -29,7 +30,8 @@ const routes: Routes = [
 
           { path: 'register', component: CandidatRegisterComponent },
           
-          { path: 'recover_password', component: CandidatRecoveryComponent }
+          { path: 'recover_password', component: CandidatRecoveryComponent },
+          {path: 'perform-reset', component: ResetPasswordComponent}
         ],
       },
     ],

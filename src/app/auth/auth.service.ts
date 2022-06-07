@@ -20,7 +20,7 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private tokenStorage: TokenStorageService,
-    public router : Router
+    public router: Router
   ) {}
 
   currentUserSubjet: BehaviorSubject<UserInfo | undefined> =
@@ -153,6 +153,11 @@ export class AuthService {
     window.localStorage.removeItem(USER_INFO);
   }
 
+  public logout() {
+    this.clearCredentials();
+    this.router.navigateByUrl('/home/connexion');
+  }
+
   public userLoggedInAndInGroup(group: string): boolean {
     const isTokenOld = this.tokenStorage.checkIfTokenIsOld();
     if (isTokenOld) {
@@ -176,7 +181,4 @@ export class AuthService {
     }
     return true;
   }
-
-
-
 }

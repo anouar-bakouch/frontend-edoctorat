@@ -6,30 +6,26 @@ import { CandidatPostulerService } from '../../services/candidat-postuler.servic
 @Component({
   selector: '[app-header-item]',
   templateUrl: './header-item.component.html',
-  styleUrls: ['./header-item.component.css']
+  styleUrls: ['./header-item.component.css'],
 })
 export class HeaderItemComponent implements OnInit {
-
-  public nbrSujets:number = 0;
+  public nbrSujets: number = 0;
 
   constructor(
     public translate: TranslateService,
-    public authService : AuthService
+    public authService: AuthService
   ) {
     translate.addLangs(['fr', 'ar']);
     translate.setDefaultLang('fr');
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   switchLang(lang: string) {
     this.translate.use(lang);
   }
 
-  logout(){
-       this.authService.clearCredentials();
+  logout() {
+    this.authService.logout();
   }
-
-
 }
