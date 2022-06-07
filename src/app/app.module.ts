@@ -20,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { ScolariteModule } from './core/scolarite/scolarite.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,7 +43,8 @@ import { HttpClient } from '@angular/common/http';
      useFactory: httpTranslateLoader,
      deps: [HttpClient], // Dependencies which helps serving loader
     }
-   })
+   }),
+    ScolariteModule
   ],
   providers: [
     HttpService,

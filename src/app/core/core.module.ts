@@ -5,6 +5,7 @@ import { DirecteurCedModule } from "./directeur-ced/directeur-ced.module";
 import { DirecteurLaboModule } from "./directeur-labo/directeur-labo.module";
 import { DirecteurPoleModule } from "./directeur-pole/directeur-pole.module";
 import { ProfesseurModule } from "./professeur/profeseur.module";
+import { ScolariteModule } from "./scolarite/scolarite.module";
 
 @NgModule({
   declarations: [],
@@ -14,14 +15,16 @@ import { ProfesseurModule } from "./professeur/profeseur.module";
     ProfesseurModule,
     DirecteurCedModule,
     DirecteurLaboModule,
-    DirecteurPoleModule
+    DirecteurPoleModule,
+    ScolariteModule
   ],
   exports: [
     ProfesseurModule,
     DirecteurCedModule,
     DirecteurLaboModule,
     DirecteurPoleModule,
-    CandidatModule
+    CandidatModule,
+    ScolariteModule
   ]
 })
 export class CoreModule { }
