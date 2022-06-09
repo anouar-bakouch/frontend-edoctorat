@@ -14,7 +14,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 export class NotificationsComponent implements OnInit {
 
-  public mymodal:string = '';
+  public authorized:boolean = true;
   public notifications: Notification [] = [];
   public resultats : {
                         id:number,
@@ -56,22 +56,21 @@ export class NotificationsComponent implements OnInit {
     })
   }
 
-  choseSubject(x){
-   this.candidatNotifications.sendSubjectChosen(x)
-   .then(x=>{
+  choseSubject(x,content:any){
     console.log(x);
+    this.candidatNotifications.sendSubjectChosen(x)
+    .then(x=>{
+     console.log(x);
+     this.open(content);
    })
    .catch(error=>{
     console.log(error);
-    this.open(this.mymodal);
 
    })
    .finally()
   }
   open(content: any) {
-    if (content._declarationTContainer.localNames[0] == 'mymodal') {
-     
-    }
+  
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
