@@ -40,6 +40,11 @@ export class NotificationsComponent implements OnInit {
       res.results.forEach(x=>{
         if(x.type.toLocaleLowerCase() === NotificationType.res.toLocaleLowerCase()){
              this.resultats.push(x);
+             this.resultats.forEach(sel=>{
+              if(sel['selected']){
+                this.authorized = false;
+              }
+             })
         }
         if(x.type.toLocaleLowerCase() === NotificationType.com.toLocaleLowerCase()) {
           this.notifications.push(x);
@@ -69,10 +74,15 @@ export class NotificationsComponent implements OnInit {
    })
    .finally()
   }
+
+  openModal(content:any){
+    this.open(content);
+  }
+
   open(content: any) {
   
     this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+    .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
         (result) => {
           this.closeResult = `Closed with: ${result}`;
@@ -81,6 +91,7 @@ export class NotificationsComponent implements OnInit {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
+
   }
 
   private getDismissReason(reason: any): string {
