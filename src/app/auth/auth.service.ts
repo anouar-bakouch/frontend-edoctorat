@@ -21,7 +21,7 @@ export class AuthService {
     private httpClient: HttpClient,
     private tokenStorage: TokenStorageService,
     public router: Router
-  ) {}
+  ) { }
 
   currentUserSubjet: BehaviorSubject<UserInfo | undefined> =
     new BehaviorSubject(this.getCurrentUser());
@@ -65,6 +65,32 @@ export class AuthService {
                 });
             }
           },
+        });
+    });
+  }
+  loginScolarite(username: string, password: string): Promise<any> {
+    return new Promise((reslove_, reject) => {
+      this.clearCredentials();
+      this.httpClient
+        .post<Token>(`${environment.API_URL}/api/login_scolarite/`, {
+          username: username,
+          password,
+        })
+        .subscribe({
+          next: (data: Object) => {
+            this.tokenStorage.storeTokens(data['access'], data['refresh']);
+            this.saveUserInfo(data as UserInfo);
+            reslove_(data)
+          },
+          error: (err: HttpErrorResponse) => {
+            if (err.status === 401) {
+              reject("Informations d'identification incorrectes fournies");
+            } else {
+              reject(
+                'Vérifiez votre connexion Internet ou réessayez plus tard'
+              );
+            }
+          }
         });
     });
   }
