@@ -7,6 +7,7 @@ import { BtsComponent } from './components/bts/bts.component';
 import { CIngenieurComponent } from './components/c-ingenieur/c-ingenieur.component';
 import { ParcoursComponent } from './components/candidat-mini-header/parcours.component';
 import { ContainerComponent } from './components/container/container.component';
+import { DemandeInscriptionComponent } from './components/demande-inscription/demande-inscription.component';
 import { DeugComponent } from './components/deug/deug.component';
 import { DeustComponent } from './components/deust/deust.component';
 import { DoctoratMedecineComponent } from './components/doctorat-medecine/doctorat-medecine.component';
@@ -40,7 +41,11 @@ const routes: Routes = [
     children: [
       { path: 'info_personnels', component: InfoPersonnelsComponent },
       { path: 'postuler', component: PostulerComponent },
-      { path: 'notifications', component: NotificationsComponent },
+      { path: 'notifications', component: NotificationsComponent
+      },
+      {
+        path : 'demande_inscription' , component : DemandeInscriptionComponent
+      },
       { path: 'sujets_choisies' , component : SujersComponent},
       { path: 'parcours', redirectTo: 'parcours/'+DiplomeType.BAC, pathMatch: 'full' },
 
