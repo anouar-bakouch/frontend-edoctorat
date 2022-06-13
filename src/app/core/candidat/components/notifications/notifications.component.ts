@@ -5,6 +5,7 @@ import { Sujet } from 'src/app/models/Sujet';
 import { NotificationType } from 'src/app/enums/NotificationType';
 import { Commission } from 'src/app/models/Commission';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
 
 @Component({
   selector: 'app-notifications',
@@ -22,6 +23,8 @@ export class NotificationsComponent implements OnInit {
                         sujet:Sujet,
                         type:string
                       }[] = [];
+  public alert: AlertData | undefined = undefined;
+  public loading: boolean = false;
   public isFetchingItems:boolean = true;
   closeResult: string;
 
@@ -62,17 +65,31 @@ export class NotificationsComponent implements OnInit {
   }
 
   choseSubject(x,content:any){
-    console.log(x);
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
     this.candidatNotifications.sendSubjectChosen(x)
     .then(x=>{
-     console.log(x);
      this.open(content);
+     this.loading = false;
+        this.alert = {
+          type: 'success',
+          message: 'cofirmé avec succès',
+        };
+        
    })
    .catch(error=>{
-    console.log(error);
-
+    this.alert = {
+      type: 'error',
+      message: "error lors de l'ajout",
+    };
+    
    })
-   .finally()
+   .finally(()=>{
+    setTimeout(() => (this.alert = undefined), 3000);
+   })
   }
 
   openModal(content:any){
