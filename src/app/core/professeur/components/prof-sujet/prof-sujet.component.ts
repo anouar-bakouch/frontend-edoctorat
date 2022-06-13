@@ -14,6 +14,7 @@ import { OperationsService } from '../../services/operations.service';
   templateUrl: './prof-sujet.component.html',
   styleUrls: ['./prof-sujet.component.css'],
 })
+
 export class ProfSujetComponent implements OnInit {
 
   public alert: AlertData | undefined = undefined;

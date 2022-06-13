@@ -9,11 +9,6 @@ import { PublicModule } from './public/public.module';
 import { HttpService } from './public/services/http.service';
 import { SharedModule } from './shared/shared.module';
 
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-} from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
 import { AUTH_INTERCEPTOR_PROVIDERS } from './shared/interceptors/authorization.interceptor';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -21,6 +16,11 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { ScolariteModule } from './core/scolarite/scolarite.module';
+import {
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule,
+} from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,14 +37,14 @@ import { ScolariteModule } from './core/scolarite/scolarite.module';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     // Initializing TranslateModule with loader
-  TranslateModule.forRoot({
-    loader: {
-     provide: TranslateLoader, // Main provider for loader,
-     useFactory: httpTranslateLoader,
-     deps: [HttpClient], // Dependencies which helps serving loader
-    }
-   }),
-    ScolariteModule
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader, // Main provider for loader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient], // Dependencies which helps serving loader
+      },
+    }),
+    ScolariteModule,
   ],
   providers: [
     HttpService,
