@@ -22,6 +22,8 @@ import { CandidatAuthComponent } from './components/auth/candidat-auth/candidat-
 import { TranslateModule } from '@ngx-translate/core';
 import { CandidatRecoveryComponent } from './components/auth/candidat-recovery/candidat-recovery.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { ScolariteLoginComponent } from './components/auth/scolarite-login/scolarite-login.component';
+import { ScolariteAuthComponent } from './components/auth/scolarite-auth/scolarite-auth.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
     ContainerComponent,
     CandidatAuthComponent,
     CandidatRecoveryComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ScolariteLoginComponent,
+    ScolariteAuthComponent
   ],
   imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule,TranslateModule],
   exports: [HomeComponent],
