@@ -26,33 +26,26 @@ export class CandidatsComponent implements OnInit {
     candidat: undefined,
     id: 0
   };
-  // public sujet_: string = '';
-  // public formationDoctorale_: string = '';
-  // public isFetchingItems = true;
-  // public errorText: string = '';
-  // public laboratoire_: string = '';
   public remarque: string = '';
   closeResult: string = '';
-  // public isFetchingInfo: boolean = true;
-  // public id: number;
   public str: string = environment.API_URL
-  // public candidatt!: Candidat;
-  constructor(public operationsService: OperationsService, private modalService: NgbModal, public candidatService: CandidatService) { }
+  constructor(public operationsService: OperationsService, private modalService: NgbModal) { }
 
   public form = new FormGroup({
     remarque: new FormControl('', [Validators.required, Validators.minLength(2)]),
   });
+
   ngOnInit(): void {
     this.getScolariteCandidats();
   }
 
-  
+
   fun = (content: any, c: Postuler) => {
     this.candidat = c;
     this.form.setValue({
       remarque: c['remarque'],
     });
-    console.log(this.candidat)
+    // console.log(this.candidat)
     this.open(content);
   };
 
@@ -138,7 +131,7 @@ export class CandidatsComponent implements OnInit {
       remarque: this.form.get('remarque').value,
       valider: true,
     };
-    console.log(valider)
+    // console.log(valider)
     this.operationsService
       .updateValider(valider, this.candidat.id)
       .then((data) => {
@@ -165,7 +158,7 @@ export class CandidatsComponent implements OnInit {
         setTimeout(() => (this.alert = undefined), 3000);
       });
   }
-  invalider(){
+  invalider() {
     this.loading = true;
     this.alert = {
       type: 'loading',

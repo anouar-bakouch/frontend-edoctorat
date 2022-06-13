@@ -9,8 +9,11 @@ import UserInfo from 'src/app/models/UserInfo';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor() {
+  constructor(private authService: AuthService) {
   }
   ngOnInit(): void {
+  }
+  public logout(){
+    this.authService.logout()
   }
 }

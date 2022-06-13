@@ -1,7 +1,7 @@
+import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { AuthService } from 'src/app/auth/auth.service';
 import AuthUser from 'src/app/models/GoogleAuthUser';
 

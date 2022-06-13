@@ -6,6 +6,8 @@ import { CandidatPreRegisterComponent } from './components/auth/candidat-pre-reg
 import { CandidatRecoveryComponent } from './components/auth/candidat-recovery/candidat-recovery.component';
 import { CandidatRegisterComponent } from './components/auth/candidat-register/candidat-register.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { ScolariteAuthComponent } from './components/auth/scolarite-auth/scolarite-auth.component';
+import { ScolariteLoginComponent } from './components/auth/scolarite-login/scolarite-login.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
 import { ContainerComponent } from './components/container/container.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -32,6 +34,13 @@ const routes: Routes = [
           
           { path: 'recover_password', component: CandidatRecoveryComponent },
           {path: 'perform-reset', component: ResetPasswordComponent}
+        ],
+      },
+      {
+        path: 'scolarite',
+        component: ScolariteAuthComponent,
+        children: [
+          { path: 'login', component: ScolariteLoginComponent },
         ],
       },
     ],
