@@ -12,11 +12,13 @@ import UserInfo from 'src/app/models/UserInfo';
 export class HeaderProfComponent {
 
   public prof!: UserInfo;
-  constructor(authService: AuthService) {
+  constructor(private authService: AuthService) {
     
     authService.currentUserSubjet
       .pipe(filter((u) => u !== undefined))
       .subscribe((uinfo) => (this.prof = uinfo!));
   }
-
+  public logout() {
+    this.authService.logout()
+  }
 }
