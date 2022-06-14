@@ -36,6 +36,7 @@ import { BtsComponent } from './components/bts/bts.component';
 import { DtsComponent } from './components/dts/dts.component';
 import { MasterStComponent } from './components/master-st/master-st.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { DemandeInscriptionComponent } from './components/demande-inscription/demande-inscription.component';
 @NgModule({
   declarations: [
     CandidatParcoursComponent,
@@ -64,7 +65,8 @@ import { TranslateModule } from '@ngx-translate/core';
     DeustComponent,
     BtsComponent,
     DtsComponent,
-    MasterStComponent
+    MasterStComponent,
+    DemandeInscriptionComponent
   ],
   imports: [
     CommonModule,

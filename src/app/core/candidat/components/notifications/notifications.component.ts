@@ -5,6 +5,9 @@ import { Sujet } from 'src/app/models/Sujet';
 import { NotificationType } from 'src/app/enums/NotificationType';
 import { Commission } from 'src/app/models/Commission';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AlertData } from 'src/app/shared/components/alert/alert.component';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-notifications',
@@ -22,6 +25,8 @@ export class NotificationsComponent implements OnInit {
                         sujet:Sujet,
                         type:string
                       }[] = [];
+  public alert: AlertData | undefined = undefined;
+  public loading: boolean = false;
   public isFetchingItems:boolean = true;
   closeResult: string;
 
@@ -62,17 +67,31 @@ export class NotificationsComponent implements OnInit {
   }
 
   choseSubject(x,content:any){
-    console.log(x);
+    this.loading = true;
+    this.alert = {
+      type: 'loading',
+      message: 'loading',
+    };
     this.candidatNotifications.sendSubjectChosen(x)
     .then(x=>{
-     console.log(x);
      this.open(content);
+     this.loading = false;
+        this.alert = {
+          type: 'success',
+          message: 'cofirmé avec succès',
+        };
+        
    })
    .catch(error=>{
-    console.log(error);
-
+    this.alert = {
+      type: 'error',
+      message: "error lors de l'ajout",
+    };
+    
    })
-   .finally()
+   .finally(()=>{
+    setTimeout(() => (this.alert = undefined), 3000);
+   })
   }
 
   openModal(content:any){
@@ -102,6 +121,20 @@ export class NotificationsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  
+  public openPDF(): void {
+    let DATA: any = document.getElementById('htmlData');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save('angular-demo.pdf');
+    });
   }
 
 

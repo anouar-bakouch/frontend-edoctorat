@@ -258,7 +258,6 @@ export class ProfSujetComponent implements OnInit {
         };
         this.sujets.push(data as Sujet);
       }).catch((err) => {
-
         this.alert = {
           type: 'error',
           message: "error lors de l'ajout",
