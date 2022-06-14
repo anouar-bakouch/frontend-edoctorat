@@ -11,7 +11,7 @@ import UserInfo from 'src/app/models/UserInfo';
 export class HeaderComponent implements OnInit {
 
   public prof!: UserInfo;
-  constructor(authService: AuthService) {
+  constructor(private authService: AuthService) {
 
     authService.currentUserSubjet
       .pipe(filter((u) => u !== undefined))
@@ -19,5 +19,7 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+  public logout() {
+    this.authService.logout()
+  }
 }
