@@ -31,7 +31,6 @@ export class CandidatNotificationsService {
   sendSubjectChosen(x:Sujet): Promise<Sujet>{
     
     let url = `${environment.API_URL}/api/add-inscription/${x['sujet'].id}/`;
-    console.log(x)
     return new Promise((resolve, reject) => {
       this.http.post<Sujet>(url,x)
       .pipe(first())

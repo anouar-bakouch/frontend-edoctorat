@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { Diplome } from 'src/app/models/Diplome';
 import Result from 'src/app/models/Result';
 import { CandidatParcoursService } from '../../services/candidat-parcours.service';

@@ -4,9 +4,6 @@ import { CandidatPostulerService } from '../../services/candidat-postuler.servic
 import { AlertData } from 'src/app/shared/components/alert/alert.component';
 import { Diplome } from 'src/app/models/Diplome';
 import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
-import swal from 'sweetalert';
-import { Sujet } from 'src/app/models/Sujet';
-
 
 @Component({
   selector: '[app-sujers]',
@@ -32,7 +29,7 @@ export class SujersComponent implements OnInit {
    pathFile : ['']
   })
 
-  constructor(public candidat:CandidatPostulerService,private fservice: RxFormBuilder,) {}
+  constructor(public candidat:CandidatPostulerService,private fservice: RxFormBuilder) {}
 
   ngOnInit(): void {
 
@@ -51,7 +48,6 @@ export class SujersComponent implements OnInit {
     this.candidat.deletePostule(s.id).then(x=>{
         const index = this.sujets.indexOf(s);
         this.sujets.splice(index,1);
-
           this.alert = {
             type: 'loading',
             message: "supprimé avec succès",

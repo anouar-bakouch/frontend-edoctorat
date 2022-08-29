@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class CandidatService {
+  
   constructor(private httpClient: HttpClient) {}
 
   getCandidatInfo(): Promise<Candidat> {

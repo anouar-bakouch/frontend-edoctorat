@@ -14,8 +14,6 @@ export class FormationsComponent implements OnInit {
 
   public formations:Array<FormationDoctorale> [] = [];
 
-
-
   constructor(public httpService:HttpService) { }
 
   ngOnInit(): void {
