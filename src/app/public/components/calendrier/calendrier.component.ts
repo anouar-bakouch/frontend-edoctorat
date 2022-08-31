@@ -12,35 +12,56 @@ import { CalendarService } from '../../services/calendar.service';
 
 export class CalendrierComponent implements OnInit {
 
-  public CalendarProf:Array<Calendrier> | undefined = [];
-  public CalendarDoctorant:Array<Calendrier> | undefined= [];
-  isFetchingInfo = true;
+  public CalendarProf:Calendrier [] = [];
+  public CalendarDoctorant:Calendrier[] = [];
+  public isFetchingInfo = true;
   public calendar:Array<Calendrier> = [];
-  errorText:string ;
+  public errorText:string;
 
-  constructor(public calendarService:CalendarService) { }
+  constructor(private _calendarService:CalendarService) { }
 
   ngOnInit(): void {
-   this.getInfos();
+   
+    this.getInfos();
+   
   }
 
   getInfos(){
     
-    this.calendarService.getCalenders().then(
-      element=>{
+    this._calendarService.getCalenders().then(
+     (element)=>{
+
+      alert(element.results.length)
        this.isFetchingInfo = false;
-       this.calendar = element.results;
-       this.calendar.forEach(el=>{
-        alert(el);
-        if(el.pour.toLocaleLowerCase() === CalendrierType.Calendar_Prof){
-          this.CalendarProf.push(el);
-        }
-        else 
-        this.CalendarDoctorant.push(el);
-       }) 
+    
+       if(element.results.length <= 0 ){
+        this.errorText = "aucune information disponible pour le moment";
       }
+       
+       element.results.forEach(el=>{
+
+        this.calendar.push(el);
+       }
+       ) 
+     
+     this.calendar.forEach(x=>{
+      if(x.pour.toLocaleLowerCase() === CalendrierType.Calendar_Prof){
+        this.CalendarProf.push(x);
+      }
+      else {
+      this.CalendarDoctorant.push(x);
+      }
+     })  
+       
+
+      }
+
+      
+
     ).catch(x=>{
       alert(x);
+    }).finally(()=>{
+     
     })
 
    

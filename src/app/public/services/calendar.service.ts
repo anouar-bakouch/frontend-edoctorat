@@ -22,7 +22,9 @@ export class CalendarService {
         next: (data) => {
           resolve(data);
         },
-        error: (err) => reject(err),
+        error: (err) => {
+          reject(err);alert(err);
+        }
       });
     });
   }
