@@ -29,9 +29,9 @@
       "mobilite": "Mobilite",
       "Pole_recherche": "Pole de recherches",
       "proc": "Formulaire et procedures",
-      "Appel": "...",
-      "cite": "la cite l'innovation de fès",
-      "president": "services Presidences",
+      "Appel": "Appel d'offres",
+      "cite": "La cite l'innovation de fès",
+      "president": "Services Presidences",
       "cooperation": "Coopération internationale"
     },
     "welcome": {
@@ -59,7 +59,7 @@
       "text6": "La recherche du sujet comporte un grand risque de t’éparpiller, ce qui est contreproductif. Plus vite tu mettras le doigt sur le sujet que tu souhaites traiter et le mieux ce sera. Identifie les catégories que tu souhaites traiter, jusqu’à ce que tu trouves ton sujet. Sois précis."
     },
     "calendrier": {
-      "calendrier": "calendrier",
+      "calendrier": "Calendrier",
       "calendrier-prof": "Calendrier Professeur",
       "calendrier-doctorant": "Calendrier Doctorant et Candidat"
     }
