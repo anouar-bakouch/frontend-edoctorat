@@ -24,6 +24,7 @@ import { CandidatRecoveryComponent } from './components/auth/candidat-recovery/c
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { ScolariteLoginComponent } from './components/auth/scolarite-login/scolarite-login.component';
 import { ScolariteAuthComponent } from './components/auth/scolarite-auth/scolarite-auth.component';
+import { DescriptionComponent } from './components/description/description.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ScolariteAuthComponent } from './components/auth/scolarite-auth/scolari
     CandidatRecoveryComponent,
     ResetPasswordComponent,
     ScolariteLoginComponent,
-    ScolariteAuthComponent
+    ScolariteAuthComponent,
+    DescriptionComponent
   ],
   imports: [CommonModule, PublicRoutingModule, ReactiveFormsModule,TranslateModule],
   exports: [HomeComponent],
