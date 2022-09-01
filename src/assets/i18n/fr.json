@@ -34,6 +34,11 @@
       "president": "Services Presidences",
       "cooperation": "Coopération internationale"
     },
+    "description" : {
+      "description" : "Bienvenue sur la Plateforme de Gestion des candidatures au cycle doctorale ,Il s'agit de la nouvelle brique logicielle qui vient enrichir l'Environnement Numérique de Travail de l'Université Sidi Mohamed Ben Abdellah de Fès.Elle constitue la plateforme officielle pour la gestion des candidatures au Cycle Doctorat ainsi que le suivi et la gestion du parcours des Doctorants de l'USMBA, de l'inscription à la soutenance.",
+      "pole_digitalisation" : "Pole de digitalisation",
+      "USMBA" : "Université Sidi Mohamed Ben Abdellah Fès"
+    },
     "welcome": {
       "doctorat": "E-doctorat - USMBA",
       "candidater": "Candidater",
@@ -70,7 +75,14 @@
     "directeur_ced": "Directeur du centre d'études doctorales",
     "directeur_pole": "Directeur de pole",
     "directeur_labo": "Directeur du laboratoire",
-    "scolarite": "Scolarite"
+    "scolarite": "Scolarite",
+    "equipe" : "Equipe Digitale",
+    "orientation" : "de gauche à droite",
+    "Abdelali_ibriz" : "Pr. Abdelali Ibriz",
+    "Anouar_bakouch" : "Anouar Bakouch",
+    "Alae_eddine" : "Alae Eddine Yaden",
+    "Mohamed_Ibriz" : "Mohamed Akram Ibriz",
+    "Kelvin_Owusu" : "Kelvin Clark Owusu"
   },
   "auth": {
     "login": {

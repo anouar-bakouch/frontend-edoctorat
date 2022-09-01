@@ -26,19 +26,19 @@
       >
         {{ errorText }}
       </h5>
-      <ul class="list-unstyled" *ngFor="let k of CalendarProf">
-        <li class="list-group-item calendar-text text-color"><i class="bi bi-list"></i> hello {{k.action}} </li>
+      <ul class="list-unstyled" *ngFor="let b of CalendarProf">
+        <li class="list-group-item calendar-text text-color"><i class="bi bi-list"></i> {{b?.action}} de <span class="text-primary fw-bold">{{b?.dateDebut}}</span>  à <span class="text-danger fw-bold">{{b?.dateFin}}</span>
+        </li>
       </ul>
   </div>
 
   <div *ngIf="!isFetchingInfo" class="card col-5 m-auto">
-    <img class="card-img-top" src="/assets/images/home/calendrier/etudiant_calendrier.jpg" alt="Card image cap">
+    <img class="card-img-top" src="/assets/images/ced/team2.JPG" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title border-start border-bottom border-end shadow rounded border-3 border-primary p-3 text-color text-center"><i class="bi bi-people"></i> {{'home.calendrier.calendrier-doctorant'| translate}}</h5>
-       
       </div>
       <ul class="list-unstyled" *ngFor="let k of CalendarDoctorant">
-        <li class="list-group-item calendar-text text-color"><i class="bi bi-list"></i> hello {{k.action}} </li>
+        <li class="list-group-item calendar-text text-color"><i class="bi bi-list fw-bold text-primary"></i> {{k.action}} de <span class="text-primary fw-bold">{{k.dateDebut}}</span>  à <span class="text-danger fw-bold">{{k.dateFin}}</span> </li>
       </ul>
   </div>
 

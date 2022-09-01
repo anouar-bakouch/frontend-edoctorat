@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Calendrier } from 'src/app/models/Calendrier';
 import Result from 'src/app/models/Result';
@@ -13,10 +14,10 @@ export class CalendarService {
 
   constructor(public http:HttpClient) { }
 
-  getCalenders(): Promise<Result<Calendrier>> {
+  getCalenders(): Promise<Array<Calendrier>> {
     let url = `${environment.API_URL}/api/get-calendrier/`;
     return new Promise((resolve, reject) => {
-      this.http.get<Result<Calendrier>>(url)
+      this.http.get<Array<Calendrier>>(url)
       .pipe(first())
       .subscribe({
         next: (data) => {
@@ -28,4 +29,7 @@ export class CalendarService {
       });
     });
   }
+
+ 
+
 }
