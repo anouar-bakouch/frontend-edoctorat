@@ -10,6 +10,7 @@ import { ScolariteAuthComponent } from './components/auth/scolarite-auth/scolari
 import { ScolariteLoginComponent } from './components/auth/scolarite-login/scolarite-login.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
 import { ContainerComponent } from './components/container/container.component';
+import { DetailsComponent } from './components/details/details.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
 
@@ -21,6 +22,7 @@ const routes: Routes = [
     component: ContainerComponent,
     children: [
       { path: 'infos', component: MainComponent },
+      { path : 'description' , component : DetailsComponent },
       { path: 'connexion', component: ConnexionComponent },
       {
         path: 'candidat',
