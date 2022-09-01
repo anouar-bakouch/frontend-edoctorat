@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public translate: TranslateService
   ) {
-    translate.addLangs(['fr', 'ar']);
+    translate.addLangs(['fr', 'ar','eng','ce']);
     translate.setDefaultLang('fr');
   }
 
