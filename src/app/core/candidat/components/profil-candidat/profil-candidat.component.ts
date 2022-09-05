@@ -13,8 +13,8 @@ import { CandidatService } from '../../services/candidat.service';
 })
 export class ProfilCandidatComponent implements OnInit {
   public candidat!: Candidat;
-  public isFetchingInfo: boolean = true;
-  public errorText: string = '';
+  public isFetchingInfo = true;
+  public errorText = '';
   public id: number;
   public str: string = environment.API_URL
   constructor(

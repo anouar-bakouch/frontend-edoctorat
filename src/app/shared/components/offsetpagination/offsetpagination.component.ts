@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./offsetpagination.component.css'],
 })
 export class OffsetpaginationComponent implements OnInit {
-  @Input() itemsCount: number = 0;
-  @Input() itemsPerPage: number = 0;
+  @Input() itemsCount = 0;
+  @Input() itemsPerPage = 0;
   @Output() indexChange = new EventEmitter<number>();
   indexes: number[] = [];
   currentIndex = 1;

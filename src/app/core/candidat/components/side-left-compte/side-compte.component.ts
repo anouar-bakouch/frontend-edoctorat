@@ -20,9 +20,9 @@ export class SideCompteComponent implements OnInit {
   public date_debut:any;
   public date_fin:any;
   public actual_date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-  public disablePostuler:boolean = false;
+  public disablePostuler = false;
   public notifications: Notification [] = [];
-  public nbrNotifications:number = 0;
+  public nbrNotifications = 0;
 
   constructor(
               public authService: AuthService,

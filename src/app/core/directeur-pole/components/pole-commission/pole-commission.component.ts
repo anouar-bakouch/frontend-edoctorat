@@ -12,8 +12,8 @@ import { PoleCommissionService } from '../../services/pole-commission.service';
 })
 export class PoleCommissionComponent implements OnInit{
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public page: number = 1;
+  public loading = false;
+  public page = 1;
   public itemsCount: number | undefined;
   public commissions: Commission[] =[];
   public isFetchingItems = true;

@@ -15,15 +15,15 @@ export class SujersComponent implements OnInit {
 
   public sujets:Postuler[] = [];
   public alert: AlertData | undefined = undefined;
-  public message:string = 'aucun sujet n\'est choisi pour le moment,les sujets choisies vont apparaitre ici';
-  public NoSujets:boolean = false; 
-  public errorText:string = '';
+  public message = 'aucun sujet n\'est choisi pour le moment,les sujets choisies vont apparaitre ici';
+  public NoSujets = false; 
+  public errorText = '';
   public PROJET_THESE = 'dfile';
   public ProjetTheseFileLink: string | undefined;
   public diplome: Diplome | undefined;
-  public isFetchingItems:boolean  = true;
+  public isFetchingItems  = true;
   public postuler!:Postuler;
-  public isUpdating:boolean = false;
+  public isUpdating = false;
  
   public Sujetform = <RxFormGroup>this.fservice.group({  
    pathFile : ['']

@@ -32,7 +32,7 @@ export class CIngenieurComponent implements OnInit {
   public countries: any;
   public _cities: Array<string> = [];
   public candidatCI: Diplome | undefined;
-  public CIExist: boolean = false;
+  public CIExist = false;
 
   public mentions = this.candidatService.mentions;
   public TypesCI = this.candidatService.TypesCI;
@@ -40,16 +40,16 @@ export class CIngenieurComponent implements OnInit {
   //remember that type will always be bac in this case so in case of post
 
   public message!: string;
-  public isFetchingInfo: boolean = true;
+  public isFetchingInfo = true;
   public errorText: string | undefined;
-  public isUpdating: boolean = false;
+  public isUpdating = false;
   public selectedFile: File | undefined;
   DIPLOME_FILE = 'dfile';
   RELEVE_FILE = 'rfile';
   diplomeFileLink: string | undefined;
   releveFileLink: string | undefined;
   diplome :Diplome | undefined;
-  CIExists : boolean = false;
+  CIExists  = false;
 
 
   public candidatCIForm = <RxFormGroup>this.fservice.group({

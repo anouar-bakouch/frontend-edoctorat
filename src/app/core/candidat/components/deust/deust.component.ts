@@ -27,9 +27,9 @@ export class DeustComponent implements OnInit {
   public countries: any;
   public candidatDeust: Diplome | undefined;
   public message!: string;
-  public isFetchingInfo: boolean = true;
+  public isFetchingInfo = true;
   public errorText: string | undefined;
-  public isUpdating: boolean = false;                                   
+  public isUpdating = false;                                   
   public mentions = this.candidatService.mentions;
   public DeustTypes = this.candidatService.DeustTypes;
   DIPLOME_FILE = 'dfile';

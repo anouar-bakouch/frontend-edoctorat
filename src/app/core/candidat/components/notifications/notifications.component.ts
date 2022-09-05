@@ -17,7 +17,7 @@ import html2canvas from 'html2canvas';
 
 export class NotificationsComponent implements OnInit {
 
-  public authorized:boolean = true;
+  public authorized = true;
   public notifications: Notification [] = [];
   public resultats : {
                         id:number,
@@ -26,8 +26,8 @@ export class NotificationsComponent implements OnInit {
                         type:string
                       }[] = [];
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public isFetchingItems:boolean = true;
+  public loading = false;
+  public isFetchingItems = true;
   closeResult: string;
 
   constructor(

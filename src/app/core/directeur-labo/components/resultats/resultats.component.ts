@@ -13,11 +13,11 @@ import { LaboSujet } from '../../services/labo-sujet.service';
 export class ResultatsComponent implements OnInit {
 
   public candidatInfos: Result<Examiner> | undefined;
-  public loading: boolean = false;
+  public loading = false;
   public alert: AlertData | undefined = undefined;
-  public page: number = 1;
+  public page = 1;
   public itemsCount: number | undefined;
-  public errorText: string = '';
+  public errorText = '';
   public isFetchingItems = true;
   constructor(public candidatLabo: LaboSujet) { }
 

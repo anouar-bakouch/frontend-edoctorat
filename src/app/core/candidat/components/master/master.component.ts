@@ -35,7 +35,7 @@ export class MasterComponent implements OnInit {
   public _cities: Array<string> = [];
   public candidatMaster: Diplome | undefined;
   public message!: string;
-  public MasterExist: boolean = false;
+  public MasterExist = false;
 
   public mentions = this.candidatService.mentions;
   isUpdating = false;

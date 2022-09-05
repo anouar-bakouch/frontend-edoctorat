@@ -15,10 +15,10 @@ import { CandidatService } from '../../services/candidat.service';
 
 export class ChoisirSujetsComponent implements OnInit {
   public sujets: Sujet[] = [];
-  public labo: string = '';
-  public formationDotorale: string = '';
-  public sujet: string = '';
-  public page: number = 1;
+  public labo = '';
+  public formationDotorale = '';
+  public sujet = '';
+  public page = 1;
   public config!: Config;
   public maxSujets: number | undefined = 0;
   itemsCount: number | undefined;
@@ -26,7 +26,7 @@ export class ChoisirSujetsComponent implements OnInit {
   selectedSubjectsId: number[] = [];
   alert: AlertData | undefined = undefined;
   postules: Postuler[] = [];
-  public nbrSujets:number = 0;
+  public nbrSujets = 0;
 
   constructor(
     public candidatPostuler: CandidatPostulerService,

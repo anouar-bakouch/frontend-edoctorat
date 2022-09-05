@@ -36,7 +36,7 @@ export class LicenceProComponent implements OnInit {
   public _cities: Array<string> = [];
   public candidatLicence: Diplome | undefined;
   public message!: string;
-  public LicenceExist: boolean = false;
+  public LicenceExist = false;
 
   public mentions = this.candidatService.mentions;
   isUpdating = false;

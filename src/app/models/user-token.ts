@@ -4,6 +4,6 @@ import { BehaviorSubject, Observable } from "rxjs";
 
 export default class UserToken {
 
-   token:string = ''
+   token = ''
 
 }

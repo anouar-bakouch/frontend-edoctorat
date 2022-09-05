@@ -19,21 +19,21 @@ import { LaboSujet } from '../../services/labo-sujet.service';
 
 export class SujetsComponent implements OnInit {
 
-  public closeResult: string = '';
+  public closeResult = '';
   public isFetchingItems = true;
-  public sujet_:string = '';
-  public formationDoctorale_:string = '';
+  public sujet_ = '';
+  public formationDoctorale_ = '';
   public sujets_:Sujet[] = [];
-  public page: number = 1;
+  public page = 1;
   public itemsCount: number | undefined;
-  public errorText:string = '';
+  public errorText = '';
   public dLaboSujet : Sujet | undefined ; 
   public dLaboSujetId : number | undefined;
   public dLaboProfesseur : Professeur | undefined;
   public alert: AlertData | undefined = undefined;
   public formations !: Result<FormationDoctorale>;
   public professors !: Result<Professeur>;
-  public loading:boolean = false;
+  public loading = false;
 
   constructor (
     private modalService: NgbModal,

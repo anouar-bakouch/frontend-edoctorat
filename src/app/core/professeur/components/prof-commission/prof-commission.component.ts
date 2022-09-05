@@ -14,7 +14,7 @@ import { OperationsService } from '../../services/operations.service';
 
 export class ProfCommissionComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
+  public loading = false;
   public itemsCount: number | undefined
   public participes: Participe[] = [];
   public isFetchingItems = true;

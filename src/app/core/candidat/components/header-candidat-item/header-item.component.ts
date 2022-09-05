@@ -9,7 +9,7 @@ import { CandidatPostulerService } from '../../services/candidat-postuler.servic
   styleUrls: ['./header-item.component.css'],
 })
 export class HeaderItemComponent implements OnInit {
-  public nbrSujets: number = 0;
+  public nbrSujets = 0;
 
   constructor(
     public translate: TranslateService,

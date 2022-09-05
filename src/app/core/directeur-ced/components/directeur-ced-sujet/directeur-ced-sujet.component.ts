@@ -17,7 +17,7 @@ export class DirecteurCedSujetComponent implements OnInit {
   [x: string]: any;
   
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
+  public loading = false;
   public sujets: Sujet[] = [];
   public professeurs: Professeur[] = [];
   itemsCount: number | undefined;
@@ -160,7 +160,7 @@ export class DirecteurCedSujetComponent implements OnInit {
     });
   }
 
-  closeResult: string = '';
+  closeResult = '';
 
  
   onIndexChange(offset: number) {

@@ -16,10 +16,10 @@ import { OperationsService } from '../../services/operations.service';
 
 export class ProfInscritsComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public page: number = 1;
+  public loading = false;
+  public page = 1;
   public itemsCount: number | undefined
-  public message: string =
+  public message =
     "aucun sujet n'est choisi pour le moment,les sujets choisies vont apparaitre ici";
   public inscriptions: Inscription[] = [];
   public sujet: Sujet = {
@@ -89,7 +89,7 @@ export class ProfInscritsComponent implements OnInit {
     });
   }
 
-  closeResult: string = '';
+  closeResult = '';
 
   constructor(private modalService: NgbModal, private operationsService: OperationsService) { }
 

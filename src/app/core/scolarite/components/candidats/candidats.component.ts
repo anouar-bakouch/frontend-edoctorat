@@ -16,8 +16,8 @@ import { OperationsService } from '../../services/operations.service';
 })
 export class CandidatsComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public page: number = 1;
+  public loading = false;
+  public page = 1;
   public itemsCount: number | undefined;
   public candidats: Postuler[] = [];
   public candidat: Postuler = {
@@ -26,8 +26,8 @@ export class CandidatsComponent implements OnInit {
     candidat: undefined,
     id: 0
   };
-  public remarque: string = '';
-  closeResult: string = '';
+  public remarque = '';
+  closeResult = '';
   public str: string = environment.API_URL
   constructor(public operationsService: OperationsService, private modalService: NgbModal) { }
 

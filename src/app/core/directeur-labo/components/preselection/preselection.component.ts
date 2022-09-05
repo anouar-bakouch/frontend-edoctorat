@@ -17,8 +17,8 @@ import { OperationsService } from '../../services/operations.service';
 export class PreselectionComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
   public alert2: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public page: number = 1;
+  public loading = false;
+  public page = 1;
   public itemsCount: number | undefined;
   public commissions: Commission[] = [];
   public sujets: Sujet[] = [];
@@ -27,7 +27,7 @@ export class PreselectionComponent implements OnInit {
     candidat: Candidat,
     valider: boolean
   }[]
-  closeResult: string = '';
+  closeResult = '';
   candidats: Candidat[] = [];
   public result: Result<any> = {
     count: 0,

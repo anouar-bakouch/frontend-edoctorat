@@ -18,8 +18,8 @@ import { OperationsService } from '../../services/operations.service';
 })
 export class CommissionsComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public page: number = 1;
+  public loading = false;
+  public page = 1;
   public itemsCount: number | undefined;
   public itemsCountSujets: number | undefined;
   public itemsCountProfs: number | undefined;
@@ -37,7 +37,7 @@ export class CommissionsComponent implements OnInit {
   }
   public sujets: Sujet[] = [];
   public professeurs: Professeur[] = [];
-  closeResult: string = '';
+  closeResult = '';
   // dropdownList: any = [];
 
   selectedSujets: Sujet[] = [];

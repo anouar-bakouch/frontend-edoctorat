@@ -12,8 +12,8 @@ import { OperationsService } from '../../services/operations.service';
 })
 export class CandidatsComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public page: number = 1;
+  public loading = false;
+  public page = 1;
   public itemsCount: number | undefined;
   public candidats: Examiner[] = []
   constructor(private operationsService: OperationsService, private _router: Router) { }

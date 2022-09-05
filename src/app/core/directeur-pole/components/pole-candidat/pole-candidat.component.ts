@@ -11,15 +11,15 @@ import { PoleCandidatsService } from '../../services/pole-candidats.service';
 })
 export class PoleCandidatComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public page: number = 1;
+  public loading = false;
+  public page = 1;
   public itemsCount: number | undefined;
   public candidats: Postuler[] = [];
-  public sujet_: string = '';
-  public formationDoctorale_: string = '';
+  public sujet_ = '';
+  public formationDoctorale_ = '';
   public isFetchingItems = true;
-  public errorText: string = '';
-  public laboratoire_: string = '';
+  public errorText = '';
+  public laboratoire_ = '';
   constructor(public poleCandidatsService: PoleCandidatsService) { }
 
   ngOnInit(): void {

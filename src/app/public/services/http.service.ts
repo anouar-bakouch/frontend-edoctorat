@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 
 export class HttpService {
 
-  private _url:string = 'https://62421b72d126926d0c4e2cc8.mockapi.io';
+  private _url = 'https://62421b72d126926d0c4e2cc8.mockapi.io';
 
   constructor(private http:HttpClient) { }
 

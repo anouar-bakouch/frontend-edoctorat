@@ -11,10 +11,10 @@ import { OperationsService } from '../../services/operations.service';
   styleUrls: ['./prof-resultat.component.css']
 })
 export class ProfResultatComponent implements OnInit {
-  public page: number = 1;
+  public page = 1;
   itemsCount: number | undefined;
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = true;
+  public loading = true;
   public resultats: Examiner[] = [];
   public resultat: Result<Examiner> = {
     count: 0,

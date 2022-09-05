@@ -15,8 +15,8 @@ export class ProfCandidatComponent implements OnInit {
 
   public candidats_ : Postuler [] = [];
   public alert: AlertData | undefined = undefined;
-  public loading:boolean = false;
-  public pathFileExists:boolean = false;
+  public loading = false;
+  public pathFileExists = false;
 
   constructor(public candidatS: CandidastProfService, private _router: Router) { }
 

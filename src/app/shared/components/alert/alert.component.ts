@@ -7,7 +7,7 @@ import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 })
 export class AlertComponent implements OnInit, AfterViewInit {
   @Input() data: AlertData | undefined;
-  tcolor: string = 'black';
+  tcolor = 'black';
 
   constructor() { }
   

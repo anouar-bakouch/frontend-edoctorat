@@ -15,11 +15,11 @@ export class PoleInscriptionComponent implements OnInit {
   public PInscriptions : Inscription [] = []; 
   public alert: AlertData | undefined = undefined;
   public isFetchingItems = true;
-  public loading:boolean = false;
-  public sujet_:string = '';
-  public formationDoctorale_:string = '';
-  public errorText:string = '';
-  public candidat_:string = '';
+  public loading = false;
+  public sujet_ = '';
+  public formationDoctorale_ = '';
+  public errorText = '';
+  public candidat_ = '';
   public itemsCount: number | undefined;
 
   constructor(public poleS:PoleInscriptionService) { }

@@ -27,9 +27,9 @@ export class DoctoratMedecineComponent implements OnInit {
   public countries: any;
   public candidatMed: Diplome | undefined;
   public message!: string;
-  public isFetchingInfo: boolean = true;
+  public isFetchingInfo = true;
   public errorText: string | undefined;
-  public isUpdating: boolean = false;                                   
+  public isUpdating = false;                                   
   public mentions = this.candidatService.mentions;
   DIPLOME_FILE = 'dfile';
   RELEVE_FILE = 'rfile';

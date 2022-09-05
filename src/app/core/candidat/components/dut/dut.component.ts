@@ -30,7 +30,7 @@ export class DutComponent implements OnInit {
   public _cities: Array<string> = [];
   public candidatDut: Diplome | undefined;
   public message!: string;
-  public DutExist: boolean = false;
+  public DutExist = false;
   public mentions = this.candidatService.mentions;
   public TypesDut = this.candidatService.TypeDut;
   isUpdating = false;

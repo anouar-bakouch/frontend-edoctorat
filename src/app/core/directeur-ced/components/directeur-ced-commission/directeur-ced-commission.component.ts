@@ -13,8 +13,8 @@ import { OperationCedService } from '../../services/operation-ced.service';
 })
 export class DirecteurCedCommissionComponent implements OnInit {
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
-  public page: number = 1;
+  public loading = false;
+  public page = 1;
   public itemsCount: number | undefined;
   public commissions: Commission[] =[];
   public isFetchingItems = true;

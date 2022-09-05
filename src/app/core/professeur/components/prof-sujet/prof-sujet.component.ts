@@ -18,7 +18,7 @@ import { OperationsService } from '../../services/operations.service';
 export class ProfSujetComponent implements OnInit {
 
   public alert: AlertData | undefined = undefined;
-  public loading: boolean = false;
+  public loading = false;
   public sujets: Sujet[] = [];
   public professeurs: Professeur[] = [];
   public formationDoctorales: FormationDoctorale[] = [];
@@ -115,7 +115,7 @@ export class ProfSujetComponent implements OnInit {
     results: [],
   };
 
-  closeResult: string = '';
+  closeResult = '';
 
   public form = new FormGroup({
     titre: new FormControl('', [Validators.required, Validators.minLength(2)]),

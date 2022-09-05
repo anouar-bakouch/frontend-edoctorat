@@ -17,7 +17,7 @@ export class ParcoursComponent implements OnInit {
     value: DiplomeType;
 }[] = [];
 
-  public message:string = 'votre dossier est incomplet , veuillez completer votre dossier';
+  public message = 'votre dossier est incomplet , veuillez completer votre dossier';
 
   public parcoursNotCompleted = this.parcours.filter(x=>{
     x.value = DiplomeType.BAC;
@@ -29,14 +29,14 @@ export class ParcoursComponent implements OnInit {
     private candidatParcours: CandidatParcoursService) { }
 
   public diplomes: Diplome [] = [];
-  public OtherDiplomes:boolean = false;
+  public OtherDiplomes = false;
 
-  public bac_1:boolean = false;
-  public bac_2:boolean = false;
-  public bac_3:boolean = false;
-  public bac_5:boolean = false;
-  public bac_6:boolean = false;
-  public progressBarvalue:number = 0;
+  public bac_1 = false;
+  public bac_2 = false;
+  public bac_3 = false;
+  public bac_5 = false;
+  public bac_6 = false;
+  public progressBarvalue = 0;
 
 
   public SuccessParcours = false;

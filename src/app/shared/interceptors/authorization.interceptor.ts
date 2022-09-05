@@ -22,7 +22,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     private authService: AuthService
   ) {}
 
-  private isRefreshing: boolean = false;
+  private isRefreshing = false;
   private rtkSubject: BehaviorSubject<string | null> = new BehaviorSubject<
     string | null
   >(null);
