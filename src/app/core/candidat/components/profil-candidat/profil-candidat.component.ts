@@ -38,8 +38,8 @@ export class ProfilCandidatComponent implements OnInit {
           a.pathFile = `${ environment.API_URL }`+a.pathFile
         });
       });
-      console.log(this.candidat)
-      console.log(res)
+      
+      
     });
   }
 }

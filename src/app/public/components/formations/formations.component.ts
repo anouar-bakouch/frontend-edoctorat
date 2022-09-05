@@ -18,7 +18,7 @@ export class FormationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpService.getFormationsDoctorales().then(res=>{
-      console.log(res);
+      
     })
   }
 

@@ -145,7 +145,7 @@ export class DirecteurCedSujetComponent implements OnInit {
         this.formationDoctorales = this.result.results;
       });
     }).catch((error)=>{
-      console.log(error)
+      
       this.alert = {
         type: 'error',
         message: 'error',

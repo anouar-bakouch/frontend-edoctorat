@@ -290,7 +290,7 @@ export class ProfSujetComponent implements OnInit {
         };
       })
       .catch((error) => {
-        console.log(`${error}`);
+        
         this.alert = {
           type: 'error',
           message: 'error lors de la suppression',
@@ -331,7 +331,7 @@ export class ProfSujetComponent implements OnInit {
         };
       })
       .catch((err) => {
-        console.log(err);
+        
         this.alert = {
           type: 'error',
           message: 'error lors de la modification',
