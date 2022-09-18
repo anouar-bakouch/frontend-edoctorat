@@ -56,7 +56,7 @@ import {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '51178298268-gtsk5m1a7k4ngsv2896hh7qv0fi4jra9.apps.googleusercontent.com'
+              '375949833803-th0k09f1fsascdous7gtm72emppuqd12.apps.googleusercontent.com'
             ),
           },
         ],
