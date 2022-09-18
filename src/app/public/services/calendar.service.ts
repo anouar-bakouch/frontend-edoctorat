@@ -24,7 +24,7 @@ export class CalendarService {
           resolve(data);
         },
         error: (err) => {
-          reject(err);alert(err);
+          reject(err);
         }
       });
     });
