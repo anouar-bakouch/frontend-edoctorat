@@ -1,5 +1,7 @@
 .text-color {
-    color:#003556
+    color:#003556;
+    font-size: 19px;
+    padding:7px;
 }
 
 .container {

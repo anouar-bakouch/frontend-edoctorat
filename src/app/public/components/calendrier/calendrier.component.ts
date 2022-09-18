@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendrierType } from 'src/app/enums/CalendrierType';
 import { Calendrier } from 'src/app/models/Calendrier';
-import Result from 'src/app/models/Result';
 import { CalendarService } from '../../services/calendar.service';
 
 @Component({

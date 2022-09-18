@@ -71,3 +71,6 @@ export class AppModule {}
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+// anouar bakouch 
+// kelvin clark owusu
