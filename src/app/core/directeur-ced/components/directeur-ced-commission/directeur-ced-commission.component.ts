@@ -56,12 +56,12 @@ export class DirecteurCedCommissionComponent implements OnInit {
       // console.log(data)
 
       this.commissions = data.results
-      console.log(data.results)
+      
       
       // console.log(this.commissions)
 
     }).catch((error) => {
-      console.log(error)
+      
       this.alert = {
         type: 'error',
         message: 'error',

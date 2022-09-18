@@ -69,7 +69,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
           this.rtkSubject.next((res as TKRefreshResp).access);
         },
         error: (err) => {
-          console.error(err);
+          
           this.isRefreshing = false;
           this.tokenStorageService.clearTokens();
           return throwError(() => err);

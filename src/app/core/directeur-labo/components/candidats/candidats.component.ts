@@ -30,7 +30,7 @@ export class CandidatsComponent implements OnInit {
     };
     this.operationsService.getCandidats().then(data => {
       this.loading = false
-      console.log(data.results)
+      
       this.itemsCount = data.count;
       this.candidats = data.results
       // this.commissions = data as Commission[];
@@ -63,7 +63,7 @@ export class CandidatsComponent implements OnInit {
       .finally(() => (this.loading = false));
   }
   voirProfile(c:Examiner){
-    console.log(c)
+    
     this._router.navigate(['candidat/profil', { id: c.candidat.id}]);
   }
 }

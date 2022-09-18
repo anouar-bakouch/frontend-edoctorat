@@ -55,12 +55,12 @@ export class PoleCommissionComponent implements OnInit{
       // console.log(data)
       this.itemsCount = data.count
       this.commissions = data.results
-      console.log(data.results)
+      
       
       // console.log(this.commissions)
 
     }).catch((error) => {
-      console.log(error)
+      
       this.alert = {
         type: 'error',
         message: 'error',
