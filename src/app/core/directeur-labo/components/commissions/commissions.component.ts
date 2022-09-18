@@ -79,7 +79,7 @@ export class CommissionsComponent implements OnInit {
         message: 'success',
       };
     }).catch((error) => {
-      console.log(error)
+      
       this.alert = {
         type: 'error',
         message: 'error',
@@ -177,7 +177,7 @@ export class CommissionsComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
     }).catch((error) => {
-      console.log(error)
+      
       this.alert = {
         type: 'error',
         message: 'error',
@@ -273,7 +273,7 @@ export class CommissionsComponent implements OnInit {
         this.commissions.push(data as Commission);
 
       }).catch((err) => {
-        console.log(err);
+        
         this.alert = {
           type: 'error',
           message: "error lors de l'ajout",
@@ -306,7 +306,7 @@ export class CommissionsComponent implements OnInit {
 
       })
       .catch((error) => {
-        console.log(`${error}`);
+        
         this.alert = {
           type: 'error',
           message: 'error lors de la suppression',
@@ -350,7 +350,7 @@ export class CommissionsComponent implements OnInit {
         }
 
       }).catch((err) => {
-        console.log(err);
+        
         this.alert = {
           type: 'error',
           message: "error lors du modification",

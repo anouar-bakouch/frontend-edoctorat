@@ -28,12 +28,12 @@ export class DirecteurCedCandidatComponent implements OnInit {
     };
     this.operationsService.getCandidats().then(data => {
       this.loading = false
-      console.log(data.results)
+      
       this.itemsCount = data.count;
       this.candidats = data.results
 
     }).catch((error) => {
-      console.log(error)
+      
       this.alert = {
         type: 'error',
         message: 'error',

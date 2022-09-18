@@ -42,7 +42,7 @@ export class DirecteurCedResultatComponent implements OnInit {
       this.itemsCount = this.resultat.count
       this.resultats = this.resultat.results
     }).catch((err) => {
-      console.log(err);
+      
       this.alert = {
         type: 'error',
         message: "error",
@@ -64,7 +64,7 @@ export class DirecteurCedResultatComponent implements OnInit {
       this.resultat = data as Result<Examiner>;
       this.resultats = this.resultat.results
     }).catch((err) => {
-      console.log(err);
+      
       this.alert = {
         type: 'error',
         message: "error lors de l'ajout",
