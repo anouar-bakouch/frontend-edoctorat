@@ -59,7 +59,7 @@ export class NotificationsComponent implements OnInit {
       )
     })
     .catch(error=>{
-      console.log(error)
+      
     })
     .finally(()=>{
      

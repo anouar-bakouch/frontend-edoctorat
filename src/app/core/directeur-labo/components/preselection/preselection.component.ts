@@ -50,7 +50,7 @@ export class PreselectionComponent implements OnInit {
         message: 'success',
       };
     }).catch((error) => {
-      console.log(error)
+      
       this.alert = {
         type: 'error',
         message: 'error',
@@ -118,7 +118,7 @@ export class PreselectionComponent implements OnInit {
           candidat: Candidat,
           valider: boolean
         }[]
-        console.log(this.candidatsSujet)
+        
         resolve(data);
       }).catch((err) => {
         reject(err)
@@ -130,7 +130,7 @@ export class PreselectionComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.operationsService.getCommissions().then(data => {
         this.loading = false
-        console.log(data)
+        
         this.result = data as Result<Commission>;
         this.commissions = this.result.results;
         // console.log(this.commissions)
@@ -164,7 +164,7 @@ export class PreselectionComponent implements OnInit {
     }
     this.operationsService.validerCandidat(item.examiner_id, valider).then((data) => {
       item.valider = !item.valider
-      console.log(data)
+      
       this.alert2 = {
         type: 'success',
         message: 'success',
@@ -188,7 +188,7 @@ export class PreselectionComponent implements OnInit {
       message: 'loading',
     };
     this.operationsService.envoyerNotification(id).then((data) => {
-      console.log(data)
+      
       this.alert = {
         type: 'success',
         message: 'success',
