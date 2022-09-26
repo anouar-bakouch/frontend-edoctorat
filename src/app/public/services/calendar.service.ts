@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Calendrier } from 'src/app/models/Calendrier';
-import Result from 'src/app/models/Result';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

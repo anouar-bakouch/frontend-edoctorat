@@ -11,19 +11,11 @@ import { HttpService } from 'src/app/public/services/http.service';
 
 export class MainComponent implements OnInit {
 
-  public laboratoires:Array<Laboratoire> = [];
-  constructor(private http:HttpService) { }
 
   ngOnInit(): void {
-    this.http.getLaboratoires().subscribe(
-      res=>{
-        this.laboratoires = res;
-      }
-    )
-
+    
 
   }
-
 
 
 }

@@ -5,48 +5,59 @@ import { Calendrier } from 'src/app/models/Calendrier';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
 import { Laboratoire } from 'src/app/models/Laboratoire';
 import { environment } from 'src/environments/environment';
+import { first } from 'rxjs/operators';
+import Result from 'src/app/models/Result';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+ }
+)
 
 export class HttpService {
 
-  private _url:string = 'https://62421b72d126926d0c4e2cc8.mockapi.io';
 
-  constructor(private http:HttpClient) { }
+  constructor(public http:HttpClient) { }
 
-  getFormationsDoctorales(): Promise<Array<FormationDoctorale>> {
+  getForms(): Promise<Result<FormationDoctorale>> {
+    let url = `${environment.API_URL}/api/formation-doctorale/`;
     return new Promise((resolve, reject) => {
-      this.http
-        .get<Array<FormationDoctorale>>(
-          `${environment.API_URL}/api/formation-doctorale/` 
-        )
-        .subscribe({
-          next: (data) => {
-            resolve(data);
-          },
-          error: (err) => {
-            reject(err);
-          },
-        });
+      this.http.get<Result<FormationDoctorale>>(url,{responseType : 'json'})
+      .pipe(first())
+      .subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => reject(err),
+      });
     });
   }
-   
-  public getLaboratoires():Observable<Array<Laboratoire>>{
 
-   return this.http.get<Array<Laboratoire>>(`${this._url}/laboratoire`);
-
+  getLabos(): Promise<Result<Laboratoire>> {
+    let url = `${environment.API_URL}/api/get_labo_candidat/`;
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<Laboratoire>>(url,{responseType : 'json'})
+      .pipe(first())
+      .subscribe({
+        next: (data) => {
+          resolve(data);
+        },
+        error: (err) => reject(err),
+      });
+    });
   }
+
+  
 
   public getCalendrierDoctorant():Observable<Calendrier>{
 
-    return this.http.get<Calendrier>(`${this._url}/calendrierDoctorant`);
+    return this.http.get<Calendrier>(`${environment.API_URL}/calendrierDoctorant/`);
 
   }
 
   public getCalendrierProfesseur():Observable<Calendrier>{
 
-    return this.http.get<Calendrier>(`${this._url}/calendrierProfesseur`);
+    return this.http.get<Calendrier>(`${environment.API_URL}/calendrierProfesseur/`);
 
   }
 

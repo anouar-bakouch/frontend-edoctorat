@@ -1,23 +1,32 @@
-<div class="container mt-5">
-    <div class="row">
-    
-            <div class="col-12 text-darkblue heading-bx">
+<div id="carouselExampleCaptions" class="carousel slide m-3" data-bs-ride="carousel">
 
-                <h2  class="bg-white mt-3 my-3 border-start border-primary border-3 text-start p-3 rounded text-color">Formations doctorales a l'USMBA</h2>
+    <h3 class="text-color bg-white mt-3 my-3 border-start border-primary border-3 mt-3 text-start p-3">Formations Doctorales a l'USMBA</h3>
 
-            </div>
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/assets/images/labo/pic4.png" class="d-block w-100" alt="Image descriptif de la formation">
-        <div class="carousel-caption  d-md-block mb-5">
-          <h3 class="bg-white mt-3 my-3 border-start border-primary border-3 text-start p-3 rounded text-color">Science de l'ingenieur</h3>
+      <div class="carousel-item"
+      [ngClass]="getSliderClass(first,last,isEven,isOdd)"
+     
+                                                *ngFor="let formation of formations;
+                                                index as i;
+                                                first as first;
+                                                last as last;
+                                                even as isEven;
+                                                odd as isOdd">
+         
+        <img src="/assets/images/conseils/color-background.jpg" style="height:73vh;" class="d-block shadow w-100 img-thumbnail img-bordered" alt="/assets/images/labo/pic4.png">
+        <div class="carousel-caption d-none d-md-block">
+          
+          <p class="bg-white mt-3 my-3 border-start border-end border-primary border-3 text-start p-3 rounded text-color text-center fs-3"><span class="bg-color">{{formation.titre}}</span> <span class="bg-primary text-light m-1 p-1 border border-radius">{{formation.initiale}}</span></p>
         </div>
-        
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon text-primary" aria-hidden="true"></span>
+          <span class="text-white fw-bold fs-23 p-3 btn btn-primary"><</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="text-white fw-bold fs-23 p-3 btn btn-primary">></span>
+        </button>
       </div>
-      
     </div>
-
+ 
   </div>
-    </div>
-</div>

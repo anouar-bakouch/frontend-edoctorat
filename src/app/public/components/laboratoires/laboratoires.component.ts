@@ -24,12 +24,13 @@ export class LaboratoiresComponent implements OnInit {
   
   @Input() public laboratoire!:Laboratoire;
 
-  constructor(private http:HttpService) { }
+  constructor(private _http:HttpService) { }
 
   ngOnInit(): void {
-    this.http.getLaboratoires().subscribe(
+    this._http.getLabos().then(
       res=>{
-        this.laboratoires = res;
+        this.laboratoires = res.results;
+        console.log(res[0].initialLabo)
       }
     )
   }

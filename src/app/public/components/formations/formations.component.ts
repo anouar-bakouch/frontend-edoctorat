@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormationDoctorale } from 'src/app/models/FormationDoctorale';
+import Result from 'src/app/models/Result';
 import { HttpService } from '../../services/http.service';
 
 
@@ -12,14 +13,32 @@ import { HttpService } from '../../services/http.service';
 
 export class FormationsComponent implements OnInit {
 
-  public formations:Array<FormationDoctorale> [] = [];
+  public formations:FormationDoctorale[] = []; 
 
-  constructor(public httpService:HttpService) { }
+  getSliderClass(first,last,isEven,isOdd){
+    return {
+      active : first,
+      lastactive : last,
+      even : isEven,
+      odd : isOdd
+  }
+  }
+  
+  @Input() public formation!:FormationDoctorale;
+
+
+  constructor(private _httpService:HttpService) { }
 
   ngOnInit(): void {
-    this.httpService.getFormationsDoctorales().then(res=>{
-      
-    })
+     
+this._httpService.getForms().then(res=>{
+   
+  this.formations = res.results;
+
+ 
+
+})
+
   }
 
 
