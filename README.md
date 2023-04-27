@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-it was a nice experience
-=======
-1- required software :  - angular cli , npm ( node )
+### eDoctorat pour l'Université Sidi Mohamed Ben Abdellah  ( Fr )
+Il s'agit d'une plateforme en ligne conçue pour aider les étudiants intéressés par l'obtention d'un doctorat dans un domaine donné. La plateforme offre une gamme de ressources et d'outils pour aider les étudiants à naviguer dans le processus complexe de l'application et l'achèvement d'un programme de doctorat. Dans l'ensemble, eDoctorat vise à rendre le processus de devenir doctorant plus transparent, accessible et favorable aux étudiants de différents horizons et de différents endroits. En fournissant une plateforme centralisée pour l'information, les ressources et la communauté, eDoctorat espère donner aux étudiants les moyens de poursuivre leurs objectifs académiques et professionnels avec confiance et succès.
 
-2- npm install --force
->>>>>>> 8e5aecd (finalizing the project)
+### eDoctorat for the University of Sidi Mohamed Ben Abdellah
+
+eDoctorat is an online platform designed to assist students who are interested in pursuing a doctoral degree in a field related to medicine, health sciences, or life sciences. The platform provides a range of resources and tools to help students navigate the complex process of applying for and completing a doctoral program. 
+Overall, eDoctorat aims to make the process of becoming a doctorant more transparent, accessible, and supportive for students from diverse backgrounds and locations. By providing a centralized platform for information, resources, and community, eDoctorat hopes to empower students to pursue their academic and professional goals with confidence and success.
