@@ -56,7 +56,7 @@ import {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '375949833803-th0k09f1fsascdous7gtm72emppuqd12.apps.googleusercontent.com'
+              'secret key to put here'
             ),
           },
         ],
